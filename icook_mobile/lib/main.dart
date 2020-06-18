@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icook_mobile/core/services/key_storage_service.dart';
+import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/locator.dart';
 import 'package:icook_mobile/provider_setup.dart';
 import 'package:icook_mobile/ui/router.dart';
@@ -37,6 +37,8 @@ class MyApp extends StatelessWidget {
 class TestRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(),
+    );
   }
 }

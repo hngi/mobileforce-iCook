@@ -1,9 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
-import 'package:icook_mobile/core/services/key_storage_impl.dart';
+import 'package:icook_mobile/core/services/key_storage/key_storage_impl.dart';
+import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:stacked_services/stacked_services.dart';
-
-import 'core/services/key_storage_service.dart';
 
 GetIt locator = GetIt.instance;
 

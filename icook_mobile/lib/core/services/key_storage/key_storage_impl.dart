@@ -1,4 +1,5 @@
-import 'package:icook_mobile/core/services/key_storage_service.dart';
+
+import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Service that is responsible for storing/retrieving data in/from
