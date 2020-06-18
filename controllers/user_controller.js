@@ -9,6 +9,20 @@ exports.get_all_users = async (req, res, next) => {
   }
 };
 
+exports.get_user_by_id = async (req, res, next) => {
+  const doesUserExist = await User.exists({_id: req.params.id});
+  if(doesUserExist){
+    try {
+        const user = await User.findOne({_id: req.params.id})
+        res.json(user)
+    } catch (err) {
+        res.status(500).json({message: err.message})
+    }
+} else {
+    res.status(404).json({message: `user with ID of ${req.params.id} not found`})
+}  
+}
+
 //patch request
 //endpoint : /api/users/{id}/favourites - patch request
 exports.update_user_favourites = (req, res, next) => {

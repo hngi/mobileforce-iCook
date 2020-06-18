@@ -1,7 +1,10 @@
 const express = require("express")
+require('dotenv').config()
 const database = require('./database/index')
 const cors = require('cors')
 const User = require('./models/user') 
+const uploadImage = require('./database/storage/uploadImage')
+
 
 const PORT = process.env.PORT || 5000
 
