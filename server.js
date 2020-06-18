@@ -2,7 +2,7 @@ const express = require("express")
 require('dotenv').config()
 const database = require('./database/index')
 const cors = require('cors')
-const User = require('./models/user') 
+const Dish = require('./models/dish') 
 const uploadImage = require('./database/storage/uploadImage')
 
 
@@ -26,6 +26,5 @@ app.use("/api/dishes", require("./routes/dish_routes"))
 
 //start server
 app.listen(PORT, () => {
-    let user = new User
     console.log("Server started on " + PORT)
 })

@@ -11,11 +11,11 @@ const dishSchema = new schema({
   ingredients: [String],
   steps: [String],
   healthBenefits: [String],
-  comments: {
-    chefId: schema.Types.ObjectId,
+  comments: [{
+    chefEmail: String,
+    chefName: String,
     comment: String,
-    default: {}
-  },
+  }],
 });
 
 const Dish = mongoose.model("Dish", dishSchema);
