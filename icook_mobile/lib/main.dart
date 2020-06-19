@@ -1,3 +1,4 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:icook_mobile/core/managers/core_manager.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
@@ -5,6 +6,8 @@ import 'package:icook_mobile/locator.dart';
 import 'package:icook_mobile/provider_setup.dart';
 import 'package:icook_mobile/ui/router.dart';
 import 'package:icook_mobile/ui/ui_helper.dart';
+import 'package:icook_mobile/ui/view/constant.dart';
+import 'package:icook_mobile/ui/view/profile_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -21,19 +24,19 @@ class MyApp extends StatelessWidget {
   final keystorage = locator<KeyStorageService>();
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: providers,
-      child: CoreManager(
-        child: MaterialApp(
-          title: Constants.appName,
-          theme: Constants.lightTheme,
-          darkTheme: Constants.darkTheme,
-          navigatorKey: navigationService.navigatorKey,
-          onGenerateRoute: Router.generateRoute,
-          home: TestRoute(),
-        ),
-      ),
-    );
+
+     return MultiProvider(
+       providers: providers,
+       child: MaterialApp(
+         debugShowCheckedModeBanner: false,
+         title: Constants.appName,
+         theme: kDarkTheme,
+         darkTheme: Constants.darkTheme,
+       navigatorKey: navigationService.navigatorKey,
+         onGenerateRoute: Router.generateRoute,
+         home: ProfileScreen(),
+       ),
+     );
   }
 }
 
