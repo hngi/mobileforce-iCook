@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:icook_mobile/core/managers/core_manager.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/locator.dart';
 import 'package:icook_mobile/provider_setup.dart';
@@ -22,13 +23,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: providers,
-      child: MaterialApp(
-        title: Constants.appName,
-        theme: Constants.lightTheme,
-        darkTheme: Constants.darkTheme,
-        navigatorKey: navigationService.navigatorKey,
-        onGenerateRoute: Router.generateRoute,
-        home: TestRoute(),
+      child: CoreManager(
+        child: MaterialApp(
+          title: Constants.appName,
+          theme: Constants.lightTheme,
+          darkTheme: Constants.darkTheme,
+          navigatorKey: navigationService.navigatorKey,
+          onGenerateRoute: Router.generateRoute,
+          home: TestRoute(),
+        ),
       ),
     );
   }
