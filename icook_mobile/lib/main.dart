@@ -10,6 +10,8 @@ import 'package:icook_mobile/ui/ui_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import 'ui/favorite_screen/favorite_screen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         darkTheme: Constants.darkTheme,
         navigatorKey: navigationService.navigatorKey,
         onGenerateRoute: Router.generateRoute,
-        home: SearchView(),
+        home: FavoriteScreen(),
       ),
     );
   }
