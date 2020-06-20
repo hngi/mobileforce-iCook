@@ -46,6 +46,9 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
+          SizedBox(
+            height: 10,
+          ),
           Expanded(
             child: ListView(
               children: <Widget>[
