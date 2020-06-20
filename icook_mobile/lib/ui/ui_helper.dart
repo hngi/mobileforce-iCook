@@ -11,16 +11,13 @@ class Constants {
   static Color darkPrimary = Colors.black;
   static Color lightAccent = Colors.black;
   static Color darkAccent = Colors.white;
-  static Color lightBG = Color(0xFFE5E5E5);
+  static Color lightBG = Color(0xFFffffff);
   static Color darkBG = Colors.black;
   static Color badgeColor = Colors.red;
 
   //Reusable Colors
-  static const kcolor1 = Color(0xFF1D1754);
-  static const kcolor2 = Color(0xFFC4C4C4);
-  static const korange = Color(0xFFFFAC50);
-  static const kcolor3 = Color(0xFFFC7A1E);
-  static const kdarkOrange = Color(0xFF8E3900);
+  static const kbuttonColor1 = Color(0xFF558CE2);
+ 
 
   //Reusable Spacers
   static const kPaddingS = 8.0;
@@ -38,7 +35,6 @@ class Constants {
       textTheme: TextTheme(
         headline6: TextStyle(
           color: darkBG,
-          fontSize: 18.0,
           fontWeight: FontWeight.w800,
         ),
       ),
@@ -61,7 +57,6 @@ class Constants {
       textTheme: TextTheme(
         headline6: TextStyle(
           color: lightBG,
-          fontSize: 18.0,
           fontWeight: FontWeight.w800,
         ),
       ),
