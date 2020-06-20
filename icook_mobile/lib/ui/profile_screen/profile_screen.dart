@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:icook_mobile/ui/profile_screen/constant.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 import '../ui_helper.dart';
@@ -33,27 +34,20 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          SizedBox(height: Constants.kSpacingUnit.w * 6),
+          SizedBox(height: kSpacingUnit.w * 5),
           header,
           Expanded(
             child: ListView(
               children: <Widget>[
                 ListTile(
-                  leading: Container(
-                      width: 60,
-                      height: 90,
-                      decoration: new BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: new DecorationImage(
-                              fit: BoxFit.cover,
-                              image:
-                                  new AssetImage('assets/images/avatar.png')))),
+                  leading: CircleAvatar(
+                    backgroundImage: AssetImage('assets/images/avatar.png'),
+                  ),
                   title: Text(
                     'Chef Emmanuel',
                     style: GoogleFonts.workSans(
-                        textStyle:
-                            TextStyle(color: Color(0xFF222222), fontSize: 18),
-                        fontWeight: FontWeight.w600),
+                        textStyle: TextStyle(color: Colors.black, fontSize: 24),
+                        fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
                     'Emmanuelchef@gmail.com',
@@ -67,7 +61,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 Card(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
+                    borderRadius: BorderRadius.circular(1.0),
                   ),
                   child: ListTile(
                     title: Text(
@@ -75,14 +69,14 @@ class ProfileScreen extends StatelessWidget {
                       style: GoogleFonts.workSans(
                           textStyle: TextStyle(
                               color: Colors.black,
-                              fontSize: 16,
+                              fontSize: 24,
                               fontWeight: FontWeight.w500)),
                     ),
                     subtitle: Text(
                       'Edit profile',
                       style: GoogleFonts.workSans(
                           textStyle:
-                              TextStyle(color: Colors.blueGrey, fontSize: 12)),
+                              TextStyle(color: Colors.blueGrey, fontSize: 14)),
                     ),
                     trailing: Icon(Icons.keyboard_arrow_right),
                     onTap: () {
@@ -103,14 +97,14 @@ class ProfileScreen extends StatelessWidget {
                       style: GoogleFonts.workSans(
                           textStyle: TextStyle(
                               color: Colors.black,
-                              fontSize: 16,
+                              fontSize: 24,
                               fontWeight: FontWeight.w500)),
                     ),
                     subtitle: Text(
                       '4 dishes posted',
                       style: GoogleFonts.workSans(
                           textStyle:
-                              TextStyle(color: Colors.blueGrey, fontSize: 12)),
+                              TextStyle(color: Colors.blueGrey, fontSize: 14)),
                     ),
                     trailing: Icon(Icons.keyboard_arrow_right),
                     onTap: () {
@@ -131,14 +125,14 @@ class ProfileScreen extends StatelessWidget {
                       style: GoogleFonts.workSans(
                           textStyle: TextStyle(
                               color: Colors.black,
-                              fontSize: 16,
+                              fontSize: 24,
                               fontWeight: FontWeight.w500)),
                     ),
                     subtitle: Text(
                       '10 pending notifications',
                       style: GoogleFonts.workSans(
                           textStyle:
-                              TextStyle(color: Colors.blueGrey, fontSize: 12)),
+                              TextStyle(color: Colors.blueGrey, fontSize: 14)),
                     ),
                     trailing: Icon(Icons.keyboard_arrow_right),
                     onTap: () {
@@ -158,14 +152,14 @@ class ProfileScreen extends StatelessWidget {
                       'My Reviews',
                       style: GoogleFonts.workSans(
                           textStyle:
-                              TextStyle(color: Colors.black, fontSize: 16),
+                              TextStyle(color: Colors.black, fontSize: 24),
                           fontWeight: FontWeight.w500),
                     ),
                     subtitle: Text(
                       'Reviews for 4 recipe',
                       style: GoogleFonts.workSans(
                           textStyle:
-                              TextStyle(color: Colors.blueGrey, fontSize: 12)),
+                              TextStyle(color: Colors.blueGrey, fontSize: 14)),
                     ),
                     trailing: Icon(Icons.keyboard_arrow_right),
                     onTap: () {
@@ -186,14 +180,14 @@ class ProfileScreen extends StatelessWidget {
                       style: GoogleFonts.workSans(
                           textStyle: TextStyle(
                               color: Colors.black,
-                              fontSize: 16,
+                              fontSize: 24,
                               fontWeight: FontWeight.w500)),
                     ),
                     subtitle: Text(
-                      'Newsletter, Dark mode, Change Password',
+                      'Newsletter, linked accounts, Change Password',
                       style: GoogleFonts.workSans(
                           textStyle:
-                              TextStyle(color: Colors.blueGrey, fontSize: 12)),
+                              TextStyle(color: Colors.blueGrey, fontSize: 14)),
                     ),
                     trailing: Icon(Icons.keyboard_arrow_right),
                     onTap: () {
