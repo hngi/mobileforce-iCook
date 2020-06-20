@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/locator.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Constants {
   static String appName = "iCook";
@@ -68,6 +69,63 @@ class Constants {
 //      ),
     ),
   );
+
+  static const kSpacingUnit = 10;
+
+static const kDarkPrimaryColor = Color(0xFF212121);
+static const kDarkSecondaryColor = Color(0xFF373737);
+static const kLightPrimaryColor = Color(0xFFFFFFFF);
+static const kLightSecondaryColor = Color(0xFFF3F7FB);
+static const kAccentColor = Color(0xFFFFC107);
+
+final kTitleTextStyle = TextStyle(
+  fontSize: ScreenUtil().setSp(kSpacingUnit.w * 1.7),
+  fontWeight: FontWeight.w600,
+);
+
+final kCaptionTextStyle = TextStyle(
+  fontSize: ScreenUtil().setSp(kSpacingUnit.w * 1.3),
+  fontWeight: FontWeight.w100,
+);
+
+final kButtonTextStyle = TextStyle(
+  fontSize: ScreenUtil().setSp(kSpacingUnit.w * 1.5),
+  fontWeight: FontWeight.w400,
+  color: kDarkPrimaryColor,
+);
+
+final kDarkTheme = ThemeData(
+  brightness: Brightness.dark,
+  primaryColor: kDarkPrimaryColor,
+  canvasColor: kDarkPrimaryColor,
+  backgroundColor: kDarkSecondaryColor,
+  accentColor: kAccentColor,
+  iconTheme: ThemeData.dark().iconTheme.copyWith(
+        color: kLightSecondaryColor,
+      ),
+  textTheme: ThemeData.dark().textTheme.apply(
+        
+        bodyColor: kLightSecondaryColor,
+        displayColor: kLightSecondaryColor,
+      ),
+);
+
+final kLightTheme = ThemeData(
+  brightness: Brightness.light,
+  
+  primaryColor: kLightPrimaryColor,
+  canvasColor: kLightPrimaryColor,
+  backgroundColor: kLightSecondaryColor,
+  accentColor: kAccentColor,
+  iconTheme: ThemeData.light().iconTheme.copyWith(
+        color: kDarkSecondaryColor,
+      ),
+  textTheme: ThemeData.light().textTheme.apply(
+        
+        bodyColor: kDarkSecondaryColor,
+        displayColor: kDarkSecondaryColor,
+      ),
+);
 }
 
 class ThemeNotifier extends ChangeNotifier {

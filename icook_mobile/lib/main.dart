@@ -5,15 +5,9 @@ import 'package:icook_mobile/locator.dart';
 import 'package:icook_mobile/provider_setup.dart';
 import 'package:icook_mobile/ui/details_screen/details_screen.dart';
 import 'package:icook_mobile/ui/router.dart';
-import 'package:icook_mobile/ui/search_screen/search_view.dart';
-import 'package:icook_mobile/ui/splash_screen/splash_screen.dart';
 import 'package:icook_mobile/ui/ui_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked_services/stacked_services.dart';
-
-
-import 'ui/favorite_screen/favorite_screen.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,14 +24,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: providers,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: Constants.appName,
-        theme: Constants.lightTheme,
-        darkTheme: Constants.darkTheme,
-        navigatorKey: navigationService.navigatorKey,
-        onGenerateRoute: Router.generateRoute,
-        home: DetailsScreen(),
+      child: CoreManager(
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: Constants.appName,
+          theme: Constants.lightTheme,
+          darkTheme: Constants.darkTheme,
+          navigatorKey: navigationService.navigatorKey,
+          onGenerateRoute: Router.generateRoute,
+          home: DetailsScreen(),
+        ),
       ),
     );
   }
