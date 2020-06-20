@@ -15,11 +15,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Favorite"),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {},
-        ),
         actions: <Widget>[
           IconButton(icon: Icon(Icons.search), onPressed: () {})
         ],
@@ -58,11 +53,10 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   Widget _buildCardItem(
       {String chefImage,
       String chefName,
-       List<String> foodImage,
+      List<String> foodImage,
       foodName,
       String foodDescription,
       int likes}) {
-
     print("FoodImage Size ${foodImage.length}");
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
