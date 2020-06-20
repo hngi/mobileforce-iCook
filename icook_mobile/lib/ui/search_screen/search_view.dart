@@ -10,17 +10,9 @@ class _SearchViewState extends State<SearchView> {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
     return Scaffold(
-        backgroundColor: Colors.white,
-//        bottomNavigationBar: BottomNavigationBar(items: [
-//          BottomNavigationBarItem(icon: Icon(Icons.home),title: Text("Home")),
-//          BottomNavigationBarItem(icon: Icon(Icons.home),title: Text("Home")),
-//          BottomNavigationBarItem(icon: Icon(Icons.home),title: Text("Home")),
-//        ]),
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(mediaQuery.size.height*0.07),
+          preferredSize: Size.fromHeight(mediaQuery.size.height * 0.07),
           child: AppBar(
-
-            centerTitle: true,
             title: Text(
               "Search",
               style: TextStyle(
@@ -28,14 +20,16 @@ class _SearchViewState extends State<SearchView> {
               ),
             ),
             actions: <Widget>[
-              FlatButton.icon(onPressed: (){}, icon: Icon(Icons.more_horiz), label: Text(""),)
+              FlatButton.icon(
+                onPressed: () {},
+                icon: Icon(Icons.more_horiz),
+                label: Text(""),
+              )
             ],
           ),
         ),
-
         body: SafeArea(
             child: Padding(
-
           padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
           child: Container(
             height: mediaQuery.size.height * 0.92,
@@ -149,36 +143,32 @@ Container _recentContainer() {
   );
 }
 
-Container _serachResult(mediaQuery) {
-  return Container(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 0.0),
-          child: Text(
-            "Related Search Result",
-            style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 18,
-                fontWeight: FontWeight.bold),
-          ),
+Widget _serachResult(mediaQuery) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 0.0),
+        child: Text(
+          "Related Search Result",
+          style: TextStyle(
+              fontFamily: 'Poppins', fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        Container(
-          height: 320,
-          child: ListView(
-            children: <Widget>[
-              ResultList(recipe: r),
-              ResultList(recipe: r),
-              ResultList(recipe: r),
-              ResultList(recipe: r),
-              ResultList(recipe: r)
-            ],
-          ),
-        )
-      ],
-    ),
+      ),
+      Container(
+        child: ListView(
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          children: <Widget>[
+            ResultList(recipe: r),
+            ResultList(recipe: r),
+            ResultList(recipe: r),
+            ResultList(recipe: r),
+            ResultList(recipe: r)
+          ],
+        ),
+      ),
+    ],
   );
 }
 
