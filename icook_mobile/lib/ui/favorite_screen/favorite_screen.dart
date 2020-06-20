@@ -25,7 +25,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               onTap: (){},
               child: Image(image:
 
-              AssetImage( "assets/images/search.png"),
+              AssetImage( "assets/images/search_fav.png"),
 
                 width: 24,
                 height: 24,
