@@ -101,7 +101,7 @@ class DetailsScreen extends StatelessWidget {
                   SizedBox(height: kSpacingUnit.w * 1),
                   Row(
                     children: [
-                      SizedBox(width: kSpacingUnit.w * 1),
+                      SizedBox(width: kSpacingUnit.w * 1.5),
                       Text(
                         '4 likes',
                         style: GoogleFonts.poppins(
