@@ -5,7 +5,7 @@ import 'package:icook_mobile/locator.dart';
 import 'package:icook_mobile/provider_setup.dart';
 import 'package:icook_mobile/ui/profile_screen/profile_screen.dart';
 import 'package:icook_mobile/ui/router.dart';
-import 'package:icook_mobile/ui/search_screen/search_view.dart';
+import 'package:icook_mobile/ui/search_screen/search_page.dart';
 import 'package:icook_mobile/ui/ui_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked_services/stacked_services.dart';
