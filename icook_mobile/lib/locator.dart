@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
+import 'package:icook_mobile/core/services/connectivity/connectivity_service.dart';
+import 'package:icook_mobile/core/services/connectivity/connectivity_service_impl.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_impl.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -20,6 +22,8 @@ Future<void> setupLocator({bool test = false}) async {
   locator.registerLazySingleton(
     () => SnackbarService(),
   );
+
+  locator.registerLazySingleton<ConnectivityService>(() => ConnectivityServiceImpl());
 
   locator.registerLazySingleton<HiveInterface>(() => Hive);
 
