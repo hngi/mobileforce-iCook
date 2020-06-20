@@ -6,13 +6,9 @@ class SearchView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Search',
-        style: TextStyle(
-          fontFamily: "Poppins",
-          fontWeight: FontWeight.w500,
-          fontSize: 24
-        ),),
-        centerTitle: true,
+        title: Text(
+          'Search',
+        ),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 12),
@@ -22,23 +18,6 @@ class SearchView extends StatelessWidget {
               width: 20,
             ),
           )
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        selectedItemColor: Colors.blue,
-        type: BottomNavigationBarType.fixed,
-        currentIndex: 1,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        onTap: (int i) {},
-        items: [
-          _bottomNavigationBarItem(Icons.home, 'Home', Colors.black45),
-          _bottomNavigationBarItem(Icons.search, 'Search', Colors.blue),
-          _bottomNavigationBarItem(Icons.add_circle, 'Add', Colors.black45),
-          _bottomNavigationBarItem(Icons.favorite, 'Favorite', Colors.black45),
-          _bottomNavigationBarItem(
-              Icons.person_outline, 'Profile', Colors.black45),
         ],
       ),
       body: Container(
