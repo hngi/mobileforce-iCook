@@ -22,9 +22,9 @@ class DetailsScreen extends StatelessWidget {
         ),
         SizedBox(width: kSpacingUnit.w * 5),
         Text(
-          'Recipe Details',
-          style: GoogleFonts.workSans(
-              textStyle: TextStyle(color: Color(0xff333333), fontSize: 26),
+          'Recipe details',
+          style: GoogleFonts.poppins(
+              textStyle: TextStyle(color: Color(0xff333333), fontSize: 25),
               fontWeight: FontWeight.w500),
         ),
       ],
@@ -41,20 +41,31 @@ class DetailsScreen extends StatelessWidget {
               padding: const EdgeInsets.only(top: 5.0, bottom: 12.0),
               child: ListView(
                 children: [
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: AssetImage(
-                        'assets/images/avatar.png',
+                  Row(
+                    children: [
+                      SizedBox(width: kSpacingUnit.w * 1),
+                      Container(
+                        height: ScreenUtil().setSp(kSpacingUnit.w * 5),
+                        width: ScreenUtil().setSp(kSpacingUnit.w * 5),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(0xff578DDE),
+                          image: DecorationImage(
+                              image: AssetImage('assets/images/avatar.png'),
+                              fit: BoxFit.contain),
+                        ),
                       ),
-                    ),
-                    title: Text(
-                      'Mary Stella',
-                      style: GoogleFonts.workSans(
-                          textStyle:
-                              TextStyle(color: Color(0xff333333), fontSize: 21),
-                          fontWeight: FontWeight.w500),
-                    ),
+                      SizedBox(width: kSpacingUnit.w * 1.5),
+                      Text(
+                        'Mary Stella',
+                        style: GoogleFonts.poppins(
+                            textStyle:
+                            TextStyle(color: Color(0xff333333), fontSize: 19),
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
                   ),
+                  SizedBox(height: kSpacingUnit.w * 1),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(12, 5, 12, 5),
                     child: Container(
@@ -77,25 +88,25 @@ class DetailsScreen extends StatelessWidget {
                       Icon(
                         Icons.favorite_border,
                         color: Color(0xff333333),
-                        size: ScreenUtil().setSp(kSpacingUnit.w * 3),
+                        size: ScreenUtil().setSp(kSpacingUnit.w * 2.9),
                       ),
-                      SizedBox(width: kSpacingUnit.w * 2),
-                      Icon(
-                        Icons.chat_bubble_outline,
+                      SizedBox(width: kSpacingUnit.w * 1.5),
+                      Image.asset('assets/images/Shape.png',
                         color: Color(0xff333333),
-                        size: ScreenUtil().setSp(kSpacingUnit.w * 3),
+                        height: ScreenUtil().setSp(kSpacingUnit.w * 2.9),
+                        width: ScreenUtil().setSp(kSpacingUnit.w * 2.9),
                       ),
                     ],
                   ),
                   SizedBox(height: kSpacingUnit.w * 1),
                   Row(
                     children: [
-                      SizedBox(width: kSpacingUnit.w * 1),
+                      SizedBox(width: kSpacingUnit.w * 1.5),
                       Text(
-                        '4 Likes',
-                        style: GoogleFonts.workSans(
+                        '4 likes',
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
-                                color: Color(0xff333333), fontSize: 24),
+                                color: Color(0xff333333), fontSize: 21),
                             fontWeight: FontWeight.w600),
                       ),
                     ],
@@ -107,9 +118,9 @@ class DetailsScreen extends StatelessWidget {
                     children: [
                       Text(
                         'DOUGHNUTS',
-                        style: GoogleFonts.workSans(
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
-                                color: Color(0xff333333), fontSize: 24),
+                                color: Color(0xff333333), fontSize: 21),
                             fontWeight: FontWeight.w600),
                       ),
                       SizedBox(height: kSpacingUnit.w * 0.5),
@@ -120,9 +131,9 @@ class DetailsScreen extends StatelessWidget {
                           'with milk, sugar with the flavor of cinnamon and '
                           'nutmeg. Shaped into rings and deep fried. Usually '
                           'served with sugar glaze or chocolate sauce.',
-                          style: GoogleFonts.workSans(
+                          style: GoogleFonts.poppins(
                               textStyle: TextStyle(
-                                  color: Color(0xff797978), fontSize: 22),
+                                  color: Color(0xff797978), fontSize: 19),
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -133,19 +144,17 @@ class DetailsScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: Color(0xff578DDE),
-                        ),
-                        child: Icon(
-                          Icons.shopping_basket,
-                          color: Color(0xffFFFFFF),
-                          size: ScreenUtil().setSp(kSpacingUnit.w * 3),
+                          image: DecorationImage(
+                              image: AssetImage('assets/images/bag.png'),
+                              fit: BoxFit.scaleDown),
                         ),
                       ),
                       SizedBox(height: kSpacingUnit.w * 0.9),
                       Text(
                         'SHOPPING LIST',
-                        style: GoogleFonts.workSans(
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
-                                color: Color(0xff333333), fontSize: 24),
+                                color: Color(0xff333333), fontSize: 21),
                             fontWeight: FontWeight.w600),
                       ),
                     ],
@@ -207,19 +216,17 @@ class DetailsScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: Color(0xff578DDE),
-                        ),
-                        child: Icon(
-                          Icons.fastfood,
-                          color: Color(0xffFFFFFF),
-                          size: ScreenUtil().setSp(kSpacingUnit.w * 3),
+                            image: DecorationImage(
+                                image: AssetImage('assets/images/chef.png'),
+                                fit: BoxFit.scaleDown)
                         ),
                       ),
                       SizedBox(height: kSpacingUnit.w * 0.9),
                       Text(
                         'PREPARATION',
-                        style: GoogleFonts.workSans(
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
-                                color: Color(0xff333333), fontSize: 24),
+                                color: Color(0xff333333), fontSize: 21),
                             fontWeight: FontWeight.w600),
                       ),
                     ],
@@ -285,9 +292,9 @@ class DetailsScreen extends StatelessWidget {
                       SizedBox(height: kSpacingUnit.w * 0.9),
                       Text(
                         'HEALTH BENEFITS',
-                        style: GoogleFonts.workSans(
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
-                                color: Color(0xff333333), fontSize: 24),
+                                color: Color(0xff333333), fontSize: 21),
                             fontWeight: FontWeight.w600),
                       ),
                     ],
@@ -304,7 +311,7 @@ class DetailsScreen extends StatelessWidget {
                             'coffee combo could help enhance your memory',
                       ),
                       HealthBenefits(
-                        healthText: ' Not only are they fried, but full of '
+                        healthText: 'Not only are they fried, but full of '
                             'sugar. Sugar gives you energy',
                       ),
                       HealthBenefits(
@@ -321,16 +328,16 @@ class DetailsScreen extends StatelessWidget {
                       SizedBox(width: kSpacingUnit.w * 1),
                       Text(
                         'COMMENTS',
-                        style: GoogleFonts.workSans(
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
-                                color: Color(0xff578DDE), fontSize: 24),
+                                color: Color(0xff578DDE), fontSize: 21),
                             fontWeight: FontWeight.w600),
                       ),
-                      SizedBox(width: kSpacingUnit.w * 2),
-                      Icon(
-                        Icons.chat_bubble_outline,
+                      SizedBox(width: kSpacingUnit.w * 1.5),
+                      Image.asset('assets/images/Shape.png',
                         color: Color(0xff578DDE),
-                        size: ScreenUtil().setSp(kSpacingUnit.w * 3),
+                        height: ScreenUtil().setSp(kSpacingUnit.w * 2.9),
+                        width: ScreenUtil().setSp(kSpacingUnit.w * 2.9),
                       ),
                     ],
                   ),
@@ -353,9 +360,9 @@ class DetailsScreen extends StatelessWidget {
                         children: [
                           Text(
                             'Leave a comment',
-                            style: GoogleFonts.workSans(
+                            style: GoogleFonts.poppins(
                                 textStyle: TextStyle(
-                                    color: Color(0xffbdbdbd), fontSize: 20),
+                                    color: Color(0xffbdbdbd), fontSize: 18),
                                 fontWeight: FontWeight.w400),
                           ),
                         ],
@@ -385,9 +392,9 @@ class HealthBenefits extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
       child: Text(
         healthText,
-        style: GoogleFonts.workSans(
+        style: GoogleFonts.poppins(
             textStyle: TextStyle(
-                color: Color(0xff797978), fontSize: 22),
+                color: Color(0xff797978), fontSize: 19),
             fontWeight: FontWeight.w400),
       ),
     );
@@ -412,17 +419,17 @@ class PreparationSpan extends StatelessWidget {
         children: [
           SizedBox(width: kSpacingUnit.w * 1),
           Container(
-            height: ScreenUtil().setSp(kSpacingUnit.w * 3),
-            width: ScreenUtil().setSp(kSpacingUnit.w * 3),
+            height: ScreenUtil().setSp(kSpacingUnit.w * 2.7),
+            width: ScreenUtil().setSp(kSpacingUnit.w * 2.7),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Color(0xff578DDE),
             ),
             child: Center(
                 child: Text(number,
-                  style: GoogleFonts.workSans(
+                  style: GoogleFonts.poppins(
                       textStyle: TextStyle(
-                          color: Color(0xffffffff), fontSize: 21),
+                          color: Color(0xffffffff), fontSize: 18),
                       fontWeight: FontWeight.w600),),
             ),
           ),
@@ -431,9 +438,9 @@ class PreparationSpan extends StatelessWidget {
             child: Flexible(
               child: Text(
                 numberSpan,
-                style: GoogleFonts.workSans(
+                style: GoogleFonts.poppins(
                     textStyle: TextStyle(
-                        color: Color(0xff797978), fontSize: 22),
+                        color: Color(0xff797978), fontSize: 19),
                     fontWeight: FontWeight.w400),
               ),
             ),
@@ -461,14 +468,14 @@ class TextSpans extends StatelessWidget {
           text: text,
           style: TextStyle(
               color: Color(0xff333333),
-              fontSize: 22,
+              fontSize: 19,
               fontWeight: FontWeight.w500),
           children: <TextSpan>[
             TextSpan(
               text: spanText,
               style: TextStyle(
                   color: Color(0xff797978),
-                  fontSize: 22,
+                  fontSize: 19,
                   fontWeight: FontWeight.w400
               ),
             ),
