@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:icook_mobile/ui/view/constant.dart';
+import 'package:icook_mobile/ui/profile_screen/constant.dart';
 
 class DetailsScreen extends StatelessWidget {
   @override

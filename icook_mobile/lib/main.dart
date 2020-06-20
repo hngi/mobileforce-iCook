@@ -3,11 +3,6 @@ import 'package:icook_mobile/core/managers/core_manager.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/locator.dart';
 import 'package:icook_mobile/provider_setup.dart';
-<<<<<<< HEAD
-import 'package:icook_mobile/ui/details_screen/details_screen.dart';
-=======
-import 'package:icook_mobile/ui/profile_screen/profile_screen.dart';
->>>>>>> upstream/mobile-flutter-develop
 import 'package:icook_mobile/ui/router.dart';
 import 'package:icook_mobile/ui/search_screen/search_view.dart';
 import 'package:icook_mobile/ui/ui_helper.dart';
