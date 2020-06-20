@@ -10,32 +10,10 @@ class DetailsScreen extends StatelessWidget {
     ScreenUtil.init(context,
         height: double.infinity, width: 414, allowFontScaling: true);
 
-    var header = Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        SizedBox(width: kSpacingUnit.w * 1),
-        Icon(
-          Icons.arrow_back_ios,
-          color: Color(0xff333333),
-          size: ScreenUtil().setSp(kSpacingUnit.w * 3),
-        ),
-        SizedBox(width: kSpacingUnit.w * 5),
-        Text(
-          'Recipe Details',
-          style: GoogleFonts.workSans(
-              textStyle: TextStyle(color: Color(0xff333333), fontSize: 26),
-              fontWeight: FontWeight.w500),
-        ),
-      ],
-    );
-
     return Scaffold(
-      backgroundColor: Colors.white,
+      appBar: AppBar(title: Text('Recipe details')),
       body: Column(
         children: [
-          SizedBox(height: kSpacingUnit.w * 5),
-          header,
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(top: 5.0, bottom: 12.0),
@@ -107,9 +85,9 @@ class DetailsScreen extends StatelessWidget {
                     children: [
                       Text(
                         'DOUGHNUTS',
-                        style: GoogleFonts.workSans(
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
-                                color: Color(0xff333333), fontSize: 24),
+                                color: Color(0xff333333), fontSize: 18),
                             fontWeight: FontWeight.w600),
                       ),
                       SizedBox(height: kSpacingUnit.w * 0.5),
@@ -143,9 +121,9 @@ class DetailsScreen extends StatelessWidget {
                       SizedBox(height: kSpacingUnit.w * 0.9),
                       Text(
                         'SHOPPING LIST',
-                        style: GoogleFonts.workSans(
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
-                                color: Color(0xff333333), fontSize: 24),
+                                color: Color(0xff333333), fontSize: 18),
                             fontWeight: FontWeight.w600),
                       ),
                     ],
@@ -217,9 +195,9 @@ class DetailsScreen extends StatelessWidget {
                       SizedBox(height: kSpacingUnit.w * 0.9),
                       Text(
                         'PREPARATION',
-                        style: GoogleFonts.workSans(
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
-                                color: Color(0xff333333), fontSize: 24),
+                                color: Color(0xff333333), fontSize: 18),
                             fontWeight: FontWeight.w600),
                       ),
                     ],
@@ -230,16 +208,19 @@ class DetailsScreen extends StatelessWidget {
                     children: [
                       PreparationSpan(
                         number: '1',
-                        numberSpan: 'Sift flour with salt, baking powder, cinnamon and'
+                        numberSpan:
+                            'Sift flour with salt, baking powder, cinnamon and'
                             ' nutmeg and keep aside.',
                       ),
                       PreparationSpan(
                         number: '2',
-                        numberSpan: 'Cream butter and sugar. Add eggs and beat well.',
+                        numberSpan:
+                            'Cream butter and sugar. Add eggs and beat well.',
                       ),
                       PreparationSpan(
                         number: '3',
-                        numberSpan: 'Add milk and flour and mix into a dough like consistency.',
+                        numberSpan:
+                            'Add milk and flour and mix into a dough like consistency.',
                       ),
                       PreparationSpan(
                         number: '4',
@@ -248,15 +229,18 @@ class DetailsScreen extends StatelessWidget {
                       ),
                       PreparationSpan(
                         number: '5',
-                        numberSpan: 'Cut with floured doughnut cutter and let stand for 15 minutes.',
+                        numberSpan:
+                            'Cut with floured doughnut cutter and let stand for 15 minutes.',
                       ),
                       PreparationSpan(
                         number: '6',
-                        numberSpan: 'Heat oil and add the doughnuts to it over high heat.',
+                        numberSpan:
+                            'Heat oil and add the doughnuts to it over high heat.',
                       ),
                       PreparationSpan(
                         number: '7',
-                        numberSpan: 'Turn immediately and lower heat to medium and fry till brown.',
+                        numberSpan:
+                            'Turn immediately and lower heat to medium and fry till brown.',
                       ),
                       PreparationSpan(
                         number: '8',
@@ -285,9 +269,9 @@ class DetailsScreen extends StatelessWidget {
                       SizedBox(height: kSpacingUnit.w * 0.9),
                       Text(
                         'HEALTH BENEFITS',
-                        style: GoogleFonts.workSans(
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
-                                color: Color(0xff333333), fontSize: 24),
+                                color: Color(0xff333333), fontSize: 18),
                             fontWeight: FontWeight.w600),
                       ),
                     ],
@@ -297,7 +281,8 @@ class DetailsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       HealthBenefits(
-                        healthText: 'They are highly beneficial for your mental well being.',
+                        healthText:
+                            'They are highly beneficial for your mental well being.',
                       ),
                       HealthBenefits(
                         healthText: 'Some researchers say that the donut and '
@@ -376,7 +361,8 @@ class HealthBenefits extends StatelessWidget {
   final String healthText;
 
   const HealthBenefits({
-    Key key, this.healthText,
+    Key key,
+    this.healthText,
   }) : super(key: key);
 
   @override
@@ -386,8 +372,7 @@ class HealthBenefits extends StatelessWidget {
       child: Text(
         healthText,
         style: GoogleFonts.workSans(
-            textStyle: TextStyle(
-                color: Color(0xff797978), fontSize: 22),
+            textStyle: TextStyle(color: Color(0xff797978), fontSize: 22),
             fontWeight: FontWeight.w400),
       ),
     );
@@ -399,7 +384,9 @@ class PreparationSpan extends StatelessWidget {
   final String numberSpan;
 
   const PreparationSpan({
-    Key key, this.number, this.numberSpan,
+    Key key,
+    this.number,
+    this.numberSpan,
   }) : super(key: key);
 
   @override
@@ -419,11 +406,13 @@ class PreparationSpan extends StatelessWidget {
               color: Color(0xff578DDE),
             ),
             child: Center(
-                child: Text(number,
-                  style: GoogleFonts.workSans(
-                      textStyle: TextStyle(
-                          color: Color(0xffffffff), fontSize: 21),
-                      fontWeight: FontWeight.w600),),
+              child: Text(
+                number,
+                style: GoogleFonts.workSans(
+                    textStyle:
+                        TextStyle(color: Color(0xffffffff), fontSize: 16),
+                    fontWeight: FontWeight.w600),
+              ),
             ),
           ),
           SizedBox(width: kSpacingUnit.w * 1.5),
@@ -432,8 +421,8 @@ class PreparationSpan extends StatelessWidget {
               child: Text(
                 numberSpan,
                 style: GoogleFonts.workSans(
-                    textStyle: TextStyle(
-                        color: Color(0xff797978), fontSize: 22),
+                    textStyle:
+                        TextStyle(color: Color(0xff797978), fontSize: 22),
                     fontWeight: FontWeight.w400),
               ),
             ),
@@ -449,7 +438,9 @@ class TextSpans extends StatelessWidget {
   final String spanText;
 
   const TextSpans({
-    Key key, this.text, this.spanText,
+    Key key,
+    this.text,
+    this.spanText,
   }) : super(key: key);
 
   @override
@@ -461,18 +452,16 @@ class TextSpans extends StatelessWidget {
           text: text,
           style: TextStyle(
               color: Color(0xff333333),
-              fontSize: 22,
+              fontSize: 16,
               fontWeight: FontWeight.w500),
           children: <TextSpan>[
             TextSpan(
               text: spanText,
               style: TextStyle(
                   color: Color(0xff797978),
-                  fontSize: 22,
-                  fontWeight: FontWeight.w400
-              ),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400),
             ),
-
           ],
         ),
       ),

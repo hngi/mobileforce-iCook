@@ -35,7 +35,9 @@ class Constants {
       textTheme: TextTheme(
         headline6: TextStyle(
           color: darkBG,
-          fontWeight: FontWeight.w800,
+          fontSize: 24,
+          fontFamily: 'Poppins',
+          fontWeight: FontWeight.w500,
         ),
       ),
 //      iconTheme: IconThemeData(
@@ -57,7 +59,8 @@ class Constants {
       textTheme: TextTheme(
         headline6: TextStyle(
           color: lightBG,
-          fontWeight: FontWeight.w800,
+          fontSize: 24,
+          fontWeight: FontWeight.w500,
         ),
       ),
 //      iconTheme: IconThemeData(
