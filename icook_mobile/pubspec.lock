@@ -100,9 +100,16 @@ packages:
     source: hosted
     version: "4.3.2"
   built_value:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: built_value
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.1.0"
+  built_value_generator:
+    dependency: "direct dev"
+    description:
+      name: built_value_generator
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.1.0"
@@ -310,13 +317,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.1+1"
-  hive_flutter:
-    dependency: "direct main"
-    description:
-      name: hive_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.0+2"
   hive_generator:
     dependency: "direct dev"
     description:
@@ -624,7 +624,7 @@ packages:
       name: shelf
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.6"
+    version: "0.7.7"
   shelf_web_socket:
     dependency: transitive
     description:
