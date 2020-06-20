@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/locator.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Constants {
   static String appName = "iCook";
@@ -11,16 +12,13 @@ class Constants {
   static Color darkPrimary = Colors.black;
   static Color lightAccent = Colors.black;
   static Color darkAccent = Colors.white;
-  static Color lightBG = Color(0xFFE5E5E5);
+  static Color lightBG = Color(0xFFffffff);
   static Color darkBG = Colors.black;
   static Color badgeColor = Colors.red;
 
   //Reusable Colors
-  static const kcolor1 = Color(0xFF1D1754);
-  static const kcolor2 = Color(0xFFC4C4C4);
-  static const korange = Color(0xFFFFAC50);
-  static const kcolor3 = Color(0xFFFC7A1E);
-  static const kdarkOrange = Color(0xFF8E3900);
+  static const kbuttonColor1 = Color(0xFF558CE2);
+ 
 
   //Reusable Spacers
   static const kPaddingS = 8.0;
@@ -38,8 +36,9 @@ class Constants {
       textTheme: TextTheme(
         headline6: TextStyle(
           color: darkBG,
-          fontSize: 18.0,
-          fontWeight: FontWeight.w800,
+          fontSize: 24,
+          fontFamily: 'Poppins',
+          fontWeight: FontWeight.w500,
         ),
       ),
 //      iconTheme: IconThemeData(
@@ -61,8 +60,8 @@ class Constants {
       textTheme: TextTheme(
         headline6: TextStyle(
           color: lightBG,
-          fontSize: 18.0,
-          fontWeight: FontWeight.w800,
+          fontSize: 24,
+          fontWeight: FontWeight.w500,
         ),
       ),
 //      iconTheme: IconThemeData(
@@ -70,6 +69,63 @@ class Constants {
 //      ),
     ),
   );
+
+  static const kSpacingUnit = 10;
+
+static const kDarkPrimaryColor = Color(0xFF212121);
+static const kDarkSecondaryColor = Color(0xFF373737);
+static const kLightPrimaryColor = Color(0xFFFFFFFF);
+static const kLightSecondaryColor = Color(0xFFF3F7FB);
+static const kAccentColor = Color(0xFFFFC107);
+
+final kTitleTextStyle = TextStyle(
+  fontSize: ScreenUtil().setSp(kSpacingUnit.w * 1.7),
+  fontWeight: FontWeight.w600,
+);
+
+final kCaptionTextStyle = TextStyle(
+  fontSize: ScreenUtil().setSp(kSpacingUnit.w * 1.3),
+  fontWeight: FontWeight.w100,
+);
+
+final kButtonTextStyle = TextStyle(
+  fontSize: ScreenUtil().setSp(kSpacingUnit.w * 1.5),
+  fontWeight: FontWeight.w400,
+  color: kDarkPrimaryColor,
+);
+
+final kDarkTheme = ThemeData(
+  brightness: Brightness.dark,
+  primaryColor: kDarkPrimaryColor,
+  canvasColor: kDarkPrimaryColor,
+  backgroundColor: kDarkSecondaryColor,
+  accentColor: kAccentColor,
+  iconTheme: ThemeData.dark().iconTheme.copyWith(
+        color: kLightSecondaryColor,
+      ),
+  textTheme: ThemeData.dark().textTheme.apply(
+        
+        bodyColor: kLightSecondaryColor,
+        displayColor: kLightSecondaryColor,
+      ),
+);
+
+final kLightTheme = ThemeData(
+  brightness: Brightness.light,
+  
+  primaryColor: kLightPrimaryColor,
+  canvasColor: kLightPrimaryColor,
+  backgroundColor: kLightSecondaryColor,
+  accentColor: kAccentColor,
+  iconTheme: ThemeData.light().iconTheme.copyWith(
+        color: kDarkSecondaryColor,
+      ),
+  textTheme: ThemeData.light().textTheme.apply(
+        
+        bodyColor: kDarkSecondaryColor,
+        displayColor: kDarkSecondaryColor,
+      ),
+);
 }
 
 class ThemeNotifier extends ChangeNotifier {
