@@ -10,7 +10,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, height: 896, width: 414, allowFontScaling: true);
 
-      var themeSwitcher = ThemeSwitcher(
+    var themeSwitcher = ThemeSwitcher(
       builder: (context) {
         return AnimatedCrossFade(
           duration: Duration(milliseconds: 200),
@@ -41,7 +41,6 @@ class ProfileScreen extends StatelessWidget {
     var header = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
-      
       children: <Widget>[
         SizedBox(width: kSpacingUnit.w * 1),
         Icon(
@@ -49,13 +48,15 @@ class ProfileScreen extends StatelessWidget {
           size: ScreenUtil().setSp(kSpacingUnit.w * 3),
         ),
         SizedBox(width: kSpacingUnit.w * 2),
-        Text('My profile' ,style: GoogleFonts.workSans(
-              textStyle: TextStyle(color: Colors.black, fontSize: 24), fontWeight: FontWeight.w500
-            ),),
-                SizedBox(width: kSpacingUnit.w * 2),
-                Icon(LineAwesomeIcons.search),
-                        SizedBox(width: kSpacingUnit.w * 2),
-
+        Text(
+          'My profile',
+          style: GoogleFonts.workSans(
+              textStyle: TextStyle(color: Colors.black, fontSize: 24),
+              fontWeight: FontWeight.w500),
+        ),
+        SizedBox(width: kSpacingUnit.w * 2),
+        Icon(LineAwesomeIcons.search),
+        SizedBox(width: kSpacingUnit.w * 2),
         themeSwitcher,
         SizedBox(width: kSpacingUnit.w * 2),
       ],
@@ -65,7 +66,6 @@ class ProfileScreen extends StatelessWidget {
       child: Builder(
         builder: (context) {
           return Scaffold(
-            
             body: Column(
               children: <Widget>[
                 SizedBox(height: kSpacingUnit.w * 5),
@@ -74,121 +74,166 @@ class ProfileScreen extends StatelessWidget {
                   child: ListView(
                     children: <Widget>[
                       ListTile(
-                        
-                          leading: CircleAvatar( backgroundImage: AssetImage('assets/images/avatar.png'),),
-            title: Text('Chef Emmanuel', style: GoogleFonts.workSans(
-              textStyle: TextStyle(color: Colors.black, fontSize: 24), fontWeight: FontWeight.bold
-            ),),
-            subtitle: Text('Emmanuelchef@gmail.com', style: GoogleFonts.workSans(
-              textStyle: TextStyle(color: Colors.blueGrey, fontSize: 14)
-            ),),
-            
-          ),
-                    
-          SizedBox(height: 20,),
-                      Card(
-                        
-                        shape: RoundedRectangleBorder(
-	
-        borderRadius: BorderRadius.circular(1.0),
-	
-      ),
-                                              child: ListTile(
-            title: Text('Account Information', style: GoogleFonts.workSans(
-              textStyle: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.w500)
-            ),),
-            subtitle: Text('Edit profile', style: GoogleFonts.workSans(
-              textStyle: TextStyle(color: Colors.blueGrey, fontSize: 14)
-            ),),
-            trailing: Icon(Icons.keyboard_arrow_right),
-            onTap: () {
-              print('Account Information');
-            },
-          ),
+                        leading: CircleAvatar(
+                          backgroundImage:
+                              AssetImage('assets/images/avatar.png'),
+                        ),
+                        title: Text(
+                          'Chef Emmanuel',
+                          style: GoogleFonts.workSans(
+                              textStyle:
+                                  TextStyle(color: Colors.black, fontSize: 24),
+                              fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text(
+                          'Emmanuelchef@gmail.com',
+                          style: GoogleFonts.workSans(
+                              textStyle: TextStyle(
+                                  color: Colors.blueGrey, fontSize: 14)),
+                        ),
                       ),
-          SizedBox(height: 5,),
-          Card(
-            shape: RoundedRectangleBorder(
-	
-        borderRadius: BorderRadius.circular(1.0),
-	
-      ),
-                      child: ListTile(
-              title: Text('My Dishes', style: GoogleFonts.workSans(
-                textStyle: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.w500)
-              ),),
-              subtitle: Text('4 dishes posted', style: GoogleFonts.workSans(
-                textStyle: TextStyle(color: Colors.blueGrey, fontSize: 14)
-              ),),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                print('my dishes');
-              },
-            ),
-          ),
-          SizedBox(height: 5,),
-          Card(
-            shape: RoundedRectangleBorder(
-	
-        borderRadius: BorderRadius.circular(1.0),
-	
-      ),
-                      child: ListTile(
-              title: Text('Notifications', style: GoogleFonts.workSans(
-                textStyle: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.w500)
-              ),),
-              subtitle: Text('10 pending notifications', style: GoogleFonts.workSans(
-                textStyle: TextStyle(color: Colors.blueGrey, fontSize: 14)
-              ),),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                print('notification');
-              },
-            ),
-          ),
-          SizedBox(height: 5,),
-          Card(
-            shape: RoundedRectangleBorder(
-	
-        borderRadius: BorderRadius.circular(1.0),
-	
-      ),
-                      child: ListTile(
-              title: Text('My Reviews', style: GoogleFonts.workSans(
-                textStyle: TextStyle(color: Colors.black, fontSize: 24), fontWeight: FontWeight.w500
-              ), ),
-              subtitle: Text('Reviews for 4 recipe', style: GoogleFonts.workSans(
-                textStyle: TextStyle(color: Colors.blueGrey, fontSize: 14)
-              ),),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                print('reviews');
-              },
-            ),
-          ),
-          SizedBox(height: 5,),
-          Card(
-                  shape: RoundedRectangleBorder(
-	
-        borderRadius: BorderRadius.circular(1.0),
-	
-      ),
-                      child: ListTile(
-              title: Text('Settings', style: GoogleFonts.workSans(
-                textStyle: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.w500)
-              ),
-              ),
-              subtitle: Text('Newsletter, linked accounts, Change Password', style: GoogleFonts.workSans(
-                textStyle: TextStyle(color: Colors.blueGrey, fontSize: 14)
-              ),),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                print('reviews');
-              },
-            ),
-          ),
-   SizedBox(height: 10,),
-                     
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(1.0),
+                        ),
+                        child: ListTile(
+                          title: Text(
+                            'Account Information',
+                            style: GoogleFonts.workSans(
+                                textStyle: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500)),
+                          ),
+                          subtitle: Text(
+                            'Edit profile',
+                            style: GoogleFonts.workSans(
+                                textStyle: TextStyle(
+                                    color: Colors.blueGrey, fontSize: 14)),
+                          ),
+                          trailing: Icon(Icons.keyboard_arrow_right),
+                          onTap: () {
+                            print('Account Information');
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(1.0),
+                        ),
+                        child: ListTile(
+                          title: Text(
+                            'My Dishes',
+                            style: GoogleFonts.workSans(
+                                textStyle: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500)),
+                          ),
+                          subtitle: Text(
+                            '4 dishes posted',
+                            style: GoogleFonts.workSans(
+                                textStyle: TextStyle(
+                                    color: Colors.blueGrey, fontSize: 14)),
+                          ),
+                          trailing: Icon(Icons.keyboard_arrow_right),
+                          onTap: () {
+                            print('my dishes');
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(1.0),
+                        ),
+                        child: ListTile(
+                          title: Text(
+                            'Notifications',
+                            style: GoogleFonts.workSans(
+                                textStyle: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500)),
+                          ),
+                          subtitle: Text(
+                            '10 pending notifications',
+                            style: GoogleFonts.workSans(
+                                textStyle: TextStyle(
+                                    color: Colors.blueGrey, fontSize: 14)),
+                          ),
+                          trailing: Icon(Icons.keyboard_arrow_right),
+                          onTap: () {
+                            print('notification');
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(1.0),
+                        ),
+                        child: ListTile(
+                          title: Text(
+                            'My Reviews',
+                            style: GoogleFonts.workSans(
+                                textStyle: TextStyle(
+                                    color: Colors.black, fontSize: 24),
+                                fontWeight: FontWeight.w500),
+                          ),
+                          subtitle: Text(
+                            'Reviews for 4 recipe',
+                            style: GoogleFonts.workSans(
+                                textStyle: TextStyle(
+                                    color: Colors.blueGrey, fontSize: 14)),
+                          ),
+                          trailing: Icon(Icons.keyboard_arrow_right),
+                          onTap: () {
+                            print('reviews');
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(1.0),
+                        ),
+                        child: ListTile(
+                          title: Text(
+                            'Settings',
+                            style: GoogleFonts.workSans(
+                                textStyle: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500)),
+                          ),
+                          subtitle: Text(
+                            'Newsletter, linked accounts, Change Password',
+                            style: GoogleFonts.workSans(
+                                textStyle: TextStyle(
+                                    color: Colors.blueGrey, fontSize: 14)),
+                          ),
+                          trailing: Icon(Icons.keyboard_arrow_right),
+                          onTap: () {
+                            print('reviews');
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
                     ],
                   ),
                 )
