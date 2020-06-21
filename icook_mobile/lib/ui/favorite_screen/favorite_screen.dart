@@ -16,7 +16,22 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       appBar: AppBar(
         title: Text("Favorite"),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.search), onPressed: () {})
+          Padding(
+            padding: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+            ),
+            child: InkWell(
+              onTap: (){},
+              child: Image(image:
+
+              AssetImage( "assets/images/search_fav.png"),
+
+                width: 24,
+                height: 24,
+              ),
+            ),
+          ),
         ],
       ),
       body: ListView(
@@ -94,11 +109,15 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             child: Carousel(
               images: foodImage.map((e) => AssetImage(e)).toList(),
               dotSize: 6.0,
-              dotSpacing: 15.0,
+              dotIncreaseSize: 1.5,
+              dotSpacing: 20.0,
               dotColor: Colors.white,
               dotIncreasedColor: Colors.blue,
               autoplay: false,
               indicatorBgPadding: 5.0,
+              radius: Radius.circular(10),
+              dotVerticalPadding: 20,
+
               dotBgColor: Colors.transparent,
               borderRadius: true,
             ),
@@ -112,32 +131,68 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  IconButton(
-                    icon: Icon(
-                      Icons.favorite,
-                      color: Colors.red,
+
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 0,
+                        top: 11.5
                     ),
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                    icon: Image.asset(
-                      "assets/images/message-circle.png",
+                    child: InkWell(
+                      onTap: (){},
+                      child: Image(image:
+
+                      AssetImage( "assets/images/like_icon.png"),
+
+                        width: 24,
+                        height: 24,
+                      ),
                     ),
-                    onPressed: () {},
                   ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 19,
+                      top: 11.5
+                    ),
+                    child: InkWell(
+                      onTap: (){},
+                      child: Image(image:
+
+                      AssetImage( "assets/images/message-circle.png"),
+
+                        width: 24,
+                        height: 24,
+                      ),
+                    ),
+                  ),
+
+
                 ],
               ),
-              IconButton(
-                icon: Icon(
-                  Icons.share,
-                  color: Color(0xFF578DDE),
+
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 19,
+                    top: 11.5
                 ),
-                onPressed: () {},
+                child: InkWell(
+                  onTap: (){},
+                  child: Image(image:
+
+                  AssetImage( "assets/images/share.png"),
+
+                    width: 24,
+                    height: 24,
+                  ),
+                ),
               ),
+
             ],
           ),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
           Text(
             "$likes likes",
