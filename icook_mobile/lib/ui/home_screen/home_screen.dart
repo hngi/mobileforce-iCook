@@ -17,46 +17,43 @@ class _HomeScreenState extends State<HomeScreen> {
   ScrollController controller = ScrollController();
 
   Widget _searchBar() {
-    return GestureDetector(
-      onTap: () {Provider.of<HomePageModel>(context).changeTab(1); print('jdnej');},
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Container(
-              child: Expanded(
-                child: TextField(
-                  enabled: false,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      color: Color(0xFF333333),
-                      fontSize: 16,
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.normal,
-                      fontStyle: FontStyle.normal),
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.search),
-                    hintText: 'Search',
-                    hintStyle: TextStyle(fontSize: 16),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(
-                        width: 1,
-                        color: Color(0xFFEFEFEF),
-                        style: BorderStyle.solid,
-                      ),
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Container(
+            child: Expanded(
+              child: TextField(
+                enabled: false,
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                    color: Color(0xFF333333),
+                    fontSize: 16,
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.normal,
+                    fontStyle: FontStyle.normal),
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.search),
+                  hintText: 'Search',
+                  hintStyle: TextStyle(fontSize: 16),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Color(0xFFEFEFEF),
+                      style: BorderStyle.solid,
                     ),
-                    filled: true,
-                    contentPadding: EdgeInsets.all(7),
-                    fillColor: Colors.white,
                   ),
+                  filled: true,
+                  contentPadding: EdgeInsets.all(7),
+                  fillColor: Colors.white,
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -91,7 +88,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              _searchBar(),
+              GestureDetector(
+                onTap: () {
+                  Provider.of<HomePageModel>(context, listen: false)
+                      .changeTab(1);
+                  print('hiiff');
+                },
+                child: Container(
+                  margin: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(24)),
+                  child: Row(children: <Widget>[
+                    Icon(Icons.search),
+                    SizedBox(width: 10),
+                    Text('Search', style: GoogleFonts.poppins())
+                  ]),
+                ),
+              ),
               ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
