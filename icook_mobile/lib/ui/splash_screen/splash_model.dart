@@ -18,6 +18,6 @@ class SplashModel extends BaseNotifier {
   }
 
   void getStarted(){
-    navigation.navigateTo(ViewRoutes.home);
+    navigation.pushNamedAndRemoveUntil(ViewRoutes.home);
   }
 }

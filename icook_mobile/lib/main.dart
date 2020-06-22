@@ -9,6 +9,7 @@ import 'package:icook_mobile/ui/home_page/home_page.dart';
 import 'package:icook_mobile/ui/profile_screen/profile_screen.dart';
 import 'package:icook_mobile/ui/router.dart';
 import 'package:icook_mobile/ui/search_screen/search_page.dart';
+import 'package:icook_mobile/ui/splash_screen/splash_screen.dart';
 
 
 
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
           darkTheme: Constants.darkTheme,
           navigatorKey: navigationService.navigatorKey,
           onGenerateRoute: Router.generateRoute,
-          home: HomePage(),
+          home: SplashScreen(),
         ),
       ),
     );

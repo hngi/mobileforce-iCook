@@ -18,9 +18,11 @@ class SplashScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image(
+                height: 250,
+                fit: BoxFit.fill,
+                width: 200,
                 image: AssetImage('assets/images/logo.png'),
               ),
-              SizedBox(height: 50),
               Image(
                 image: AssetImage('assets/images/iCook.png'),
               ),

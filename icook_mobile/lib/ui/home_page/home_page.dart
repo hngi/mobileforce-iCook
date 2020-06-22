@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:icook_mobile/ui/favorite_screen/favorite_screen.dart';
 import 'package:icook_mobile/ui/profile_screen/profile_screen.dart';
 import 'package:icook_mobile/ui/search_screen/search_page.dart';
 import 'package:icook_mobile/ui/widgets/lazy_indexstack.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,6 +20,7 @@ class _HomePageState extends State<HomePage> {
 
   var _views = [
     FavoriteScreen(),
+    SearchView(),
     SearchView(),
     FavoriteScreen(),
     ProfileScreen()
@@ -55,15 +58,15 @@ class _HomePageState extends State<HomePage> {
         ),
         child: BottomNavigationBar(
           items: [
-            _bottomNavigationBarItem(Icons.home, 'Home'),
+            _bottomNavigationBarItem(LineAwesomeIcons.home, 'Home'),
             _bottomNavigationBarItem(Icons.search, 'Search'),
             _bottomNavigationBarItem(Icons.add_circle, 'Add'),
-            _bottomNavigationBarItem(
-                Icons.favorite, 'Favorite'),
-            _bottomNavigationBarItem(
-                Icons.person_outline, 'Profile'),
+            _bottomNavigationBarItem(Icons.favorite, 'Favorite'),
+            _bottomNavigationBarItem(LineAwesomeIcons.user_1, 'Profile'),
           ],
           type: BottomNavigationBarType.fixed,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
           elevation: 15,
           currentIndex: index,
           onTap: (page) {
