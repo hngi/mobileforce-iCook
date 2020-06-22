@@ -2,8 +2,10 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:icook_mobile/ui/home_page/home_page_model.dart';
 import 'package:icook_mobile/ui/shared/recipe_item.dart';
 import 'package:icook_mobile/ui/ui_helper.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,43 +15,48 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   ScrollController controller = ScrollController();
+
   Widget _searchBar() {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Container(
-            child: Expanded(
-              child: TextField(
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: Color(0xFF333333),
-                    fontSize: 16,
-                    fontFamily: "Poppins",
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FontStyle.normal),
-                keyboardType: TextInputType.text,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  hintText: 'Search',
-                  hintStyle: TextStyle(fontSize: 16),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(
-                      width: 1,
-                      color: Color(0xFFEFEFEF),
-                      style: BorderStyle.solid,
+    return GestureDetector(
+      onTap: () {Provider.of<HomePageModel>(context).changeTab(1); print('jdnej');},
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Container(
+              child: Expanded(
+                child: TextField(
+                  enabled: false,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      color: Color(0xFF333333),
+                      fontSize: 16,
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.normal),
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.search),
+                    hintText: 'Search',
+                    hintStyle: TextStyle(fontSize: 16),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Color(0xFFEFEFEF),
+                        style: BorderStyle.solid,
+                      ),
                     ),
+                    filled: true,
+                    contentPadding: EdgeInsets.all(7),
+                    fillColor: Colors.white,
                   ),
-                  filled: true,
-                  contentPadding: EdgeInsets.all(7),
-                  fillColor: Colors.white,
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
