@@ -51,7 +51,10 @@ class EditProfile extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.bottomRight,
                           child: Container(
-                            color: Colors.white,
+                            padding: EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15)),
                             margin: EdgeInsets.only(bottom: 10, right: 10),
                             child: Icon(Icons.edit),
                           ),
