@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
           darkTheme: Constants.darkTheme,
           navigatorKey: navigationService.navigatorKey,
           onGenerateRoute: Router.generateRoute,
-          home: EditProfile(),
+          home: SplashScreen(),
         ),
       ),
     );
