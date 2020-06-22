@@ -16,26 +16,12 @@ class EditProfile extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-          title: Container(
-            padding: EdgeInsets.only(top: 20),
-            child: Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        SizedBox(width: 1),
-        Image(image: new AssetImage('assets/images/Vector.png',), height: 35,),
-        
-        SizedBox(width: Constants.kSpacingUnit.w * 8),
-        Text(
-            'Edit Details',
-            style: GoogleFonts.poppins(
-                textStyle: TextStyle(color: Colors.black, fontSize: 24),
-                fontWeight: FontWeight.w500),
-        ),
-        
-      ],
-    ),
-          ),
-      ),
+          title: Text(
+        'Edit Details',
+        style: GoogleFonts.poppins(
+            textStyle: TextStyle(color: Colors.black, fontSize: 24),
+            fontWeight: FontWeight.w500),
+      )),
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).unfocus();
@@ -46,7 +32,8 @@ class EditProfile extends StatelessWidget {
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.only(top: 5.0, bottom: 12.0),
+                padding:
+                    const EdgeInsets.only(top: 5.0, bottom: 12.0, right: 20),
                 child: ListView(
                   children: [
                     SizedBox(height: kSpacingUnit.w * 2),
@@ -58,49 +45,50 @@ class EditProfile extends StatelessWidget {
                           height: kSpacingUnit.w * 15,
                           width: kSpacingUnit.w * 20,
                           child: Stack(
-                            children: <Widget>[ 
+                            children: <Widget>[
                               GestureDetector(
                                 onTap: () {},
-                                  child: Container(
-                                  margin: EdgeInsets.only(left:19),
-                      width: 134,
-                      height: 134,
-                      decoration: new BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: new DecorationImage(
-                                fit: BoxFit.cover,
-                                image:
-                                    new AssetImage('assets/images/editavatar.jpg')))
-                                    ),
-                              ),
-                                   GestureDetector(
-                                     onTap: () {},
-                                       child: Align(
-                                alignment: Alignment.bottomRight,
                                 child: Container(
-                                  margin: EdgeInsets.only(bottom:20, right: 20),
-                                  height: kSpacingUnit.w * 3.2,
-                                  width: kSpacingUnit.w * 3.2,
-                                  decoration: BoxDecoration(
+                                    margin: EdgeInsets.only(left: 19),
+                                    width: 134,
+                                    height: 134,
+                                    decoration: new BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: new DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: new AssetImage(
+                                                'assets/images/editavatar.jpg')))),
+                              ),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: Container(
+                                    margin:
+                                        EdgeInsets.only(bottom: 20, right: 20),
+                                    height: kSpacingUnit.w * 3.2,
+                                    width: kSpacingUnit.w * 3.2,
+                                    decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                  ),
-                                  child: Center(
-                                      child: Image.asset('assets/images/pen.png', ),
+                                    ),
+                                    child: Center(
+                                      child: Image.asset(
+                                        'assets/images/pen.png',
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                                   ),
-                             
                             ],
                           ),
                         ),
                       ],
                     ),
+                    SizedBox(height: kSpacingUnit.w * 2),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        
                         Text(
                           '      Name',
                           style: GoogleFonts.poppins(
@@ -111,7 +99,6 @@ class EditProfile extends StatelessWidget {
                         SizedBox(height: kSpacingUnit.w * 0.5),
                         Container(
                           padding: EdgeInsets.only(left: 23),
-                          width: 380,
                           child: TextField(
                             textInputAction: TextInputAction.next,
                             onSubmitted: (_) =>
@@ -129,6 +116,7 @@ class EditProfile extends StatelessWidget {
                                   fontSize: 16,
                                   fontFamily: "Poppins"),
                               fillColor: Color(0xFFF4F4F4),
+                              filled: true,
                               focusedBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(7.0)),
@@ -159,7 +147,6 @@ class EditProfile extends StatelessWidget {
                         SizedBox(height: kSpacingUnit.w * 0.5),
                         Container(
                           padding: EdgeInsets.only(left: 23),
-                          width: 380,
                           child: TextField(
                             textInputAction: TextInputAction.next,
                             onSubmitted: (_) =>
@@ -207,7 +194,6 @@ class EditProfile extends StatelessWidget {
                         SizedBox(height: kSpacingUnit.w * 0.5),
                         Container(
                           padding: EdgeInsets.only(left: 23),
-                          width: 380,
                           child: TextField(
                             textInputAction: TextInputAction.next,
                             onSubmitted: (_) =>
@@ -249,7 +235,6 @@ class EditProfile extends StatelessWidget {
                         SizedBox(height: kSpacingUnit.w * 0.5),
                         Container(
                           padding: EdgeInsets.only(left: 23),
-                          width: 380,
                           child: TextField(
                             textInputAction: TextInputAction.done,
                             onSubmitted: (_) =>
