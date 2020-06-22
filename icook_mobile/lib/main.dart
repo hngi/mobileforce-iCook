@@ -4,6 +4,7 @@ import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart'
 import 'package:icook_mobile/locator.dart';
 import 'package:icook_mobile/provider_setup.dart';
 import 'package:icook_mobile/ui/details_screen/details_screen.dart';
+import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
 import 'package:icook_mobile/ui/favorite_screen/favorite_screen.dart';
 import 'package:icook_mobile/ui/home_page/home_page.dart';
 import 'package:icook_mobile/ui/profile_screen/profile_screen.dart';

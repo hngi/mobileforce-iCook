@@ -17,21 +17,25 @@ class SplashScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image(
-                height: 250,
-                fit: BoxFit.fill,
-                width: 200,
-                image: AssetImage('assets/images/logo.png'),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image(
+                      image: AssetImage('assets/images/logo.png'),
+                    ),
+                    Image(
+                      image: AssetImage('assets/images/iCook.png'),
+                    ),
+                  ],
+                ),
               ),
-              Image(
-                image: AssetImage('assets/images/iCook.png'),
-              ),
-              SizedBox(height: 100),
               KButton(
                   onPressed: () => model.getStarted(),
                   title: 'Get Started',
                   buttonColor: Constants.kbuttonColor1,
                   textColor: Colors.white),
+              SizedBox(height: 100,)
             ],
           ),
         ),
