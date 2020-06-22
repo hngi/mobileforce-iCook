@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:icook_mobile/ui/shared/k_button.dart';
 import 'package:icook_mobile/ui/splash_screen/splash_model.dart';
-import 'package:icook_mobile/ui/widgets/k_button.dart';
 import 'package:stacked/stacked.dart';
 
 import '../ui_helper.dart';

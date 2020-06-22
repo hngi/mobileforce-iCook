@@ -2,15 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:icook_mobile/ui/favorite_screen/favorite_screen.dart';
 import 'package:icook_mobile/ui/home_page/home_page_model.dart';
+import 'package:icook_mobile/ui/home_screen/home_screen.dart';
 import 'package:icook_mobile/ui/profile_screen/profile_screen.dart';
 import 'package:icook_mobile/ui/search_screen/search_page.dart';
-import 'package:icook_mobile/ui/widgets/lazy_indexstack.dart';
+import 'package:icook_mobile/ui/shared/lazy_indexstack.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:stacked/stacked.dart';
 
 class HomePage extends StatelessWidget {
   final _views = [
-    FavoriteScreen(),
+    HomeScreen(),
     SearchView(),
     SearchView(),
     FavoriteScreen(),
