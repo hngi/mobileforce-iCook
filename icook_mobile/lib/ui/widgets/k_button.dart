@@ -7,12 +7,13 @@ class KButton extends StatelessWidget {
     Key key,
     this.title,
     this.buttonColor,
-    this.textColor,
+    this.textColor, this.onPressed,
   }) : super(key: key);
 
   final String title;
   final Color buttonColor;
   final Color textColor;
+  final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class KButton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         color: buttonColor,
         textColor: textColor,
-        onPressed: () {},
+        onPressed: onPressed,
         child: Text(
           title,
           style: GoogleFonts.poppins(fontSize: 20),

@@ -18,15 +18,13 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(
-                left: 20,
-                right: 20,
+              left: 20,
+              right: 20,
             ),
             child: InkWell(
-              onTap: (){},
-              child: Image(image:
-
-              AssetImage( "assets/images/search_fav.png"),
-
+              onTap: () {},
+              child: Image(
+                image: AssetImage("assets/images/search_fav.png"),
                 width: 24,
                 height: 24,
               ),
@@ -117,7 +115,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               indicatorBgPadding: 5.0,
               radius: Radius.circular(10),
               dotVerticalPadding: 20,
-
               dotBgColor: Colors.transparent,
               borderRadius: true,
             ),
@@ -131,64 +128,41 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-
-
-
                   Padding(
-                    padding: const EdgeInsets.only(
-                        left: 0,
-                        top: 11.5
-                    ),
+                    padding: const EdgeInsets.only(left: 0, top: 11.5),
                     child: InkWell(
-                      onTap: (){},
-                      child: Image(image:
-
-                      AssetImage( "assets/images/like_icon.png"),
-
+                      onTap: () {},
+                      child: Image(
+                        image: AssetImage("assets/images/like_icon.png"),
                         width: 24,
                         height: 24,
                       ),
                     ),
                   ),
-
                   Padding(
-                    padding: const EdgeInsets.only(
-                        left: 19,
-                      top: 11.5
-                    ),
+                    padding: const EdgeInsets.only(left: 19, top: 11.5),
                     child: InkWell(
-                      onTap: (){},
-                      child: Image(image:
-
-                      AssetImage( "assets/images/message-circle.png"),
-
+                      onTap: () {},
+                      child: Image(
+                        image: AssetImage("assets/images/message-circle.png"),
                         width: 24,
                         height: 24,
                       ),
                     ),
                   ),
-
-
                 ],
               ),
-
               Padding(
-                padding: const EdgeInsets.only(
-                    left: 19,
-                    top: 11.5
-                ),
+                padding: const EdgeInsets.only(left: 19, top: 11.5),
                 child: InkWell(
-                  onTap: (){},
-                  child: Image(image:
-
-                  AssetImage( "assets/images/share.png"),
-
+                  onTap: () {},
+                  child: Image(
+                    image: AssetImage("assets/images/share.png"),
                     width: 24,
                     height: 24,
                   ),
                 ),
               ),
-
             ],
           ),
           SizedBox(

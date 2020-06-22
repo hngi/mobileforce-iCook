@@ -6,13 +6,9 @@ class SearchView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Search',
-        style: TextStyle(
-          fontFamily: "Poppins",
-          fontWeight: FontWeight.w500,
-          fontSize: 24
-        ),),
-        centerTitle: true,
+        title: Text(
+          'Search',
+        ),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 12),
@@ -24,25 +20,8 @@ class SearchView extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        selectedItemColor: Colors.blue,
-        type: BottomNavigationBarType.fixed,
-        currentIndex: 1,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        onTap: (int i) {},
-        items: [
-          _bottomNavigationBarItem(Icons.home, 'Home', Colors.black45),
-          _bottomNavigationBarItem(Icons.search, 'Search', Colors.blue),
-          _bottomNavigationBarItem(Icons.add_circle, 'Add', Colors.black45),
-          _bottomNavigationBarItem(Icons.favorite, 'Favorite', Colors.black45),
-          _bottomNavigationBarItem(
-              Icons.person_outline, 'Profile', Colors.black45),
-        ],
-      ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20),
+       
         child: ListView(
           children: <Widget>[_searchBar(), _recentSearch(), _relatedSerach()],
         ),
@@ -54,7 +33,7 @@ class SearchView extends StatelessWidget {
 // Search bar
 Widget _searchBar() {
   return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0),
+    padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -105,7 +84,7 @@ Widget _recentSearch() => Container(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(bottom: 10),
+            padding: EdgeInsets.only(bottom: 10, left: 20.0),
             child: Text(
               "Recently searched dishes",
               style: TextStyle(
@@ -117,6 +96,7 @@ Widget _recentSearch() => Container(
           Container(
             height: 113.0,
             child: ListView(
+              itemExtent: 110,
               scrollDirection: Axis.horizontal,
               children: <Widget>[
                 _recentdish('assets/images/amala.jpeg', 'Fried Rice'),
@@ -132,7 +112,6 @@ Widget _recentSearch() => Container(
     );
 
 Container _recentdish(String image, String dish) => Container(
-      margin: EdgeInsets.only(right: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
@@ -167,7 +146,7 @@ Container _recentdish(String image, String dish) => Container(
     );
 
 Container _relatedSerach() => Container(
-      margin: EdgeInsets.only(top: 7),
+       margin: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
