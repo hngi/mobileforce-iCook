@@ -49,15 +49,19 @@ dependencies:
   dio: ^3.0.9
   line_awesome_flutter: ^1.0.1
   flutter_screenutil: ^1.0.2
+#  flutter_screenutil: ^2.1.0
+
+
+  transformer_page_view:
 
 
 
-  animated_theme_switcher: ^1.0.5 
+  animated_theme_switcher: ^1.0.5
 
 
   built_value: ^7.1.0
 
-  
+
 
 dev_dependencies:
   flutter_test:

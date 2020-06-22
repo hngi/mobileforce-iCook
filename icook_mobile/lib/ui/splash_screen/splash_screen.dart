@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:icook_mobile/ui/widgets/k_button.dart';
 
 import '../ui_helper.dart';

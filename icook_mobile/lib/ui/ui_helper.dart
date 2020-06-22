@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/locator.dart';
-import 'package:stacked_services/stacked_services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Constants {
