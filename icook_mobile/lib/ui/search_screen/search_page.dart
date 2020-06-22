@@ -23,26 +23,26 @@ class SearchView extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        selectedItemColor: Colors.blue,
-        type: BottomNavigationBarType.fixed,
-        currentIndex: 1,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        onTap: (int i) {},
-        items: [
-          BottomNavigationBarItem(
-            icon: Image.asset('assets/images/Home.png'),
-            title: Text('Home')),
-          _bottomNavigationBarItem(Icons.search, 'Search', Colors.blue),
-          _bottomNavigationBarItem(Icons.add_circle, 'Add', Colors.black45),
-          _bottomNavigationBarItem(Icons.favorite, 'Favorite', Colors.black45),
-          BottomNavigationBarItem(
-              icon: Image.asset('assets/images/User.png'),
-              title: Text('Profile'))
-        ],
-      ),
+//      bottomNavigationBar: BottomNavigationBar(
+//        backgroundColor: Colors.white,
+//        selectedItemColor: Colors.blue,
+//        type: BottomNavigationBarType.fixed,
+//        currentIndex: 1,
+//        showSelectedLabels: false,
+//        showUnselectedLabels: false,
+//        onTap: (int i) {},
+//        items: [
+//          BottomNavigationBarItem(
+//            icon: Image.asset('assets/images/Home.png'),
+//            title: Text('Home')),
+//          _bottomNavigationBarItem(Icons.search, 'Search', Colors.blue),
+//          _bottomNavigationBarItem(Icons.add_circle, 'Add', Colors.black45),
+//          _bottomNavigationBarItem(Icons.favorite, 'Favorite', Colors.black45),
+//          BottomNavigationBarItem(
+//              icon: Image.asset('assets/images/User.png'),
+//              title: Text('Profile'))
+//        ],
+//      ),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
