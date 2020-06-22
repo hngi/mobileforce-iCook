@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
 import 'package:icook_mobile/ui/profile_screen/constant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,21 +14,6 @@ class AccountInformationScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("My Profile"),
-        centerTitle: true,
-        leading: Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-            right: 20,
-          ),
-          child: InkWell(
-            onTap: () {},
-            child: Image(
-              image: AssetImage("assets/images/Vector.png"),
-              width: 24,
-              height: 24,
-            ),
-          ),
-        ),
       ),
       body: ListView(
         children: <Widget>[
@@ -81,7 +67,6 @@ class AccountInformationScreen extends StatelessWidget {
                                   "Followers",
                                   style: GoogleFonts.poppins(
                                       fontStyle: FontStyle.normal,
-
                                       fontSize: 14,
                                       color: Color(0xff333333)),
                                 ),
@@ -103,7 +88,6 @@ class AccountInformationScreen extends StatelessWidget {
                                   "Recipies",
                                   style: GoogleFonts.poppins(
                                       fontStyle: FontStyle.normal,
-
                                       fontSize: 14,
                                       color: Color(0xff333333)),
                                 ),
@@ -133,7 +117,12 @@ class AccountInformationScreen extends StatelessWidget {
                           ],
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EditProfile()));
+                          },
                           child: Container(
                             width: kSpacingUnit.w * 19.1,
                             height: 37,
@@ -232,7 +221,6 @@ class AccountInformationScreen extends StatelessWidget {
             height: 12,
           ),
 
-
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -301,7 +289,7 @@ class AccountInformationScreen extends StatelessWidget {
                 width: kSpacingUnit.w * 2,
               ),
               Flexible(
-               flex: 1,
+                flex: 1,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -351,11 +339,9 @@ class AccountInformationScreen extends StatelessWidget {
                                     child: Icon(Icons.favorite_border,
                                         color: Color(0xff333333)),
                                   ),
-
                             SizedBox(
                               width: 9.77,
                             ),
-
                             Text(
                               "$likes",
                               style: GoogleFonts.poppins(
