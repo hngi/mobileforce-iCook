@@ -36,20 +36,27 @@ dependencies:
   connectivity: ^0.4.8+6
   shared_preferences: ^0.5.7+3
   flutter_launcher_icons: ^0.7.5
+  carousel_pro: ^1.0.0
   stacked_services: ^0.4.2
   google_fonts: ^1.1.0
   get_it: ^4.0.2
   get: ^2.5.6
   jiffy: ^3.0.1
   hive: ^1.4.1+1
-  hive_flutter: ^0.3.0+2
   path_provider: ^1.6.10
   path: ^1.6.4
   image_picker: ^0.6.7+1
   dio: ^3.0.9
   line_awesome_flutter: ^1.0.1
   flutter_screenutil: ^1.0.2
-  animated_theme_switcher: ^1.0.5
+
+
+
+  animated_theme_switcher: ^1.0.5 
+
+
+  built_value: ^7.1.0
+
   
 
 dev_dependencies:
@@ -58,6 +65,7 @@ dev_dependencies:
 
   hive_generator: ^0.7.0+2
   build_runner: ^1.10.0
+  built_value_generator: ^7.1.0
 
 dependency_overrides:
   dartx: ^0.4.1
