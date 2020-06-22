@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 import '../ui_helper.dart';
@@ -13,8 +14,12 @@ class ProfileScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         SizedBox(width: 1),
-        Image(image: new AssetImage('assets/images/Vector.png',), height: 35,),
-        
+        Image(
+          image: new AssetImage(
+            'assets/images/Vector.png',
+          ),
+          height: 35,
+        ),
         SizedBox(width: Constants.kSpacingUnit.w * 5),
         Text(
           'My profile',
@@ -23,20 +28,30 @@ class ProfileScreen extends StatelessWidget {
               fontWeight: FontWeight.w500),
         ),
         SizedBox(width: Constants.kSpacingUnit.w * 5),
-        
-        Image(image: new AssetImage('assets/images/search.png',), height: 35,),
-
+        Image(
+          image: new AssetImage(
+            'assets/images/search.png',
+          ),
+          height: 35,
+        ),
         SizedBox(width: 0.1),
       ],
     );
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text("My profile"),
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.search), onPressed: () {})
+        ],
+      ),
       body: Column(
         children: <Widget>[
-          SizedBox(height: Constants.kSpacingUnit.w * 6),
-          header,
+          SizedBox(
+            height: 10,
+          ),
           Expanded(
-           child: ListView(
+            child: ListView(
               children: <Widget>[
                 ListTile(
                   leading: Container(
@@ -65,119 +80,118 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                
-               ListTile(
-                    title: Text(
-                      'Account Information',
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500)),
-                    ),
-                    subtitle: Text(
-                      'Edit profile',
-                      style: GoogleFonts.poppins(
-                          textStyle:
-                              TextStyle(color: Colors.blueGrey, fontSize: 12)),
-                    ),
-                    trailing: Icon(Icons.keyboard_arrow_right),
-                    onTap: () {
-                      print('Account Information');
-                    },
+                ListTile(
+                  title: Text(
+                    'Account Information',
+                    style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500)),
                   ),
+                  subtitle: Text(
+                    'Edit profile',
+                    style: GoogleFonts.poppins(
+                        textStyle:
+                            TextStyle(color: Colors.blueGrey, fontSize: 12)),
+                  ),
+                  trailing: Icon(Icons.keyboard_arrow_right),
+                  onTap: () {
+                    print('Account Information');
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => EditProfile()));
+                  },
+                ),
                 SizedBox(
                   height: 5,
                 ),
                 ListTile(
-                    title: Text(
-                      'My Dishes',
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500)),
-                    ),
-                    subtitle: Text(
-                      '4 dishes posted',
-                      style: GoogleFonts.poppins(
-                          textStyle:
-                              TextStyle(color: Colors.blueGrey, fontSize: 12)),
-                    ),
-                    trailing: Icon(Icons.keyboard_arrow_right),
-                    onTap: () {
-                      print('my dishes');
-                    },
+                  title: Text(
+                    'My Dishes',
+                    style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500)),
                   ),
-
-                SizedBox(
-                  height: 5,
+                  subtitle: Text(
+                    '4 dishes posted',
+                    style: GoogleFonts.poppins(
+                        textStyle:
+                            TextStyle(color: Colors.blueGrey, fontSize: 12)),
+                  ),
+                  trailing: Icon(Icons.keyboard_arrow_right),
+                  onTap: () {
+                    print('my dishes');
+                  },
                 ),
-            ListTile(
-                    title: Text(
-                      'Notifications',
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500)),
-                    ),
-                    subtitle: Text(
-                      '10 pending notifications',
-                      style: GoogleFonts.poppins(
-                          textStyle:
-                              TextStyle(color: Colors.blueGrey, fontSize: 12)),
-                    ),
-                    trailing: Icon(Icons.keyboard_arrow_right),
-                    onTap: () {
-                      print('notification');
-                    },
-                  ),
                 SizedBox(
                   height: 5,
                 ),
                 ListTile(
-                    title: Text(
-                      'My Reviews',
-                      style: GoogleFonts.poppins(
-                          textStyle:
-                              TextStyle(color: Colors.black, fontSize: 16),
-                          fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text(
-                      'Reviews for 4 recipe',
-                      style: GoogleFonts.poppins(
-                          textStyle:
-                              TextStyle(color: Colors.blueGrey, fontSize: 12)),
-                    ),
-                    trailing: Icon(Icons.keyboard_arrow_right),
-                    onTap: () {
-                      print('reviews');
-                    },
+                  title: Text(
+                    'Notifications',
+                    style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500)),
                   ),
+                  subtitle: Text(
+                    '10 pending notifications',
+                    style: GoogleFonts.poppins(
+                        textStyle:
+                            TextStyle(color: Colors.blueGrey, fontSize: 12)),
+                  ),
+                  trailing: Icon(Icons.keyboard_arrow_right),
+                  onTap: () {
+                    print('notification');
+                  },
+                ),
                 SizedBox(
                   height: 5,
                 ),
-                  ListTile(
-                    title: Text(
-                      'Settings',
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500)),
-                    ),
-                    subtitle: Text(
-                      'Newsletter, Dark mode, Change Password',
-                      style: GoogleFonts.poppins(
-                          textStyle:
-                              TextStyle(color: Colors.blueGrey, fontSize: 12)),
-                    ),
-                    trailing: Icon(Icons.keyboard_arrow_right),
-                    onTap: () {
-                      print('reviews');
-                    },
+                ListTile(
+                  title: Text(
+                    'My Reviews',
+                    style: GoogleFonts.poppins(
+                        textStyle: TextStyle(color: Colors.black, fontSize: 16),
+                        fontWeight: FontWeight.w500),
                   ),
+                  subtitle: Text(
+                    'Reviews for 4 recipe',
+                    style: GoogleFonts.poppins(
+                        textStyle:
+                            TextStyle(color: Colors.blueGrey, fontSize: 12)),
+                  ),
+                  trailing: Icon(Icons.keyboard_arrow_right),
+                  onTap: () {
+                    print('reviews');
+                  },
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                ListTile(
+                  title: Text(
+                    'Settings',
+                    style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500)),
+                  ),
+                  subtitle: Text(
+                    'Newsletter, Dark mode, Change Password',
+                    style: GoogleFonts.poppins(
+                        textStyle:
+                            TextStyle(color: Colors.blueGrey, fontSize: 12)),
+                  ),
+                  trailing: Icon(Icons.keyboard_arrow_right),
+                  onTap: () {
+                    print('reviews');
+                  },
+                ),
                 SizedBox(
                   height: 10,
                 ),
