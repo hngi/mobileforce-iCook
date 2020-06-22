@@ -112,7 +112,7 @@ class EditProfile extends StatelessWidget {
                                   EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
                               hintText: "Enter Name",
                               hintStyle: TextStyle(
-                                  color: Colors.black,
+                                  color: Color(0XFFBDBDBD),
                                   fontSize: 16,
                                   fontFamily: "Poppins"),
                               fillColor: Color(0xFFF4F4F4),
