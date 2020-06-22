@@ -8,7 +8,10 @@ class SearchView extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Search',
+          style: TextStyle(
+              fontFamily: "Poppins", fontWeight: FontWeight.w500, fontSize: 24),
         ),
+        centerTitle: true,
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 12),
@@ -20,8 +23,28 @@ class SearchView extends StatelessWidget {
           )
         ],
       ),
+//      bottomNavigationBar: BottomNavigationBar(
+//        backgroundColor: Colors.white,
+//        selectedItemColor: Colors.blue,
+//        type: BottomNavigationBarType.fixed,
+//        currentIndex: 1,
+//        showSelectedLabels: false,
+//        showUnselectedLabels: false,
+//        onTap: (int i) {},
+//        items: [
+//          BottomNavigationBarItem(
+//            icon: Image.asset('assets/images/Home.png'),
+//            title: Text('Home')),
+//          _bottomNavigationBarItem(Icons.search, 'Search', Colors.blue),
+//          _bottomNavigationBarItem(Icons.add_circle, 'Add', Colors.black45),
+//          _bottomNavigationBarItem(Icons.favorite, 'Favorite', Colors.black45),
+//          BottomNavigationBarItem(
+//              icon: Image.asset('assets/images/User.png'),
+//              title: Text('Profile'))
+//        ],
+//      ),
       body: Container(
-       
+        margin: EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
           children: <Widget>[_searchBar(), _recentSearch(), _relatedSerach()],
         ),
@@ -33,7 +56,7 @@ class SearchView extends StatelessWidget {
 // Search bar
 Widget _searchBar() {
   return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+    padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -41,18 +64,24 @@ Widget _searchBar() {
           child: Expanded(
             child: TextField(
               textAlign: TextAlign.left,
+              style: TextStyle(
+                color: Color(0xFF333333),
+                  fontSize: 16,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.normal,
+                  fontStyle: FontStyle.normal
+              ),
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.search),
                 hintText: 'Search',
                 hintStyle: TextStyle(fontSize: 16),
-                disabledBorder: InputBorder.none,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
                   borderSide: BorderSide(
                     width: 1,
-                    color: Colors.white30,
-                    style: BorderStyle.none,
+                    color: Color(0xFFEFEFEF),
+                    style: BorderStyle.solid,
                   ),
                 ),
                 filled: true,
@@ -69,7 +98,7 @@ Widget _searchBar() {
 
 // BottomNavigationBarItem builder
 BottomNavigationBarItem _bottomNavigationBarItem(
-        IconData icon, String label, Color color) =>
+        var icon, String label, Color color) =>
     BottomNavigationBarItem(
         icon: Icon(
           icon,
@@ -84,7 +113,7 @@ Widget _recentSearch() => Container(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(bottom: 10, left: 20.0),
+            padding: EdgeInsets.only(bottom: 10),
             child: Text(
               "Recently searched dishes",
               style: TextStyle(
@@ -96,14 +125,13 @@ Widget _recentSearch() => Container(
           Container(
             height: 113.0,
             child: ListView(
-              itemExtent: 110,
               scrollDirection: Axis.horizontal,
               children: <Widget>[
-                _recentdish('assets/images/amala.jpeg', 'Fried Rice'),
-                _recentdish('assets/images/Efo riro.jpeg', 'Okro Soup'),
-                _recentdish('assets/images/fried rice.jpeg', 'Peanut butter'),
-                _recentdish('assets/images/fufu.jpeg', 'Fufu'),
-                _recentdish('assets/images/amala.jpeg', 'Fried Rice'),
+                _recentdish('assets/images/1.png', 'Fried Rice'),
+                _recentdish('assets/images/2.png', 'Okro Soup'),
+                _recentdish('assets/images/4.png', 'Peanut butter'),
+                _recentdish('assets/images/3.png', 'Fufu'),
+                _recentdish('assets/images/1.png', 'Fried Rice'),
               ],
             ),
           )
@@ -112,33 +140,35 @@ Widget _recentSearch() => Container(
     );
 
 Container _recentdish(String image, String dish) => Container(
+      margin: EdgeInsets.only(right: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.asset(
-              image,
-              height: 88,
-              width: 98,
-              fit: BoxFit.fill,
+          Container(
+            height: 88,
+            width: 98,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.asset(
+                image,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Container(
-            width: 67,
-            height: 17,
-            margin: EdgeInsets.only(top: 4),
+            margin: EdgeInsets.only(top: 8),
             child: Text(
               dish,
               overflow: TextOverflow.clip,
               textAlign: TextAlign.center,
               style: TextStyle(
+                color: Color(0xFF333333),
                   fontSize: 14,
-                  letterSpacing: 0.01,
                   fontFamily: "Montserrat",
                   fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.normal),
+                  fontWeight: FontWeight.normal,
+              ),
             ),
           )
         ],
@@ -146,7 +176,7 @@ Container _recentdish(String image, String dish) => Container(
     );
 
 Container _relatedSerach() => Container(
-       margin: EdgeInsets.symmetric(horizontal: 20),
+      margin: EdgeInsets.only(top: 7),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -164,7 +194,7 @@ Container _relatedSerach() => Container(
             recipe: r2,
           ),
           SearchResult(
-            recipe: r3,
+            recipe: r,
           ),
           SearchResult(
             recipe: r2,
@@ -192,21 +222,26 @@ class _SearchResultState extends State<SearchResult> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10.0),
+      margin: EdgeInsets.only(bottom: 10),
+      width: 335,
+      height: 128,
+//      margin: EdgeInsets.only(bottom: 10.0),
       child: Row(
         children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10.0),
-            child: Image.asset(
-              recipe.recipe_image,
-              width: 117,
-              height: 90,
-              fit: BoxFit.fill,
+          Container(
+            margin: EdgeInsets.symmetric(vertical: 17),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10.0),
+              child: Image.asset(
+                recipe.recipe_image,
+                width: 117,
+                height: 115,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
           Expanded(
             child: Container(
-              height: 118,
               margin: EdgeInsets.only(left: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -216,13 +251,14 @@ class _SearchResultState extends State<SearchResult> {
                     recipe.recipe_name,
                     overflow: TextOverflow.clip,
                     style: TextStyle(
+                        color: Color(0xFF333333),
                         fontSize: 18,
                         fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 3.0),
+                    margin: EdgeInsets.fromLTRB(0,5,0,10),
                     child: Text(
                       recipe.description,
                       maxLines: 4,
@@ -248,18 +284,29 @@ class _SearchResultState extends State<SearchResult> {
                                           size: 18,
                                           color: Colors.red,
                                         )
-                                      : Icon(
-                                          Icons.favorite_border,
-                                          size: 18,
-                                        )),
+                                      : Image.asset("assets/images/heart.png", height: 14,)),
                               SizedBox(
                                 width: 3,
                               ),
-                              Text(recipe.like_count.toString())
+                              Text(" "+recipe.like_count.toString(),
+                              style: TextStyle(
+                                  color: Color(0xFF333333),
+                                  fontSize: 12,
+                                  fontFamily: "Poppings",
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w500
+                              ),)
                             ],
                           ),
                         ),
-                        Text("${recipe.days} days ago")
+                        Text("${recipe.days} days ago",
+                        style: TextStyle(
+                          color: Color(0xFF828282),
+                          fontSize: 12,
+                          fontFamily: "Poppings",
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w500
+                        ),)
                       ],
                     ),
                   )
@@ -294,14 +341,14 @@ class Recipe {
 
 Recipe r = new Recipe(
     "Efo riro delicacy",
-    "assets/images/amala.jpeg",
+    "assets/images/3.png",
     "You may be a person who loves to cook efo riro, here is a video that will help you in accomplishing that",
     false,
     120,
     12);
 Recipe r2 = new Recipe(
     "Efo riro delicacy",
-    "assets/images/fufu.jpeg",
+    "assets/images/recipes.png",
     "You may be a person who loves to cook efo riro, here is a video that will help you in accomplishing that",
     false,
     120,
