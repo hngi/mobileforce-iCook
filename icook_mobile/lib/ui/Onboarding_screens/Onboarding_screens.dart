@@ -1,32 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:icook_mobile/core/constants/view_routes.dart';
+import 'package:icook_mobile/ui/home_page/home_page.dart';
+import 'package:icook_mobile/ui/shared/k_button.dart';
 import 'package:transformer_page_view/transformer_page_view.dart';
 
-class MyApp extends StatelessWidget {
-  // This widget the root of the app
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'iCook',
-      theme: ThemeData(
-        // This is the theme of the application.
-       
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'iCook Home Page'),
-    );
-  }
-}
+import '../ui_helper.dart';
 
-class MyHomePage extends StatefulWidget {
+class OnboardingScreen extends StatefulWidget {
   final String title;
-  MyHomePage({this.title});
+  OnboardingScreen({this.title});
   @override
-  MyHomePageState createState() {
-    return new MyHomePageState();
+  OnboardingScreenState createState() {
+    return new OnboardingScreenState();
   }
 }
 
-class MyHomePageState extends State<MyHomePage> {
+class OnboardingScreenState extends State<OnboardingScreen> {
   int _slideIndex = 0;
 
   final List<String> images = [
@@ -51,7 +40,6 @@ class MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     TransformerPageView transformerPageView = TransformerPageView(
         pageSnapping: true,
         onPageChanged: (index) {
@@ -59,153 +47,120 @@ class MyHomePageState extends State<MyHomePage> {
             this._slideIndex = index;
           });
         },
-        loop: true,
+        loop: false,
         controller: controller,
         transformer: new PageTransformerBuilder(
             builder: (Widget child, TransformInfo info) {
-              return new Material(
-                color: Colors.white,
-                elevation: 8.0,
-                textStyle: new TextStyle(color: Colors.white),
-                borderRadius: new BorderRadius.circular(12.0),
-                child: new Container(
-                  alignment: Alignment.center,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        new ParallaxContainer(
-                          child: new Image.asset(
-                            images[info.index],
-                            fit: BoxFit.contain,
-                            height: 350,
-                          ),
-                          position: info.position,
-                          translationFactor: 400.0,
+          return new Material(
+            color: Colors.white,
+            elevation: 8.0,
+            textStyle: new TextStyle(color: Colors.white),
+            borderRadius: new BorderRadius.circular(12.0),
+            child: new Container(
+              alignment: Alignment.center,
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 30.0,
+                    ),
+                    Expanded(
+                      child: new ParallaxContainer(
+                        child: new Image.asset(
+                          images[info.index],
+                          fit: BoxFit.contain,
+                          height: 350,
                         ),
-                        SizedBox(
-                          height: 30.0,
-                        ),
-
-                        new ParallaxContainer(
-                          position: info.position,
-                          translationFactor: 500.0,
-                          child: Dots(
-                            controller: controller,
-                            slideIndex: _slideIndex,
-                            numberOfDots: images.length,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 40.0,
-                        ),
-                        new ParallaxContainer(
-                          child: new Text(
-                            text0[info.index],
-                            style: new TextStyle(
-                                color: Colors.blueAccent,
-                                fontSize: 28.0,
-                                fontFamily: 'Work sans',
-                                fontWeight: FontWeight.bold),
-                          ),
-                          position: info.position,
-                          opacityFactor: .8,
-                          translationFactor: 400.0,
-                        ),
-                     /*   SizedBox(
+                        position: info.position,
+                        translationFactor: 400.0,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30.0,
+                    ),
+                    new ParallaxContainer(
+                      position: info.position,
+                      translationFactor: 500.0,
+                      child: Dots(
+                        controller: controller,
+                        slideIndex: _slideIndex,
+                        numberOfDots: images.length,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40.0,
+                    ),
+                    new ParallaxContainer(
+                      child: new Text(
+                        text0[info.index],
+                        style: new TextStyle(
+                            color: Colors.blueAccent,
+                            fontSize: 28.0,
+                            fontFamily: 'Work sans',
+                            fontWeight: FontWeight.bold),
+                      ),
+                      position: info.position,
+                      opacityFactor: .8,
+                      translationFactor: 400.0,
+                    ),
+                    /*   SizedBox(
                           height: 45.0,
                         ),*/
 
-                        new ParallaxContainer(
-                          child: new Text(
-                            text1[info.index],
-                            textAlign: TextAlign.center,
-                            style: new TextStyle(
-                                color: Colors.black,
-                                fontSize: 18.0,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.normal),
-                          ),
-                          position: info.position,
-                          translationFactor: 300.0,
-                        ),
-                        SizedBox(
-                          height: 55.0,
-                        ),
-                        new Container(
-                          width: 284.0,
-                          height: 40.0,
-                          decoration: BoxDecoration(
-                            gradient: new LinearGradient(
-                                colors: [
-                                  Colors.blueAccent[100],
-                                  Colors.blueAccent[100],
-                                ],
-                                begin: Alignment(0.5, -1.0),
-                                end: Alignment(0.5, 1.0)
-                            ),
-                            borderRadius: new BorderRadius.circular(12.0),
-                          ),
-                          child: new Material(
-                            child: MaterialButton(
-                              child: Text('Create an account',
-                                style: Theme.of(context).textTheme.button.copyWith(color: Colors.white),
-                              ),
-                              onPressed: (){},
-                              highlightColor: Colors.blue.withOpacity(0.5),
-                              splashColor: Colors.white30.withOpacity(0.5),
-                            ),
-                            color: Colors.transparent,
-                            borderRadius: new BorderRadius.circular(12.0),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-
-                        new Container(
-                          width: 284.0,
-                          height: 40.0,
-                          decoration: BoxDecoration(
-                            borderRadius: new BorderRadius.circular(12.0),
-                            border: Border.all(color: Colors.grey, width: 1.0),
-                            color: Colors.grey,
-                          ),
-                          child: new Material(
-                            child: MaterialButton(
-                              child: Text('Login',
-                                style: Theme.of(context).textTheme.button.copyWith(color: Colors.white),
-                              ),
-                              onPressed: (){},
-                              highlightColor: Colors.blueAccent,
-                              splashColor: Colors.blueAccent,
-                            ),
-                            color: Colors.transparent,
-                            borderRadius: new BorderRadius.circular(12.0),
-                          ),
-                        ),
-
-                        SizedBox(
-                          height: 55.0,
-                        ),
-                      ],
+                    new ParallaxContainer(
+                      child: new Text(
+                        text1[info.index],
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(
+                            color: Colors.black,
+                            fontSize: 18.0,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.normal),
+                      ),
+                      position: info.position,
+                      translationFactor: 300.0,
                     ),
-                  ),
+                    SizedBox(
+                      height: 55.0,
+                    ),
+                  ],
                 ),
-              );
-            }),
+              ),
+            ),
+          );
+        }),
         itemCount: 3);
-
-
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: transformerPageView,
+      body: Column(
+        children: <Widget>[
+          Expanded(child: transformerPageView),
+          KButton(
+              onPressed: () {},
+              title: 'Create an account',
+              buttonColor: Constants.kbuttonColor1,
+              textColor: Colors.white),
+          SizedBox(
+            height: 10.0,
+          ),
+          KButton(
+              onPressed: () {
+                Navigator.popAndPushNamed(context, ViewRoutes.home);
+              },
+              title: 'Login',
+              buttonColor: Constants.kbuttonColor2,
+              textColor: Colors.black),
+          SizedBox(
+            height: 55.0,
+          ),
+        ],
+      ),
     );
-
   }
 }
 
@@ -270,10 +225,8 @@ class Dots extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: _generateDots(),
-        ));
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: _generateDots(),
+    ));
   }
 }
-
-

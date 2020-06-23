@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icook_mobile/ui/account_information_screen/account_information_screen.dart';
+import 'package:icook_mobile/ui/dish_screen/dish_screen.dart';
 import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
 // import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
@@ -126,6 +127,7 @@ class ProfileScreen extends StatelessWidget {
                   trailing: Icon(Icons.keyboard_arrow_right),
                   onTap: () {
                     print('my dishes');
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => MyDishScreen()));
                   },
                 ),
                 SizedBox(
