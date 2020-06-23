@@ -6,4 +6,5 @@ class ViewRoutes {
   static const splash = 'splash';
   static const home = 'home';
   static const edit_profile = 'edit-profile';
+  static const detail = 'detail';
 }

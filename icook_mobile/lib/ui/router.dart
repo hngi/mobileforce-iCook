@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icook_mobile/core/constants/view_routes.dart';
 import 'package:icook_mobile/core/constants/view_state.dart';
+import 'package:icook_mobile/ui/details_screen/details_screen.dart';
 import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
 import 'package:icook_mobile/ui/home_page/home_page.dart';
 import 'package:icook_mobile/ui/splash_screen/splash_screen.dart';
@@ -29,6 +30,9 @@ class Router {
 
       case ViewRoutes.edit_profile:
         return EditProfile();
+
+      case ViewRoutes.detail:
+        return DetailsScreen();
 
       default:
         return Scaffold(
