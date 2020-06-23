@@ -11,7 +11,6 @@ class SearchView extends StatelessWidget {
           style: TextStyle(
               fontFamily: "Poppins", fontWeight: FontWeight.w500, fontSize: 24),
         ),
-        centerTitle: true,
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 12),
@@ -65,12 +64,11 @@ Widget _searchBar() {
             child: TextField(
               textAlign: TextAlign.left,
               style: TextStyle(
-                color: Color(0xFF333333),
+                  color: Color(0xFF333333),
                   fontSize: 16,
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.normal,
-                  fontStyle: FontStyle.normal
-              ),
+                  fontStyle: FontStyle.normal),
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.search),
@@ -164,10 +162,10 @@ Container _recentdish(String image, String dish) => Container(
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color(0xFF333333),
-                  fontSize: 14,
-                  fontFamily: "Montserrat",
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.normal,
+                fontSize: 14,
+                fontFamily: "Montserrat",
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.normal,
               ),
             ),
           )
@@ -258,7 +256,7 @@ class _SearchResultState extends State<SearchResult> {
                         fontStyle: FontStyle.normal),
                   ),
                   Container(
-                    margin: EdgeInsets.fromLTRB(0,5,0,10),
+                    margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
                     child: Text(
                       recipe.description,
                       maxLines: 4,
@@ -284,29 +282,34 @@ class _SearchResultState extends State<SearchResult> {
                                           size: 18,
                                           color: Colors.red,
                                         )
-                                      : Image.asset("assets/images/heart.png", height: 14,)),
+                                      : Image.asset(
+                                          "assets/images/heart.png",
+                                          height: 14,
+                                        )),
                               SizedBox(
                                 width: 3,
                               ),
-                              Text(" "+recipe.like_count.toString(),
-                              style: TextStyle(
-                                  color: Color(0xFF333333),
-                                  fontSize: 12,
-                                  fontFamily: "Poppings",
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w500
-                              ),)
+                              Text(
+                                " " + recipe.like_count.toString(),
+                                style: TextStyle(
+                                    color: Color(0xFF333333),
+                                    fontSize: 12,
+                                    fontFamily: "Poppings",
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500),
+                              )
                             ],
                           ),
                         ),
-                        Text("${recipe.days} days ago",
-                        style: TextStyle(
-                          color: Color(0xFF828282),
-                          fontSize: 12,
-                          fontFamily: "Poppings",
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w500
-                        ),)
+                        Text(
+                          "${recipe.days} days ago",
+                          style: TextStyle(
+                              color: Color(0xFF828282),
+                              fontSize: 12,
+                              fontFamily: "Poppings",
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w500),
+                        )
                       ],
                     ),
                   )
