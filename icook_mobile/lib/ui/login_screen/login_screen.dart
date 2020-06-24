@@ -346,7 +346,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Container(
                         height: 100,
                         width: 120,
-                        child: Image.asset('assets/images/image3.png',)
+                        child: Image.asset('assets/images/images3.png',)
                       ),
                       _buildEmailTF(),
                       SizedBox(
