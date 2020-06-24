@@ -17,7 +17,11 @@ class _DishTabState  extends State<DishTab> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        
+    
+          leading: IconButton(
+    icon: Icon(Icons.arrow_back_ios),
+    onPressed: () => Navigator.of(context).pop(),
+  ), 
         title: Text('My Dishes'
       ),
         // centerTitle: true,
@@ -70,27 +74,12 @@ class _DishTabState  extends State<DishTab> {
               fontWeight: FontWeight.w500)
       )
       
-    //    RaisedButton(
-    //         onPressed: () => Icons.exit_to_app,
-    //          child: Text('7 days ago',
-    // // title:  Text('7 days ago',
-    //   style: GoogleFonts.poppins(
-    //       textStyle: TextStyle(
-      
-    //         backgroundColor: Colors.blue,
-    //           color: Colors.black,
-    //           fontSize: 16,
-    //           fontWeight: FontWeight.w500)
          
     ),
    
      ),
     
-    // new IconButton(
-    // icon: new Icon(Icons.close),
-    // onPressed: () => Icons.exit_to_app,
-    // ),
-
+   
     
 
     _buildCardItem(
@@ -109,8 +98,8 @@ class _DishTabState  extends State<DishTab> {
     _buildCardItem(
     chefImage: "assets/images/chef_emma.jpg",
     foodImage: [
-    "assets/images/rice.jpg",
     "assets/images/soup.jpg",
+    "assets/images/rice.jpg",
     "assets/images/vegetable.jpg",
     ],
     chefName: "Chef Emmanuel ",
@@ -122,9 +111,10 @@ class _DishTabState  extends State<DishTab> {
     _buildCardItem(
     chefImage: "assets/images/chef_emma.jpg",
     foodImage: [
+   "assets/images/vegetable.jpg",
     "assets/images/rice.jpg",
     "assets/images/soup.jpg",
-    "assets/images/vegetable.jpg",
+    
     ],
     chefName: "Chef Emmanuel ",
     delName: "Delete",

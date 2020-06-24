@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icook_mobile/ui/profile_screen/constant.dart';
 
-import '../ui_helper.dart';
+
 
 class EditProfile extends StatelessWidget {
   @override

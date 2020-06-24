@@ -1,4 +1,4 @@
-import 'package:carousel_pro/carousel_pro.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,7 +6,7 @@ import 'package:icook_mobile/ui/home_page/home_page_model.dart';
 import 'package:icook_mobile/ui/shared/recipe_item.dart';
 import 'package:icook_mobile/ui/ui_helper.dart';
 import 'package:provider/provider.dart';
-import 'package:stacked/stacked.dart';
+
 
 class HomeScreen extends StatefulWidget {
   @override
