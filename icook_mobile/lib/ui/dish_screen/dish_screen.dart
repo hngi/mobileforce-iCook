@@ -1,21 +1,20 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:icook_mobile/ui/shared/recipe_item.dart';
 
-
-class DishTab extends StatefulWidget {
+class MyDishScreen extends StatefulWidget {
   @override
-  _DishTabState createState() => _DishTabState();
+  _MyDishScreenState createState() => _MyDishScreenState();
 }
 
-class _DishTabState  extends State<DishTab> {
+class _MyDishScreenState extends State<MyDishScreen> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.white,
+<<<<<<< HEAD
       appBar: AppBar(
     
           leading: IconButton(
@@ -122,18 +121,51 @@ class _DishTabState  extends State<DishTab> {
     foodDescription: "You’ll be amazed!.",
     likes: 4),
        ],
+=======
+      appBar: AppBar(title: Text('My Dishes'),
+          // centerTitle: true,
+
+          actions: <Widget>[
+            IconButton(
+              icon: new Image.asset(
+                'assets/images/filter.png',
+                height: 24,
+                width: 24,
+              ),
+              onPressed: () {
+                // do something
+              },
+            ),
+          ]),
+      body: ListView.builder(
+        shrinkWrap: true,
+        itemCount: 6,
+        itemBuilder: (context, index) => RecipeItem(
+          chefImage: "assets/images/avatar.png",
+          chefName: "Rosa Nna",
+          foodName: "Boiled Rice and Chicken",
+          foodDescription:
+              "This is just a very very dummy food description for texting",
+          likes: 4,
+          foodImage: [
+            "assets/images/amala.jpeg",
+            "assets/images/recipes.png",
+            "assets/images/amala.jpeg"
+          ],
+        ),
+>>>>>>> upstream/mobile-flutter-develop
       ),
     );
   }
 
   Widget _buildCardItem(
       {String chefImage,
-        String chefName,
-        String delName,
-        List<String> foodImage,
-        foodName,
-        String foodDescription,
-        int likes}) {
+      String chefName,
+      String delName,
+      List<String> foodImage,
+      foodName,
+      String foodDescription,
+      int likes}) {
     print("FoodImage Size ${foodImage.length}");
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
@@ -152,7 +184,6 @@ class _DishTabState  extends State<DishTab> {
               SizedBox(
                 width: 7,
               ),
-              
               Text(
                 chefName,
                 style: GoogleFonts.poppins(
@@ -160,26 +191,20 @@ class _DishTabState  extends State<DishTab> {
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF333333)),
               ),
-              
-                SizedBox(
+              SizedBox(
                 width: 7,
               ),
-                 Text(
-                delName,
-                 style: GoogleFonts.poppins(
-                   
+              Text(delName,
+                  style: GoogleFonts.poppins(
                     fontSize: 14,
                     fontWeight: FontWeight.w300,
-                    color: Colors.blue,)
-                          )
+                    color: Colors.blue,
+                  ))
             ],
           ),
-
-
           SizedBox(
             height: 10,
           ),
-
           Container(
             height: MediaQuery.of(context).size.height * 0.3,
             width: MediaQuery.of(context).size.width,
@@ -195,7 +220,6 @@ class _DishTabState  extends State<DishTab> {
               indicatorBgPadding: 5.0,
               radius: Radius.circular(10),
               dotVerticalPadding: 20,
-
               dotBgColor: Colors.transparent,
               borderRadius: true,
             ),
@@ -209,66 +233,41 @@ class _DishTabState  extends State<DishTab> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-
-
-
                   Padding(
-                    padding: const EdgeInsets.only(
-                        left: 0,
-                        top: 11.5
-                    ),
+                    padding: const EdgeInsets.only(left: 0, top: 11.5),
                     child: InkWell(
-                      onTap: (){},
-                      child: Image(image:
-
-                      AssetImage( "assets/images/like_icon.png"),
-
+                      onTap: () {},
+                      child: Image(
+                        image: AssetImage("assets/images/like_icon.png"),
                         width: 24,
                         height: 24,
                       ),
                     ),
                   ),
-
                   Padding(
-                    padding: const EdgeInsets.only(
-                        left: 19,
-                        top: 11.5
-                    ),
+                    padding: const EdgeInsets.only(left: 19, top: 11.5),
                     child: InkWell(
-                      onTap: (){},
-                      child: Image(image:
-
-                      AssetImage( "assets/images/message-circle.png"),
-
+                      onTap: () {},
+                      child: Image(
+                        image: AssetImage("assets/images/message-circle.png"),
                         width: 24,
                         height: 24,
                       ),
                     ),
                   ),
-
-
                 ],
               ),
-
               Padding(
-                padding: const EdgeInsets.only(
-                    left: 19,
-                    top: 11.5
-                ),
+                padding: const EdgeInsets.only(left: 19, top: 11.5),
                 child: InkWell(
-                  onTap: (){},
-
-                  child:
-                  Image(image:
-
-                  AssetImage( "assets/images/share.png"),
-
+                  onTap: () {},
+                  child: Image(
+                    image: AssetImage("assets/images/share.png"),
                     width: 24,
                     height: 24,
                   ),
                 ),
               ),
-
             ],
           ),
           SizedBox(
@@ -306,6 +305,4 @@ class _DishTabState  extends State<DishTab> {
   }
 }
 
-
-
-//  
+//
