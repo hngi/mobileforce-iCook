@@ -4,7 +4,7 @@ import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
 import 'package:icook_mobile/ui/profile_screen/constant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AccountInformationScreen extends StatelessWidget {
+class OtherUserInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context,
@@ -13,7 +13,7 @@ class AccountInformationScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("My Profile"),
+        title: Text("User Profile"),
       ),
       body: ListView(
         children: <Widget>[
@@ -117,12 +117,7 @@ class AccountInformationScreen extends StatelessWidget {
                           ],
                         ),
                         InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => EditProfile()));
-                          },
+                          onTap: () {},
                           child: Container(
                             width: kSpacingUnit.w * 19.1,
                             height: 37,
@@ -131,7 +126,7 @@ class AccountInformationScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(7)),
                             child: Center(
                               child: Text(
-                                "Edit information",
+                                "Follow",
                                 style: GoogleFonts.poppins(
                                     fontSize: 16,
                                     fontStyle: FontStyle.normal,
