@@ -46,7 +46,7 @@ dependencies:
   hive: ^1.4.1+1
   path_provider: ^1.6.10
   path: ^1.6.4
-  image_picker: ^0.6.7+1
+  image_picker: ^0.6.1+4
   dio: ^3.0.9
   line_awesome_flutter: ^1.0.1
   transformer_page_view: ^0.1.6
