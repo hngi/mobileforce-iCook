@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icook_mobile/core/constants/view_routes.dart';
+<<<<<<< HEAD
+
+=======
 import 'package:icook_mobile/core/constants/view_state.dart';
 import 'package:icook_mobile/ui/Onboarding_screens/Onboarding_screens.dart';
 import 'package:icook_mobile/ui/details_screen/details_screen.dart';
+>>>>>>> upstream/mobile-flutter-develop
 import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
 import 'package:icook_mobile/ui/home_page/home_page.dart';
 import 'package:icook_mobile/ui/other_users/other_users.dart';
