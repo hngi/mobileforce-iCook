@@ -24,6 +24,7 @@ class RecipeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<RecipeItemModel>.reactive(
       viewModelBuilder: () => RecipeItemModel(),
+      onModelReady: (model) => model.init(),
       builder: (context, model, child) => Padding(
         padding:
             const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
