@@ -31,6 +31,28 @@ class Constants {
     accentColor: lightAccent,
     cursorColor: lightAccent,
     scaffoldBackgroundColor: lightBG,
+    textTheme: TextTheme(
+      headline6: TextStyle(
+        color: darkBG,
+        fontSize: 18,
+        fontFamily: 'Poppins',
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
+      fillColor: Color(0xFFF4F4F4),
+      filled: true,
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(7.0)),
+        borderSide: BorderSide(color: Color(0xFF578DDE)),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        borderSide: BorderSide(color: Color(0xFFF4F4F4)),
+      ),
+      hintStyle: TextStyle(
+          color: Color(0XFFBDBDBD), fontSize: 16, fontFamily: "Poppins"),
+    ),
     appBarTheme: AppBarTheme(
       elevation: 0,
       textTheme: TextTheme(
@@ -55,6 +77,28 @@ class Constants {
     cardColor: darkPrimary,
     scaffoldBackgroundColor: darkBG,
     cursorColor: darkAccent,
+    textTheme: TextTheme(
+      headline6: TextStyle(
+        color: darkBG,
+        fontSize: 18,
+        fontFamily: 'Poppins',
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
+      fillColor: Colors.grey,
+      filled: true,
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(7.0)),
+        borderSide: BorderSide(color: Color(0xFF578DDE)),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        borderSide: BorderSide(color: Color(0xFFF4F4F4)),
+      ),
+      hintStyle: TextStyle(
+          color: Colors.black, fontSize: 16, fontFamily: "Poppins"),
+    ),
     appBarTheme: AppBarTheme(
       elevation: 0,
       textTheme: TextTheme(

@@ -40,10 +40,7 @@ class SettingsScreen extends StatelessWidget {
                     children: [
                       Text(
                         '      Personal Information',
-                        style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                color: Color(0xff333333), fontSize: 18),
-                            fontWeight: FontWeight.w500),
+                       
                       ),
                       SizedBox(height: heightUnit * 0.5),
                       Container(
@@ -56,25 +53,7 @@ class SettingsScreen extends StatelessWidget {
                           style: TextStyle(fontSize: 18, fontFamily: "Poppins"),
                           cursorColor: Color(0XFFF898989),
                           decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
                             hintText: "Fullname",
-                            hintStyle: TextStyle(
-                                color: Color(0XFFBDBDBD),
-                                fontSize: 16,
-                                fontFamily: "Poppins"),
-                            fillColor: Color(0xFFF4F4F4),
-                            filled: true,
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(7.0)),
-                              borderSide: BorderSide(color: Color(0xFF578DDE)),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                              borderSide: BorderSide(color: Color(0xFFF4F4F4)),
-                            ),
                           ),
                         ),
                       ),
@@ -89,25 +68,7 @@ class SettingsScreen extends StatelessWidget {
                           style: TextStyle(fontSize: 18, fontFamily: "Poppins"),
                           cursorColor: Color(0XFFF898989),
                           decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
                             hintText: "Email address",
-                            hintStyle: TextStyle(
-                                color: Color(0XFFBDBDBD),
-                                fontSize: 16,
-                                fontFamily: "Poppins"),
-                            fillColor: Color(0xFFF4F4F4),
-                            filled: true,
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(7.0)),
-                              borderSide: BorderSide(color: Color(0xFF578DDE)),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                              borderSide: BorderSide(color: Colors.white),
-                            ),
                           ),
                         ),
                       ),
@@ -141,22 +102,6 @@ class SettingsScreen extends StatelessWidget {
                           keyboardType: TextInputType.number,
                           style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
                           cursorColor: Color(0XFFF898989),
-                          decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
-                            fillColor: Color(0xFFF4F4F4),
-                            filled: true,
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(7.0)),
-                              borderSide: BorderSide(color: Color(0xFF578DDE)),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                              borderSide: BorderSide(color: Color(0xFFF4F4F4)),
-                            ),
-                          ),
                         ),
                       ),
                       SizedBox(
@@ -205,7 +150,7 @@ class NotificationsItem extends StatefulWidget {
 
 class _NotificationsItemState extends State<NotificationsItem> {
   bool isSwitched = false;
-  
+
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<ThemeNotifier>(context, listen: false);
