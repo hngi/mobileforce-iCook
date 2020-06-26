@@ -1,11 +1,8 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icook_mobile/ui/profile_screen/constant.dart';
-
-
 
 class EditProfile extends StatelessWidget {
   @override
@@ -83,25 +80,7 @@ class EditProfile extends StatelessWidget {
                         style: TextStyle(fontSize: 18, fontFamily: "Poppins"),
                         cursorColor: Color(0XFFF898989),
                         decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
                           hintText: "Enter Name",
-                          hintStyle: TextStyle(
-                              color: Color(0XFFBDBDBD),
-                              fontSize: 16,
-                              fontFamily: "Poppins"),
-                          fillColor: Color(0xFFF4F4F4),
-                          filled: true,
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(7.0)),
-                            borderSide: BorderSide(color: Color(0xFF578DDE)),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            borderSide: BorderSide(color: Color(0xFFF4F4F4)),
-                          ),
                         ),
                       ),
                     ),
@@ -127,26 +106,7 @@ class EditProfile extends StatelessWidget {
                         style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
                         cursorColor: Color(0XFFF898989),
                         decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
                           hintText: "Emmanuel.cook@gmail.com",
-                          hintStyle: TextStyle(
-                              color: Color(0XFFBDBDBD),
-                              fontSize: 16,
-                              fontFamily: "Poppins"),
-                          fillColor: Color(0xFFF4F4F4),
-                          filled: true,
-                          focusColor: Colors.red,
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(7.0)),
-                            borderSide: BorderSide(color: Color(0xFF578DDE)),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            borderSide: BorderSide(color: Color(0xFFF4F4F4)),
-                          ),
                         ),
                       ),
                     ),
@@ -169,22 +129,7 @@ class EditProfile extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
                         cursorColor: Color(0XFFF898989),
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
-                          fillColor: Color(0xFFF4F4F4),
-                          filled: true,
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(7.0)),
-                            borderSide: BorderSide(color: Color(0xFF578DDE)),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            borderSide: BorderSide(color: Color(0xFFF4F4F4)),
-                          ),
-                        ),
+                        decoration: InputDecoration(hintText: "+234"),
                       ),
                     ),
                     SizedBox(
@@ -192,6 +137,7 @@ class EditProfile extends StatelessWidget {
                     ),
                     Text(
                       '      Bio',
+                      
                       style: GoogleFonts.poppins(
                           textStyle:
                               TextStyle(color: Color(0XFF333333), fontSize: 18),
@@ -213,22 +159,6 @@ class EditProfile extends StatelessWidget {
                         cursorColor: Color(0XFFF898989),
                         decoration: InputDecoration(
                           hintText: 'Enter text',
-                          hintStyle:
-                              TextStyle(color: Color(0XFFBDBDBD), fontSize: 14),
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
-                          fillColor: Color(0xFFF4F4F4),
-                          filled: true,
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(7.0)),
-                            borderSide: BorderSide(color: Color(0xFF578DDE)),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            borderSide: BorderSide(color: Color(0xFFF4F4F4)),
-                          ),
                         ),
                       ),
                     ),

@@ -11,35 +11,6 @@ import '../ui_helper.dart';
 class CreateRecipeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, height: 896, width: 414, allowFontScaling: true);
-    var header = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        SizedBox(width: 1),
-        Image(
-          image: new AssetImage(
-            'assets/images/Vector.png',
-          ),
-          height: 35,
-        ),
-        SizedBox(width: Constants.kSpacingUnit.w * 5),
-        Text(
-          'Add New Recipe',
-          style: GoogleFonts.poppins(
-              textStyle: TextStyle(color: Colors.black, fontSize: 24),
-              fontWeight: FontWeight.w500),
-        ),
-        SizedBox(width: Constants.kSpacingUnit.w * 5),
-        Image(
-          image: new AssetImage(
-            'assets/images/search.png',
-          ),
-          height: 35,
-        ),
-        SizedBox(width: 0.1),
-      ],
-    );
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Add New Recipe"),
@@ -297,9 +268,7 @@ class CreateRecipeScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 13),
                     Container(
-                      height: 128.0,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
+                      child: Wrap(
                         children: <Widget>[
                           _recentdish('assets/images/3.png'),
                           _recentdish('assets/images/upload_image.png'),
@@ -307,51 +276,14 @@ class CreateRecipeScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      //height: 63,
-
-                      padding: EdgeInsets.only(right: 220, top: 25),
-                      margin: EdgeInsets.only(left: 26, right: 38, top: 2),
+                      margin: EdgeInsets.only(left: 26, right: 38, top: 20),
                       child: Material(
                         borderRadius: BorderRadius.circular(7),
                         color: Color(0xFFF578DDE),
                         child: MaterialButton(
-                          // padding: EdgeInsets.all(1),
-                          minWidth: 330,
-                          onPressed: () {},
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Column(
-                                children: <Widget>[
-                                  Text(
-                                    "Upload",
-                                    style: GoogleFonts.poppins(
-                                        textStyle: TextStyle(
-                                            letterSpacing: 1,
-                                            color: Colors.white,
-                                            fontSize: 18),
-                                        fontWeight: FontWeight.w500),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 75),
-                    Container(
-                      padding: EdgeInsets.only(left: 35, right: 36),
-                      child: Material(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color(0xFFF578DDE),
-                        child: MaterialButton(
-                          padding: EdgeInsets.all(15),
-                          minWidth: 330,
                           onPressed: () {},
                           child: Text(
-                            "Complete Recipe",
+                            "Upload",
                             style: GoogleFonts.poppins(
                                 textStyle: TextStyle(
                                     letterSpacing: 1,
@@ -359,6 +291,30 @@ class CreateRecipeScreen extends StatelessWidget {
                                     fontSize: 18),
                                 fontWeight: FontWeight.w500),
                             textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 75),
+                    Center(
+                      child: Container(
+                        child: Material(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color(0xFFF578DDE),
+                          child: MaterialButton(
+                            padding: EdgeInsets.all(15),
+                            minWidth: 330,
+                            onPressed: () {},
+                            child: Text(
+                              "Complete Recipe",
+                              style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                      letterSpacing: 1,
+                                      color: Colors.white,
+                                      fontSize: 18),
+                                  fontWeight: FontWeight.w500),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
                       ),
@@ -418,9 +374,8 @@ class PreparationSpan extends StatelessWidget {
         children: [
           SizedBox(width: kSpacingUnit.w * 2),
           Container(
-            margin: EdgeInsets.only(top: 14),
-            height: ScreenUtil().setSp(kSpacingUnit.w * 2.4),
-            width: ScreenUtil().setSp(kSpacingUnit.w * 2.3),
+            height: 30,
+            width: 30,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Color(0xff578DDE),

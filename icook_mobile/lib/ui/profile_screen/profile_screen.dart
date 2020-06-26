@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:icook_mobile/ui/account_information_screen/account_information_screen.dart';
 import 'package:icook_mobile/ui/dish_screen/dish_screen.dart';
 import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
+import 'package:icook_mobile/ui/settings_screen/settings_screen.dart';
 // import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 import '../ui_helper.dart';
@@ -127,7 +128,10 @@ class ProfileScreen extends StatelessWidget {
                   trailing: Icon(Icons.keyboard_arrow_right),
                   onTap: () {
                     print('my dishes');
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => MyDishScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MyDishScreen()));
                   },
                 ),
                 SizedBox(
@@ -195,6 +199,10 @@ class ProfileScreen extends StatelessWidget {
                   trailing: Icon(Icons.keyboard_arrow_right),
                   onTap: () {
                     print('reviews');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SettingsScreen()));
                   },
                 ),
                 SizedBox(

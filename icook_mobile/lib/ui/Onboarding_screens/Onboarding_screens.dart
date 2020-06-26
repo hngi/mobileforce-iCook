@@ -51,84 +51,72 @@ class OnboardingScreenState extends State<OnboardingScreen> {
         controller: controller,
         transformer: new PageTransformerBuilder(
             builder: (Widget child, TransformInfo info) {
-          return new Material(
-            color: Colors.white,
-            elevation: 8.0,
-            textStyle: new TextStyle(color: Colors.white),
-            borderRadius: new BorderRadius.circular(12.0),
-            child: new Container(
-              alignment: Alignment.center,
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 30.0,
-                    ),
-                    Expanded(
-                      child: new ParallaxContainer(
-                        child: new Image.asset(
-                          images[info.index],
-                          fit: BoxFit.contain,
-                          height: 350,
-                        ),
-                        position: info.position,
-                        translationFactor: 400.0,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30.0,
-                    ),
-                    new ParallaxContainer(
-                      position: info.position,
-                      translationFactor: 500.0,
-                      child: Dots(
-                        controller: controller,
-                        slideIndex: _slideIndex,
-                        numberOfDots: images.length,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 40.0,
-                    ),
-                    new ParallaxContainer(
-                      child: new Text(
-                        text0[info.index],
-                        style: new TextStyle(
-                            color: Colors.blueAccent,
-                            fontSize: 28.0,
-                            fontFamily: 'Work sans',
-                            fontWeight: FontWeight.bold),
+          return new Container(
+            alignment: Alignment.center,
+            child: Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  Expanded(
+                    child: new ParallaxContainer(
+                      child: new Image.asset(
+                        images[info.index],
+                        fit: BoxFit.contain,
+                        height: 350,
                       ),
                       position: info.position,
-                      opacityFactor: .8,
                       translationFactor: 400.0,
                     ),
-                    /*   SizedBox(
-                          height: 45.0,
-                        ),*/
-
-                    new ParallaxContainer(
-                      child: new Text(
-                        text1[info.index],
-                        textAlign: TextAlign.center,
-                        style: new TextStyle(
-                            color: Colors.black,
-                            fontSize: 18.0,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.normal),
-                      ),
-                      position: info.position,
-                      translationFactor: 300.0,
+                  ),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  new ParallaxContainer(
+                    position: info.position,
+                    translationFactor: 500.0,
+                    child: Dots(
+                      controller: controller,
+                      slideIndex: _slideIndex,
+                      numberOfDots: images.length,
                     ),
-                    SizedBox(
-                      height: 55.0,
+                  ),
+                  SizedBox(
+                    height: 40.0,
+                  ),
+                  new ParallaxContainer(
+                    child: new Text(
+                      text0[info.index],
+                      style: new TextStyle(
+                          color: Colors.blueAccent,
+                          fontSize: 28.0,
+                          fontFamily: 'Work sans',
+                          fontWeight: FontWeight.bold),
                     ),
-                  ],
-                ),
+                    position: info.position,
+                    opacityFactor: .8,
+                    translationFactor: 400.0,
+                  ),
+                  new ParallaxContainer(
+                    child: new Text(
+                      text1[info.index],
+                      textAlign: TextAlign.center,
+                      style: new TextStyle(
+                          fontSize: 18.0,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.normal),
+                    ),
+                    position: info.position,
+                    translationFactor: 300.0,
+                  ),
+                  SizedBox(
+                    height: 55.0,
+                  ),
+                ],
               ),
             ),
           );
@@ -136,10 +124,10 @@ class OnboardingScreenState extends State<OnboardingScreen> {
         itemCount: 3);
 
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Column(
         children: <Widget>[
           Expanded(child: transformerPageView),
+          SizedBox(height: 10),
           KButton(
               onPressed: () {},
               title: 'Create an account',

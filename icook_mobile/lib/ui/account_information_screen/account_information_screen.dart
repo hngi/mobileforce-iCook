@@ -11,7 +11,6 @@ class AccountInformationScreen extends StatelessWidget {
         height: double.infinity, width: 375, allowFontScaling: true);
 
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("My Profile"),
       ),
