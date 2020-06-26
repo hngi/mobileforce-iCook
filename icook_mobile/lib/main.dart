@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: Constants.appName,
-          theme: Constants.lightTheme,
+          theme: Constants.darkTheme,
           darkTheme: Constants.darkTheme,
           onGenerateRoute: Router.generateRoute,
 <<<<<<< HEAD
