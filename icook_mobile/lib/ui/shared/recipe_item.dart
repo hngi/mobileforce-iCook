@@ -24,6 +24,7 @@ class RecipeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<RecipeItemModel>.reactive(
       viewModelBuilder: () => RecipeItemModel(),
+      onModelReady: (model) => model.init(),
       builder: (context, model, child) => Padding(
         padding:
             const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
@@ -35,19 +36,25 @@ class RecipeItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                CircleAvatar(
-                  backgroundImage: AssetImage(chefImage),
-                  radius: 25,
+                GestureDetector(
+                  onTap: () => model.seeUserInfo(),
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage(chefImage),
+                    radius: 25,
+                  ),
                 ),
                 SizedBox(
                   width: 15,
                 ),
-                Text(
-                  chefName,
-                  style: GoogleFonts.poppins(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xFF333333)),
+                GestureDetector(
+                  onTap: () => model.seeUserInfo(),
+                  child: Text(
+                    chefName,
+                    style: GoogleFonts.poppins(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xFF333333)),
+                  ),
                 )
               ],
             ),
@@ -138,20 +145,30 @@ class RecipeItem extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Text(
-              foodName,
-              style: GoogleFonts.poppins(
-                  color: Color(0xFF333333),
-                  fontSize: 20,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w500),
+            GestureDetector(
+              onTap: () => model.seeDetails(),
+              child: Text(
+                foodName,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.poppins(
+                    color: Color(0xFF333333),
+                    fontSize: 20,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500),
+              ),
             ),
-            Text(
-              foodDescription,
-              style: GoogleFonts.poppins(
-                  color: Color(0xFF828282),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500),
+            GestureDetector(
+              onTap: () => model.seeDetails(),
+              child: Text(
+                foodDescription,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.poppins(
+                    color: Color(0xFF828282),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500),
+              ),
             )
           ],
         ),
