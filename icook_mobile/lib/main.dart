@@ -29,25 +29,20 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: providers,
       child: CoreManager(
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: Constants.appName,
-          theme: Constants.lightTheme,
-          darkTheme: Constants.darkTheme,
-          onGenerateRoute: Router.generateRoute,
-          navigatorKey: navigationService.navigatorKey,
-          home: SplashScreen(),
+        child: Consumer<ThemeNotifier>(
+          builder: (BuildContext context, ThemeNotifier value, Widget child) =>
+              MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: Constants.appName,
+            theme: Constants.lightTheme,
+            darkTheme: Constants.darkTheme,
+            onGenerateRoute: Router.generateRoute,
+            navigatorKey: navigationService.navigatorKey,
+            home: SplashScreen(),
+            themeMode: keystorage.isDarkMOde ? ThemeMode.dark : ThemeMode.light,
+          ),
         ),
       ),
-    );
-  }
-}
-
-class TestRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
     );
   }
 }

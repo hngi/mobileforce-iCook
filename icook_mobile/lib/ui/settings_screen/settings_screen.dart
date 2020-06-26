@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:icook_mobile/ui/ui_helper.dart';
+import 'package:provider/provider.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 const heightUnit = 10;
@@ -173,7 +175,10 @@ class SettingsScreen extends StatelessWidget {
                       NotificationsItem(title: 'Activity on posts'),
                       NotificationsItem(title: 'NewsLetter'),
                       NotificationsItem(title: 'Auto Update App'),
-                      NotificationsItem(title: 'Dark Mode'),
+                      NotificationsItem(
+                        title: 'Dark Mode',
+                        settings: Settings.DarkMode,
+                      )
                     ],
                   ),
                 ]),
@@ -182,18 +187,28 @@ class SettingsScreen extends StatelessWidget {
   }
 }
 
+enum Settings { DarkMode }
+
 class NotificationsItem extends StatefulWidget {
 //  final bool isSwitched;
   final String title;
-  const NotificationsItem({Key key, this.title}) : super(key: key);
+  final Settings settings;
+
+  const NotificationsItem({
+    Key key,
+    this.title,
+    this.settings,
+  }) : super(key: key);
   @override
   _NotificationsItemState createState() => _NotificationsItemState();
 }
 
 class _NotificationsItemState extends State<NotificationsItem> {
   bool isSwitched = false;
+  
   @override
   Widget build(BuildContext context) {
+    final model = Provider.of<ThemeNotifier>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.only(left: 8.0),
       child: ListTile(
@@ -202,10 +217,15 @@ class _NotificationsItemState extends State<NotificationsItem> {
           value: isSwitched,
           activeColor: Colors.blue,
           activeTrackColor: Colors.blueAccent,
-          onChanged: (value) {
+          onChanged: (v) {
             setState(() {
-              isSwitched = value;
+              isSwitched = v;
             });
+
+            if (widget.settings == Settings.DarkMode) {
+              print('called $v');
+              model.updateTheme(value: v);
+            }
           },
         ),
       ),

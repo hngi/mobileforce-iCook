@@ -75,6 +75,7 @@ class KeyStorageServiceImpl implements KeyStorageService {
 
   @override
   set isDarkMOde(bool _isDarkMOde) {
+    print('set');
     _saveToDisk(theme, _isDarkMOde);
   }
 }

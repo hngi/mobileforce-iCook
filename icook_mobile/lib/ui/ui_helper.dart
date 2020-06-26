@@ -128,8 +128,9 @@ class Constants {
 class ThemeNotifier extends ChangeNotifier {
   final keystorage = locator<KeyStorageService>();
 
-  void updateTheme() {
-    keystorage.isDarkMOde = !keystorage.isDarkMOde;
+  void updateTheme({bool value = false}) {
+    print(value);
+    keystorage.isDarkMOde = value;
     notifyListeners();
   }
 }
