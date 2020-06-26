@@ -14,114 +14,6 @@ class _MyDishScreenState extends State<MyDishScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-<<<<<<< HEAD
-      appBar: AppBar(
-    
-          leading: IconButton(
-    icon: Icon(Icons.arrow_back_ios),
-    onPressed: () => Navigator.of(context).pop(),
-  ), 
-        title: Text('My Dishes'
-      ),
-        // centerTitle: true,
-         
-        actions: <Widget>[
-
-           Icon(Icons.keyboard_arrow_left),
-          
-        IconButton(
-          
-    icon: new Image.asset('assets/images/filter.png'),
-   
-
-      onPressed: () {
-        // do something
-      },
-    ),
-    ]),
-
-   
-
-    body:ListView(
-    children: <Widget>[
-      ListTile(
-      title: Text('Filters',
-        style: GoogleFonts.poppins(
-            textStyle: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w500)),
-      )
-      
-      
-      ),
-
-  
-      
-
-    ListTile(
-
-      title:Text('7 days ago',
-
-      style: GoogleFonts.poppins(
-          textStyle: TextStyle(
-            
-      
-            backgroundColor: Colors.blue,
-              color: Colors.black,
-              fontSize: 16,
-              fontWeight: FontWeight.w500)
-      )
-      
-         
-    ),
-   
-     ),
-    
-   
-    
-
-    _buildCardItem(
-    foodImage: [
-    "assets/images/rice.jpg",
-    "assets/images/soup.jpg",
-    "assets/images/vegetable.jpg",
-    ],
-    chefImage: "assets/images/chef_emma.jpg",
-    chefName: "Chef Emmanuel ",
-    delName: "Delete",
-    foodName: "Fried Rice",
-    foodDescription: "Surprise your family with a different fried rice recipe",
-    likes: 4),
-
-    _buildCardItem(
-    chefImage: "assets/images/chef_emma.jpg",
-    foodImage: [
-    "assets/images/soup.jpg",
-    "assets/images/rice.jpg",
-    "assets/images/vegetable.jpg",
-    ],
-    chefName: "Chef Emmanuel ",
-    delName: "Delete",
-    foodName: "African Ewedu soup",
-    foodDescription: "Prepare ewedu soup in 15 short steps.",
-    likes: 4),
-
-    _buildCardItem(
-    chefImage: "assets/images/chef_emma.jpg",
-    foodImage: [
-   "assets/images/vegetable.jpg",
-    "assets/images/rice.jpg",
-    "assets/images/soup.jpg",
-    
-    ],
-    chefName: "Chef Emmanuel ",
-    delName: "Delete",
-    foodName: "Goat meat vegetable soup ",
-    foodDescription: "You’ll be amazed!.",
-    likes: 4),
-       ],
-=======
       appBar: AppBar(title: Text('My Dishes'),
           // centerTitle: true,
 
@@ -153,7 +45,6 @@ class _MyDishScreenState extends State<MyDishScreen> {
             "assets/images/amala.jpeg"
           ],
         ),
->>>>>>> upstream/mobile-flutter-develop
       ),
     );
   }
