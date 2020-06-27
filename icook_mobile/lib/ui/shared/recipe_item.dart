@@ -26,11 +26,13 @@ class RecipeItem extends StatelessWidget {
       viewModelBuilder: () => RecipeItemModel(),
       onModelReady: (model) => model.init(),
       builder: (context, model, child) => Padding(
-        padding: const EdgeInsets.only(top: 20, bottom: 10),
+        padding: const EdgeInsets.only(bottom: 10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            Divider(),
+            SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Row(
@@ -170,7 +172,7 @@ class RecipeItem extends StatelessWidget {
                 onTap: () => model.seeDetails(),
                 child: Text(
                   foodDescription,
-                  maxLines: 3,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.poppins(
                       color: Color(0xFF828282),
