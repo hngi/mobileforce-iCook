@@ -1,4 +1,3 @@
-
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,6 +8,7 @@ class KeyStorageServiceImpl implements KeyStorageService {
   static const first_time = 'first_time';
   static const api_key = 'api_key';
   static const theme = 'theme';
+  static const logged = 'logged';
 
   static KeyStorageServiceImpl _instance;
   static SharedPreferences _preferences;
@@ -75,7 +75,16 @@ class KeyStorageServiceImpl implements KeyStorageService {
 
   @override
   set isDarkMOde(bool _isDarkMOde) {
-    print('set');
+    print('dark-mode $_isDarkMOde');
     _saveToDisk(theme, _isDarkMOde);
+  }
+
+  @override
+  bool get isLoggedIn => _getFromDisk(logged) ?? false;
+
+  @override
+  set isLoggedIn(bool _isLoggedIn) {
+    print('Login State $_isLoggedIn');
+    _saveToDisk(logged, _isLoggedIn);
   }
 }

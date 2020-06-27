@@ -10,4 +10,6 @@ class ViewRoutes {
   static const recipe_details = 'recipe_details';
   static const userprofile = 'user_profile';
   static const settings = 'settings';
+  static const login = 'login';
+  static const signup = 'signup';
 }

@@ -7,6 +7,8 @@ abstract class KeyStorageService {
 
   bool isDarkMOde;
 
+  bool isLoggedIn;
+
 
 
 }

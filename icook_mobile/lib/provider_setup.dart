@@ -1,3 +1,4 @@
+import 'package:icook_mobile/ui/Onboarding_screens/OnboardingViewModel.dart';
 import 'package:icook_mobile/ui/ui_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
@@ -19,4 +20,6 @@ List<SingleChildWidget> dependentServices = [];
 List<SingleChildWidget> uiConsumableProviders = [
   //example
   ChangeNotifierProvider<ThemeNotifier>(create: (context) => ThemeNotifier()),
+  ChangeNotifierProvider<OnboardingViewModel>(
+      create: (context) => OnboardingViewModel()),
 ];
