@@ -40,7 +40,6 @@ class SettingsScreen extends StatelessWidget {
                     children: [
                       Text(
                         '      Personal Information',
-                       
                       ),
                       SizedBox(height: heightUnit * 0.5),
                       Container(
@@ -78,8 +77,7 @@ class SettingsScreen extends StatelessWidget {
                       Text(
                         '      Password',
                         style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                color: Color(0xff333333), fontSize: 18),
+                            textStyle: TextStyle(fontSize: 18),
                             fontWeight: FontWeight.w500),
                       ),
                       SizedBox(
@@ -110,10 +108,10 @@ class SettingsScreen extends StatelessWidget {
                       Text(
                         '      Notifications',
                         style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                color: Color(0XFF333333), fontSize: 18),
+                            textStyle: TextStyle(fontSize: 18),
                             fontWeight: FontWeight.w500),
                       ),
+                      Divider(),
                       SizedBox(
                         height: 5,
                       ),
