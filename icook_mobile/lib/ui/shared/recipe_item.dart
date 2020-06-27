@@ -141,7 +141,6 @@ class RecipeItem extends StatelessWidget {
               child: Text(
                 "$likes likes",
                 style: GoogleFonts.poppins(
-                    color: Color(0xFF333333),
                     fontSize: 20,
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w600),
@@ -159,7 +158,6 @@ class RecipeItem extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.poppins(
-                      color: Color(0xFF333333),
                       fontSize: 20,
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.w500),
