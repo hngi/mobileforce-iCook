@@ -9,7 +9,7 @@ class Constants {
 
   //Colors for theme
   static Color lightPrimary = Color(0xfffcfcff);
-  static Color darkPrimary = Colors.black;
+  static Color darkPrimary = Color(0xFF04172A);
   static Color lightAccent = Colors.black;
   static Color darkAccent = Colors.white;
   static Color lightBG = Color(0xFFffffff);
@@ -79,6 +79,7 @@ class Constants {
     cardColor: darkPrimary,
     scaffoldBackgroundColor: darkBG,
     bottomAppBarColor: darkBG,
+    bottomAppBarTheme: BottomAppBarTheme(color: darkBG),
     cursorColor: darkAccent,
     textTheme: TextTheme(
       headline6: TextStyle(
@@ -175,6 +176,8 @@ class Constants {
 
 class ThemeNotifier extends ChangeNotifier {
   final keystorage = locator<KeyStorageService>();
+
+  bool get isDarkMode => keystorage.isDarkMOde;
 
   void updateTheme({bool value = false}) {
     print(value);

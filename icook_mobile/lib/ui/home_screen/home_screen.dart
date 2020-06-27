@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,7 +5,6 @@ import 'package:icook_mobile/ui/home_page/home_page_model.dart';
 import 'package:icook_mobile/ui/shared/recipe_item.dart';
 import 'package:icook_mobile/ui/ui_helper.dart';
 import 'package:provider/provider.dart';
-
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -18,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _searchBar() {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
@@ -95,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   print('hiiff');
                 },
                 child: Container(
-                  margin: EdgeInsets.all(20),
+                  margin: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey),

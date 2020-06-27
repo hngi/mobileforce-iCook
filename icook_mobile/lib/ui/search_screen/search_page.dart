@@ -4,7 +4,6 @@ class SearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           'Search',
@@ -22,26 +21,6 @@ class SearchView extends StatelessWidget {
           )
         ],
       ),
-//      bottomNavigationBar: BottomNavigationBar(
-//        backgroundColor: Colors.white,
-//        selectedItemColor: Colors.blue,
-//        type: BottomNavigationBarType.fixed,
-//        currentIndex: 1,
-//        showSelectedLabels: false,
-//        showUnselectedLabels: false,
-//        onTap: (int i) {},
-//        items: [
-//          BottomNavigationBarItem(
-//            icon: Image.asset('assets/images/Home.png'),
-//            title: Text('Home')),
-//          _bottomNavigationBarItem(Icons.search, 'Search', Colors.blue),
-//          _bottomNavigationBarItem(Icons.add_circle, 'Add', Colors.black45),
-//          _bottomNavigationBarItem(Icons.favorite, 'Favorite', Colors.black45),
-//          BottomNavigationBarItem(
-//              icon: Image.asset('assets/images/User.png'),
-//              title: Text('Profile'))
-//        ],
-//      ),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
@@ -52,10 +31,9 @@ class SearchView extends StatelessWidget {
   }
 }
 
-// Search bar
 Widget _searchBar() {
   return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0),
+    padding: const EdgeInsets.symmetric(horizontal: 30),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -71,20 +49,17 @@ Widget _searchBar() {
                   fontStyle: FontStyle.normal),
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                  borderSide: BorderSide(color: Color(0xFF578DDE)),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                  borderSide: BorderSide(color: Color(0xFFF4F4F4)),
+                ),
                 prefixIcon: Icon(Icons.search),
                 hintText: 'Search',
-                hintStyle: TextStyle(fontSize: 16),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                  borderSide: BorderSide(
-                    width: 1,
-                    color: Color(0xFFEFEFEF),
-                    style: BorderStyle.solid,
-                  ),
-                ),
-                filled: true,
-                contentPadding: EdgeInsets.all(7),
-                fillColor: Colors.white,
               ),
             ),
           ),

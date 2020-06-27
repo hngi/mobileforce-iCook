@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icook_mobile/ui/ui_helper.dart';
 import 'package:provider/provider.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 const heightUnit = 10;
 
@@ -115,12 +114,23 @@ class SettingsScreen extends StatelessWidget {
                       SizedBox(
                         height: 5,
                       ),
-                      NotificationsItem(title: 'Activity on posts'),
-                      NotificationsItem(title: 'NewsLetter'),
-                      NotificationsItem(title: 'Auto Update App'),
+                      NotificationsItem(
+                        title: 'Activity on posts',
+                        switched: false,
+                      ),
+                      NotificationsItem(
+                        title: 'NewsLetter',
+                        switched: false,
+                      ),
+                      NotificationsItem(
+                        title: 'Auto Update App',
+                        switched: false,
+                      ),
                       NotificationsItem(
                         title: 'Dark Mode',
                         settings: Settings.DarkMode,
+                        switched:
+                            Provider.of<ThemeNotifier>(context).isDarkMode,
                       )
                     ],
                   ),
@@ -132,22 +142,17 @@ class SettingsScreen extends StatelessWidget {
 
 enum Settings { DarkMode }
 
-class NotificationsItem extends StatefulWidget {
-//  final bool isSwitched;
+class NotificationsItem extends StatelessWidget {
   final String title;
   final Settings settings;
+  final bool switched;
 
   const NotificationsItem({
     Key key,
     this.title,
     this.settings,
+    this.switched,
   }) : super(key: key);
-  @override
-  _NotificationsItemState createState() => _NotificationsItemState();
-}
-
-class _NotificationsItemState extends State<NotificationsItem> {
-  bool isSwitched = false;
 
   @override
   Widget build(BuildContext context) {
@@ -155,17 +160,13 @@ class _NotificationsItemState extends State<NotificationsItem> {
     return Padding(
       padding: const EdgeInsets.only(left: 8.0),
       child: ListTile(
-        title: new Text(widget.title),
+        title: new Text(title),
         trailing: new Switch(
-          value: isSwitched,
+          value: switched,
           activeColor: Colors.blue,
           activeTrackColor: Colors.blueAccent,
           onChanged: (v) {
-            setState(() {
-              isSwitched = v;
-            });
-
-            if (widget.settings == Settings.DarkMode) {
+            if (settings == Settings.DarkMode) {
               print('called $v');
               model.updateTheme(value: v);
             }
