@@ -1,3 +1,4 @@
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,13 +6,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icook_mobile/ui/profile_screen/constant.dart';
 
 class DetailsScreen extends StatelessWidget {
+  final foodImage = <String>{
+    "assets/images/amala.jpeg",
+    "assets/images/recipes.png",
+    "assets/images/vegetable.jpg"
+  };
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context,
         height: double.infinity, width: 414, allowFontScaling: true);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Recipe details')),
+      appBar: AppBar(
+        title: Text(
+          'Boiled Rice and Chicken',
+          style: GoogleFonts.poppins(
+              textStyle: TextStyle(fontSize: 21), fontWeight: FontWeight.w600),
+        ),
+      ),
       body: Column(
         children: [
           Expanded(
@@ -37,45 +49,85 @@ class DetailsScreen extends StatelessWidget {
                       Text(
                         'Mary Stella',
                         style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                color: Color(0xff333333), fontSize: 19),
+                            textStyle: TextStyle(fontSize: 19),
                             fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
                   SizedBox(height: kSpacingUnit.w * 1),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 5, 12, 5),
-                    child: Container(
-                      height: kSpacingUnit.w * 22,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('assets/images/recipes.png'),
-                              fit: BoxFit.cover),
-                          borderRadius: BorderRadius.circular(10.0),
-                          color: Colors.red),
+                  Container(
+                    height: 248,
+                    width: MediaQuery.of(context).size.width,
+                    child: Carousel(
+                      images: foodImage.map((e) => AssetImage(e)).toList(),
+                      dotSize: 6.0,
+                      dotIncreaseSize: 1.5,
+                      dotSpacing: 20.0,
+                      dotColor: Colors.white,
+                      dotIncreasedColor: Colors.blue,
+                      autoplay: false,
+                      indicatorBgPadding: 5.0,
+                      dotVerticalPadding: 20,
+                      dotBgColor: Colors.transparent,
                     ),
                   ),
                   SizedBox(height: kSpacingUnit.w * 1),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(width: kSpacingUnit.w * 1),
-                      Icon(
-                        Icons.favorite_border,
-                        color: Color(0xff333333),
-                        size: ScreenUtil().setSp(kSpacingUnit.w * 2.9),
-                      ),
-                      SizedBox(width: kSpacingUnit.w * 1.5),
-                      Image.asset(
-                        'assets/images/Shape.png',
-                        color: Color(0xff333333),
-                        height: ScreenUtil().setSp(kSpacingUnit.w * 2.9),
-                        width: ScreenUtil().setSp(kSpacingUnit.w * 2.9),
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 0, top: 11.5),
+                              child: InkWell(
+                                  onTap: () {},
+                                  child: true
+                                      ? Icon(
+                                          Icons.favorite,
+                                          color: Colors.red,
+                                          size: 32,
+                                        )
+                                      : Icon(
+                                          Icons.favorite_border,
+                                          size: 32,
+                                        )),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 19, top: 15),
+                              child: InkWell(
+                                radius: 50,
+                                onTap: () {},
+                                child: Image(
+                                  image: AssetImage(
+                                      "assets/images/message-circle.png"),
+                                  width: 24,
+                                  height: 24,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20, top: 11.5),
+                          child: InkWell(
+                            radius: 30,
+                            onTap: () {},
+                            child: Image(
+                              image: AssetImage("assets/images/share.png"),
+                              width: 24,
+                              height: 24,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(height: kSpacingUnit.w * 1),
                   Row(
@@ -84,8 +136,7 @@ class DetailsScreen extends StatelessWidget {
                       Text(
                         '4 likes',
                         style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                color: Color(0xff333333), fontSize: 21),
+                            textStyle: TextStyle(fontSize: 21),
                             fontWeight: FontWeight.w600),
                       ),
                     ],
@@ -95,13 +146,6 @@ class DetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        'DOUGHNUTS',
-                        style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                color: Color(0xff333333), fontSize: 21),
-                            fontWeight: FontWeight.w600),
-                      ),
                       SizedBox(height: kSpacingUnit.w * 0.5),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
@@ -132,8 +176,7 @@ class DetailsScreen extends StatelessWidget {
                       Text(
                         'SHOPPING LIST',
                         style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                color: Color(0xff333333), fontSize: 21),
+                            textStyle: TextStyle(fontSize: 21),
                             fontWeight: FontWeight.w600),
                       ),
                     ],
@@ -203,8 +246,7 @@ class DetailsScreen extends StatelessWidget {
                       Text(
                         'PREPARATION',
                         style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                color: Color(0xff333333), fontSize: 21),
+                            textStyle: TextStyle(fontSize: 21),
                             fontWeight: FontWeight.w600),
                       ),
                     ],
@@ -277,8 +319,7 @@ class DetailsScreen extends StatelessWidget {
                       Text(
                         'HEALTH BENEFITS',
                         style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                color: Color(0xff333333), fontSize: 21),
+                            textStyle: TextStyle(fontSize: 21),
                             fontWeight: FontWeight.w600),
                       ),
                     ],
