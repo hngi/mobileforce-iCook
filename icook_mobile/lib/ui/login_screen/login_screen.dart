@@ -11,22 +11,12 @@ import '../ui_helper.dart';
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-bool _showPassword = false;
-  void _togglevisibility() {
-    setState(() {
-      _showPassword = !_showPassword;
-    });
-  }
-
-  //   bool _obscureText = true;
-  // String _password;
-  // // Toggles the password show status
-  // void _toggle() {
-  //   setState(() {
-  //     _obscureText = !_obscureText;
-  //   });
-  // }
+    bool _showPassword = false;
+    void _togglevisibility() {
+      setState(() {
+        _showPassword = !_showPassword;
+      });
+    }
 
     ScreenUtil.init(context, height: 896, width: 414, allowFontScaling: true);
 
@@ -50,16 +40,30 @@ bool _showPassword = false;
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      child: new Image.asset('assets/images/icook_logo.png', scale: 2,),
                       alignment: Alignment.center,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Image(
+                            image: AssetImage('assets/images/logo.png'),
+                          ),
+                          Image(
+                            image: AssetImage('assets/images/iCook.png'),
+                          ),
+                        ],
+                      ),
                     ),
-                    
-                    Text(
-                      '      Email Address',
-                      style: GoogleFonts.poppins(
-                          textStyle:
-                              TextStyle(color: Color(0xff222222), fontSize: 16),
-                          fontWeight: FontWeight.normal),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Text(
+                        'Email Address',
+                        style: GoogleFonts.poppins(
+                            textStyle: TextStyle(fontSize: 16),
+                            fontWeight: FontWeight.normal),
+                      ),
                     ),
                     SizedBox(height: kSpacingUnit.w * 0.5),
                     Container(
@@ -71,94 +75,63 @@ bool _showPassword = false;
                         style: TextStyle(fontSize: 18, fontFamily: "Poppins"),
                         cursorColor: Color(0XFFF898989),
                         decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                           hintText: "Enter Address",
-                          hintStyle: TextStyle(
-                              color: Color(0XFFBDBDBD),
-                              fontSize: 16,
-                              fontFamily: "Poppins"),
-                          fillColor: Color(0xFFF3F3F3),
-                          filled: true,
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(3.0)),
-                            borderSide: BorderSide(color: Color(0xFF578DDE)),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(3.0)),
-                            borderSide: BorderSide(color: Color(0xFFF4F4F4)),
-                          ),
                         ),
                       ),
                     ),
                     SizedBox(
                       height: 30,
                     ),
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          '      Password ',
-                          style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
-                                  color: Color(0xff222222), fontSize: 16),
-                              fontWeight: FontWeight.normal),
-                        ),
-                        SizedBox(width: 147),
-                        Text(
-                          'Forget password? ',
-                          style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
-                                  color: Color(0xff578DDE), fontSize: 14),
-                              fontWeight: FontWeight.normal),
-                        ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Expanded(
+                            child: Text(
+                              'Password',
+                              style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(fontSize: 16),
+                                  fontWeight: FontWeight.normal),
+                            ),
+                          ),
+                          Text(
+                            'Forget password? ',
+                            style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                    color: Color(0xff578DDE), fontSize: 14),
+                                fontWeight: FontWeight.normal),
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(height: kSpacingUnit.w * 0.5),
                     Container(
                       padding: EdgeInsets.only(left: 20, right: 20),
                       child: TextField(
-                        
-                                obscureText: !_showPassword,
+                        obscureText: !_showPassword,
                         textInputAction: TextInputAction.done,
-                        onSubmitted: (_) => FocusScope.of(context).nextFocus(),
+                        onSubmitted: (_) => FocusScope.of(context).dispose(),
                         keyboardType: TextInputType.text,
                         style: TextStyle(fontSize: 18, fontFamily: "Poppins"),
                         cursorColor: Color(0XFFF898989),
                         decoration: InputDecoration(
                           suffixIcon: GestureDetector(
-                                    onTap: () {
-                                      _togglevisibility();
-                                    },
-                                    child: Icon(
-                                      _showPassword ? Icons.visibility : Icons
-                                          .visibility, color: Colors.blueGrey,),
-                                  ),
-                                
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                            onTap: () {
+                              _togglevisibility();
+                            },
+                            child: Icon(
+                              _showPassword
+                                  ? Icons.visibility
+                                  : Icons.visibility,
+                              color: Colors.blueGrey,
+                            ),
+                          ),
                           hintText: "Enter Password",
-                          hintStyle: TextStyle(
-                              color: Color(0XFFBDBDBD),
-                              fontSize: 16,
-                              fontFamily: "Poppins"),
-                          fillColor: Color(0xFFF3F3F3),
-                          filled: true,
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(3.0)),
-                            borderSide: BorderSide(color: Color(0xFF578DDE)),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(3.0)),
-                            borderSide: BorderSide(color: Color(0xFFF4F4F4)),
-                          ),
                         ),
                       ),
                     ),
-                    SizedBox(height:50),
+                    SizedBox(height: 50),
                     Container(
                       padding: EdgeInsets.only(left: 20, right: 20),
                       child: Material(
@@ -193,71 +166,73 @@ bool _showPassword = false;
                       height: 40,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        SizedBox(width:39),
                         Image.asset('assets/images/Line.png'),
-                        SizedBox(width:10),
-                        Text('OR', style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                            color: Color(0xff333333),
-                            fontSize: 16,
-                          ),
-                          fontWeight: FontWeight.w500),),
-                        SizedBox(width:10),
-                        Image.asset('assets/images/Line.png'),
-                      ],
-                    ),
-                    SizedBox(height:40),
-                    Row(
-                      children: <Widget>[
-                          Padding(
-                            
-                            padding: const EdgeInsets.only(left:25.0),
-                            child: Container(
-                              margin: EdgeInsets.only(left:22),
-                              width: 235,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                 borderRadius: BorderRadius.circular(5),
-                  border: Border.all(
-                    color: Color(0xfff4f4f4),
-                    width: 1,
-                  )),
-                      child: Material(
-                        color: Color(0xffFDFDFD),
-                        child: MaterialButton(
-                            onPressed: () {},
-                            child: 
-                            Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Image.asset('assets/images/Google.png'),
-                                SizedBox(width: 7.09,),
-                                Text(
-                                  "Continue with Google",
-                                  style: GoogleFonts.poppins(
-                                      textStyle: TextStyle(
-                                          letterSpacing: -0.005,
-                                          color: Colors.black,
-                                          fontSize: 16),
-                                      fontWeight: FontWeight.normal),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
+                        SizedBox(width: 10),
+                        Text(
+                          'OR',
+                          style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                                color: Color(0xff333333),
+                                fontSize: 16,
+                              ),
+                              fontWeight: FontWeight.w500),
                         ),
-                      ),
-                    ),
-                          ), 
-                          SizedBox(width:20),
-                        Image.asset('assets/images/facebook.png', scale: 4.4,),
+                        SizedBox(width: 10),
+                        Image.asset('assets/images/Line.png'),
                       ],
-                    ),   
+                    ),
+                    SizedBox(height: 40),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          width: 235,
+                          height: 35,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(
+                                color: Color(0xfff4f4f4),
+                                width: 1,
+                              )),
+                          child: Material(
+                            color: Color(0xffFDFDFD),
+                            child: MaterialButton(
+                              onPressed: () {},
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Image.asset('assets/images/Google.png'),
+                                  SizedBox(
+                                    width: 7.09,
+                                  ),
+                                  Text(
+                                    "Continue with Google",
+                                    style: GoogleFonts.poppins(
+                                        textStyle: TextStyle(
+                                            letterSpacing: -0.005,
+                                            color: Colors.black,
+                                            fontSize: 16),
+                                        fontWeight: FontWeight.normal),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 20),
+                        Image.asset(
+                          'assets/images/facebook.png',
+                          scale: 4.4,
+                        ),
+                      ],
+                    ),
                     SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-
                         Text(
                           ' Don\'t have an account?',
                           style: GoogleFonts.poppins(
@@ -275,7 +250,7 @@ bool _showPassword = false;
                         ),
                       ],
                     ),
-
+                    SizedBox(height: 30),
                   ],
                 ),
               ],
@@ -288,4 +263,3 @@ bool _showPassword = false;
 
   void setState(Null Function() param0) {}
 }
-

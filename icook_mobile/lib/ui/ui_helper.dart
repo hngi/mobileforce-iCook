@@ -13,7 +13,7 @@ class Constants {
   static Color lightAccent = Colors.black;
   static Color darkAccent = Colors.white;
   static Color lightBG = Color(0xFFffffff);
-  static Color darkBG = Colors.black;
+  static Color darkBG = Color(0xFF04172A);
   static Color badgeColor = Colors.red;
 
   //Reusable Colors
@@ -55,6 +55,7 @@ class Constants {
     ),
     appBarTheme: AppBarTheme(
       elevation: 0,
+      color: lightBG,
       textTheme: TextTheme(
         headline6: TextStyle(
           color: darkBG,
@@ -96,11 +97,12 @@ class Constants {
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         borderSide: BorderSide(color: Color(0xFFF4F4F4)),
       ),
-      hintStyle: TextStyle(
-          color: Colors.black, fontSize: 16, fontFamily: "Poppins"),
+      hintStyle:
+          TextStyle(color: Colors.black, fontSize: 16, fontFamily: "Poppins"),
     ),
     appBarTheme: AppBarTheme(
       elevation: 0,
+      color: darkBG,
       textTheme: TextTheme(
         headline6: TextStyle(
           color: lightBG,

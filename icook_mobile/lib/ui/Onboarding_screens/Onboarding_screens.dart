@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:icook_mobile/core/constants/view_routes.dart';
+import 'package:icook_mobile/ui/Onboarding_screens/OnboardingViewModel.dart';
 import 'package:icook_mobile/ui/home_page/home_page.dart';
 import 'package:icook_mobile/ui/shared/k_button.dart';
+import 'package:stacked/stacked.dart';
 import 'package:transformer_page_view/transformer_page_view.dart';
 
 import '../ui_helper.dart';
 
-class OnboardingScreen extends StatefulWidget {
-  final String title;
-  OnboardingScreen({this.title});
-  @override
-  OnboardingScreenState createState() {
-    return new OnboardingScreenState();
-  }
-}
-
-class OnboardingScreenState extends State<OnboardingScreen> {
+class OnboardingScreen extends ViewModelWidget<OnboardingViewModel> {
   int _slideIndex = 0;
 
   final List<String> images = [
@@ -39,14 +32,10 @@ class OnboardingScreenState extends State<OnboardingScreen> {
   final IndexController controller = IndexController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, OnboardingViewModel model) {
     TransformerPageView transformerPageView = TransformerPageView(
         pageSnapping: true,
-        onPageChanged: (index) {
-          setState(() {
-            this._slideIndex = index;
-          });
-        },
+        onPageChanged: (index) => model.changeIndex(index),
         loop: false,
         controller: controller,
         transformer: new PageTransformerBuilder(
@@ -81,7 +70,7 @@ class OnboardingScreenState extends State<OnboardingScreen> {
                     translationFactor: 500.0,
                     child: Dots(
                       controller: controller,
-                      slideIndex: _slideIndex,
+                      slideIndex: model.slideIndex,
                       numberOfDots: images.length,
                     ),
                   ),
@@ -137,9 +126,7 @@ class OnboardingScreenState extends State<OnboardingScreen> {
             height: 10.0,
           ),
           KButton(
-              onPressed: () {
-                Navigator.popAndPushNamed(context, ViewRoutes.home);
-              },
+              onPressed: () => model.goToLogin(),
               title: 'Login',
               buttonColor: Constants.kbuttonColor2,
               textColor: Colors.black),

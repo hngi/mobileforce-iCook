@@ -6,6 +6,7 @@ import 'package:icook_mobile/ui/Onboarding_screens/Onboarding_screens.dart';
 import 'package:icook_mobile/ui/details_screen/details_screen.dart';
 import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
 import 'package:icook_mobile/ui/home_page/home_page.dart';
+import 'package:icook_mobile/ui/login_screen/login_screen.dart';
 import 'package:icook_mobile/ui/other_users/other_users.dart';
 import 'package:icook_mobile/ui/settings_screen/settings_screen.dart';
 import 'package:icook_mobile/ui/splash_screen/splash_screen.dart';
@@ -44,6 +45,9 @@ class Router {
 
       case ViewRoutes.settings:
         return SettingsScreen();
+
+      case ViewRoutes.login:
+        return LoginScreen();
 
       default:
         return Scaffold(
