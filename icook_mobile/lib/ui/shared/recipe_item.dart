@@ -49,13 +49,11 @@ class RecipeItem extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () => model.seeUserInfo(),
-                    child: Text(
-                      chefName,
-                      style: GoogleFonts.poppins(
+                    child: Text(chefName,
+                        style: GoogleFonts.poppins(
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
-                          color: Color(0xFF333333)),
-                    ),
+                        )),
                   )
                 ],
               ),
@@ -106,11 +104,13 @@ class RecipeItem extends StatelessWidget {
                                   )),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 19, top: 11.5),
+                        padding: const EdgeInsets.only(left: 19, top: 15),
                         child: InkWell(
+                          radius: 50,
                           onTap: () {},
                           child: Image(
-                            image: AssetImage("assets/images/message-circle.png"),
+                            image:
+                                AssetImage("assets/images/message-circle.png"),
                             width: 24,
                             height: 24,
                           ),
@@ -119,8 +119,9 @@ class RecipeItem extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 19, top: 11.5),
+                    padding: const EdgeInsets.only(right: 20, top: 11.5),
                     child: InkWell(
+                      radius: 30,
                       onTap: () {},
                       child: Image(
                         image: AssetImage("assets/images/share.png"),
