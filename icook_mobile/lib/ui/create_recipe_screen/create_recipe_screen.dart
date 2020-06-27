@@ -13,13 +13,16 @@ class CreateRecipeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add New Recipe"),
+        title: Text("Add New Dish"),
         actions: <Widget>[
-          Image(
-            height: 16,
-            width: 39,
-            image: new AssetImage(
-              'assets/images/search.png',
+          Padding(
+            padding: const EdgeInsets.only(right: 25),
+            child: Image(
+              height: 24,
+              width: 24,
+              image: new AssetImage(
+                'assets/images/search_fav.png',
+              ),
             ),
           ),
         ],

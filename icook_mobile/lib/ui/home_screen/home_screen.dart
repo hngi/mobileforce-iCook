@@ -93,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   print('hiiff');
                 },
                 child: Container(
-                  margin: EdgeInsets.all(20),
+                  margin: EdgeInsets.symmetric(horizontal: 30),
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey),
