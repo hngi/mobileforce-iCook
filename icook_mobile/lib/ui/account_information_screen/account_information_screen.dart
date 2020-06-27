@@ -297,7 +297,7 @@ class AccountInformationScreen extends StatelessWidget {
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
-                          color: Color(0xff333333)),
+                          ),
                     ),
                     SizedBox(
                       height: 10,
@@ -308,7 +308,7 @@ class AccountInformationScreen extends StatelessWidget {
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.normal,
                           fontSize: 14,
-                          color: Color(0xff333333)),
+                          ),
                     ),
                     SizedBox(
                       height: 10,

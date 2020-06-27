@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
 import 'package:icook_mobile/ui/profile_screen/constant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:icook_mobile/ui/shared/recipe_item.dart';
 
 class OtherUserInfoScreen extends StatelessWidget {
   @override
@@ -11,7 +12,6 @@ class OtherUserInfoScreen extends StatelessWidget {
         height: double.infinity, width: 375, allowFontScaling: true);
 
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("User Profile"),
       ),
@@ -58,17 +58,17 @@ class OtherUserInfoScreen extends StatelessWidget {
                                 Text(
                                   "4.4k",
                                   style: GoogleFonts.poppins(
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                      color: Color(0xff333333)),
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                  ),
                                 ),
                                 Text(
                                   "Followers",
                                   style: GoogleFonts.poppins(
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 14,
-                                      color: Color(0xff333333)),
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ],
                             ),
@@ -79,17 +79,17 @@ class OtherUserInfoScreen extends StatelessWidget {
                                 Text(
                                   "13",
                                   style: GoogleFonts.poppins(
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                      color: Color(0xff333333)),
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                  ),
                                 ),
                                 Text(
                                   "Recipies",
                                   style: GoogleFonts.poppins(
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 14,
-                                      color: Color(0xff333333)),
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ],
                             ),
@@ -100,24 +100,29 @@ class OtherUserInfoScreen extends StatelessWidget {
                                 Text(
                                   "2.2k",
                                   style: GoogleFonts.poppins(
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                      color: Color(0xff333333)),
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                  ),
                                 ),
                                 Text(
                                   "Following",
                                   style: GoogleFonts.poppins(
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 14,
-                                      color: Color(0xff333333)),
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ],
                             ),
                           ],
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EditProfile()));
+                          },
                           child: Container(
                             width: kSpacingUnit.w * 19.1,
                             height: 37,
@@ -154,10 +159,10 @@ class OtherUserInfoScreen extends StatelessWidget {
             child: Text(
               "Chef Daisy",
               style: GoogleFonts.poppins(
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18,
-                  color: Color(0xff333333)),
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
+              ),
             ),
           ),
 
@@ -190,7 +195,6 @@ class OtherUserInfoScreen extends StatelessWidget {
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.normal,
                 fontSize: 16,
-                color: Color(0xff333333),
               ),
             ),
           ),
@@ -201,9 +205,8 @@ class OtherUserInfoScreen extends StatelessWidget {
 
           Center(
             child: Text(
-              "MY RECIPES",
+              "My Dishes",
               style: GoogleFonts.poppins(
-                decoration: TextDecoration.underline,
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.w600,
                 fontSize: 18,
@@ -215,36 +218,23 @@ class OtherUserInfoScreen extends StatelessWidget {
           SizedBox(
             height: 12,
           ),
-
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              _buildRecipeItems(
-                  image: "assets/images/amala.jpeg",
-                  name: "Efo Riro Delicacy ",
-                  description:
-                      "You may be a person who loves to cook efo riro, here is a video that will help you in accomplishing that",
-                  likes: 120,
-                  liked: true,
-                  daysAgo: "3"),
-              _buildRecipeItems(
-                  image: "assets/images/3.png",
-                  name: "Efo Riro Delicacy ",
-                  description:
-                      "You may be a person who loves to cook efo riro, here is a video that will help you in accomplishing that",
-                  likes: 120,
-                  liked: false,
-                  daysAgo: "3"),
-              _buildRecipeItems(
-                  image: "assets/images/3.png",
-                  name: "Efo Riro Delicacy ",
-                  description:
-                      "You may be a person who loves to cook efo riro, here is a video that will help you in accomplishing that",
-                  likes: 120,
-                  liked: true,
-                  daysAgo: "3"),
-            ],
+          ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: 6,
+            itemBuilder: (context, index) => RecipeItem(
+              chefImage: "assets/images/avatar.png",
+              chefName: "Rosa Nna",
+              foodName: "Boiled Rice and Chicken",
+              foodDescription:
+                  "This is just a very very dummy food description for texting",
+              likes: 4,
+              foodImage: [
+                "assets/images/amala.jpeg",
+                "assets/images/recipes.png",
+                "assets/images/amala.jpeg"
+              ],
+            ),
           ),
 
           SizedBox(
