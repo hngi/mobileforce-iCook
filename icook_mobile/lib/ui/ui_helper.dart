@@ -31,6 +31,7 @@ class Constants {
     accentColor: lightAccent,
     cursorColor: lightAccent,
     scaffoldBackgroundColor: lightBG,
+    bottomAppBarColor: lightBG,
     textTheme: TextTheme(
       headline6: TextStyle(
         color: darkBG,
@@ -77,6 +78,7 @@ class Constants {
     accentColor: darkAccent,
     cardColor: darkPrimary,
     scaffoldBackgroundColor: darkBG,
+    bottomAppBarColor: darkBG,
     cursorColor: darkAccent,
     textTheme: TextTheme(
       headline6: TextStyle(
