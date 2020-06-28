@@ -6,6 +6,7 @@ import 'package:icook_mobile/provider_setup.dart';
 import 'package:icook_mobile/ui/Onboarding_screens/Onboarding_screens.dart';
 import 'package:icook_mobile/ui/router.dart';
 import 'package:icook_mobile/ui/search_screen/search_page.dart';
+import 'package:icook_mobile/ui/signup_screen/signup_screen.dart';
 import 'package:icook_mobile/ui/splash_screen/splash_screen.dart';
 
 import 'package:icook_mobile/ui/ui_helper.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
             darkTheme: Constants.darkTheme,
             onGenerateRoute: Router.generateRoute,
             navigatorKey: navigationService.navigatorKey,
-            home: SplashScreen(),
+            home: SignUpScreen(),
             themeMode: keystorage.isDarkMOde ? ThemeMode.dark : ThemeMode.light,
           ),
         ),
