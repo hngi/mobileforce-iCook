@@ -8,5 +8,8 @@ class ViewRoutes {
   static const edit_profile = 'edit-profile';
   static const onboarding = 'onboarding';
   static const recipe_details = 'recipe_details';
-  static const otheruserinfo = 'user_info';
+  static const userprofile = 'user_profile';
+  static const settings = 'settings';
+  static const login = 'login';
+  static const signup = 'signup';
 }

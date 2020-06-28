@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:icook_mobile/ui/account_information_screen/account_information_screen.dart';
 import 'package:icook_mobile/ui/dish_screen/dish_screen.dart';
 import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
+import 'package:icook_mobile/ui/settings_screen/settings_screen.dart';
 // import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 import '../ui_helper.dart';
@@ -12,33 +13,6 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, height: 896, width: 414, allowFontScaling: true);
-    var header = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        SizedBox(width: 1),
-        Image(
-          image: new AssetImage(
-            'assets/images/Vector.png',
-          ),
-          height: 35,
-        ),
-        SizedBox(width: Constants.kSpacingUnit.w * 5),
-        Text(
-          'My profile',
-          style: GoogleFonts.poppins(
-              textStyle: TextStyle(color: Colors.black, fontSize: 24),
-              fontWeight: FontWeight.w500),
-        ),
-        SizedBox(width: Constants.kSpacingUnit.w * 5),
-        Image(
-          image: new AssetImage(
-            'assets/images/search.png',
-          ),
-          height: 35,
-        ),
-        SizedBox(width: 0.1),
-      ],
-    );
 
     return Scaffold(
       appBar: AppBar(
@@ -68,8 +42,7 @@ class ProfileScreen extends StatelessWidget {
                   title: Text(
                     'Chef Emmanuel',
                     style: GoogleFonts.poppins(
-                        textStyle:
-                            TextStyle(color: Color(0xFF222222), fontSize: 18),
+                        textStyle: TextStyle(fontSize: 18),
                         fontWeight: FontWeight.w600),
                   ),
                   subtitle: Text(
@@ -87,9 +60,7 @@ class ProfileScreen extends StatelessWidget {
                     'Account Information',
                     style: GoogleFonts.poppins(
                         textStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500)),
+                            fontSize: 16, fontWeight: FontWeight.w500)),
                   ),
                   subtitle: Text(
                     'Edit profile',
@@ -114,9 +85,7 @@ class ProfileScreen extends StatelessWidget {
                     'My Dishes',
                     style: GoogleFonts.poppins(
                         textStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500)),
+                            fontSize: 16, fontWeight: FontWeight.w500)),
                   ),
                   subtitle: Text(
                     '4 dishes posted',
@@ -127,7 +96,10 @@ class ProfileScreen extends StatelessWidget {
                   trailing: Icon(Icons.keyboard_arrow_right),
                   onTap: () {
                     print('my dishes');
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => MyDishScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MyDishScreen()));
                   },
                 ),
                 SizedBox(
@@ -138,9 +110,7 @@ class ProfileScreen extends StatelessWidget {
                     'Notifications',
                     style: GoogleFonts.poppins(
                         textStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500)),
+                            fontSize: 16, fontWeight: FontWeight.w500)),
                   ),
                   subtitle: Text(
                     '10 pending notifications',
@@ -160,7 +130,7 @@ class ProfileScreen extends StatelessWidget {
                   title: Text(
                     'My Reviews',
                     style: GoogleFonts.poppins(
-                        textStyle: TextStyle(color: Colors.black, fontSize: 16),
+                        textStyle: TextStyle(fontSize: 16),
                         fontWeight: FontWeight.w500),
                   ),
                   subtitle: Text(
@@ -182,9 +152,7 @@ class ProfileScreen extends StatelessWidget {
                     'Settings',
                     style: GoogleFonts.poppins(
                         textStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500)),
+                            fontSize: 16, fontWeight: FontWeight.w500)),
                   ),
                   subtitle: Text(
                     'Newsletter, Dark mode, Change Password',
@@ -195,6 +163,10 @@ class ProfileScreen extends StatelessWidget {
                   trailing: Icon(Icons.keyboard_arrow_right),
                   onTap: () {
                     print('reviews');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SettingsScreen()));
                   },
                 ),
                 SizedBox(

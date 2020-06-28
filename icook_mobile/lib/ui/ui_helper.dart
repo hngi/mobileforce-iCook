@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/locator.dart';
-import 'package:stacked_services/stacked_services.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Constants {
@@ -9,11 +9,11 @@ class Constants {
 
   //Colors for theme
   static Color lightPrimary = Color(0xfffcfcff);
-  static Color darkPrimary = Colors.black;
+  static Color darkPrimary = Color(0xFF04172A);
   static Color lightAccent = Colors.black;
   static Color darkAccent = Colors.white;
   static Color lightBG = Color(0xFFffffff);
-  static Color darkBG = Colors.black;
+  static Color darkBG = Color(0xFF04172A);
   static Color badgeColor = Colors.red;
 
   //Reusable Colors
@@ -31,8 +31,32 @@ class Constants {
     accentColor: lightAccent,
     cursorColor: lightAccent,
     scaffoldBackgroundColor: lightBG,
+    bottomAppBarColor: lightBG,
+    textTheme: TextTheme(
+      headline6: TextStyle(
+        color: darkBG,
+        fontSize: 18,
+        fontFamily: 'Poppins',
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
+      fillColor: Color(0xFFF4F4F4),
+      filled: true,
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(7.0)),
+        borderSide: BorderSide(color: Color(0xFF578DDE)),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        borderSide: BorderSide(color: Color(0xFFF4F4F4)),
+      ),
+      hintStyle: TextStyle(
+          color: Color(0XFFBDBDBD), fontSize: 16, fontFamily: "Poppins"),
+    ),
     appBarTheme: AppBarTheme(
       elevation: 0,
+      color: lightBG,
       textTheme: TextTheme(
         headline6: TextStyle(
           color: darkBG,
@@ -54,9 +78,34 @@ class Constants {
     accentColor: darkAccent,
     cardColor: darkPrimary,
     scaffoldBackgroundColor: darkBG,
+    bottomAppBarColor: darkBG,
+    bottomAppBarTheme: BottomAppBarTheme(color: darkBG),
     cursorColor: darkAccent,
+    textTheme: TextTheme(
+      headline6: TextStyle(
+        color: darkBG,
+        fontSize: 18,
+        fontFamily: 'Poppins',
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
+      fillColor: Colors.grey,
+      filled: true,
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(7.0)),
+        borderSide: BorderSide(color: Color(0xFF578DDE)),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        borderSide: BorderSide(color: Color(0xFFF4F4F4)),
+      ),
+      hintStyle:
+          TextStyle(color: Colors.black, fontSize: 16, fontFamily: "Poppins"),
+    ),
     appBarTheme: AppBarTheme(
       elevation: 0,
+      color: darkBG,
       textTheme: TextTheme(
         headline6: TextStyle(
           color: lightBG,
@@ -128,8 +177,11 @@ class Constants {
 class ThemeNotifier extends ChangeNotifier {
   final keystorage = locator<KeyStorageService>();
 
-  void updateTheme() {
-    keystorage.isDarkMOde = !keystorage.isDarkMOde;
+  bool get isDarkMode => keystorage.isDarkMOde;
+
+  void updateTheme({bool value = false}) {
+    print(value);
+    keystorage.isDarkMOde = value;
     notifyListeners();
   }
 }

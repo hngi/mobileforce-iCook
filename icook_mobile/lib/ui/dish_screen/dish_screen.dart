@@ -13,7 +13,6 @@ class _MyDishScreenState extends State<MyDishScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(title: Text('My Dishes'),
           // centerTitle: true,
 

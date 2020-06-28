@@ -22,6 +22,6 @@ class RecipeItemModel extends BaseNotifier {
   }
 
   void seeUserInfo(){
-    navigation.navigateTo(ViewRoutes.otheruserinfo);
+    navigation.navigateTo(ViewRoutes.userprofile);
   }
 }

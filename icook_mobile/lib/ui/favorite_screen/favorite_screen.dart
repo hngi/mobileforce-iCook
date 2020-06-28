@@ -1,9 +1,7 @@
-import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:icook_mobile/ui/shared/recipe_item.dart';
-import 'package:stacked/stacked.dart';
 
 class FavoriteScreen extends StatefulWidget {
   @override
@@ -14,7 +12,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Favorite"),
         actions: <Widget>[

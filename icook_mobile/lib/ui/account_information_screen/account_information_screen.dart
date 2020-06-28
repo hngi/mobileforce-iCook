@@ -11,7 +11,6 @@ class AccountInformationScreen extends StatelessWidget {
         height: double.infinity, width: 375, allowFontScaling: true);
 
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("My Profile"),
       ),
@@ -58,17 +57,17 @@ class AccountInformationScreen extends StatelessWidget {
                                 Text(
                                   "4.4k",
                                   style: GoogleFonts.poppins(
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                      color: Color(0xff333333)),
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                  ),
                                 ),
                                 Text(
                                   "Followers",
                                   style: GoogleFonts.poppins(
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 14,
-                                      color: Color(0xff333333)),
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ],
                             ),
@@ -79,17 +78,17 @@ class AccountInformationScreen extends StatelessWidget {
                                 Text(
                                   "13",
                                   style: GoogleFonts.poppins(
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                      color: Color(0xff333333)),
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                  ),
                                 ),
                                 Text(
                                   "Recipies",
                                   style: GoogleFonts.poppins(
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 14,
-                                      color: Color(0xff333333)),
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ],
                             ),
@@ -100,17 +99,17 @@ class AccountInformationScreen extends StatelessWidget {
                                 Text(
                                   "2.2k",
                                   style: GoogleFonts.poppins(
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                      color: Color(0xff333333)),
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                  ),
                                 ),
                                 Text(
                                   "Following",
                                   style: GoogleFonts.poppins(
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 14,
-                                      color: Color(0xff333333)),
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ],
                             ),
@@ -159,10 +158,10 @@ class AccountInformationScreen extends StatelessWidget {
             child: Text(
               "Chef Daisy",
               style: GoogleFonts.poppins(
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18,
-                  color: Color(0xff333333)),
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
+              ),
             ),
           ),
 
@@ -195,7 +194,6 @@ class AccountInformationScreen extends StatelessWidget {
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.normal,
                 fontSize: 16,
-                color: Color(0xff333333),
               ),
             ),
           ),
@@ -206,9 +204,8 @@ class AccountInformationScreen extends StatelessWidget {
 
           Center(
             child: Text(
-              "MY RECIPES",
+              "My Dishes",
               style: GoogleFonts.poppins(
-                decoration: TextDecoration.underline,
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.w600,
                 fontSize: 18,
@@ -300,7 +297,7 @@ class AccountInformationScreen extends StatelessWidget {
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
-                          color: Color(0xff333333)),
+                          ),
                     ),
                     SizedBox(
                       height: 10,
@@ -311,7 +308,7 @@ class AccountInformationScreen extends StatelessWidget {
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.normal,
                           fontSize: 14,
-                          color: Color(0xff333333)),
+                          ),
                     ),
                     SizedBox(
                       height: 10,
