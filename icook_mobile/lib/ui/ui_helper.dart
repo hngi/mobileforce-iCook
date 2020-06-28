@@ -8,7 +8,7 @@ class Constants {
   static String appName = "iCook";
 
   //Colors for theme
-  static Color lightPrimary = Color(0xfffcfcff);
+  static Color lightPrimary = Color(0xFFffffff);
   static Color darkPrimary = Color(0xFF04172A);
   static Color lightAccent = Colors.black;
   static Color darkAccent = Colors.white;

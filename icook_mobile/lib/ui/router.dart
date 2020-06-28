@@ -9,6 +9,7 @@ import 'package:icook_mobile/ui/home_page/home_page.dart';
 import 'package:icook_mobile/ui/login_screen/login_screen.dart';
 import 'package:icook_mobile/ui/other_users/other_users.dart';
 import 'package:icook_mobile/ui/settings_screen/settings_screen.dart';
+import 'package:icook_mobile/ui/signup_screen/signup_screen.dart';
 import 'package:icook_mobile/ui/splash_screen/splash_screen.dart';
 
 /// Class that generates routes for the application
@@ -48,6 +49,9 @@ class Router {
 
       case ViewRoutes.login:
         return LoginScreen();
+      
+      case ViewRoutes.signup:
+        return SignUpScreen();
 
       default:
         return Scaffold(

@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icook_mobile/ui/profile_screen/constant.dart';
+import 'package:icook_mobile/ui/signup_screen/signupmodel.dart';
 import 'package:icook_mobile/ui/ui_helper.dart';
+import 'package:stacked/stacked.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -48,344 +50,339 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String phoneField = "";
   String passwordField = "";
 
-
   bool termsAndAgreementChecked = false;
 
   bool buttonEnabled = false;
 
-
-
   void checkFields() {
-    if (nameField.isEmpty || emailField.isEmpty || phoneField.isEmpty
-        || passwordField.isEmpty || !termsAndAgreementChecked) {
-
+    if (nameField.isEmpty ||
+        emailField.isEmpty ||
+        phoneField.isEmpty ||
+        passwordField.isEmpty ||
+        !termsAndAgreementChecked) {
       setState(() {
-        buttonEnabled  = false;
+        buttonEnabled = false;
       });
 
       return;
     }
 
     setState(() {
-      buttonEnabled  = true;
+      buttonEnabled = true;
     });
-
   }
-
 
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context,
         height: double.infinity, width: 375, allowFontScaling: true);
 
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-          ),
-          onPressed: () {},
-        ),
-        centerTitle: true,
-        title: Text(
+    return ViewModelBuilder<SignUpModel>.reactive(
+      viewModelBuilder: () => SignUpModel(),
+      builder: (context, model, child) => Scaffold(
+        appBar: AppBar(
+            title: Text(
           "Create an account",
-          style: GoogleFonts.poppins(
-              fontSize: 17,
-              fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.w500),
-        ),
-      ),
-      body: ListView(
-        children: <Widget>[
-//          TextField(
-//
-//          ),
-//
-          SizedBox(
-            height: 34,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Form(
-              child: Column(
-                children: <Widget>[
-                  _buildTitle("Name"),
-                  SizedBox(height: 8),
-                  Container(
-                    height: 50,
-                    child: TextFormField(
-                      onChanged: (s){
-                        nameField = s;
-                        print(nameField);
-                        checkFields();
-                      },
-                      onTap: () {},
-                      autovalidate: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderSide:
-                            BorderSide(width: 0.0, style: BorderStyle.none),
-                            borderRadius: BorderRadius.circular(4)),
-
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        "Gender",
-                        style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: DropdownButton<String>(
-                        isExpanded: true,
-                        underline: Container(
-                          height: 0.0,
-                        ),
-                        value: selectedGender,
-                        icon: Icon(Icons.keyboard_arrow_down),
-                        iconSize: 24,
-                        elevation: 16,
-                        onChanged: (String newValue) {
-                          setState(() {
-                            selectedGender = newValue;
-                          });
+        )),
+        body: ListView(
+          children: <Widget>[
+            SizedBox(
+              height: 34,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: Form(
+                child: Column(
+                  children: <Widget>[
+                    _buildTitle("Name"),
+                    SizedBox(height: 8),
+                    Container(
+                      height: 50,
+                      child: TextFormField(
+                        onChanged: (s) {
+                          nameField = s;
+                          print(nameField);
+                          checkFields();
                         },
-                        items: <String>["Male", "Female"]
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
+                        onTap: () {},
+                        autovalidate: true,
+                        decoration: InputDecoration(
+                          hintText: 'Enter name',
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 0.0, style: BorderStyle.none),
+                              borderRadius: BorderRadius.circular(4)),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  _buildTitle("Email"),
-                  SizedBox(height: 8),
-                  Container(
-                    height: 50,
-                    child: TextFormField(
-                      onTap: () {},
-                      onChanged: (s){
-                        emailField = s;
-                        checkFields();
-                      },
-                      autovalidate: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderSide:
-                            BorderSide(width: 0.0, style: BorderStyle.none),
-                            borderRadius: BorderRadius.circular(4)),
-
-                      ),
+                    SizedBox(
+                      height: 20,
                     ),
-                  ),
-                  SizedBox(height: 20),
-                  _buildTitle("Phone number"),
-                  SizedBox(height: 8),
-                  Container(
-                    height: 50,
-                    decoration: BoxDecoration(
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          "Gender",
+                          style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Container(
+                      height: 50,
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),
-
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                        left: 8
                       ),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            child: DropdownButton<String>(
-
-                              underline: Container(
-                                height: 0.0,
-                              ),
-                              value: selectedCountryOption,
-                              icon: Icon(Icons.keyboard_arrow_down),
-                              iconSize: 24,
-                              elevation: 16,
-                              onChanged: (String newValue) {
-                                setState(() {
-                                  selectedCountryOption = newValue;
-                                });
-                              },
-                              items: countryOptions
-                                  .map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
-                            ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: DropdownButton<String>(
+                          isExpanded: true,
+                          underline: Container(
+                            height: 0.0,
                           ),
-                          Expanded(
-                            child: Container(
-                              height: 50,
-                              child: TextFormField(
-                                keyboardType: TextInputType.number,
-                                onTap: () {},
-                                onChanged: (s){
-                                  phoneField = s;
-                                  checkFields();
+                          value: selectedGender,
+                          icon: Icon(Icons.keyboard_arrow_down),
+                          iconSize: 24,
+                          elevation: 16,
+                          onChanged: (String newValue) {
+                            setState(() {
+                              selectedGender = newValue;
+                            });
+                          },
+                          items: <String>["Male", "Female"]
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    _buildTitle("Email"),
+                    SizedBox(height: 8),
+                    Container(
+                      height: 50,
+                      child: TextFormField(
+                        onTap: () {},
+                        onChanged: (s) {
+                          emailField = s;
+                          checkFields();
+                        },
+                        autovalidate: true,
+                        decoration: InputDecoration(
+                          hintText: 'Enter email',
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 0.0, style: BorderStyle.none),
+                              borderRadius: BorderRadius.circular(4)),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    _buildTitle("Phone number"),
+                    SizedBox(height: 8),
+                    Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              child: DropdownButton<String>(
+                                underline: Container(
+                                  height: 0.0,
+                                ),
+                                value: selectedCountryOption,
+                                icon: Icon(Icons.keyboard_arrow_down),
+                                iconSize: 24,
+                                elevation: 16,
+                                onChanged: (String newValue) {
+                                  setState(() {
+                                    selectedCountryOption = newValue;
+                                  });
                                 },
-                                autovalidate: true,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          width: 0.0, style: BorderStyle.none),
-                                      borderRadius: BorderRadius.circular(4)),
-
+                                items: countryOptions
+                                    .map<DropdownMenuItem<String>>(
+                                        (String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                height: 50,
+                                child: TextFormField(
+                                  keyboardType: TextInputType.number,
+                                  onTap: () {},
+                                  onChanged: (s) {
+                                    phoneField = s;
+                                    checkFields();
+                                  },
+                                  autovalidate: true,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 0.0,
+                                            style: BorderStyle.none),
+                                        borderRadius: BorderRadius.circular(4)),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  _buildTitle("Password"),
-                  SizedBox(height: 8),
-                  Container(
-                    child: PasswordField(
-                      onChanged: (s) {
-                        passwordField = s;
-                        checkFields();
-
-                      },
+                    SizedBox(
+                      height: 20,
                     ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      CheckBoxField(
-                        value: termsAndAgreementChecked,
+                    _buildTitle("Password"),
+                    SizedBox(height: 8),
+                    Container(
+                      child: PasswordField(
                         onChanged: (s) {
-                          termsAndAgreementChecked = s;
+                          passwordField = s;
                           checkFields();
                         },
                       ),
-                      SizedBox(
-                        width: kSpacingUnit.w * 1,
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    _buildTitle("Confirm password"),
+                    SizedBox(height: 8),
+                    Container(
+                      child: PasswordField(
+                        onChanged: (s) {
+                          passwordField = s;
+                          checkFields();
+                        },
                       ),
-                      RichText(
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        CheckBoxField(
+                          value: termsAndAgreementChecked,
+                          onChanged: (s) {
+                            termsAndAgreementChecked = s;
+                            checkFields();
+                          },
+                        ),
+                        SizedBox(
+                          width: kSpacingUnit.w * 1,
+                        ),
+                        RichText(
+                          text: TextSpan(children: [
+                            TextSpan(
+                                text: "I agree to the",
+                                style: GoogleFonts.montserrat(
+                                    fontSize: 14,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.normal)),
+                            TextSpan(
+                              text: "  ",
+                            ),
+                            TextSpan(
+                                text: "terms and conditions",
+                                style: GoogleFonts.montserrat(
+                                    fontSize: 14,
+                                    color: Colors.lightBlue,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.normal),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    print("Sign in Tapd");
+                                  }),
+                          ]),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 60,
+                    ),
+                    Center(
+                      child: Container(
+                        width: kSpacingUnit.w * 33.5,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: buttonEnabled
+                              ? Color(0xff578DDE)
+                              : Color(0xff939090),
+                          borderRadius: BorderRadius.circular(7),
+                        ),
+                        child: Center(
+                          child: GestureDetector(
+                            onTap: () => model.signUp(),
+                            child: Text(
+                              "Sign Up",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FontStyle.normal),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Center(
+                      child: RichText(
                         text: TextSpan(children: [
                           TextSpan(
-                              text: "I agree to the",
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 14,
+                              text: "Already have an account?",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 16,
                                   fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.normal)),
                           TextSpan(
                             text: "  ",
                           ),
                           TextSpan(
-                              text: "terms and conditions",
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 14,
-                                  color: Colors.lightBlue,
+                              text: "Sign In",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                  color: Color(0xff558CE2),
                                   fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.normal),
+                                  fontWeight: FontWeight.w600),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   print("Sign in Tapd");
+                                  model.login();
                                 }),
                         ]),
                       ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 60,
-                  ),
-                  Center(
-                    child: Container(
-                      width: kSpacingUnit.w * 33.5,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: buttonEnabled ? Color(0xff578DDE) :Color(0xff939090),
-                        borderRadius: BorderRadius.circular(7),
-                      ),
-                      child: Center(
-                        child: GestureDetector(
-                          child: Text(
-                            "Sign Up",
-                            style: GoogleFonts.poppins(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                fontStyle: FontStyle.normal),
-                          ),
-                        ),
-                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Center(
-                    child: RichText(
-                      text: TextSpan(children: [
-                        TextSpan(
-                            text: "Already have an account?",
-                            style: GoogleFonts.poppins(
-                                fontSize: 16,
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.normal)),
-                        TextSpan(
-                          text: "  ",
-                        ),
-                        TextSpan(
-                            text: "Sign In",
-                            style: GoogleFonts.poppins(
-                                fontSize: 16,
-                                color: Color(0xff558CE2),
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w600),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                print("Sign in Tapd");
-                              }),
-                      ]),
+                    SizedBox(
+                      height: 59,
                     ),
-                  ),
-                  SizedBox(
-                    height: 59,
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -432,7 +429,6 @@ class _CheckBoxFieldState extends State<CheckBoxField> {
       width: kSpacingUnit.w * 2.4,
       height: kSpacingUnit.w * 2.4,
       child: Checkbox(
-
           activeColor: Color(0xff578DDE),
           value: widget.value,
           onChanged: (b) {
@@ -516,7 +512,6 @@ class _PasswordFieldState extends State<PasswordField> {
                 border: OutlineInputBorder(
                     borderSide: BorderSide(width: 0.0, style: BorderStyle.none),
                     borderRadius: BorderRadius.circular(4)),
-
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.lightBlue)),
                 suffixIcon: new GestureDetector(
@@ -539,33 +534,33 @@ class _PasswordFieldState extends State<PasswordField> {
         ),
         isVisible
             ? Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              "Password Strength",
-              style: GoogleFonts.poppins(
-                  fontSize: 11,
-                  color: Color(0xff828282),
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.normal),
-            ),
-            SizedBox(
-              height: 3,
-            ),
-            StepProgressIndicator(
-              totalSteps: 100,
-              currentStep: currentStep,
-              size: 6,
-              padding: 0,
-              selectedColor: selectedColor,
-              unselectedColor: Color(0xffC4C4C4),
-              roundedEdges: Radius.circular(10),
-            ),
-          ],
-        )
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "Password Strength",
+                    style: GoogleFonts.poppins(
+                        fontSize: 11,
+                        color: Color(0xff828282),
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.normal),
+                  ),
+                  SizedBox(
+                    height: 3,
+                  ),
+                  StepProgressIndicator(
+                    totalSteps: 100,
+                    currentStep: currentStep,
+                    size: 6,
+                    padding: 0,
+                    selectedColor: selectedColor,
+                    unselectedColor: Color(0xffC4C4C4),
+                    roundedEdges: Radius.circular(10),
+                  ),
+                ],
+              )
             : SizedBox(
-          width: 1,
-        )
+                width: 1,
+              )
       ],
     );
   }

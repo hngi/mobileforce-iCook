@@ -42,16 +42,8 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       Container(
                         alignment: Alignment.center,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Image(
-                              image: AssetImage('assets/images/logo.png'),
-                            ),
-                            Image(
-                              image: AssetImage('assets/images/iCook.png'),
-                            ),
-                          ],
+                        child: Image(
+                          image: AssetImage('assets/images/logo.png'),
                         ),
                       ),
                       SizedBox(
@@ -246,12 +238,15 @@ class LoginScreen extends StatelessWidget {
                                 fontWeight: FontWeight.normal),
                           ),
                           SizedBox(width: 4),
-                          Text(
-                            'Sign Up',
-                            style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                    color: Color(0xff578DDE), fontSize: 16),
-                                fontWeight: FontWeight.w500),
+                          GestureDetector(
+                            onTap: () => model.signUp(),
+                            child: Text(
+                              'Sign Up',
+                              style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                      color: Color(0xff578DDE), fontSize: 16),
+                                  fontWeight: FontWeight.w500),
+                            ),
                           ),
                         ],
                       ),
