@@ -3,6 +3,7 @@ import 'dart:convert' as convert;
 import 'package:dio/dio.dart';
 import 'package:icook_mobile/core/exceptions/network_exception.dart';
 import 'package:icook_mobile/models/api_error_model.dart';
+import 'package:http/http.dart' as http;
 
 void checkForNetworkExceptions(Response response) {
   if (response.statusCode != 200) {
@@ -12,56 +13,58 @@ void checkForNetworkExceptions(Response response) {
 
 void showLoadingProgress(received, total) {
   if (total != -1) {
-    print('${(received / total * 100).toStringAsFixed(0)}%');
+    print('progress ${(received / total * 100).toStringAsFixed(0)}%');
   }
 }
 
-dynamic decodeResponsedataToJson(String reponse) {
+dynamic decodeResponsebodyToJson(String reponse) {
   try {
-    final data = convert.jsonDecode(reponse);
-    return data;
+    final body = convert.jsonDecode(reponse);
+    return body;
   } on FormatException catch (e) {
-    print('Network Utils: Failed to decode response data ${e.message}');
+    print('Network Utils: Failed to decode response body ${e.message}');
     throw NetworkException(e.message);
   }
 }
 
-dynamic responseHandler(Response response) async {
+dynamic responseHandler(http.Response response) async {
   switch (response.statusCode) {
     case 201:
     case 200:
-      print(['200/201 >>', response.data]);
-      return response.data;
+      print(['200/201 >>', response.body]);
+      return response.body;
       break;
     case 400:
-      print(['400 >>', response.data]);
-      final error = apiErrorModelFromJson(response.data);
+      print(['400 >>', response.body]);
+      final error = apiErrorModelFromJson(response.body);
+
       throw (error.error);
+
       break;
     case 401:
-      print(['401 >>', response.data]);
-      final error = apiErrorModelFromJson(response.data);
+      print(['401 >>', response.body]);
+      final error = apiErrorModelFromJson(response.body);
       throw (error.error);
       break;
     case 403:
-      print(['403 >>', response.data]);
-      final error = apiErrorModelFromJson(response.data);
-      throw (error.error);
+      print(['403 >>', response.body]);
+      final error = apiErrorModelFromJson(response.body);
+      return response.body;
       break;
     case 404:
-      print(['404 >>', response.data]);
-      final error = apiErrorModelFromJson(response.data);
+      print(['404 >>', response.body]);
+      final error = apiErrorModelFromJson(response.body);
       throw (error.error);
       break;
     case 409:
-      print(['409 >>', response.data]);
-      final error = apiErrorModelFromJson(response.data);
+      print(['409 >>', response.body]);
+      final error = apiErrorModelFromJson(response.body);
       throw (error.error);
       break;
     case 500:
     default:
-      print(['500 >>', response.data]);
-      final error = apiErrorModelFromJson(response.data);
+      print(['500 >>', response.body]);
+      final error = apiErrorModelFromJson(response.body);
       throw (error.error);
       break;
   }

@@ -1,8 +1,14 @@
+import 'package:icook_mobile/core/constants/api_routes.dart';
+import 'package:icook_mobile/core/services/Api/ApiService.dart';
+import 'package:icook_mobile/models/requests/signup.dart';
+import 'package:icook_mobile/models/serializers.dart';
+import 'package:icook_mobile/models/user/user.dart';
+import '../../../locator.dart';
+
 abstract class AuthService {
   Future<void> login({String email, String password});
 
-  Future<void> signUp(
-      {String email, String password, String gender, String phoneNumber});
+  Future<User> signUp(SignUpRequest request);
 
   Future<String> googleAuth();
 
@@ -10,6 +16,8 @@ abstract class AuthService {
 }
 
 class AuthServiceImpl extends AuthService {
+  final api = locator<ApiService>();
+
   @override
   Future<String> facebookAuth() {
     // TODO: implement facebookAuth
@@ -29,9 +37,18 @@ class AuthServiceImpl extends AuthService {
   }
 
   @override
-  Future<void> signUp(
-      {String email, String password, String gender, String phoneNumber}) {
-    // TODO: implement signUp
-    throw UnimplementedError();
+  Future<User> signUp(SignUpRequest request) async {
+    final headers = <String, String>{
+      "Accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded"
+    };
+    try {
+      final response =
+          await api.post('${ApiRoutes.signup}', headers, request.toMap());
+      print('signup response $response');
+      User user = serializers.deserializeWith(User.serializer, response);
+      print(user);
+      return user;
+    } catch (e) {}
   }
 }
