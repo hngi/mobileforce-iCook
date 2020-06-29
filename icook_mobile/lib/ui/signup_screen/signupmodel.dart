@@ -76,6 +76,7 @@ class SignUpModel extends BaseNotifier with Validators {
       print(user);
       final snackbar = SnackBar(content: Text(user.message));
       scaffoldKey.currentState.showSnackBar(snackbar);
+      navigation.pushNamedAndRemoveUntil(ViewRoutes.home);
     } catch (e) {
       setState(ViewState.Idle);
       print('signup model exception $e');
