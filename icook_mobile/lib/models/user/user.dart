@@ -30,14 +30,21 @@ abstract class User implements Built<User, UserBuilder> {
 }
 
 abstract class UserData implements Built<UserData, UserDataBuilder> {
+  @nullable
   String get token;
 
+  @nullable
+  @BuiltValueField(wireName: 'user_id')
   String get userID;
 
+  @nullable
+  @BuiltValueField(wireName: 'profile_id')
   String get profileID;
 
+  @nullable
   String get email;
 
+  @nullable
   String get name;
 
   UserData._();

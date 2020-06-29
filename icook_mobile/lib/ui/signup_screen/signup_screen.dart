@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icook_mobile/ui/profile_screen/constant.dart';
 import 'package:icook_mobile/ui/shared/k_button.dart';
+import 'package:icook_mobile/ui/shared/state_responsive.dart';
 import 'package:icook_mobile/ui/shared/sumbitButton.dart';
 import 'package:icook_mobile/ui/signup_screen/signupmodel.dart';
 import 'package:icook_mobile/ui/ui_helper.dart';
@@ -237,16 +238,21 @@ class SignUpScreen extends StatelessWidget {
                       SizedBox(
                         height: 60,
                       ),
-                      Center(
-                          child: SubmitButton(
-                        title: 'Sign Up',
-                        isEnabled: model.isChecked,
-                        onPressed: () {
-                          model.signUp();
-                          FocusScope.of(context).unfocus();
-                        },
-                        textColor: Colors.white,
-                      )),
+                      StateResponsive(
+                          state: model.state,
+                          busyWidget: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                          idleWidget: Center(
+                              child: SubmitButton(
+                            title: 'Sign Up',
+                            onPressed: () {
+                              model.signUp();
+                              FocusScope.of(context).unfocus();
+                            },
+                            textColor: Colors.white,
+                            isEnabled: model.isChecked,
+                          ))),
                       SizedBox(
                         height: 20,
                       ),

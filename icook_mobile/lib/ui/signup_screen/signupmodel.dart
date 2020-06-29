@@ -70,33 +70,18 @@ class SignUpModel extends BaseNotifier with Validators {
     print(request);
 
     setState(ViewState.Busy);
-    showDialog(
-        context: Get.overlayContext,
-        barrierDismissible: false,
-        child: Material(
-          color: Colors.transparent,
-          child: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text('Loading...',
-                    style: TextStyle(
-                      color: Theme.of(Get.context).primaryColor,
-                    )),
-                SizedBox(
-                  width: 10,
-                ),
-                CircularProgressIndicator()
-              ],
-            ),
-          ),
-        ));
 
-    var user = await auth.signUp(request);
-    print(user);
-    navigation.back();
-    final snackbar = SnackBar(content: Text(user.error));
-    scaffoldKey.currentState.showSnackBar(snackbar);
+    try {
+      var user = await auth.signUp(request);
+      print(user);
+      final snackbar = SnackBar(content: Text(user.message));
+      scaffoldKey.currentState.showSnackBar(snackbar);
+    } catch (e) {
+      setState(ViewState.Idle);
+      print('signup model exception $e');
+      final snackbar = SnackBar(content: Text(e));
+      scaffoldKey.currentState.showSnackBar(snackbar);
+    }
   }
 
   void login() {

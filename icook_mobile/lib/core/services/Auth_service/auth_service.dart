@@ -1,12 +1,16 @@
+import 'dart:convert';
+
 import 'package:icook_mobile/core/constants/api_routes.dart';
 import 'package:icook_mobile/core/services/Api/ApiService.dart';
+import 'package:icook_mobile/models/requests/login.dart';
 import 'package:icook_mobile/models/requests/signup.dart';
+import 'package:icook_mobile/models/response/login.dart';
 import 'package:icook_mobile/models/serializers.dart';
 import 'package:icook_mobile/models/user/user.dart';
 import '../../../locator.dart';
 
 abstract class AuthService {
-  Future<void> login({String email, String password});
+  Future<LoginResponse> login(LoginRequest request);
 
   Future<User> signUp(SignUpRequest request);
 
@@ -31,9 +35,22 @@ class AuthServiceImpl extends AuthService {
   }
 
   @override
-  Future<void> login({String email, String password}) {
-    // TODO: implement login
-    throw UnimplementedError();
+  Future<LoginResponse> login(LoginRequest request) async {
+    final headers = <String, String>{
+      "Accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded"
+    };
+    try {
+      final response =
+          await api.post('${ApiRoutes.signin}', headers, request.toMap());
+      print('signin response $response');
+      LoginResponse user = LoginResponse.fromJson(response);
+      print(user);
+      return user;
+    } catch (e) {
+      print('exception $e');
+      throw (e);
+    }
   }
 
   @override
@@ -49,6 +66,8 @@ class AuthServiceImpl extends AuthService {
       User user = serializers.deserializeWith(User.serializer, response);
       print(user);
       return user;
-    } catch (e) {}
+    } catch (e) {
+      throw (e);
+    }
   }
 }

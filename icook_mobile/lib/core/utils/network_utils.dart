@@ -49,7 +49,7 @@ dynamic responseHandler(http.Response response) async {
     case 403:
       print(['403 >>', response.body]);
       final error = apiErrorModelFromJson(response.body);
-      return response.body;
+      throw (error.error);
       break;
     case 404:
       print(['404 >>', response.body]);

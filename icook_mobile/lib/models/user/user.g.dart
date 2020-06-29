@@ -89,23 +89,37 @@ class _$UserDataSerializer implements StructuredSerializer<UserData> {
   @override
   Iterable<Object> serialize(Serializers serializers, UserData object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
-      'token',
-      serializers.serialize(object.token,
-          specifiedType: const FullType(String)),
-      'userID',
-      serializers.serialize(object.userID,
-          specifiedType: const FullType(String)),
-      'profileID',
-      serializers.serialize(object.profileID,
-          specifiedType: const FullType(String)),
-      'email',
-      serializers.serialize(object.email,
-          specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
-    ];
-
+    final result = <Object>[];
+    if (object.token != null) {
+      result
+        ..add('token')
+        ..add(serializers.serialize(object.token,
+            specifiedType: const FullType(String)));
+    }
+    if (object.userID != null) {
+      result
+        ..add('user_id')
+        ..add(serializers.serialize(object.userID,
+            specifiedType: const FullType(String)));
+    }
+    if (object.profileID != null) {
+      result
+        ..add('profile_id')
+        ..add(serializers.serialize(object.profileID,
+            specifiedType: const FullType(String)));
+    }
+    if (object.email != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(object.email,
+            specifiedType: const FullType(String)));
+    }
+    if (object.name != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(object.name,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -124,11 +138,11 @@ class _$UserDataSerializer implements StructuredSerializer<UserData> {
           result.token = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'userID':
+        case 'user_id':
           result.userID = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'profileID':
+        case 'profile_id':
           result.profileID = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
@@ -284,23 +298,7 @@ class _$UserData extends UserData {
       (new UserDataBuilder()..update(updates)).build();
 
   _$UserData._({this.token, this.userID, this.profileID, this.email, this.name})
-      : super._() {
-    if (token == null) {
-      throw new BuiltValueNullFieldError('UserData', 'token');
-    }
-    if (userID == null) {
-      throw new BuiltValueNullFieldError('UserData', 'userID');
-    }
-    if (profileID == null) {
-      throw new BuiltValueNullFieldError('UserData', 'profileID');
-    }
-    if (email == null) {
-      throw new BuiltValueNullFieldError('UserData', 'email');
-    }
-    if (name == null) {
-      throw new BuiltValueNullFieldError('UserData', 'name');
-    }
-  }
+      : super._();
 
   @override
   UserData rebuild(void Function(UserDataBuilder) updates) =>
