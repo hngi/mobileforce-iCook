@@ -1,8 +1,19 @@
-abstract class AuthService {
-  Future<void> login({String email, String password});
+import 'dart:convert';
 
-  Future<void> signUp(
-      {String email, String password, String gender, String phoneNumber});
+import 'package:icook_mobile/core/constants/api_routes.dart';
+import 'package:icook_mobile/core/services/Api/ApiService.dart';
+import 'package:icook_mobile/models/requests/login.dart';
+import 'package:icook_mobile/models/requests/signup.dart';
+import 'package:icook_mobile/models/response/login.dart';
+import 'package:icook_mobile/models/response/signup.dart';
+import 'package:icook_mobile/models/serializers.dart';
+import 'package:icook_mobile/models/user/user.dart';
+import '../../../locator.dart';
+
+abstract class AuthService {
+  Future<LoginResponse> login(LoginRequest request);
+
+  Future<SignUpResponse> signUp(SignUpRequest request);
 
   Future<String> googleAuth();
 
@@ -10,6 +21,8 @@ abstract class AuthService {
 }
 
 class AuthServiceImpl extends AuthService {
+  final api = locator<ApiService>();
+
   @override
   Future<String> facebookAuth() {
     // TODO: implement facebookAuth
@@ -23,15 +36,39 @@ class AuthServiceImpl extends AuthService {
   }
 
   @override
-  Future<void> login({String email, String password}) {
-    // TODO: implement login
-    throw UnimplementedError();
+  Future<LoginResponse> login(LoginRequest request) async {
+    final headers = <String, String>{
+      "Accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded"
+    };
+    try {
+      final response =
+          await api.post('${ApiRoutes.signin}', headers, request.toMap());
+      print('signin response $response');
+      LoginResponse user = LoginResponse.fromJson(response);
+      print(user);
+      return user;
+    } catch (e) {
+      print('exception $e');
+      throw (e);
+    }
   }
 
   @override
-  Future<void> signUp(
-      {String email, String password, String gender, String phoneNumber}) {
-    // TODO: implement signUp
-    throw UnimplementedError();
+  Future<SignUpResponse> signUp(SignUpRequest request) async {
+    final headers = <String, String>{
+      "Accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded"
+    };
+    try {
+      final response =
+          await api.post('${ApiRoutes.signup}', headers, request.toMap());
+      print('signup response $response');
+      SignUpResponse user = SignUpResponse.fromJson(response);
+      print(user);
+      return user;
+    } catch (e) {
+      throw (e);
+    }
   }
 }

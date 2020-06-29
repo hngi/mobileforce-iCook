@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
             darkTheme: Constants.darkTheme,
             onGenerateRoute: Router.generateRoute,
             navigatorKey: navigationService.navigatorKey,
-            home: SignUpScreen(),
+            home: SplashScreen(),
             themeMode: keystorage.isDarkMOde ? ThemeMode.dark : ThemeMode.light,
           ),
         ),

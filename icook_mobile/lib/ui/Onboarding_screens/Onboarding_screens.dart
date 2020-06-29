@@ -118,7 +118,7 @@ class OnboardingScreen extends ViewModelWidget<OnboardingViewModel> {
           Expanded(child: transformerPageView),
           SizedBox(height: 10),
           KButton(
-              onPressed: () {},
+              onPressed: () => model.goToSignUp(),
               title: 'Create an account',
               buttonColor: Constants.kbuttonColor1,
               textColor: Colors.white),

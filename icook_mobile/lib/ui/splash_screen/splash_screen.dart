@@ -29,12 +29,17 @@ class SplashScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              KButton(
-                  onPressed: () => model.getStarted(),
-                  title: 'Get Started',
-                  buttonColor: Constants.kbuttonColor1,
-                  textColor: Colors.white),
-              SizedBox(height: 100,)
+              Visibility(
+                visible: model.isFirstTime,
+                child: KButton(
+                    onPressed: () => model.getStarted(),
+                    title: 'Get Started',
+                    buttonColor: Constants.kbuttonColor1,
+                    textColor: Colors.white),
+              ),
+              SizedBox(
+                height: 100,
+              )
             ],
           ),
         ),

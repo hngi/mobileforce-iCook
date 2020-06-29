@@ -1,11 +1,12 @@
 import 'dart:io';
 
-
 import 'package:dio/dio.dart';
 import 'package:icook_mobile/core/exceptions/network_exception.dart';
 import 'package:icook_mobile/core/services/Api/ApiService.dart';
 import 'package:icook_mobile/core/utils/file_helper.dart';
+
 import 'package:icook_mobile/core/utils/network_utils.dart' as network_utils;
+import 'package:http/http.dart' as http;
 
 import '../../../locator.dart';
 
@@ -35,7 +36,7 @@ class ApiServiceImpl implements ApiService {
     }
 
     network_utils.checkForNetworkExceptions(response);
-    network_utils.responseHandler(response);
+    //network_utils.responseHandler(response);
 
     // For this specific API its decodes json for us
     return response.data;
@@ -55,7 +56,8 @@ class ApiServiceImpl implements ApiService {
         onSendProgress: network_utils.showLoadingProgress,
         onReceiveProgress: network_utils.showLoadingProgress,
         options: Options(
-          contentType: 'application/json',
+          contentType:
+              ContentType.parse("application/x-www-form-urlencoded").toString(),
         ),
       );
     } on DioError catch (e) {
@@ -64,7 +66,7 @@ class ApiServiceImpl implements ApiService {
     }
 
     network_utils.checkForNetworkExceptions(response);
-    network_utils.responseHandler(response);
+    //network_utils.responseHandler(response);
 
     // For this specific API its decodes json for us
     return response.data;
@@ -108,9 +110,65 @@ class ApiServiceImpl implements ApiService {
     }
 
     network_utils.checkForNetworkExceptions(response);
-    network_utils.responseHandler(response);
+    //network_utils.responseHandler(response);
 
     return file;
+  }
+
+  Future<dynamic> get(String url, header) async {
+    print('Api Get, url $url');
+    var responseJson;
+    try {
+      final response = await http.get(url, headers: header);
+      responseJson = await network_utils.responseHandler(response);
+    } on SocketException {
+      print('No net');
+      throw NetworkException('No internet connection');
+    }
+    print('api get recieved!');
+    return responseJson;
+  }
+
+  Future<dynamic> post(String url, dynamic header, dynamic body) async {
+    print('Api Post, url $url');
+    var responseJson;
+    try {
+      final response = await http.post(url, headers: header, body: body);
+      responseJson = await network_utils.responseHandler(response);
+    } on SocketException {
+      print('No net');
+      throw ('No Internet connection');
+    }
+    print('api post.');
+    return responseJson;
+  }
+
+  Future<dynamic> put(String url, dynamic header, dynamic body) async {
+    print('Api Put, url $url');
+    var responseJson;
+    try {
+      final response = await http.put(url, headers: header, body: body);
+      responseJson = await network_utils.responseHandler(response);
+    } on SocketException {
+      print('No net');
+      throw NetworkException('No internet connection');
+    }
+    print('api put.');
+    return responseJson;
+  }
+
+  Future<dynamic> delete(String url, dynamic header) async {
+    print('Api delete, url $url');
+    var responseJson;
+    try {
+      final response = await http.delete(url, headers: header);
+      responseJson = await network_utils.responseHandler(response);
+    } on SocketException {
+      print('No net');
+      throw NetworkException('No internet connection');
+    }
+    print('api delete.');
+    return responseJson;
   }
 
   @override
