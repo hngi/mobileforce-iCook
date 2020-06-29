@@ -74,6 +74,7 @@ class SignUpModel extends BaseNotifier with Validators {
     try {
       var user = await auth.signUp(request);
       print(user);
+      setState(ViewState.Idle);
       final snackbar = SnackBar(content: Text(user.message));
       scaffoldKey.currentState.showSnackBar(snackbar);
       navigation.pushNamedAndRemoveUntil(ViewRoutes.home);
