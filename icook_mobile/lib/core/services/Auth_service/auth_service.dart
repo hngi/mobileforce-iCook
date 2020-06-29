@@ -5,6 +5,7 @@ import 'package:icook_mobile/core/services/Api/ApiService.dart';
 import 'package:icook_mobile/models/requests/login.dart';
 import 'package:icook_mobile/models/requests/signup.dart';
 import 'package:icook_mobile/models/response/login.dart';
+import 'package:icook_mobile/models/response/signup.dart';
 import 'package:icook_mobile/models/serializers.dart';
 import 'package:icook_mobile/models/user/user.dart';
 import '../../../locator.dart';
@@ -12,7 +13,7 @@ import '../../../locator.dart';
 abstract class AuthService {
   Future<LoginResponse> login(LoginRequest request);
 
-  Future<User> signUp(SignUpRequest request);
+  Future<SignUpResponse> signUp(SignUpRequest request);
 
   Future<String> googleAuth();
 
@@ -54,7 +55,7 @@ class AuthServiceImpl extends AuthService {
   }
 
   @override
-  Future<User> signUp(SignUpRequest request) async {
+  Future<SignUpResponse> signUp(SignUpRequest request) async {
     final headers = <String, String>{
       "Accept": "application/json",
       "Content-Type": "application/x-www-form-urlencoded"
@@ -63,7 +64,7 @@ class AuthServiceImpl extends AuthService {
       final response =
           await api.post('${ApiRoutes.signup}', headers, request.toMap());
       print('signup response $response');
-      User user = serializers.deserializeWith(User.serializer, response);
+      SignUpResponse user = SignUpResponse.fromJson(response);
       print(user);
       return user;
     } catch (e) {
