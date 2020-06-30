@@ -18,6 +18,10 @@ abstract class AuthService {
   Future<String> googleAuth();
 
   Future<String> facebookAuth();
+
+  Future<void> updatePassword();
+
+  Future<void> forgotPassword();
 }
 
 class AuthServiceImpl extends AuthService {
@@ -70,5 +74,17 @@ class AuthServiceImpl extends AuthService {
     } catch (e) {
       throw (e);
     }
+  }
+
+  @override
+  Future<void> forgotPassword() {
+    // TODO: implement forgotPassword
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> updatePassword() {
+    // TODO: implement updatePassword
+    throw UnimplementedError();
   }
 }
