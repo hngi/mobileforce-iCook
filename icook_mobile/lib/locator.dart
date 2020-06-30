@@ -18,8 +18,6 @@ import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart'
 import 'package:icook_mobile/core/utils/file_helper.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import 'core/datasources/localdata_source/usersource.dart';
-
 GetIt locator = GetIt.instance;
 
 Future<void> setupLocator({bool test = false}) async {
@@ -53,8 +51,6 @@ Future<void> setupLocator({bool test = false}) async {
   locator.registerLazySingleton<FileHelper>(() => FileHelperImpl());
 
   // DataSources
-  locator.registerLazySingleton<UsersLocalDataSource>(
-      () => UsersLocalDataSourceImpl());
 
   locator.registerLazySingleton<DishDataSource>(() => DishDataSourceImpl());
 
