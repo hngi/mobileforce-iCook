@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 class LoginResponse {
-  String status;
-  String error;
-  Data data;
+  final String status;
+  final String error;
+  final Data data;
   LoginResponse({
     this.status,
     this.error,
@@ -63,31 +63,36 @@ class LoginResponse {
 }
 
 class Data {
-  String message;
-  String userId;
-  String token;
+  final String userID;
+  final String userName;
+  final String email;
+  final String token;
   Data({
-    this.message,
-    this.userId,
+    this.userID,
+    this.userName,
+    this.email,
     this.token,
   });
 
   Data copyWith({
-    String message,
-    String userId,
+    String userID,
+    String userName,
+    String email,
     String token,
   }) {
     return Data(
-      message: message ?? this.message,
-      userId: userId ?? this.userId,
+      userID: userID ?? this.userID,
+      userName: userName ?? this.userName,
+      email: email ?? this.email,
       token: token ?? this.token,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'message': message,
-      'user_id': userId,
+      'user_id': userID,
+      'user_name': userName,
+      'email': email,
       'token': token,
     };
   }
@@ -96,8 +101,9 @@ class Data {
     if (map == null) return null;
 
     return Data(
-      message: map['message'],
-      userId: map['user_id'],
+      userID: map['user_id'],
+      userName: map['user_name'],
+      email: map['email'],
       token: map['token'],
     );
   }
@@ -107,19 +113,26 @@ class Data {
   static Data fromJson(String source) => fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'Data(message: $message, userId: $userId, token: $token)';
+  String toString() {
+    return 'Data(userID: $userID, userName: $userName, email: $email, token: $token)';
+  }
 
   @override
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
 
     return o is Data &&
-        o.message == message &&
-        o.userId == userId &&
+        o.userID == userID &&
+        o.userName == userName &&
+        o.email == email &&
         o.token == token;
   }
 
   @override
-  int get hashCode => message.hashCode ^ userId.hashCode ^ token.hashCode;
+  int get hashCode {
+    return userID.hashCode ^
+        userName.hashCode ^
+        email.hashCode ^
+        token.hashCode;
+  }
 }

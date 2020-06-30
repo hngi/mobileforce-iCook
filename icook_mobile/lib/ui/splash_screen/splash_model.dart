@@ -14,9 +14,9 @@ class SplashModel extends BaseNotifier {
     if (!isFirstTime) {
       await Future.delayed(Duration(seconds: 3));
       if (key.isLoggedIn) {
-        navigation.navigateTo(ViewRoutes.home);
+        navigation.pushNamedAndRemoveUntil(ViewRoutes.home);
       } else
-        navigation.navigateTo(ViewRoutes.login);
+        navigation.pushNamedAndRemoveUntil(ViewRoutes.login);
     }
   }
 
