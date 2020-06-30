@@ -1,5 +1,13 @@
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
+import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasource.dart';
+import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasourceimpl.dart';
+import 'package:icook_mobile/core/datasources/remotedata_source/Search/searchdatasource.dart';
+import 'package:icook_mobile/core/datasources/remotedata_source/Search/searchdatasourceimpl.dart';
+import 'package:icook_mobile/core/datasources/remotedata_source/UserProfile/userprofiledatasource.dart';
+import 'package:icook_mobile/core/datasources/remotedata_source/UserProfile/userprofiledatasourceimpl.dart';
+import 'package:icook_mobile/core/datasources/remotedata_source/Users/usersdatasource.dart';
+import 'package:icook_mobile/core/datasources/remotedata_source/Users/usersdatasourceimpl.dart';
 import 'package:icook_mobile/core/services/Api/ApiService.dart';
 import 'package:icook_mobile/core/services/Api/ApiServiceImpl.dart';
 import 'package:icook_mobile/core/services/Auth_service/auth_service.dart';
@@ -44,10 +52,18 @@ Future<void> setupLocator({bool test = false}) async {
   // Utils
   locator.registerLazySingleton<FileHelper>(() => FileHelperImpl());
 
-  // External
-
+  // DataSources
   locator.registerLazySingleton<UsersLocalDataSource>(
       () => UsersLocalDataSourceImpl());
+
+  locator.registerLazySingleton<DishDataSource>(() => DishDataSourceImpl());
+
+  locator.registerLazySingleton<SearchDataSource>(() => SearchDataSourceImpl());
+
+  locator.registerLazySingleton<UserProfileDataSource>(
+      () => UserProfileDataSourceImpl());
+
+  locator.registerLazySingleton<UsersDataSource>(() => UsersDataSourceImpl());
 }
 
 Future<void> _setupSharedPreferences() async {

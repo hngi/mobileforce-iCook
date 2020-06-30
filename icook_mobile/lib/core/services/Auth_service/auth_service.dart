@@ -2,8 +2,8 @@ import 'package:icook_mobile/core/constants/api_routes.dart';
 import 'package:icook_mobile/core/services/Api/ApiService.dart';
 import 'package:icook_mobile/models/requests/login.dart';
 import 'package:icook_mobile/models/requests/signup.dart';
-import 'package:icook_mobile/models/response/login.dart';
-import 'package:icook_mobile/models/response/signup.dart';
+import 'package:icook_mobile/models/response/Auth/login.dart';
+import 'package:icook_mobile/models/response/Auth/signup.dart';
 import '../../../locator.dart';
 
 abstract class AuthService {
