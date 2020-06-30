@@ -115,7 +115,7 @@ class ApiServiceImpl implements ApiService {
     return file;
   }
 
-  Future<dynamic> get(String url, header) async {
+  Future<dynamic> gett(String url, header) async {
     print('Api Get, url $url');
     var responseJson;
     try {
@@ -175,5 +175,20 @@ class ApiServiceImpl implements ApiService {
   void dispose() {
     _dio.clear();
     _dio.close(force: true);
+  }
+
+  @override
+  Future<dynamic> patch(String url, dynamic header, dynamic body) async {
+    print('Api patch, url $url , $header , $body');
+    var responseJson;
+    try {
+      final response = await http.patch(url, headers: header, body: body);
+      responseJson = await network_utils.responseHandler(response);
+    } on SocketException {
+      print('No net');
+      throw NetworkException('No internet connection');
+    }
+    print('api patch.');
+    return responseJson;
   }
 }

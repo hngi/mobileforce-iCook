@@ -1,27 +1,38 @@
-import 'dart:convert';
-
 import 'package:icook_mobile/core/constants/api_routes.dart';
 import 'package:icook_mobile/core/services/Api/ApiService.dart';
 import 'package:icook_mobile/models/requests/login.dart';
 import 'package:icook_mobile/models/requests/signup.dart';
 import 'package:icook_mobile/models/response/login.dart';
 import 'package:icook_mobile/models/response/signup.dart';
-import 'package:icook_mobile/models/serializers.dart';
-import 'package:icook_mobile/models/user/user.dart';
 import '../../../locator.dart';
 
 abstract class AuthService {
+  ///User signin with local details{Post}
   Future<LoginResponse> login(LoginRequest request);
 
+  ///User signup with local details{Post}
   Future<SignUpResponse> signUp(SignUpRequest request);
 
+  ///User signup/login with google{Post}
   Future<String> googleAuth();
 
+  ///user signup/login with facebook {Post}
   Future<String> facebookAuth();
 
+  ///update user password{Put}
   Future<void> updatePassword();
 
+  ///forget password{Post}
   Future<void> forgotPassword();
+
+  ///reset password with token{patch}
+  Future<void> resetPasswordWithToken();
+
+  ///unlink Google oauth{patch}
+  Future<void> unlinkGoogle();
+
+  ///unlink facebook oauth{patch}
+  Future<void> unlinkFacebook();
 }
 
 class AuthServiceImpl extends AuthService {
@@ -85,6 +96,24 @@ class AuthServiceImpl extends AuthService {
   @override
   Future<void> updatePassword() {
     // TODO: implement updatePassword
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> resetPasswordWithToken() {
+    // TODO: implement resetPasswordWithToken
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> unlinkFacebook() {
+    // TODO: implement unlinkFacebook
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> unlinkGoogle() {
+    // TODO: implement unlinkGoogle
     throw UnimplementedError();
   }
 }
