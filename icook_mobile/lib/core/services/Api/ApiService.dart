@@ -30,7 +30,7 @@ abstract class ApiService {
 
   Future<dynamic> gett(String url, header);
   Future<dynamic> post(String url, dynamic header, dynamic body);
-  Future<dynamic> put(String url, dynamic header);
+  Future<dynamic> put(String url, dynamic header, {dynamic body});
   Future<dynamic> delete(String url, dynamic header);
 
   Future<dynamic> patch(String url, dynamic header, dynamic body);

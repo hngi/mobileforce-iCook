@@ -143,17 +143,29 @@ class ApiServiceImpl implements ApiService {
     return responseJson;
   }
 
-  Future<dynamic> put(String url, dynamic header) async {
+  Future<dynamic> put(String url, dynamic header, {dynamic body}) async {
     print('Api Put, url $url');
     var responseJson;
-    try {
-      final response = await http.put(url, headers: header);
-      responseJson = await network_utils.responseHandler(response);
-    } on SocketException {
-      print('No net');
-      throw NetworkException('No internet connection');
+    if (body != null) {
+      try {
+        final response = await http.put(url, headers: header, body: body);
+        responseJson = await network_utils.responseHandler(response);
+      } on SocketException {
+        print('No net');
+        throw NetworkException('No internet connection');
+      }
+      print('api put.');
+    } else {
+      try {
+        final response = await http.put(url, headers: header);
+        responseJson = await network_utils.responseHandler(response);
+      } on SocketException {
+        print('No net');
+        throw NetworkException('No internet connection');
+      }
+      print('api put.');
     }
-    print('api put.');
+
     return responseJson;
   }
 
