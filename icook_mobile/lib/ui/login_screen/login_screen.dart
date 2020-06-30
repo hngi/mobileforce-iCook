@@ -112,6 +112,8 @@ class LoginScreen extends StatelessWidget {
                           padding: EdgeInsets.only(left: 20, right: 20),
                           child: TextFormField(
                             controller: model.password,
+                            validator: (value) =>
+                                model.validatePassword(model.password.text),
                             obscureText: !_showPassword,
                             textInputAction: TextInputAction.done,
                             onFieldSubmitted: (_) =>

@@ -1,15 +1,24 @@
+import 'package:icook_mobile/models/requests/Dish/postdish.dart';
+import 'package:icook_mobile/models/response/Dish/deletedish.dart';
+import 'package:icook_mobile/models/response/Dish/editdish.dart';
+import 'package:icook_mobile/models/response/Dish/favouritedish.dart';
+import 'package:icook_mobile/models/response/Dish/getdishbyid.dart';
+import 'package:icook_mobile/models/response/Dish/getmydishes.dart';
+import 'package:icook_mobile/models/response/Dish/likedish.dart';
+import 'package:icook_mobile/models/response/Dish/postadish.dart';
+
 abstract class DishDataSource {
-  Future<void> postADish();
+  Future<PostDishResponse> postADish(PostDIshBody body);
 
-  Future<void> getMyDishes();
+  Future<GetMyDishesResponse> getDishes(String after);
 
-  Future<void> getDishById();
+  Future<GetDIshByIdResponse> getDishById(String id);
 
-  Future<void> editDish();
+  Future<EditDishResponse> editDish(PostDIshBody body, String id);
 
-  Future<void> deleteDish();
+  Future<DeleteDIshResponse> deleteDish(String id);
 
-  Future<void> toggleFavouriteDish();
+  Future<FavouriteDishResponse> toggleFavouriteDish(String id);
 
-  Future<void> toggleLikeDish();
+  Future<LikeDIshResponse> toggleLikeDish(String id);
 }

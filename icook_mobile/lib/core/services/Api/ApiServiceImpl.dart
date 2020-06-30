@@ -143,11 +143,11 @@ class ApiServiceImpl implements ApiService {
     return responseJson;
   }
 
-  Future<dynamic> put(String url, dynamic header, dynamic body) async {
+  Future<dynamic> put(String url, dynamic header) async {
     print('Api Put, url $url');
     var responseJson;
     try {
-      final response = await http.put(url, headers: header, body: body);
+      final response = await http.put(url, headers: header);
       responseJson = await network_utils.responseHandler(response);
     } on SocketException {
       print('No net');
