@@ -1,3 +1,5 @@
+
+import 'package:icook_mobile/models/response/Dish/getmydishes.dart';
 import 'package:icook_mobile/ui/base_view_model.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:icook_mobile/locator.dart';
@@ -8,6 +10,9 @@ class RecipeItemModel extends BaseNotifier {
   bool _isLiked = false;
   bool get isLiked => _isLiked;
 
+
+   
+
   void init({bool isLiked = false}) {
     _isLiked = isLiked;
   }
@@ -17,8 +22,8 @@ class RecipeItemModel extends BaseNotifier {
     notifyListeners();
   }
 
-  void seeDetails(){
-    navigation.navigateTo(ViewRoutes.recipe_details);
+  void seeDetails(Dishe dishe){
+    navigation.navigateTo(ViewRoutes.recipe_details, arguments: dishe);
   }
 
   void seeUserInfo(){

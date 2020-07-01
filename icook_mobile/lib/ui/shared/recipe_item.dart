@@ -1,24 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:icook_mobile/models/response/Dish/getmydishes.dart';
 import 'package:icook_mobile/ui/shared/recipe_item_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 
 class RecipeItem extends StatelessWidget {
-  final String chefImage;
-  final String chefName;
-  final List<String> foodImage;
-  final String foodName;
-  final String foodDescription;
-  final int likes;
+  final Dishe dish;
 
-  RecipeItem(
-      {this.chefImage,
-      this.chefName,
-      this.foodImage,
-      this.foodName,
-      this.foodDescription,
-      this.likes});
+  const RecipeItem({Key key, this.dish}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +32,8 @@ class RecipeItem extends StatelessWidget {
                   GestureDetector(
                     onTap: () => model.seeUserInfo(),
                     child: CircleAvatar(
-                      backgroundImage: AssetImage(chefImage),
+                      backgroundImage:
+                          AssetImage('assets/images/chefavatar1.png'),
                       radius: 25,
                     ),
                   ),
@@ -51,7 +42,7 @@ class RecipeItem extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () => model.seeUserInfo(),
-                    child: Text(chefName,
+                    child: Text(dish.name,
                         style: GoogleFonts.poppins(
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
@@ -67,7 +58,7 @@ class RecipeItem extends StatelessWidget {
               height: 248,
               width: MediaQuery.of(context).size.width,
               child: Carousel(
-                images: foodImage.map((e) => AssetImage(e)).toList(),
+                images: dish.dishImages.map((e) => AssetImage(e)).toList(),
                 dotSize: 6.0,
                 dotIncreaseSize: 1.5,
                 dotSpacing: 20.0,
@@ -76,6 +67,7 @@ class RecipeItem extends StatelessWidget {
                 autoplay: false,
                 indicatorBgPadding: 5.0,
                 dotVerticalPadding: 20,
+                defaultImage: AssetImage('assets/images/icook_logo.png'),
                 dotBgColor: Colors.transparent,
               ),
             ),
@@ -92,7 +84,7 @@ class RecipeItem extends StatelessWidget {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.only(left: 0, top: 11.5),
-                        child: InkWell(
+                        child: GestureDetector(
                             onTap: () => model.click(),
                             child: model.isLiked
                                 ? Icon(
@@ -107,23 +99,16 @@ class RecipeItem extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 19, top: 15),
-                        child: InkWell(
-                          radius: 50,
-                          onTap: () {},
-                          child: Image(
-                            image:
-                                AssetImage("assets/images/message-circle.png"),
-                            width: 24,
-                            height: 24,
-                          ),
-                        ),
+                        child: GestureDetector(
+                            onTap: () {},
+                            child: ImageIcon(AssetImage(
+                                'assets/images/message-circle.png'))),
                       ),
                     ],
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 20, top: 11.5),
-                    child: InkWell(
-                      radius: 30,
+                    child: GestureDetector(
                       onTap: () {},
                       child: Image(
                         image: AssetImage("assets/images/share.png"),
@@ -141,7 +126,7 @@ class RecipeItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text(
-                "$likes likes",
+                "${dish.likesCount} likes",
                 style: GoogleFonts.poppins(
                     fontSize: 20,
                     fontStyle: FontStyle.normal,
@@ -154,9 +139,9 @@ class RecipeItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: GestureDetector(
-                onTap: () => model.seeDetails(),
+                onTap: () => model.seeDetails(dish),
                 child: Text(
-                  foodName,
+                  dish.name,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.poppins(
@@ -169,9 +154,9 @@ class RecipeItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: GestureDetector(
-                onTap: () => model.seeDetails(),
+                onTap: () => model.seeDetails(dish),
                 child: Text(
-                  foodDescription,
+                  dish.healthBenefits.toString(),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.poppins(

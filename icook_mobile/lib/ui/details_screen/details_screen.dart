@@ -3,14 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:icook_mobile/models/response/Dish/getmydishes.dart';
 import 'package:icook_mobile/ui/profile_screen/constant.dart';
 
 class DetailsScreen extends StatelessWidget {
-  final foodImage = <String>{
-    "assets/images/amala.jpeg",
-    "assets/images/recipes.png",
-    "assets/images/vegetable.jpg"
-  };
+  final Dishe dish;
+
+  const DetailsScreen({Key key, this.dish}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context,
@@ -19,7 +18,7 @@ class DetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Boiled Rice and Chicken',
+          dish.name,
           style: GoogleFonts.poppins(
               textStyle: TextStyle(fontSize: 21), fontWeight: FontWeight.w600),
         ),
@@ -34,20 +33,17 @@ class DetailsScreen extends StatelessWidget {
                   Row(
                     children: [
                       SizedBox(width: kSpacingUnit.w * 1),
-                      Container(
-                        height: ScreenUtil().setSp(kSpacingUnit.w * 5),
-                        width: ScreenUtil().setSp(kSpacingUnit.w * 5),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color(0xff578DDE),
-                          image: DecorationImage(
-                              image: AssetImage('assets/images/avatar.png'),
-                              fit: BoxFit.contain),
+                      GestureDetector(
+                        onTap: () {},
+                        child: CircleAvatar(
+                          backgroundImage:
+                              AssetImage('assets/images/chefavatar1.png'),
+                          radius: 25,
                         ),
                       ),
                       SizedBox(width: kSpacingUnit.w * 1.5),
                       Text(
-                        'Mary Stella',
+                        dish.name,
                         style: GoogleFonts.poppins(
                             textStyle: TextStyle(fontSize: 19),
                             fontWeight: FontWeight.w500),
@@ -59,7 +55,8 @@ class DetailsScreen extends StatelessWidget {
                     height: 248,
                     width: MediaQuery.of(context).size.width,
                     child: Carousel(
-                      images: foodImage.map((e) => AssetImage(e)).toList(),
+                      images:
+                          dish.dishImages.map((e) => AssetImage(e)).toList(),
                       dotSize: 6.0,
                       dotIncreaseSize: 1.5,
                       dotSpacing: 20.0,
@@ -88,7 +85,7 @@ class DetailsScreen extends StatelessWidget {
                                   const EdgeInsets.only(left: 0, top: 11.5),
                               child: InkWell(
                                   onTap: () {},
-                                  child: true
+                                  child: dish.isLiked
                                       ? Icon(
                                           Icons.favorite,
                                           color: Colors.red,
@@ -134,7 +131,7 @@ class DetailsScreen extends StatelessWidget {
                     children: [
                       SizedBox(width: kSpacingUnit.w * 1.5),
                       Text(
-                        '4 likes',
+                        '${dish.likesCount} likes',
                         style: GoogleFonts.poppins(
                             textStyle: TextStyle(fontSize: 21),
                             fontWeight: FontWeight.w600),
@@ -181,52 +178,12 @@ class DetailsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      TextSpans(
-                        text: '3 Cups',
-                        spanText: ' of flour',
-                      ),
-                      TextSpans(
-                        text: '1 teaspoon',
-                        spanText: ' of salt',
-                      ),
-                      TextSpans(
-                        text: '5 teaspoon',
-                        spanText: ' of baking powder',
-                      ),
-                      TextSpans(
-                        text: '1 teaspoon',
-                        spanText: ' of cinnamon - powdered',
-                      ),
-                      TextSpans(
-                        text: '1 teaspoon',
-                        spanText: ' of nutmeg - powdered',
-                      ),
-                      TextSpans(
-                        text: '2 Tablespoon',
-                        spanText: ' of butter',
-                      ),
-                      TextSpans(
-                        text: '3 Cups',
-                        spanText: ' of sugar',
-                      ),
-                      TextSpans(
-                        text: '2 eggs',
-                        spanText: ' - beaten well',
-                      ),
-                      TextSpans(
-                        text: '3 Cups',
-                        spanText: ' of milk',
-                      ),
-                      TextSpans(
-                        text: '',
-                        spanText: 'Oil to deep fry',
-                      ),
-                    ],
-                  ),
+                  ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: dish.ingredients.length,
+                      itemBuilder: (context, index) =>
+                          Text(dish.ingredients[index])),
                   SizedBox(height: kSpacingUnit.w * 2),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -251,52 +208,14 @@ class DetailsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      PreparationSpan(
-                        number: '1',
-                        numberSpan:
-                            'Sift flour with salt, baking powder, cinnamon and'
-                            ' nutmeg and keep aside.',
-                      ),
-                      PreparationSpan(
-                        number: '2',
-                        numberSpan:
-                            'Cream butter and sugar. Add eggs and beat well.',
-                      ),
-                      PreparationSpan(
-                        number: '3',
-                        numberSpan:
-                            'Add milk and flour and mix into a dough like consistency.',
-                      ),
-                      PreparationSpan(
-                        number: '4',
-                        numberSpan: 'Roll the dough on a lightly floured '
-                            'surface to 1 inch thickness.',
-                      ),
-                      PreparationSpan(
-                        number: '5',
-                        numberSpan:
-                            'Cut with floured doughnut cutter and let stand for 15 minutes.',
-                      ),
-                      PreparationSpan(
-                        number: '6',
-                        numberSpan:
-                            'Heat oil and add the doughnuts to it over high heat.',
-                      ),
-                      PreparationSpan(
-                        number: '7',
-                        numberSpan:
-                            'Turn immediately and lower heat to medium and fry till brown.',
-                      ),
-                      PreparationSpan(
-                        number: '8',
-                        numberSpan: 'Drain on absorbent paper and serve.',
-                      ),
-                    ],
-                  ),
+                  ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: dish.recipe.length,
+                      itemBuilder: (context, index) => PreparationSpan(
+                            number: '${index + 1}',
+                            numberSpan: dish.recipe[index],
+                          )),
                   SizedBox(height: kSpacingUnit.w * 2),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -324,29 +243,8 @@ class DetailsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      HealthBenefits(
-                        healthText:
-                            'They are highly beneficial for your mental well being.',
-                      ),
-                      HealthBenefits(
-                        healthText: 'Some researchers say that the donut and '
-                            'coffee combo could help enhance your memory',
-                      ),
-                      HealthBenefits(
-                        healthText: 'Not only are they fried, but full of '
-                            'sugar. Sugar gives you energy',
-                      ),
-                      HealthBenefits(
-                        healthText: 'Source of Calcium.',
-                      ),
-                      HealthBenefits(
-                        healthText: 'Source of Iron.',
-                      ),
-                    ],
+                  HealthBenefits(
+                    healthText: dish.healthBenefits[0],
                   ),
                   SizedBox(height: kSpacingUnit.w * 4),
                   Row(

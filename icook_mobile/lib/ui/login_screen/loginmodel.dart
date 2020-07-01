@@ -48,4 +48,15 @@ class LoginModel extends BaseNotifier with Validators {
   void signUp() {
     navigation.pushNamedAndRemoveUntil(ViewRoutes.signup);
   }
+
+  void forgotPassword() {
+    navigation.navigateTo(ViewRoutes.forogotpassword);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    node.dispose();
+  }
 }
