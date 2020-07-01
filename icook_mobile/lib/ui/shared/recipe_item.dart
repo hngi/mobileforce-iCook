@@ -14,7 +14,7 @@ class RecipeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<RecipeItemModel>.reactive(
       viewModelBuilder: () => RecipeItemModel(),
-      onModelReady: (model) => model.init(),
+      onModelReady: (model) => model.setData(dish),
       builder: (context, model, child) => Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: Column(
@@ -24,30 +24,41 @@ class RecipeItem extends StatelessWidget {
             Divider(),
             SizedBox(height: 10),
             Padding(
-              padding: const EdgeInsets.only(left: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  GestureDetector(
-                    onTap: () => model.seeUserInfo(),
-                    child: CircleAvatar(
-                      backgroundImage:
-                          AssetImage('assets/images/chefavatar1.png'),
-                      radius: 25,
+                  Expanded(
+                    child: Row(
+                      children: <Widget>[
+                        GestureDetector(
+                          onTap: () => model.seeUserInfo(),
+                          child: CircleAvatar(
+                            backgroundImage:
+                                AssetImage('assets/images/chefavatar1.png'),
+                            radius: 25,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 12,
+                        ),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () => model.seeUserInfo(),
+                            child: Text(dish.name,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                )),
+                          ),
+                        )
+                      ],
                     ),
                   ),
-                  SizedBox(
-                    width: 12,
-                  ),
-                  GestureDetector(
-                    onTap: () => model.seeUserInfo(),
-                    child: Text(dish.name,
-                        style: GoogleFonts.poppins(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                        )),
-                  )
+                  Text(model.time),
                 ],
               ),
             ),
