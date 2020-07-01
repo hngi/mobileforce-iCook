@@ -65,6 +65,7 @@ class DetailsScreen extends StatelessWidget {
                       autoplay: false,
                       indicatorBgPadding: 5.0,
                       dotVerticalPadding: 20,
+                      defaultImage: AssetImage('assets/images/icook_logo.png'),
                       dotBgColor: Colors.transparent,
                     ),
                   ),

@@ -26,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
       viewModelBuilder: () => HomeScreenModel(),
       onModelReady: (model) => model.init(),
       builder: (context, model, child) => Scaffold(
+        key: model.scaffoldKey,
         body: SafeArea(
           child: SingleChildScrollView(
             controller: controller,
@@ -37,8 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ListTile(
                     leading: Container(
                         width: 60,
-                        height: 90,
+                        height: 60,
                         decoration: new BoxDecoration(
+                            color: Theme.of(context).primaryColor,
                             shape: BoxShape.circle,
                             image: new DecorationImage(
                                 fit: BoxFit.cover,
@@ -80,8 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       shrinkWrap: true,
                       itemCount: 6,
                       itemBuilder: (context, index) => Shimmer.fromColors(
-                            direction: ShimmerDirection.rtl,
-                            period: Duration(seconds: 6),
+                            direction: ShimmerDirection.ltr,
+                            period: Duration(seconds: 2),
                             baseColor: Colors.grey[400],
                             highlightColor: Colors.white,
                             child: RecipeItemShim(
@@ -103,39 +105,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   dataFetchedWidget: ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    itemCount: 6,
-                    itemBuilder: (context, index) => RecipeItem(
-                      dish: Dishe(
-                          name: 'Garri',
-                          likesCount: 76,
-                          isLiked: false,
-                          recipe: [
-                            'cook and boil',
-                            'bless the meal',
-                            'cook and boil',
-                            'cook and boil',
-                            'cook and boil',
-                            'cook and boil',
-                            'cook and boil',
-                          ],
-                          dishImages: [
-                            'assets/images/amala.jpeg',
-                            'assets/images/fufu.jpeg'
-                          ],
-                          ingredients: [
-                            '1 spoon of garri',
-                            '2 basins of sugar',
-                            '2 basins of sugar',
-                            '2 basins of sugar',
-                            '2 basins of sugar',
-                            '2 basins of sugar',
-                            '2 basins of sugar',
-                            '2 basins of sugar',
-                          ],
-                          healthBenefits: [
-                            'Good for overcoming Athrirtis'
-                          ]),
-                    ),
+                    itemCount: model.list.length,
+                    itemBuilder: (context, index) =>
+                        RecipeItem(dish: model.list[index]),
                   ),
                 ),
               ],

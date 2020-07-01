@@ -17,7 +17,7 @@ class HomeScreenModel extends BaseNotifier {
 
   String get username => key.name;
 
-  List<Dishe> _list;
+  List<Dishe> _list = [];
 
   List<Dishe> get list => _list;
 
@@ -52,6 +52,7 @@ class HomeScreenModel extends BaseNotifier {
 
   ///on initState
   Future<void> init() async {
+    setState(ViewState.Busy);
     await loadData();
   }
 }
