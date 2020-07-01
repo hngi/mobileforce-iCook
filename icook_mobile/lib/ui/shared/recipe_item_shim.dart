@@ -26,122 +26,113 @@ class RecipeItemShim extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<RecipeItemModel>.reactive(
-      viewModelBuilder: () => RecipeItemModel(),
-      onModelReady: (model) => model.init(),
-      builder: (context, model, child) => Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: index != -1
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Divider(),
-                  SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        GestureDetector(
-                          child: CircleAvatar(
-                            backgroundImage: AssetImage(chefImage),
-                            radius: 25,
-                          ),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: index != -1
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Divider(),
+                SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      GestureDetector(
+                        child: CircleAvatar(
+                          backgroundImage: AssetImage(chefImage),
+                          radius: 25,
                         ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        GestureDetector(
-
-                      child: Container(
-                        height: 15, width: 150.0,
+                      ),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      GestureDetector(
+                          child: Container(
+                        height: 15,
+                        width: 150.0,
                         color: Colors.black,
-                      )
-                    
-                  
-                        )
-                      ],
-                    ),
+                      ))
+                    ],
                   ),
-                  SizedBox(
-                    height: 17,
+                ),
+                SizedBox(
+                  height: 17,
+                ),
+                Container(
+                  height: 248,
+                  width: MediaQuery.of(context).size.width,
+                  child: Carousel(
+                    images: foodImage.map((e) => AssetImage(e)).toList(),
+                    dotSize: 6.0,
+                    dotIncreaseSize: 1.5,
+                    dotSpacing: 20.0,
+                    dotColor: Colors.white,
+                    dotIncreasedColor: Colors.blue,
+                    autoplay: false,
+                    indicatorBgPadding: 5.0,
+                    dotVerticalPadding: 20,
+                    dotBgColor: Colors.transparent,
                   ),
-                  Container(
-                    height: 248,
-                    width: MediaQuery.of(context).size.width,
-                    child: Carousel(
-                      images: foodImage.map((e) => AssetImage(e)).toList(),
-                      dotSize: 6.0,
-                      dotIncreaseSize: 1.5,
-                      dotSpacing: 20.0,
-                      dotColor: Colors.white,
-                      dotIncreasedColor: Colors.blue,
-                      autoplay: false,
-                      indicatorBgPadding: 5.0,
-                      dotVerticalPadding: 20,
-                      dotBgColor: Colors.transparent,
-                    ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text(
+                    "",
+                    style: GoogleFonts.poppins(
+                        fontSize: 20,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w600),
                   ),
-                  
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Text(
-                      "",
-                      style: GoogleFonts.poppins(
-                          fontSize: 20,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: GestureDetector(
-                      
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: GestureDetector(
                       child: Container(
-                        height: 8, width: 150.0,
-                        color: Colors.black,
-                      )
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: GestureDetector(
-                      
+                    height: 8,
+                    width: 150.0,
+                    color: Colors.black,
+                  )),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: GestureDetector(
                       child: Container(
-                        height: 8, width: 300.0,
-                        color: Colors.black,
-                      )
-                    ),
-                  ),
-                  SizedBox(height: 4,),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: GestureDetector(
-                      
+                    height: 8,
+                    width: 300.0,
+                    color: Colors.black,
+                  )),
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: GestureDetector(
                       child: Container(
-                        height: 8, width: 300.0,
-                        color: Colors.black,
-                      )
-                    ),
-                  )
-                ],
-              )
-            : Expanded(
-                child: Container(
-                color: Colors.grey,
-              )),
-      ),
+                    height: 8,
+                    width: 300.0,
+                    color: Colors.black,
+                  )),
+                )
+              ],
+            )
+          : Expanded(
+              child: Container(
+              color: Colors.grey,
+            )),
     );
   }
 }

@@ -245,6 +245,7 @@ class SignUpScreen extends StatelessWidget {
                           ),
                           idleWidget: Center(
                               child: SubmitButton(
+                            buttonColor: Constants.kbuttonColor1,
                             title: 'Sign Up',
                             onPressed: () {
                               model.signUp();

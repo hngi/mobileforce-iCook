@@ -14,4 +14,6 @@ abstract class KeyStorageService {
   String email;
 
   String id;
+
+  Future<void> clear();
 }

@@ -25,7 +25,7 @@ class SubmitButton extends StatelessWidget {
       width: 335,
       child: FlatButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        color: Constants.kbuttonColor1,
+        color: buttonColor,
         textColor: textColor,
         disabledColor: Constants.kbuttonColor2,
         onPressed: isEnabled ? onPressed : null,

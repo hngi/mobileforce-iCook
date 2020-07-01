@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:icook_mobile/ui/profile_screen/constant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icook_mobile/ui/shared/sumbitButton.dart';
+import 'package:icook_mobile/ui/ui_helper.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   //forgot_password_icon
@@ -90,6 +91,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                       ),
                       Center(
                         child: SubmitButton(
+                          buttonColor: Constants.kbuttonColor1,
                           title: "Reset",
                           onPressed: () {},
                           isEnabled: true,

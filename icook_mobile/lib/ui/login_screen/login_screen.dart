@@ -150,6 +150,7 @@ class LoginScreen extends StatelessWidget {
                                 ),
                                 idleWidget: Center(
                                     child: SubmitButton(
+                                      buttonColor: Constants.kbuttonColor1,
                                   title: 'Log in',
                                   onPressed: () {
                                     model.login();
@@ -220,9 +221,12 @@ class LoginScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(width: 20),
-                              Image.asset(
-                                'assets/images/facebook.png',
-                                scale: 4.4,
+                              GestureDetector(
+                                onTap: () => model.loginwithfacebook(),
+                                child: Image.asset(
+                                  'assets/images/facebook.png',
+                                  scale: 4.4,
+                                ),
                               ),
                             ],
                           ),

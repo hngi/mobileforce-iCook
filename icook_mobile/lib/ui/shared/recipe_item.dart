@@ -96,7 +96,7 @@ class RecipeItem extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 0, top: 11.5),
                         child: GestureDetector(
-                            onTap: () => model.click(),
+                            onTap: () => model.like(),
                             child: model.isLiked
                                 ? Icon(
                                     Icons.favorite,
@@ -119,14 +119,8 @@ class RecipeItem extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 20, top: 11.5),
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: Image(
-                        image: AssetImage("assets/images/share.png"),
-                        width: 24,
-                        height: 24,
-                      ),
-                    ),
+                    child:
+                        GestureDetector(onTap: () {}, child: Icon(Icons.menu)),
                   ),
                 ],
               ),
@@ -137,7 +131,7 @@ class RecipeItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text(
-                "${dish.likesCount} likes",
+                "${model.likes} likes",
                 style: GoogleFonts.poppins(
                     fontSize: 20,
                     fontStyle: FontStyle.normal,
