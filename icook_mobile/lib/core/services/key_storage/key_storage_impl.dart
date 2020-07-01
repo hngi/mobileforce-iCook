@@ -6,9 +6,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 class KeyStorageServiceImpl implements KeyStorageService {
   static const notifications_key = 'notifications_key';
   static const first_time = 'first_time';
-  static const api_key = 'api_key';
+  static const _token = 'token';
   static const theme = 'theme';
   static const logged = 'logged';
+  static const username = 'name';
+  static const useremail = 'email';
+  static const userid = 'id';
 
   static KeyStorageServiceImpl _instance;
   static SharedPreferences _preferences;
@@ -63,11 +66,11 @@ class KeyStorageServiceImpl implements KeyStorageService {
   }
 
   @override
-  String get apiKey => _getFromDisk(api_key) ?? "";
+  String get token => _getFromDisk(_token) ?? "";
 
   @override
-  set apiKey(String _apiKey) {
-    _saveToDisk(api_key, _apiKey);
+  set token(String token) {
+    _saveToDisk(_token, token);
   }
 
   @override
@@ -86,5 +89,32 @@ class KeyStorageServiceImpl implements KeyStorageService {
   set isLoggedIn(bool _isLoggedIn) {
     print('Login State $_isLoggedIn');
     _saveToDisk(logged, _isLoggedIn);
+  }
+
+  @override
+  String get email => _getFromDisk(useremail) ?? "";
+
+  @override
+  String get id => _getFromDisk(userid) ?? "";
+
+  @override
+  String get name => _getFromDisk(username) ?? "";
+
+  @override
+  set email(String _email) {
+    print('useremail $_email');
+    _saveToDisk(useremail, _email);
+  }
+
+  @override
+  set id(String _id) {
+    print('userid $_id');
+    _saveToDisk(userid, _id);
+  }
+
+  @override
+  set name(String _name) {
+    print('username $_name');
+    _saveToDisk(username, _name);
   }
 }
