@@ -12,4 +12,5 @@ class ViewRoutes {
   static const settings = 'settings';
   static const login = 'login';
   static const signup = 'signup';
+  static const forogotpassword = 'forgotpassword';
 }

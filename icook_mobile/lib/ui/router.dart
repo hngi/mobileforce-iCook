@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icook_mobile/core/constants/view_routes.dart';
 import 'package:icook_mobile/core/constants/view_state.dart';
+import 'package:icook_mobile/models/response/Dish/getmydishes.dart';
 import 'package:icook_mobile/ui/Onboarding_screens/Onboarding_screens.dart';
 import 'package:icook_mobile/ui/details_screen/details_screen.dart';
 import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
+import 'package:icook_mobile/ui/forgot_password_screen/forgot_password_screen.dart';
 import 'package:icook_mobile/ui/home_page/home_page.dart';
 import 'package:icook_mobile/ui/login_screen/login_screen.dart';
 import 'package:icook_mobile/ui/other_users/other_users.dart';
@@ -40,7 +42,8 @@ class Router {
         return OnboardingScreen();
 
       case ViewRoutes.recipe_details:
-        return DetailsScreen();
+      final dish = settings.arguments as Dishe;
+        return DetailsScreen(dish: dish);
       case ViewRoutes.userprofile:
         return OtherUserInfoScreen();
 
@@ -49,9 +52,12 @@ class Router {
 
       case ViewRoutes.login:
         return LoginScreen();
-      
+
       case ViewRoutes.signup:
         return SignUpScreen();
+
+      case ViewRoutes.forogotpassword:
+        return ForgotPasswordScreen();
 
       default:
         return Scaffold(

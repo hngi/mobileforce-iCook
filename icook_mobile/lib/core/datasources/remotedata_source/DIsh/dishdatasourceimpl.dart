@@ -82,7 +82,7 @@ class DishDataSourceImpl extends DishDataSource {
   }
 
   @override
-  Future<GetMyDishesResponse> getDishes(String after) async {
+  Future<GetMyDishesResponse> getDishes({String after}) async {
     String token = key.token ?? "";
     final headers = <String, String>{
       "Accept": "application/json",

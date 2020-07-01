@@ -22,7 +22,7 @@ class SubmitButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 40,
-      width: 250,
+      width: 335,
       child: FlatButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         color: Constants.kbuttonColor1,
