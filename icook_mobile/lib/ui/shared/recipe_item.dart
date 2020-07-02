@@ -119,8 +119,24 @@ class RecipeItem extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 20, top: 11.5),
-                    child:
-                        GestureDetector(onTap: () {}, child: Icon(Icons.menu)),
+                    child: PopupMenuButton<PopUpType>(
+                      onSelected: (PopUpType result) {
+                        if (result == PopUpType.favourite) {
+                          model.favourite();
+                        }
+                      },
+                      itemBuilder: (BuildContext context) =>
+                          <PopupMenuEntry<PopUpType>>[
+                        const PopupMenuItem<PopUpType>(
+                          value: PopUpType.favourite,
+                          child: Text('Add to Favourites'),
+                        ),
+                        const PopupMenuItem<PopUpType>(
+                          value: PopUpType.share,
+                          child: Text('Share'),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -128,52 +144,66 @@ class RecipeItem extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: Text(
-                "${model.likes} likes",
-                style: GoogleFonts.poppins(
-                    fontSize: 20,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w600),
+            InkWell(
+              onTap: () => model.seeDetails(dish),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text(
+                      "${model.likes} likes",
+                      style: GoogleFonts.poppins(
+                          fontSize: 20,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: GestureDetector(
+                      onTap: () => model.seeDetails(dish),
+                      child: Text(
+                        dish.name,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.poppins(
+                            fontSize: 20,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: GestureDetector(
+                      onTap: () => model.seeDetails(dish),
+                      child: Text(
+                        dish.healthBenefits[0],
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.poppins(
+                            color: Color(0xFF828282),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: GestureDetector(
-                onTap: () => model.seeDetails(dish),
-                child: Text(
-                  dish.name,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.poppins(
-                      fontSize: 20,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: GestureDetector(
-                onTap: () => model.seeDetails(dish),
-                child: Text(
-                  dish.healthBenefits.toString(),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.poppins(
-                      color: Color(0xFF828282),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500),
-                ),
-              ),
-            )
           ],
         ),
       ),
     );
   }
 }
+
+// This is the type used by the popup menu below.
+enum PopUpType { favourite, share }
+
+// This menu button widget updates a _selection field (of type PopUpType,
+// not shown here).

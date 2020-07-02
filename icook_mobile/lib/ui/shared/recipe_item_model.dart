@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasource.dart';
 import 'package:icook_mobile/models/response/Dish/getmydishes.dart';
 import 'package:icook_mobile/ui/base_view_model.dart';
@@ -42,18 +43,21 @@ class RecipeItemModel extends BaseNotifier {
     try {
       var result = await datasource.toggleLikeDish(data.id);
       print(result);
-      snack.showSnackbar(
-          barBlur: 50,
-          title: 'icook_bot',
-          message: 'Liked Successfully',
-          iconData: Icons.person);
+      showSnack('Liked successfully');
     } catch (e) {
       print('dish model exception $e');
-      snack.showSnackbar(
-          barBlur: 50,
-          title: 'icook_bot',
-          message: '$e',
-          iconData: Icons.person);
+      showSnack(e.toString());
+    }
+  }
+
+  Future<void> favourite() async {
+    try {
+      var result = await datasource.toggleFavouriteDish(data.id);
+      print(result);
+      showSnack('Added Successfully');
+    } catch (e) {
+      print('dish model exception $e');
+      showSnack(e.toString());
     }
   }
 
@@ -63,5 +67,14 @@ class RecipeItemModel extends BaseNotifier {
 
   void seeUserInfo() {
     navigation.navigateTo(ViewRoutes.userprofile);
+  }
+
+  void showSnack(String message) {
+    snack.showCustomSnackBar(
+        message: message,
+        title: 'iCook_bot',
+        instantInit: true,
+        duration: Duration(seconds: 2),
+        snackPosition: SnackPosition.BOTTOM);
   }
 }
