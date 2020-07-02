@@ -4,6 +4,7 @@ import 'package:icook_mobile/core/services/Api/ApiService.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/locator.dart';
 import 'package:icook_mobile/models/requests/Dish/postdish.dart';
+import 'package:icook_mobile/models/response/Dish/dishresponse.dart';
 
 class DishDataSourceImpl extends DishDataSource {
   final key = locator<KeyStorageService>();
@@ -72,7 +73,7 @@ class DishDataSourceImpl extends DishDataSource {
   }
 
   @override
-  Future<dynamic> getDishes({String after}) async {
+  Future<DishResponse> getDishes({String after}) async {
     String token = key.token ?? "";
     final headers = <String, String>{
       "Accept": "application/json",
@@ -84,8 +85,10 @@ class DishDataSourceImpl extends DishDataSource {
     try {
       final response = await api.gett(route, headers);
       print('get dishes response $response');
+      DishResponse respons = DishResponse.fromJson(response);
+      print("edited   $respons");
 
-      return response;
+      return respons;
     } catch (e) {
       print('exception $e');
       throw (e);

@@ -5,6 +5,7 @@ import 'package:icook_mobile/ui/create_recipe_screen/createdishmodel.dart';
 import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:stacked/stacked.dart';
 
 import '../profile_screen/constant.dart';
@@ -254,7 +255,7 @@ class CreateRecipeScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 30),
                       Text(
-                        '      Add Images',
+                        'Add Images',
                         style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                               color: Color(0xff578DDE),
@@ -265,12 +266,13 @@ class CreateRecipeScreen extends StatelessWidget {
                       SizedBox(height: 13),
                       Container(
                         child: Wrap(
-                          children: <Widget>[
-                            _recentdish('assets/images/3.png'),
-                            _recentdish('assets/images/upload_image.png'),
-                          ],
+                          children: model.images
+                              .map((e) =>
+                                  AssetThumb(asset: e, width: 200, height: 200))
+                              .toList(),
                         ),
                       ),
+                      _recentdish('assets/images/upload_image.png'),
                       Container(
                         margin: EdgeInsets.only(left: 26, right: 38, top: 20),
                         child: Material(

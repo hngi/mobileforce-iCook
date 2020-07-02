@@ -1,9 +1,10 @@
 import 'package:icook_mobile/models/requests/Dish/postdish.dart';
+import 'package:icook_mobile/models/response/Dish/dishresponse.dart';
 
 abstract class DishDataSource {
   Future<dynamic> postADish(PostDIshBody body);
 
-Future<dynamic> getDishes({String after});
+Future<DishResponse> getDishes({String after});
 
   Future<dynamic> getDishById(String id);
 

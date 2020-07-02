@@ -30,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: SafeArea(
           child: EasyRefresh(
             onRefresh: () => model.init(),
+            controller: model.easycontroller,
             child: SingleChildScrollView(
               controller: controller,
               child: Column(

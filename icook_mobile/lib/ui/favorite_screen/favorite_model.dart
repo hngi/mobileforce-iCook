@@ -23,7 +23,7 @@ class FavoriteScreenModel extends BaseNotifier {
 
   Future<void> loadData() async {
     try {
-      var result = await data.myFavouriteDishes();
+      var result = await data.myFavouriteDishes() as DishResponse;
       _dishList = result.data.dishes;
       _checkIfAvailableData();
 
