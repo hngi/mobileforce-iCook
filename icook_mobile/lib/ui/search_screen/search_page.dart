@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:icook_mobile/core/constants/view_routes.dart';
 import 'package:icook_mobile/models/response/Dish/dishitem.dart';
 import 'package:icook_mobile/models/response/Search/searchdish.dart';
 import 'package:icook_mobile/ui/search_screen/searchmodel.dart';
@@ -181,104 +182,110 @@ class SearchResult extends StatelessWidget {
     DateTime time = DateTime.parse(recipe.createdAt);
     var date = timeago.format(time);
 
-    return Container(
-      margin: EdgeInsets.only(bottom: 10, left: 20, right: 20),
-      width: 335,
-      height: 128,
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, ViewRoutes.recipe_details,
+            arguments: recipe);
+      },
+      child: Container(
+        margin: EdgeInsets.only(bottom: 10, left: 20, right: 20),
+        width: 335,
+        height: 128,
 //      margin: EdgeInsets.only(bottom: 10.0),
-      child: Row(
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 17),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10.0),
-              child: Image.asset(
-                'assets/images/icook_logo.png',
-                width: 117,
-                height: 115,
-                fit: BoxFit.fill,
+        child: Row(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 17),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image.asset(
+                  'assets/images/icook_logo.png',
+                  width: 117,
+                  height: 115,
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: Container(
-              margin: EdgeInsets.only(left: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    recipe.name,
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                        color: Color(0xFF333333),
-                        fontSize: 18,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal),
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
-                    child: Text(
-                      recipe.healthBenefits[0],
-                      maxLines: 4,
-                      softWrap: true,
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(left: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      recipe.name,
                       overflow: TextOverflow.clip,
+                      style: TextStyle(
+                          color: Color(0xFF333333),
+                          fontSize: 18,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal),
                     ),
-                  ),
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          child: Row(
-                            children: <Widget>[
-                              InkWell(
-                                  onTap: () {
+                    Container(
+                      margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
+                      child: Text(
+                        recipe.healthBenefits[0],
+                        maxLines: 4,
+                        softWrap: true,
+                        overflow: TextOverflow.clip,
+                      ),
+                    ),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                            child: Row(
+                              children: <Widget>[
+                                InkWell(
+                                    onTap: () {
 //
-                                  },
-                                  child: recipe.likesCount > 0
-                                      ? Icon(
-                                          Icons.favorite,
-                                          size: 18,
-                                          color: Colors.red,
-                                        )
-                                      : Icon(
-                                          Icons.favorite_border,
-                                          size: 18,
-                                        )),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                recipe.likesCount.toString(),
-                                style: TextStyle(
-                                    color: Color(0xFF333333),
-                                    fontSize: 12,
-                                    fontFamily: "Poppings",
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w500),
-                              )
-                            ],
+                                    },
+                                    child: recipe.likesCount > 0
+                                        ? Icon(
+                                            Icons.favorite,
+                                            size: 18,
+                                            color: Colors.red,
+                                          )
+                                        : Icon(
+                                            Icons.favorite_border,
+                                            size: 18,
+                                          )),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  recipe.likesCount.toString(),
+                                  style: TextStyle(
+                                      color: Color(0xFF333333),
+                                      fontSize: 12,
+                                      fontFamily: "Poppings",
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        Text(
-                          date,
-                          style: TextStyle(
-                              color: Color(0xFF828282),
-                              fontSize: 12,
-                              fontFamily: "Poppings",
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w500),
-                        )
-                      ],
-                    ),
-                  )
-                ],
+                          Text(
+                            date,
+                            style: TextStyle(
+                                color: Color(0xFF828282),
+                                fontSize: 12,
+                                fontFamily: "Poppings",
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w500),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
