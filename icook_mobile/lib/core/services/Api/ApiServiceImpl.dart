@@ -143,7 +143,7 @@ class ApiServiceImpl implements ApiService {
     return responseJson;
   }
 
-  Future<dynamic> put(String url, dynamic header, {dynamic body}) async {
+  Future<dynamic> put(dynamic url, dynamic header, {dynamic body}) async {
     print('Api Put, url $url');
     var responseJson;
     if (body != null) {

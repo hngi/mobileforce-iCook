@@ -32,8 +32,9 @@ class ApiRoutes {
   static const postdish = '$baseUrl/dishes';
   static const getmydishes = '$baseUrl/dishes';
   static const dish = '$baseUrl/dishes';
-  static const tooglefavouritedish = '$baseUrl/dishes/toggle_favourite';
-  static const tooglelikedish = '$baseUrl/dishes/toogle_like';
+  static const tooglefavouritedish = 'floating-plains-18946.herokuapp.com';
+  static const tooglelikedish =
+      'floating-plains-18946.herokuapp.com';
 
   ///Search
   static const searchuser = '$baseUrl/search?type=person&name=';

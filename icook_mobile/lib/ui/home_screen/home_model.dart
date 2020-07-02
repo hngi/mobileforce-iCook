@@ -30,6 +30,7 @@ class HomeScreenModel extends BaseNotifier {
     try {
       var result = await data.getDishes();
       print(result);
+      _list.clear();
       _list = result.data.dishes;
       _checkIfAvailableData();
 

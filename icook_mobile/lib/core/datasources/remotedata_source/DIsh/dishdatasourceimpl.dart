@@ -134,9 +134,14 @@ class DishDataSourceImpl extends DishDataSource {
       "Authorization": "$token"
     };
 
-    final route = '${ApiRoutes.dish}/:$id';
+    final queryParams = <String, String>{"id": "$id"};
+    print(queryParams);
+
+    var uri = Uri.https('${ApiRoutes.tooglefavouritedish}',
+        '/api/v1/dishes/toogle_favourite/:id', queryParams);
+    print(uri.toString());
     try {
-      final response = await api.put(route, headers);
+      final response = await api.put(uri, headers);
       print('signin response $response');
       FavouriteDishResponse res = FavouriteDishResponse.fromJson(response);
       print(res);
@@ -156,9 +161,14 @@ class DishDataSourceImpl extends DishDataSource {
       "Authorization": "$token"
     };
 
-    final route = '${ApiRoutes.dish}/:$id';
+    final queryParams = <String, String>{"id": "$id"};
+    print(queryParams);
+
+    var uri = Uri.https('${ApiRoutes.tooglelikedish}',
+        '/api/v1/dishes/toogle_like/:id', queryParams);
+    print(uri.toString());
     try {
-      final response = await api.put(route, headers);
+      final response = await api.put(uri, headers);
       print('signin response $response');
       LikeDIshResponse res = LikeDIshResponse.fromJson(response);
       print(res);
