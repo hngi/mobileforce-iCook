@@ -15,5 +15,5 @@ abstract class UserProfileDataSource {
   Future<UpdateProfileResponse> updateProfile(UpdateProfileRequest request);
 
   ///My favourite Dishes{Get}
-  Future<MyFavouriteDishesResponse> myFavouriteDishes();
+  Future<dynamic> myFavouriteDishes();
 }
