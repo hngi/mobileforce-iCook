@@ -4,7 +4,9 @@ import 'package:icook_mobile/models/response/Dish/getmydishes.dart';
 import 'package:icook_mobile/ui/favorite_screen/favorite_model.dart';
 
 import 'package:icook_mobile/ui/shared/recipe_item.dart';
+import 'package:icook_mobile/ui/shared/recipe_item_shim.dart';
 import 'package:icook_mobile/ui/shared/state_responsive.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:stacked/stacked.dart';
 
 class FavoriteScreen extends StatefulWidget {
@@ -39,11 +41,40 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             ],
           ),
           body: StateResponsive(
+            state: model.state,
+            noDataAvailableWidget: Center(
+              child: Text('No Posts'),
+            ),
+            busyWidget: ListView.builder(
+                shrinkWrap: true,
+                itemCount: 6,
+                itemBuilder: (context, index) => Shimmer.fromColors(
+                      direction: ShimmerDirection.ltr,
+                      period: Duration(seconds: 2),
+                      baseColor: Colors.grey[400],
+                      highlightColor: Colors.white,
+                      child: RecipeItemShim(
+                        chefImage: "assets/images/avatar.png",
+                        chefName: "",
+                        foodName: "",
+                        foodDescription: "",
+                        likes: 0,
+                        foodImage: [
+                          "assets/images/amala.jpeg",
+                          "assets/images/recipes.png",
+                          "assets/images/amala.jpeg"
+                        ],
+                      ),
+                    )),
+            idleWidget: Center(
+              child: Text("No post"),
+            ),
             dataFetchedWidget: ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
               itemCount: model.dishList.length,
-              itemBuilder: (context, index) => RecipeItem(
-                dish: model.dishList[index]
-              ),
+              itemBuilder: (context, index) =>
+                  RecipeItem(dish: model.dishList[index]),
             ),
           )),
     );

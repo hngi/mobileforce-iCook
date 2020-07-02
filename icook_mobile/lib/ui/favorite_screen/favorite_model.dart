@@ -5,8 +5,7 @@ import 'package:icook_mobile/core/constants/view_state.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/UserProfile/userprofiledatasource.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/locator.dart';
-import 'package:icook_mobile/models/response/Dish/favouritedish.dart';
-import 'package:icook_mobile/models/response/UserProfile/myfavouritedish.dart';
+import 'package:icook_mobile/models/response/Dish/getmydishes.dart';
 
 import 'package:icook_mobile/ui/base_view_model.dart';
 import 'package:stacked_services/stacked_services.dart';
