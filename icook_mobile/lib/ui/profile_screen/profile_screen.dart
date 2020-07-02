@@ -43,15 +43,15 @@ class ProfileScreen extends StatelessWidget {
                             image: new DecorationImage(
                                 fit: BoxFit.cover,
                                 image: new AssetImage(
-                                    'assets/images/avatar.png')))),
+                                    'assets/images/chefavatar1.png')))),
                     title: Text(
-                      'Chef Emmanuel',
+                      'Chef ${model.username}',
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(fontSize: 18),
                           fontWeight: FontWeight.w600),
                     ),
                     subtitle: Text(
-                      'Emmanuelchef@gmail.com',
+                      '${model.email}',
                       style: GoogleFonts.poppins(
                           textStyle:
                               TextStyle(color: Colors.blueGrey, fontSize: 14)),
