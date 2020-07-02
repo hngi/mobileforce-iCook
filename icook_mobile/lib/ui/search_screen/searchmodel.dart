@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:icook_mobile/core/constants/view_state.dart';
-import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasource.dart';
-import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
+import 'package:icook_mobile/core/datasources/remotedata_source/Search/searchdatasource.dart';
 import 'package:icook_mobile/models/response/Dish/dishitem.dart';
 import 'package:icook_mobile/ui/base_view_model.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../locator.dart';
 
-class HomeScreenModel extends BaseNotifier {
+class SearchModel extends BaseNotifier {
   final navigation = locator<NavigationService>();
-  final data = locator<DishDataSource>();
-  final key = locator<KeyStorageService>();
+  final data = locator<SearchDataSource>();
 
   String afterKey = "";
-
-  String get username => key.name;
 
   List<Dish> _list = [];
 
@@ -24,14 +20,14 @@ class HomeScreenModel extends BaseNotifier {
   //scaffoldkey
   final scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  Future<void> loadData() async {
+  Future<void> loadData(String name) async {
     setState(ViewState.Busy);
 
     try {
-      var result = await data.getDishes();
+      var result = await data.searchForDish(name);
       print(result);
       _list.clear();
-      _list = result.data.dishes;
+      _list = result.data.result as List<Dish>;
       _checkIfAvailableData();
 
       //show
@@ -39,7 +35,7 @@ class HomeScreenModel extends BaseNotifier {
       scaffoldKey.currentState.showSnackBar(snackbar);
     } catch (e) {
       setState(ViewState.Idle);
-      print('homescreen model exception $e');
+      print('searchscreen model exception $e');
       final snackbar = SnackBar(content: Text(e));
       scaffoldKey.currentState.showSnackBar(snackbar);
     }
@@ -52,8 +48,5 @@ class HomeScreenModel extends BaseNotifier {
   }
 
   ///on initState
-  Future<void> init() async {
-    setState(ViewState.Busy);
-    await loadData();
-  }
+  Future<void> init() async {}
 }

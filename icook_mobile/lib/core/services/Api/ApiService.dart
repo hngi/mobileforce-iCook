@@ -28,7 +28,7 @@ abstract class ApiService {
   /// - throws `NetworkException` if file download fails
   Future<File> downloadFile(String fileUrl);
 
-  Future<dynamic> gett(String url, header);
+  Future<dynamic> gett(dynamic url, header);
   Future<dynamic> post(String url, dynamic header, dynamic body);
   Future<dynamic> put(dynamic url, dynamic header, {dynamic body});
   Future<dynamic> delete(String url, dynamic header);

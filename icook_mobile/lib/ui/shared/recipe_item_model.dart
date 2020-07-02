@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasource.dart';
-import 'package:icook_mobile/models/response/Dish/getmydishes.dart';
+import 'package:icook_mobile/models/response/Dish/dishitem.dart';
+import 'package:icook_mobile/models/response/Dish/dishresponse.dart';
 import 'package:icook_mobile/ui/base_view_model.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:icook_mobile/locator.dart';
@@ -19,15 +20,15 @@ class RecipeItemModel extends BaseNotifier {
   int _likes = 0;
   int get likes => _likes;
 
-  Dishe _data;
-  Dishe get data => _data;
+  Dish _data;
+  Dish get data => _data;
 
   DateTime _dateTime;
   DateTime get dateTime => _dateTime;
 
   String get time => timeago.format(dateTime) ?? "";
 
-  void setData(final Dishe data) {
+  void setData(final Dish data) {
     _data = data;
     _isLiked = data.isLiked;
     _likes = data.likesCount;
@@ -61,7 +62,7 @@ class RecipeItemModel extends BaseNotifier {
     }
   }
 
-  void seeDetails(Dishe dishe) {
+  void seeDetails(Dish dishe) {
     navigation.navigateTo(ViewRoutes.recipe_details, arguments: dishe);
   }
 

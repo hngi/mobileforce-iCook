@@ -78,7 +78,7 @@ class SignUpModel extends BaseNotifier with Validators {
       print(user);
       setState(ViewState.Idle);
 
-      key.name = user.data?.userName;
+      key.name = user.data?.name;
       key.email = user.data?.email;
       key.token = user.data?.token;
       key.id = user.data?.userID;

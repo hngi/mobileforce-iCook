@@ -3,11 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:icook_mobile/models/response/Dish/getmydishes.dart';
+import 'package:icook_mobile/models/response/Dish/dishitem.dart';
 import 'package:icook_mobile/ui/profile_screen/constant.dart';
 
 class DetailsScreen extends StatelessWidget {
-  final Dishe dish;
+  final Dish dish;
 
   const DetailsScreen({Key key, this.dish}) : super(key: key);
   @override
@@ -184,7 +184,7 @@ class DetailsScreen extends StatelessWidget {
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: dish.ingredients.length,
                       itemBuilder: (context, index) =>
-                          Text(dish.ingredients[index])),
+                          TextSpans(text: dish.ingredients[index])),
                   SizedBox(height: kSpacingUnit.w * 2),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -347,8 +347,8 @@ class PreparationSpan extends StatelessWidget {
         children: [
           SizedBox(width: kSpacingUnit.w * 1),
           Container(
-            height: ScreenUtil().setSp(kSpacingUnit.w * 2.7),
-            width: ScreenUtil().setSp(kSpacingUnit.w * 2.7),
+            height: 30,
+            width: 30,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Color(0xff578DDE),

@@ -6,13 +6,13 @@ import 'package:icook_mobile/models/response/UserProfile/userauthdetails.dart';
 
 abstract class UserProfileDataSource {
   ///Get my profile {Get}
-  Future<GetMyProfileResponse> getMyProfile();
+  Future<dynamic> getMyProfile();
 
   ///user authentication profile{Get}
-  Future<UserAuthDetailsResponse> userAuthProfile();
+  Future<dynamic> userAuthProfile();
 
   ///Update profile{Patch}
-  Future<UpdateProfileResponse> updateProfile(UpdateProfileRequest request);
+  Future<dynamic> updateProfile(UpdateProfileRequest request);
 
   ///My favourite Dishes{Get}
   Future<dynamic> myFavouriteDishes();

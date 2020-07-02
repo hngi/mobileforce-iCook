@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:icook_mobile/models/response/Dish/getmydishes.dart';
+import 'package:icook_mobile/models/response/Dish/dishitem.dart';
+import 'package:icook_mobile/models/response/Dish/dishresponse.dart';
 import 'package:icook_mobile/ui/shared/recipe_item_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 
 class RecipeItem extends StatelessWidget {
-  final Dishe dish;
+  final Dish dish;
 
   const RecipeItem({Key key, this.dish}) : super(key: key);
 
@@ -16,7 +17,7 @@ class RecipeItem extends StatelessWidget {
       viewModelBuilder: () => RecipeItemModel(),
       onModelReady: (model) => model.setData(dish),
       builder: (context, model, child) => Padding(
-        padding: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.only(bottom: 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,53 +147,56 @@ class RecipeItem extends StatelessWidget {
             ),
             InkWell(
               onTap: () => model.seeDetails(dish),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Text(
-                      "${model.likes} likes",
-                      style: GoogleFonts.poppins(
-                          fontSize: 20,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: GestureDetector(
-                      onTap: () => model.seeDetails(dish),
+              child: Container(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
                       child: Text(
-                        dish.name,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                        "${model.likes} likes",
                         style: GoogleFonts.poppins(
                             fontSize: 20,
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500),
+                            fontWeight: FontWeight.w600),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: GestureDetector(
-                      onTap: () => model.seeDetails(dish),
-                      child: Text(
-                        dish.healthBenefits[0],
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.poppins(
-                            color: Color(0xFF828282),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: GestureDetector(
+                        onTap: () => model.seeDetails(dish),
+                        child: Text(
+                          dish.name,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.poppins(
+                              fontSize: 20,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
                     ),
-                  )
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: GestureDetector(
+                        onTap: () => model.seeDetails(dish),
+                        child: Text(
+                          dish.healthBenefits[0],
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.poppins(
+                              color: Color(0xFF828282),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ],

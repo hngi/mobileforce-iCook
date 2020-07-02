@@ -115,7 +115,7 @@ class ApiServiceImpl implements ApiService {
     return file;
   }
 
-  Future<dynamic> gett(String url, header) async {
+  Future<dynamic> gett(dynamic url, header) async {
     print('Api Get, url $url');
     var responseJson;
     try {

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icook_mobile/core/constants/view_routes.dart';
-import 'package:icook_mobile/core/constants/view_state.dart';
-import 'package:icook_mobile/models/response/Dish/getmydishes.dart';
+import 'package:icook_mobile/models/response/Dish/dishitem.dart';
 import 'package:icook_mobile/ui/Onboarding_screens/Onboarding_screens.dart';
 import 'package:icook_mobile/ui/details_screen/details_screen.dart';
 import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
@@ -42,7 +41,7 @@ class Router {
         return OnboardingScreen();
 
       case ViewRoutes.recipe_details:
-      final dish = settings.arguments as Dishe;
+        final dish = settings.arguments as Dish;
         return DetailsScreen(dish: dish);
       case ViewRoutes.userprofile:
         return OtherUserInfoScreen();

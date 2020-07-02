@@ -19,7 +19,7 @@ class SearchDataSourceImpl extends SearchDataSource {
       "Authorization": "$token"
     };
 
-    final route = '${ApiRoutes.searchdish}/$name';
+    final route = '${ApiRoutes.searchdish}$name';
     try {
       final response = await api.gett(route, headers);
       print('get dishes response $response');
