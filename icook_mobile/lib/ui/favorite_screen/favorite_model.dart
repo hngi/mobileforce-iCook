@@ -22,21 +22,21 @@ class FavoriteScreenModel extends BaseNotifier {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future<void> loadData() async {
+    setState(ViewState.Busy);
+
     try {
-      var result = await data.myFavouriteDishes() as DishResponse;
-      _dishList = result.data.dishes;
+      var response = await data.myFavouriteDishes();
+      print(response);
+      _dishList.clear();
+      _dishList = response.data.dishes;
       _checkIfAvailableData();
 
-      final snackBar = SnackBar(
-        content: Text(result.status),
-      );
-      scaffoldKey.currentState.showSnackBar(snackBar);
+      
     } catch (e) {
       setState(ViewState.Idle);
-      final snackBar = SnackBar(
-        content: Text(e),
-      );
-      scaffoldKey.currentState.showSnackBar(snackBar);
+      print('favourite screen model exception $e');
+      final snackbar = SnackBar(content: Text(e));
+      scaffoldKey.currentState.showSnackBar(snackbar);
     }
   }
 

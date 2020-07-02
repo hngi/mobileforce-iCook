@@ -2,6 +2,7 @@ import 'package:icook_mobile/core/constants/api_routes.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/UserProfile/userprofiledatasource.dart';
 import 'package:icook_mobile/core/services/Api/ApiService.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
+import 'package:icook_mobile/models/response/Dish/dishresponse.dart';
 import 'package:icook_mobile/models/response/UserProfile/userauthdetails.dart';
 import 'package:icook_mobile/models/response/UserProfile/updateprofile.dart';
 import 'package:icook_mobile/models/response/UserProfile/myfavouritedish.dart';
@@ -36,7 +37,7 @@ class UserProfileDataSourceImpl extends UserProfileDataSource {
   }
 
   @override
-  Future<MyFavouriteDishesResponse> myFavouriteDishes() async {
+  Future<dynamic> myFavouriteDishes() async {
     String token = key.token ?? "";
     final headers = <String, String>{
       "Accept": "application/json",
@@ -48,8 +49,7 @@ class UserProfileDataSourceImpl extends UserProfileDataSource {
     try {
       final response = await api.gett(route, headers);
       print('get dishes response $response');
-      MyFavouriteDishesResponse res =
-          MyFavouriteDishesResponse.fromJson(response);
+      DishResponse res = DishResponse.fromJson(response);
       print(res);
       return res;
     } catch (e) {

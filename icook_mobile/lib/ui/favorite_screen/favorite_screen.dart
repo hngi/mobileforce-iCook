@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:icook_mobile/ui/favorite_screen/favorite_model.dart';
 
 import 'package:icook_mobile/ui/shared/recipe_item.dart';
@@ -20,6 +21,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       viewModelBuilder: () => FavoriteScreenModel(),
       onModelReady: (model) => model.init(),
       builder: (context, model, child) => Scaffold(
+          key: model.scaffoldKey,
           appBar: AppBar(
             title: Text("Favorite"),
             actions: <Widget>[
@@ -39,41 +41,51 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               ),
             ],
           ),
-          body: StateResponsive(
-            state: model.state,
-            noDataAvailableWidget: Center(
-              child: Text('No Posts'),
-            ),
-            busyWidget: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 6,
-                itemBuilder: (context, index) => Shimmer.fromColors(
-                      direction: ShimmerDirection.ltr,
-                      period: Duration(seconds: 2),
-                      baseColor: Colors.grey[400],
-                      highlightColor: Colors.white,
-                      child: RecipeItemShim(
-                        chefImage: "assets/images/avatar.png",
-                        chefName: "",
-                        foodName: "",
-                        foodDescription: "",
-                        likes: 0,
-                        foodImage: [
-                          "assets/images/amala.jpeg",
-                          "assets/images/recipes.png",
-                          "assets/images/amala.jpeg"
-                        ],
-                      ),
-                    )),
-            idleWidget: Center(
-              child: Text("No post"),
-            ),
-            dataFetchedWidget: ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: model.dishList.length,
-              itemBuilder: (context, index) =>
-                  RecipeItem(dish: model.dishList[index]),
+          body: EasyRefresh(
+            onRefresh: () => model.loadData(),
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  StateResponsive(
+                    state: model.state,
+                    noDataAvailableWidget: Center(
+                      child: Text('No Posts'),
+                    ),
+                    busyWidget: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: 6,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) => Shimmer.fromColors(
+                              direction: ShimmerDirection.ltr,
+                              period: Duration(seconds: 2),
+                              baseColor: Colors.grey[400],
+                              highlightColor: Colors.white,
+                              child: RecipeItemShim(
+                                chefImage: "assets/images/avatar.png",
+                                chefName: "",
+                                foodName: "",
+                                foodDescription: "",
+                                likes: 0,
+                                foodImage: [
+                                  "assets/images/amala.jpeg",
+                                  "assets/images/recipes.png",
+                                  "assets/images/amala.jpeg"
+                                ],
+                              ),
+                            )),
+                    idleWidget: Center(
+                      child: Text("No post"),
+                    ),
+                    dataFetchedWidget: ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: model.dishList.length,
+                      itemBuilder: (context, index) =>
+                          RecipeItem(dish: model.dishList[index]),
+                    ),
+                  ),
+                ],
+              ),
             ),
           )),
     );

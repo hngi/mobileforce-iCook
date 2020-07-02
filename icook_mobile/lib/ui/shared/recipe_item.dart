@@ -36,8 +36,9 @@ class RecipeItem extends StatelessWidget {
                         GestureDetector(
                           onTap: () => model.seeUserInfo(),
                           child: CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/images/chefavatar1.png'),
+                            backgroundImage: dish.chefId.isNotEmpty
+                                ? NetworkImage(dish.chefId[0].userImage)
+                                : AssetImage('assets/images/chefavatar1.png'),
                             radius: 25,
                           ),
                         ),
@@ -45,21 +46,26 @@ class RecipeItem extends StatelessWidget {
                           width: 12,
                         ),
                         Expanded(
-                          child: GestureDetector(
-                            onTap: () => model.seeUserInfo(),
-                            child: Text(dish.name,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.poppins(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
-                                )),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              GestureDetector(
+                                onTap: () => model.seeUserInfo(),
+                                child: Text(dish.chefId[0].name,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                    )),
+                              ),
+                              Text(model.time),
+                            ],
                           ),
                         )
                       ],
                     ),
                   ),
-                  Text(model.time),
                 ],
               ),
             ),
@@ -70,7 +76,7 @@ class RecipeItem extends StatelessWidget {
               height: 248,
               width: MediaQuery.of(context).size.width,
               child: Carousel(
-                images: dish.dishImages.map((e) => AssetImage(e)).toList(),
+                images: dish.dishImages.map((e) => NetworkImage(e)).toList(),
                 dotSize: 6.0,
                 dotIncreaseSize: 1.5,
                 dotSpacing: 20.0,

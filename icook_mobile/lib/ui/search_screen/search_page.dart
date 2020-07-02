@@ -32,16 +32,17 @@ class SearchView extends StatelessWidget {
           ],
         ),
         body: Container(
-          margin: EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 _searchBar(model),
-                _recentSearch(),
+                SizedBox(
+                  height: 20,
+                ),
                 StateResponsive(
                     state: model.state,
                     noDataAvailableWidget: Center(
-                      child: Text('No Posts'),
+                      child: Text('Enter to search'),
                     ),
                     busyWidget: Center(
                       child: CircularProgressIndicator(),
@@ -51,7 +52,7 @@ class SearchView extends StatelessWidget {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) =>
-                          SearchResult(recipe: model.list[0]),
+                          SearchResult(recipe: model.list[index]),
                     ))
               ],
             ),
@@ -181,7 +182,7 @@ class SearchResult extends StatelessWidget {
     var date = timeago.format(time);
 
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      margin: EdgeInsets.only(bottom: 10, left: 20, right: 20),
       width: 335,
       height: 128,
 //      margin: EdgeInsets.only(bottom: 10.0),
@@ -192,7 +193,7 @@ class SearchResult extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
               child: Image.asset(
-                recipe.dishImages[0] ?? 'assets/images/icook_logo.png',
+                'assets/images/icook_logo.png',
                 width: 117,
                 height: 115,
                 fit: BoxFit.fill,

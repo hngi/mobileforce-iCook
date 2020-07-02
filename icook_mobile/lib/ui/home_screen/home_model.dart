@@ -34,7 +34,7 @@ class HomeScreenModel extends BaseNotifier {
     setState(ViewState.Busy);
 
     try {
-      var response = await data.getDishes() as DishResponse;
+      var response = await data.getDishes() ;
       print(response);
       _list.clear();
       _list = response.data.dishes;

@@ -21,13 +21,14 @@ class SearchModel extends BaseNotifier {
   final scaffoldKey = new GlobalKey<ScaffoldState>();
 
   Future<void> loadData(String name) async {
+    _list.clear();
     setState(ViewState.Busy);
 
     try {
       var result = await data.searchForDish(name);
       print(result);
       _list.clear();
-      _list = result.data.result as List<Dish>;
+      _list = result.data.result;
       _checkIfAvailableData();
 
       //show
