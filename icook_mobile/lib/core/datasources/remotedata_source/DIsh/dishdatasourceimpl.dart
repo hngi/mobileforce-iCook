@@ -129,11 +129,11 @@ class DishDataSourceImpl extends DishDataSource {
     print(queryParams);
 
     var uri = Uri.https('${ApiRoutes.tooglefavouritedish}',
-        '/api/v1/dishes/toogle_favourite/:id', queryParams);
+        '/api/v1/dishes/toggle_favourite/:id', queryParams);
     print(uri.toString());
     try {
       final response = await api.put(uri, headers);
-      print('signin response $response');
+      print('favourite response $response');
 
       return response;
     } catch (e) {
@@ -155,11 +155,11 @@ class DishDataSourceImpl extends DishDataSource {
     print(queryParams);
 
     var uri = Uri.https('${ApiRoutes.tooglelikedish}',
-        '/api/v1/dishes/toogle_like/:id', queryParams);
+        '/api/v1/dishes/toggle_like/:id', queryParams);
     print(uri.toString());
     try {
       final response = await api.put(uri, headers);
-      print('signin response $response');
+      print('like response $response');
 
       return response;
     } catch (e) {
