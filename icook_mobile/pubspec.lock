@@ -7,14 +7,21 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "5.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.39.10"
+    version: "0.39.11"
+  animated_dialog_box:
+    dependency: "direct main"
+    description:
+      name: animated_dialog_box
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2"
   animated_theme_switcher:
     dependency: "direct main"
     description:
@@ -161,7 +168,14 @@ packages:
       name: connectivity
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.8+6"
+    version: "0.4.9"
+  connectivity_for_web:
+    dependency: transitive
+    description:
+      name: connectivity_for_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   connectivity_macos:
     dependency: transitive
     description:
@@ -365,7 +379,7 @@ packages:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.7+2"
+    version: "0.6.7+3"
   image_picker_platform_interface:
     dependency: transitive
     description:
@@ -505,7 +519,7 @@ packages:
       name: path_provider_linux
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.1+1"
+    version: "0.0.1+2"
   path_provider_macos:
     dependency: transitive
     description:
@@ -534,6 +548,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.0"
+  pin_view:
+    dependency: "direct main"
+    description:
+      name: pin_view
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   platform:
     dependency: transitive
     description:
@@ -644,6 +665,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  sms:
+    dependency: transitive
+    description:
+      name: sms
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.4"
   source_gen:
     dependency: transitive
     description:
@@ -671,7 +699,7 @@ packages:
       name: stacked
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.6.0"
+    version: "1.6.1+1"
   stacked_services:
     dependency: "direct main"
     description:
