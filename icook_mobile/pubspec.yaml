@@ -59,7 +59,7 @@ dependencies:
   flutter_facebook_login: ^3.0.0
   flutter_easyrefresh: ^2.1.1
   multi_image_picker: ^4.6.7
-
+ 
 
 
   animated_theme_switcher: ^1.0.5 

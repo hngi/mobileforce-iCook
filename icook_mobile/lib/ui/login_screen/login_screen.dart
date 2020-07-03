@@ -222,7 +222,7 @@ class LoginScreen extends StatelessWidget {
                               ),
                               SizedBox(width: 20),
                               GestureDetector(
-                                onTap: () => model.loginwithfacebook(),
+                                onTap: () {},
                                 child: Image.asset(
                                   'assets/images/facebook.png',
                                   scale: 4.4,

@@ -62,42 +62,42 @@ class LoginModel extends BaseNotifier with Validators {
     navigation.navigateTo(ViewRoutes.forogotpassword);
   }
 
-  Future<void> loginwithfacebook() async {
-    final facebookLogin = FacebookLogin();
-    final fb = await facebookLogin.logIn(['email']);
+  // Future<void> loginwithfacebook() async {
+  //   final facebookLogin = FacebookLogin();
+  //   final fb = await facebookLogin.logIn(['email']);
 
-    final request = FbGoogleRequest(access_token: fb.accessToken.token);
+  //   final request = FbGoogleRequest(access_token: fb.accessToken.token);
 
-    switch (fb.status) {
-      case FacebookLoginStatus.loggedIn:
-        try {
-          var user = await auth.facebookAuth(request);
-          print(user);
-          setState(ViewState.Idle);
+  //   switch (fb.status) {
+  //     case FacebookLoginStatus.loggedIn:
+  //       try {
+  //         var user = await auth.facebookAuth(request);
+  //         print(user);
+  //         setState(ViewState.Idle);
 
-          key.name = user.data?.userName;
-          key.email = user.data?.email;
-          key.token = user.data?.token;
-          key.id = user.data?.userID;
-          key.isLoggedIn = true;
+  //         key.name = user.data?.userName;
+  //         key.email = user.data?.email;
+  //         key.token = user.data?.token;
+  //         key.id = user.data?.userID;
+  //         key.isLoggedIn = true;
 
-          navigation.pushNamedAndRemoveUntil(ViewRoutes.home);
-        } catch (e) {
-          setState(ViewState.Idle);
-          print('login model exception $e');
-        }
+  //         navigation.pushNamedAndRemoveUntil(ViewRoutes.home);
+  //       } catch (e) {
+  //         setState(ViewState.Idle);
+  //         print('login model exception $e');
+  //       }
 
-        break;
-      case FacebookLoginStatus.cancelledByUser:
-        final snackbar = SnackBar(content: Text('Cancelled'));
-        scaffoldKey.currentState.showSnackBar(snackbar);
-        break;
-      case FacebookLoginStatus.error:
-        final snackbar = SnackBar(content: Text('error in login user'));
-        scaffoldKey.currentState.showSnackBar(snackbar);
-        break;
-    }
-  }
+  //       break;
+  //     case FacebookLoginStatus.cancelledByUser:
+  //       final snackbar = SnackBar(content: Text('Cancelled'));
+  //       scaffoldKey.currentState.showSnackBar(snackbar);
+  //       break;
+  //     case FacebookLoginStatus.error:
+  //       final snackbar = SnackBar(content: Text('error in login user'));
+  //       scaffoldKey.currentState.showSnackBar(snackbar);
+  //       break;
+  //   }
+  // }
 
   @override
   void dispose() {
