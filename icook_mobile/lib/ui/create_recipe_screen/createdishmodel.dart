@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:icook_mobile/core/constants/view_routes.dart';
 import 'package:icook_mobile/core/constants/view_state.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasource.dart';
 import 'package:icook_mobile/core/mixins/validators.dart';
@@ -13,6 +14,7 @@ import '../../locator.dart';
 class CreateDishModel extends BaseNotifier with Validators {
   final datasource = locator<DishDataSource>();
   final snack = locator<SnackbarService>();
+  final nav = locator<NavigationService>();
 
   List<String> _ingredients = [];
   List<String> get ingredients => _ingredients;
@@ -61,8 +63,9 @@ class CreateDishModel extends BaseNotifier with Validators {
       print(result);
       setState(ViewState.Idle);
       dispose();
+      nav.navigateTo(ViewRoutes.success);
 
-      showSnack('Successfully Added');
+      //showSnack('Successfully Added');
     } catch (e) {
       print('add dish model exception $e');
       setState(ViewState.Idle);

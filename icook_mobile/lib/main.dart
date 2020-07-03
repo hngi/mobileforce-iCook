@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
             darkTheme: Constants.darkTheme,
             onGenerateRoute: Router.generateRoute,
             navigatorKey: navigationService.navigatorKey,
-            home: ConfirmResetPasswordScreen(),
+            home: SplashScreen(),
             themeMode: keystorage.isDarkMOde ? ThemeMode.dark : ThemeMode.light,
           ),
         ),
@@ -48,5 +48,4 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-// key hash - ga0RGNYHvNM5d0SLGQfpQWAPGJ8= 
+// key hash - ga0RGNYHvNM5d0SLGQfpQWAPGJ8=

@@ -28,13 +28,9 @@ class SuccessOverlayState extends State<SuccessOverlay>
 
   @override
   Widget build(BuildContext context) {
-
     return Center(
-
       child: Material(
-
         color: Colors.transparent,
-
         child: ScaleTransition(
           scale: scaleAnimation,
           child: Container(
@@ -42,59 +38,53 @@ class SuccessOverlayState extends State<SuccessOverlay>
               padding: EdgeInsets.all(15.0),
               height: 272.0,
               width: 287,
-
               decoration: ShapeDecoration(
                   color: Colors.white,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0))
-                      ),
+                      borderRadius: BorderRadius.circular(15.0))),
               child: Column(
-
                 children: [
                   SizedBox(height: 20),
                   Image.asset('assets/images/vector2.png'),
-
                   Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            top: 50.0, left: 20.0, right: 20.0),
-                        child: Text(
-                          "Successful",
-                          style: TextStyle(color: Colors.black, fontSize: 16.0),
-                        ),
-
-                      )
-                   ,),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 50.0, left: 20.0, right: 20.0),
+                      child: Text(
+                        "Successful",
+                        style: TextStyle(color: Colors.black, fontSize: 16.0),
+                      ),
+                    ),
+                  ),
                   Expanded(
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: ButtonTheme(
-                                height: 35.0,
-                                minWidth: 203.0,
-                                child: RaisedButton(
-                                  color: Colors.blueAccent,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5.0)),
-                                  splashColor: Colors.white.withAlpha(40),
-                                  child: Text(
-                                    'CONTINUE',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13.0),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                )),
-                          ),
-
-                        ],
-                      ))
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: ButtonTheme(
+                            height: 35.0,
+                            minWidth: 203.0,
+                            child: RaisedButton(
+                              color: Colors.blueAccent,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0)),
+                              splashColor: Colors.white.withAlpha(40),
+                              child: Text(
+                                'CONTINUE',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13.0),
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            )),
+                      ),
+                    ],
+                  ))
                 ],
               )),
         ),
