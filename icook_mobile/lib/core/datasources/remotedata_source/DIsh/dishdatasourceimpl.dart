@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:icook_mobile/core/constants/api_routes.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasource.dart';
 import 'package:icook_mobile/core/services/Api/ApiService.dart';
@@ -96,7 +98,7 @@ class DishDataSourceImpl extends DishDataSource {
   }
 
   @override
-  Future<dynamic> postADish(PostDIshBody body) async {
+  Future<DishResponse> getMyDishes() async {
     String token = key.token ?? "";
     final headers = <String, String>{
       "Accept": "application/json",
@@ -104,12 +106,36 @@ class DishDataSourceImpl extends DishDataSource {
       "Authorization": "$token"
     };
 
-    final route = '${ApiRoutes.dish}';
+    final route = '${ApiRoutes.myprofile}/dishes';
     try {
-      final response = await api.post(route, headers, body.toMap());
-      print('signin response $response');
+      final response = await api.gett(route, headers);
+      print('get dishes response $response');
+      DishResponse respons = DishResponse.fromJson(response);
+      print("edited   $respons");
 
-      return response;
+      return respons;
+    } catch (e) {
+      print('exception $e');
+      throw (e);
+    }
+  }
+
+  @override
+  Future<dynamic> postADish(PostDIshBody body) async {
+    String token = key.token ?? "";
+    final headers = <String, String>{
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+      "Authorization": "$token"
+    };
+
+    final route = '${ApiRoutes.dish}';
+    print(body.toJson());
+    try {
+      final response = await api.post(route, headers, body.toJson());
+      print('post response $response');
+
+      return jsonDecode(response);
     } catch (e) {
       print('exception $e');
       throw (e);
@@ -129,7 +155,7 @@ class DishDataSourceImpl extends DishDataSource {
     print(queryParams);
 
     var uri = Uri.https('${ApiRoutes.tooglefavouritedish}',
-        '/api/v1/dishes/toggle_favourite/:id', queryParams);
+        '/api/v1/dishes/toggle_favourite/$id');
     print(uri.toString());
     try {
       final response = await api.put(uri, headers);
@@ -154,8 +180,9 @@ class DishDataSourceImpl extends DishDataSource {
     final queryParams = <String, String>{"id": "$id"};
     print(queryParams);
 
-    var uri = Uri.https('${ApiRoutes.tooglelikedish}',
-        '/api/v1/dishes/toggle_like/:id', queryParams);
+    var uri = Uri.https(
+        '${ApiRoutes.tooglelikedish}', '/api/v1/dishes/toggle_like/$id');
+
     print(uri.toString());
     try {
       final response = await api.put(uri, headers);

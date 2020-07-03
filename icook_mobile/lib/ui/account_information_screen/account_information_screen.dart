@@ -4,6 +4,10 @@ import 'package:icook_mobile/ui/account_information_screen/accountmodel.dart';
 import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
 import 'package:icook_mobile/ui/profile_screen/constant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:icook_mobile/ui/shared/recipe_item.dart';
+import 'package:icook_mobile/ui/shared/recipe_item_shim.dart';
+import 'package:icook_mobile/ui/shared/state_responsive.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:stacked/stacked.dart';
 
 class AccountInformationScreen extends StatelessWidget {
@@ -14,6 +18,7 @@ class AccountInformationScreen extends StatelessWidget {
 
     return ViewModelBuilder<AccountModel>.reactive(
       viewModelBuilder: () => AccountModel(),
+      onModelReady: (model) => model.init(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           title: Text("My Profile"),
@@ -223,35 +228,42 @@ class AccountInformationScreen extends StatelessWidget {
               height: 12,
             ),
 
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                _buildRecipeItems(
-                    image: "assets/images/amala.jpeg",
-                    name: "Efo Riro Delicacy ",
-                    description:
-                        "You may be a person who loves to cook efo riro, here is a video that will help you in accomplishing that",
-                    likes: 120,
-                    liked: true,
-                    daysAgo: "3"),
-                _buildRecipeItems(
-                    image: "assets/images/3.png",
-                    name: "Efo Riro Delicacy ",
-                    description:
-                        "You may be a person who loves to cook efo riro, here is a video that will help you in accomplishing that",
-                    likes: 120,
-                    liked: false,
-                    daysAgo: "3"),
-                _buildRecipeItems(
-                    image: "assets/images/3.png",
-                    name: "Efo Riro Delicacy ",
-                    description:
-                        "You may be a person who loves to cook efo riro, here is a video that will help you in accomplishing that",
-                    likes: 120,
-                    liked: true,
-                    daysAgo: "3"),
-              ],
+            StateResponsive(
+              state: model.state,
+              noDataAvailableWidget: Center(
+                child: Text('No Posts'),
+              ),
+              busyWidget: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: 6,
+                  itemBuilder: (context, index) => Shimmer.fromColors(
+                        direction: ShimmerDirection.ltr,
+                        period: Duration(seconds: 2),
+                        baseColor: Colors.grey[400],
+                        highlightColor: Colors.white,
+                        child: RecipeItemShim(
+                          chefImage: "assets/images/avatar.png",
+                          chefName: "",
+                          foodName: "",
+                          foodDescription: "",
+                          likes: 0,
+                          foodImage: [
+                            "assets/images/amala.jpeg",
+                            "assets/images/recipes.png",
+                            "assets/images/amala.jpeg"
+                          ],
+                        ),
+                      )),
+              idleWidget: Center(
+                child: Text('No Posts'),
+              ),
+              dataFetchedWidget: ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: model.list.length,
+                itemBuilder: (context, index) =>
+                    RecipeItem(dish: model.list[index]),
+              ),
             ),
 
             SizedBox(

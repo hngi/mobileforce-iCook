@@ -17,9 +17,6 @@ class DetailsScreen extends StatelessWidget {
   const DetailsScreen({Key key, this.dish}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context,
-        height: double.infinity, width: 414, allowFontScaling: true);
-
     return ViewModelBuilder<DetailsModel>.reactive(
       viewModelBuilder: () => DetailsModel(),
       onModelReady: (model) => model.setData(dish),
@@ -39,40 +36,44 @@ class DetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 5.0, bottom: 12.0),
                 child: ListView(
                   children: [
-                    Row(
-                      children: [
-                        SizedBox(width: kSpacingUnit.w * 1),
-                        GestureDetector(
-                          onTap: () {},
-                          child: CircleAvatar(
-                            backgroundImage: dish.chefId.isNotEmpty
-                                ? NetworkImage(dish.chefId[0].userImage)
-                                : AssetImage('assets/images/chefavatar1.png'),
-                            radius: 25,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      child: Row(
+                        children: [
+                          SizedBox(width: 10),
+                          GestureDetector(
+                            onTap: () {},
+                            child: CircleAvatar(
+                              backgroundImage: dish.chefId.isNotEmpty
+                                  ? NetworkImage(dish.chefId[0].userImage)
+                                  : AssetImage('assets/images/chefavatar1.png'),
+                              radius: 25,
+                            ),
                           ),
-                        ),
-                        SizedBox(width: kSpacingUnit.w * 1.5),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              GestureDetector(
-                                onTap: () => model.seeUserInfo(),
-                                child: Text(dish.chefId[0].name,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    )),
-                              ),
-                              Text(model.time),
-                            ],
-                          ),
-                        )
-                      ],
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: () => model.seeUserInfo(),
+                                  child: Text(dish.chefId[0].name,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      )),
+                                ),
+                                Text(model.time),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                    SizedBox(height: kSpacingUnit.w * 1),
+                    SizedBox(height: 10),
                     Container(
                       height: 248,
                       width: MediaQuery.of(context).size.width,
@@ -92,7 +93,7 @@ class DetailsScreen extends StatelessWidget {
                         dotBgColor: Colors.transparent,
                       ),
                     ),
-                    SizedBox(height: kSpacingUnit.w * 1),
+                    SizedBox(height: 15),
                     Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: Row(
@@ -161,10 +162,10 @@ class DetailsScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: kSpacingUnit.w * 1),
+                    SizedBox(height: 10),
                     Row(
                       children: [
-                        SizedBox(width: kSpacingUnit.w * 1.5),
+                        SizedBox(width: 20),
                         Text(
                           '${dish.likesCount} likes',
                           style: GoogleFonts.poppins(
@@ -173,63 +174,68 @@ class DetailsScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: kSpacingUnit.w * 2),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(height: kSpacingUnit.w * 0.5),
-                        Visibility(
-                          visible: false,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
-                            child: Text(
-                              'Doughnuts, the typical American snack. Flour kneaded '
-                              'with milk, sugar with the flavor of cinnamon and '
-                              'nutmeg. Shaped into rings and deep fried. Usually '
-                              'served with sugar glaze or chocolate sauce.',
-                              style: GoogleFonts.poppins(
-                                  textStyle: TextStyle(
-                                      color: Color(0xff797978), fontSize: 19),
-                                  fontWeight: FontWeight.w400),
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Visibility(
+                            visible: false,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
+                              child: Text(
+                                'Doughnuts, the typical American snack. Flour kneaded '
+                                'with milk, sugar with the flavor of cinnamon and '
+                                'nutmeg. Shaped into rings and deep fried. Usually '
+                                'served with sugar glaze or chocolate sauce.',
+                                style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                        color: Color(0xff797978), fontSize: 19),
+                                    fontWeight: FontWeight.w400),
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(height: kSpacingUnit.w * 2),
-                        Container(
-                          height: ScreenUtil().setSp(kSpacingUnit.w * 5),
-                          width: ScreenUtil().setSp(kSpacingUnit.w * 5),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Color(0xff578DDE),
-                            image: DecorationImage(
-                                image: AssetImage('assets/images/bag.png'),
-                                fit: BoxFit.scaleDown),
+                          SizedBox(height: 10),
+                          Container(
+                            height: 50,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color(0xff578DDE),
+                              image: DecorationImage(
+                                  image: AssetImage('assets/images/bag.png'),
+                                  fit: BoxFit.scaleDown),
+                            ),
                           ),
-                        ),
-                        SizedBox(height: kSpacingUnit.w * 0.9),
-                        Text(
-                          'SHOPPING LIST',
-                          style: GoogleFonts.poppins(
-                              textStyle: TextStyle(fontSize: 21),
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ],
+                          SizedBox(height: 10),
+                          Text(
+                            'SHOPPING LIST',
+                            style: GoogleFonts.poppins(
+                                textStyle: TextStyle(fontSize: 21),
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
                     ),
-                    ListView.builder(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: dish.ingredients.length,
-                        itemBuilder: (context, index) =>
-                            TextSpans(text: dish.ingredients[index])),
-                    SizedBox(height: kSpacingUnit.w * 2),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: dish.ingredients.length,
+                          itemBuilder: (context, index) =>
+                              TextSpans(text: '${dish.ingredients[index]}')),
+                    ),
+                    SizedBox(height: 10),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          height: ScreenUtil().setSp(kSpacingUnit.w * 5),
-                          width: ScreenUtil().setSp(kSpacingUnit.w * 5),
+                          height: 50,
+                          width: 50,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Color(0xff578DDE),
@@ -237,7 +243,7 @@ class DetailsScreen extends StatelessWidget {
                                   image: AssetImage('assets/images/chef.png'),
                                   fit: BoxFit.scaleDown)),
                         ),
-                        SizedBox(height: kSpacingUnit.w * 0.9),
+                        SizedBox(height: 10),
                         Text(
                           'PREPARATION',
                           style: GoogleFonts.poppins(
@@ -246,22 +252,25 @@ class DetailsScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    ListView.builder(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: dish.recipe.length,
-                        itemBuilder: (context, index) => PreparationSpan(
-                              number: '${index + 1}',
-                              numberSpan: dish.recipe[index],
-                            )),
-                    SizedBox(height: kSpacingUnit.w * 2),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: dish.recipe.length,
+                          itemBuilder: (context, index) => PreparationSpan(
+                                number: '${index + 1}',
+                                numberSpan: dish.recipe[index],
+                              )),
+                    ),
+                    SizedBox(height: 10),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          height: ScreenUtil().setSp(kSpacingUnit.w * 5),
-                          width: ScreenUtil().setSp(kSpacingUnit.w * 5),
+                          height: 50,
+                          width: 50,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: Color(0xff578DDE),
@@ -269,10 +278,10 @@ class DetailsScreen extends StatelessWidget {
                           child: Icon(
                             Icons.add,
                             color: Color(0xffFFFFFF),
-                            size: ScreenUtil().setSp(kSpacingUnit.w * 4.5),
+                            size: 24,
                           ),
                         ),
-                        SizedBox(height: kSpacingUnit.w * 0.9),
+                        SizedBox(height: 10),
                         Text(
                           'HEALTH BENEFITS',
                           style: GoogleFonts.poppins(
@@ -281,57 +290,13 @@ class DetailsScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    HealthBenefits(
-                      healthText: dish.healthBenefits[0],
-                    ),
-                    SizedBox(height: kSpacingUnit.w * 4),
-                    Row(
-                      children: [
-                        SizedBox(width: kSpacingUnit.w * 1),
-                        Text(
-                          'COMMENTS',
-                          style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
-                                  color: Color(0xff578DDE), fontSize: 21),
-                              fontWeight: FontWeight.w600),
-                        ),
-                        SizedBox(width: kSpacingUnit.w * 1.5),
-                        Image.asset(
-                          'assets/images/Shape.png',
-                          color: Color(0xff578DDE),
-                          height: ScreenUtil().setSp(kSpacingUnit.w * 2.9),
-                          width: ScreenUtil().setSp(kSpacingUnit.w * 2.9),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: kSpacingUnit.w * 2),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(8.0, 5.0, 8.0, 5.0),
-                      child: Container(
-                        padding: EdgeInsets.fromLTRB(15, 5, 0, 5),
-                        height: kSpacingUnit.w * 5,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            color: Color(0xffF4F4F4),
-                            width: 2,
-                          ),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Leave a comment',
-                              style: GoogleFonts.poppins(
-                                  textStyle: TextStyle(
-                                      color: Color(0xffbdbdbd), fontSize: 18),
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ],
-                        ),
+                      padding: const EdgeInsets.all(8.0),
+                      child: HealthBenefits(
+                        healthText: dish.healthBenefits[0],
                       ),
                     ),
+                    SizedBox(height: 10),
                   ],
                 ),
               ),
@@ -358,8 +323,7 @@ class HealthBenefits extends StatelessWidget {
       child: Text(
         healthText,
         style: GoogleFonts.poppins(
-            textStyle: TextStyle(color: Color(0xff797978), fontSize: 19),
-            fontWeight: FontWeight.w400),
+            textStyle: TextStyle(fontSize: 19), fontWeight: FontWeight.w400),
       ),
     );
   }
@@ -378,12 +342,11 @@ class PreparationSpan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 8, 12, 0),
+      padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(width: kSpacingUnit.w * 1),
           Container(
             height: 30,
             width: 30,
@@ -401,15 +364,14 @@ class PreparationSpan extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: kSpacingUnit.w * 1.5),
+          SizedBox(width: 10),
           Container(
             child: Flexible(
               child: Text(
                 numberSpan,
                 style: GoogleFonts.poppins(
-                    textStyle:
-                        TextStyle(color: Color(0xff797978), fontSize: 19),
-                    fontWeight: FontWeight.w400),
+                    textStyle: TextStyle(fontSize: 18),
+                    fontWeight: FontWeight.w500),
               ),
             ),
           ),
@@ -443,10 +405,7 @@ class TextSpans extends StatelessWidget {
           children: <TextSpan>[
             TextSpan(
               text: spanText,
-              style: TextStyle(
-                  color: Color(0xff797978),
-                  fontSize: 19,
-                  fontWeight: FontWeight.w400),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
             ),
           ],
         ),
