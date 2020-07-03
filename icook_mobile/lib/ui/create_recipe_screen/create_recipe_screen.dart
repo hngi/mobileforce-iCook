@@ -6,7 +6,6 @@ import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
 import 'package:icook_mobile/ui/shared/state_responsive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:stacked/stacked.dart';
 
 import '../profile_screen/constant.dart';
@@ -326,14 +325,14 @@ class CreateRecipeScreen extends StatelessWidget {
                               fontWeight: FontWeight.w600),
                         ),
                         SizedBox(height: 13),
-                        Container(
-                          child: Wrap(
-                            children: model.images
-                                .map((e) => AssetThumb(
-                                    asset: e, width: 200, height: 200))
-                                .toList(),
-                          ),
-                        ),
+                        // Container(
+                        //   child: Wrap(
+                        //     children: model.images
+                        //         .map((e) => AssetThumb(
+                        //             asset: e, width: 200, height: 200))
+                        //         .toList(),
+                        //   ),
+                        // ),
                         _recentdish('assets/images/upload_image.png'),
                         Container(
                           margin: EdgeInsets.only(top: 20),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:icook_mobile/core/constants/view_routes.dart';
 import 'package:icook_mobile/core/constants/view_state.dart';
 import 'package:icook_mobile/core/mixins/validators.dart';
