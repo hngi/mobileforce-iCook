@@ -63,9 +63,9 @@ class CreateDishModel extends BaseNotifier with Validators {
       print(result);
       setState(ViewState.Idle);
       dispose();
-      nav.navigateTo(ViewRoutes.success);
+     // nav.navigateTo(ViewRoutes.success);
 
-      //showSnack('Successfully Added');
+      showSnack('Successfully Added');
     } catch (e) {
       print('add dish model exception $e');
       setState(ViewState.Idle);
