@@ -1,12 +1,32 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/ui/ui_helper.dart';
 import 'package:provider/provider.dart';
 
+import '../../locator.dart';
+
 const heightUnit = 10;
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
+  @override
+  _SettingsScreenState createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  final key = locator<KeyStorageService>();
+  TextEditingController name;
+  TextEditingController email;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    name = TextEditingController(text: key.name);
+    email = TextEditingController(text: key.email);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +64,8 @@ class SettingsScreen extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.only(left: 20, right: 20),
                         child: TextField(
+                          controller: name,
+                          enabled: false,
                           textInputAction: TextInputAction.next,
                           onSubmitted: (_) =>
                               FocusScope.of(context).nextFocus(),
@@ -59,6 +81,8 @@ class SettingsScreen extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.only(left: 20, right: 20),
                         child: TextField(
+                          controller: email,
+                          enabled: false,
                           textInputAction: TextInputAction.next,
                           onSubmitted: (_) =>
                               FocusScope.of(context).nextFocus(),

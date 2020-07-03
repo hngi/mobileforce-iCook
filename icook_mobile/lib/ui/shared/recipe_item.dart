@@ -34,7 +34,7 @@ class RecipeItem extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         GestureDetector(
-                          onTap: () => model.seeUserInfo(),
+                          onTap: () {},
                           child: CircleAvatar(
                             backgroundImage: dish.chefId.isNotEmpty
                                 ? NetworkImage(dish.chefId[0].userImage)
@@ -50,7 +50,7 @@ class RecipeItem extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               GestureDetector(
-                                onTap: () => model.seeUserInfo(),
+                                onTap: () {},
                                 child: Text(dish.chefId[0].name,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
