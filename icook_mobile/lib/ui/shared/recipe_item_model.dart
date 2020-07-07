@@ -44,7 +44,9 @@ class RecipeItemModel extends BaseNotifier {
     try {
       var result = await datasource.toggleLikeDish(data.id);
       print(result);
-      showSnack('Liked successfully');
+      _isLiked == true
+          ? showSnack('Liked successfully')
+          : showSnack('Unliked successfully');
     } catch (e) {
       print('dish model exception $e');
       showSnack(e.toString());
