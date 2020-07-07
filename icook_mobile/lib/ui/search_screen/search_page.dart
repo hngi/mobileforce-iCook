@@ -217,10 +217,9 @@ class SearchResult extends StatelessWidget {
                       recipe.name,
                       overflow: TextOverflow.clip,
                       style: TextStyle(
-                          color: Color(0xFF333333),
                           fontSize: 18,
                           fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w600,
                           fontStyle: FontStyle.normal),
                     ),
                     Container(
@@ -259,7 +258,6 @@ class SearchResult extends StatelessWidget {
                                 Text(
                                   recipe.likesCount.toString(),
                                   style: TextStyle(
-                                      color: Color(0xFF333333),
                                       fontSize: 12,
                                       fontFamily: "Poppings",
                                       fontStyle: FontStyle.normal,
@@ -271,7 +269,6 @@ class SearchResult extends StatelessWidget {
                           Text(
                             date,
                             style: TextStyle(
-                                color: Color(0xFF828282),
                                 fontSize: 12,
                                 fontFamily: "Poppings",
                                 fontStyle: FontStyle.normal,

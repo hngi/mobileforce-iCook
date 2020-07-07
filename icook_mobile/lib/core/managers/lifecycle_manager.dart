@@ -15,7 +15,7 @@ class LifeCycleManager extends StatefulWidget {
 class _LifeCycleManagerState extends State<LifeCycleManager>
     with WidgetsBindingObserver {
   List<StoppableService> servicesToManage = [
-    locator<ConnectivityService>(),
+    
   ];
 
   @override

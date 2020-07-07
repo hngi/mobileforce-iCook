@@ -29,12 +29,13 @@ class DetailsScreen extends StatelessWidget {
                 fontWeight: FontWeight.w600),
           ),
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 5.0, bottom: 12.0),
-                child: ListView(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 5.0, bottom: 12.0),
+            child: Center(
+              child: Container(
+                constraints: BoxConstraints(maxWidth: 600),
+                child: Column(
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(
@@ -301,7 +302,7 @@ class DetailsScreen extends StatelessWidget {
                 ),
               ),
             ),
-          ],
+          ),
         ),
       ),
     );

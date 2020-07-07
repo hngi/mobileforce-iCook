@@ -20,131 +20,81 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context,
-        height: double.infinity, width: 375, allowFontScaling: true);
-
     return ViewModelBuilder<SignUpModel>.reactive(
       viewModelBuilder: () => SignUpModel(),
       builder: (context, model, child) => Scaffold(
-        key: model.scaffoldKey,
-        appBar: AppBar(
-            title: Text(
-          "Create an account",
-        )),
-        body: ListView(
-          children: <Widget>[
-            SizedBox(
-              height: 34,
-            ),
-            Padding(
+          key: model.scaffoldKey,
+          appBar: AppBar(
+              title: Text(
+            "Create an account",
+          )),
+          body: SingleChildScrollView(
+            child: Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: Form(
                 key: model.formkey,
                 child: FocusScope(
                   node: model.node,
-                  child: Column(
-                    children: <Widget>[
-                      _buildTitle("Name"),
-                      SizedBox(height: 8),
-                      TextFormField(
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.text,
-                        onEditingComplete: () => model.node.nextFocus(),
-                        validator: (value) =>
-                            model.validateName(model.name.text),
-                        controller: model.name,
-                        decoration: InputDecoration(
-                          hintText: 'Enter name',
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  width: 0.0, style: BorderStyle.none),
-                              borderRadius: BorderRadius.circular(4)),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
+                  child: Center(
+                    child: Container(
+                      constraints: BoxConstraints(maxWidth: 600),
+                      child: Column(
                         children: <Widget>[
-                          Text(
-                            "Gender",
-                            style: GoogleFonts.poppins(
-                                fontSize: 16,
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: DropdownButton<String>(
-                            isExpanded: true,
-                            underline: Container(
-                              height: 0.0,
+                          _buildTitle("Name"),
+                          SizedBox(height: 8),
+                          TextFormField(
+                            textInputAction: TextInputAction.next,
+                            keyboardType: TextInputType.text,
+                            onEditingComplete: () => model.node.nextFocus(),
+                            validator: (value) =>
+                                model.validateName(model.name.text),
+                            controller: model.name,
+                            decoration: InputDecoration(
+                              hintText: 'Enter name',
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      width: 0.0, style: BorderStyle.none),
+                                  borderRadius: BorderRadius.circular(4)),
                             ),
-                            value: model.gender,
-                            icon: Icon(Icons.keyboard_arrow_down),
-                            iconSize: 24,
-                            elevation: 16,
-                            onChanged: (s) => model.setGender(s),
-                            items: <String>["Male", "Female"]
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      _buildTitle("Email"),
-                      SizedBox(height: 8),
-                      TextFormField(
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.text,
-                        onEditingComplete: () => model.node.nextFocus(),
-                        controller: model.email,
-                        validator: (value) =>
-                            model.validateEmail(model.email.text),
-                        decoration: InputDecoration(
-                          hintText: 'Enter email',
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  width: 0.0, style: BorderStyle.none),
-                              borderRadius: BorderRadius.circular(4)),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      _buildTitle("Phone number"),
-                      SizedBox(height: 8),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Text(
+                                "Gender",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
                               child: DropdownButton<String>(
+                                isExpanded: true,
                                 underline: Container(
                                   height: 0.0,
                                 ),
-                                value: model.countryCode,
+                                value: model.gender,
                                 icon: Icon(Icons.keyboard_arrow_down),
                                 iconSize: 24,
                                 elevation: 16,
-                                onChanged: (s) => model.setCountryCode(s),
-                                items: countryOptions
-                                    .map<DropdownMenuItem<String>>(
-                                        (String value) {
+                                onChanged: (s) => model.setGender(s),
+                                items: <String>[
+                                  "Male",
+                                  "Female"
+                                ].map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
                                     value: value,
                                     child: Text(value),
@@ -152,149 +102,201 @@ class SignUpScreen extends StatelessWidget {
                                 }).toList(),
                               ),
                             ),
-                            Expanded(
-                              child: TextFormField(
-                                onFieldSubmitted: (_) =>
-                                    FocusScope.of(context).nextFocus(),
-                                controller: model.phone,
-                                validator: (value) =>
-                                    model.validatePhoneNumber(model.phone.text),
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          width: 0.0, style: BorderStyle.none),
-                                      borderRadius: BorderRadius.circular(4)),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      _buildTitle("Password"),
-                      SizedBox(height: 8),
-                      PasswordField(
-                        passwordType: PasswordType.password,
-                        validator: (value) =>
-                            model.validatePassword(model.password.text),
-                        controller: model.password,
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      _buildTitle("Confirm password"),
-                      SizedBox(height: 8),
-                      Container(
-                        child: PasswordField(
-                          passwordType: PasswordType.confirmPassword,
-                          controller: model.confirmPassword,
-                          validator: (value) => model.validateConfirmPassword(
-                              model.password.text, model.confirmPassword.text),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          CheckBoxField(
-                            value: model.isChecked,
-                            onChanged: (s) => model.checkBoxState(s),
                           ),
                           SizedBox(
-                            width: kSpacingUnit.w * 1,
+                            height: 20,
                           ),
-                          RichText(
-                            text: TextSpan(children: [
-                              TextSpan(
-                                  text: "I agree to the",
-                                  style: GoogleFonts.montserrat(
-                                      fontSize: 14,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.normal)),
-                              TextSpan(
-                                text: "  ",
+                          _buildTitle("Email"),
+                          SizedBox(height: 8),
+                          TextFormField(
+                            textInputAction: TextInputAction.next,
+                            keyboardType: TextInputType.text,
+                            onEditingComplete: () => model.node.nextFocus(),
+                            controller: model.email,
+                            validator: (value) =>
+                                model.validateEmail(model.email.text),
+                            decoration: InputDecoration(
+                              hintText: 'Enter email',
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      width: 0.0, style: BorderStyle.none),
+                                  borderRadius: BorderRadius.circular(4)),
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          _buildTitle("Phone number"),
+                          SizedBox(height: 8),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8),
+                            child: Row(
+                              children: <Widget>[
+                                Container(
+                                  child: DropdownButton<String>(
+                                    underline: Container(
+                                      height: 0.0,
+                                    ),
+                                    value: model.countryCode,
+                                    icon: Icon(Icons.keyboard_arrow_down),
+                                    iconSize: 24,
+                                    elevation: 16,
+                                    onChanged: (s) => model.setCountryCode(s),
+                                    items: countryOptions
+                                        .map<DropdownMenuItem<String>>(
+                                            (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    }).toList(),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: TextFormField(
+                                    onFieldSubmitted: (_) =>
+                                        FocusScope.of(context).nextFocus(),
+                                    controller: model.phone,
+                                    validator: (value) => model
+                                        .validatePhoneNumber(model.phone.text),
+                                    keyboardType: TextInputType.number,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: 0.0,
+                                              style: BorderStyle.none),
+                                          borderRadius:
+                                              BorderRadius.circular(4)),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          _buildTitle("Password"),
+                          SizedBox(height: 8),
+                          PasswordField(
+                            passwordType: PasswordType.password,
+                            validator: (value) =>
+                                model.validatePassword(model.password.text),
+                            controller: model.password,
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          _buildTitle("Confirm password"),
+                          SizedBox(height: 8),
+                          Container(
+                            child: PasswordField(
+                              passwordType: PasswordType.confirmPassword,
+                              controller: model.confirmPassword,
+                              validator: (value) =>
+                                  model.validateConfirmPassword(
+                                      model.password.text,
+                                      model.confirmPassword.text),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              CheckBoxField(
+                                value: model.isChecked,
+                                onChanged: (s) => model.checkBoxState(s),
                               ),
-                              TextSpan(
-                                  text: "terms and conditions",
-                                  style: GoogleFonts.montserrat(
-                                      fontSize: 14,
-                                      color: Colors.lightBlue,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.normal),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      print("Sign in Tapd");
-                                    }),
-                            ]),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              RichText(
+                                text: TextSpan(children: [
+                                  TextSpan(
+                                      text: "I agree to the",
+                                      style: GoogleFonts.montserrat(
+                                          fontSize: 14,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.normal)),
+                                  TextSpan(
+                                    text: "  ",
+                                  ),
+                                  TextSpan(
+                                      text: "terms and conditions",
+                                      style: GoogleFonts.montserrat(
+                                          fontSize: 14,
+                                          color: Colors.lightBlue,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.normal),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          print("Sign in Tapd");
+                                        }),
+                                ]),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 60,
+                          ),
+                          StateResponsive(
+                              state: model.state,
+                              busyWidget: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                              idleWidget: Center(
+                                  child: SubmitButton(
+                                buttonColor: Constants.kbuttonColor1,
+                                title: 'Sign Up',
+                                onPressed: () {
+                                  model.signUp();
+                                  FocusScope.of(context).unfocus();
+                                },
+                                textColor: Colors.white,
+                                isEnabled: model.isChecked,
+                              ))),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Center(
+                            child: RichText(
+                              text: TextSpan(children: [
+                                TextSpan(
+                                    text: "Already have an account?",
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 16,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.normal)),
+                                TextSpan(
+                                  text: "  ",
+                                ),
+                                TextSpan(
+                                    text: "Sign In",
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 16,
+                                        color: Color(0xff558CE2),
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w600),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        print("Sign in Tapd");
+                                        model.login();
+                                      }),
+                              ]),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 59,
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 60,
-                      ),
-                      StateResponsive(
-                          state: model.state,
-                          busyWidget: Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                          idleWidget: Center(
-                              child: SubmitButton(
-                            buttonColor: Constants.kbuttonColor1,
-                            title: 'Sign Up',
-                            onPressed: () {
-                              model.signUp();
-                              FocusScope.of(context).unfocus();
-                            },
-                            textColor: Colors.white,
-                            isEnabled: model.isChecked,
-                          ))),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Center(
-                        child: RichText(
-                          text: TextSpan(children: [
-                            TextSpan(
-                                text: "Already have an account?",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 16,
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.normal)),
-                            TextSpan(
-                              text: "  ",
-                            ),
-                            TextSpan(
-                                text: "Sign In",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 16,
-                                    color: Color(0xff558CE2),
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w600),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    print("Sign in Tapd");
-                                    model.login();
-                                  }),
-                          ]),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 59,
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ),
-            )
-          ],
-        ),
-      ),
+            ),
+          )),
     );
   }
 
@@ -311,7 +313,7 @@ class SignUpScreen extends StatelessWidget {
               fontWeight: FontWeight.w500),
         ),
         SizedBox(
-          width: kSpacingUnit.w * 0.5,
+          width: 10.5,
         ),
         Tooltip(
           message: 'Put it on',
@@ -340,8 +342,8 @@ class _CheckBoxFieldState extends State<CheckBoxField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: kSpacingUnit.w * 2.4,
-      height: kSpacingUnit.w * 2.4,
+      width: 10.4,
+      height: 10.4,
       child: Checkbox(
           activeColor: Color(0xff578DDE),
           value: widget.value,
