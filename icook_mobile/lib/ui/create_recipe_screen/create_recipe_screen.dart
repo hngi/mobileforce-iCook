@@ -466,8 +466,7 @@ class PreparationSpan extends StatelessWidget {
                   child: Text(
                     numberSpan,
                     style: GoogleFonts.poppins(
-                        textStyle:
-                            TextStyle(color: Color(0xff333333), fontSize: 16),
+                        textStyle: TextStyle(fontSize: 16),
                         fontWeight: FontWeight.w500),
                   ),
                 ),
@@ -510,7 +509,6 @@ class ProcedureItem extends StatelessWidget {
                 text,
                 style: GoogleFonts.poppins(
                     textStyle: TextStyle(
-                      color: Color(0xff333333),
                       fontSize: 16,
                     ),
                     fontWeight: FontWeight.normal),
