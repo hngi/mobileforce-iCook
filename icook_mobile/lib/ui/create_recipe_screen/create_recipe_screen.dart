@@ -59,7 +59,7 @@ class CreateRecipeScreen extends StatelessWidget {
                                 color: Color(0XFFBDBDBD),
                                 fontSize: 14,
                                 fontFamily: "Poppins"),
-                            fillColor: Color(0xFFFFFFFF),
+                            fillColor: Color(0xFFFFFFF),
                             filled: true,
                             focusedBorder: OutlineInputBorder(
                               borderRadius:
@@ -122,7 +122,7 @@ class CreateRecipeScreen extends StatelessWidget {
                                 color: Color(0XFFBDBDBD),
                                 fontSize: 14,
                                 fontFamily: "Poppins"),
-                            fillColor: Color(0xFFFFFFFF),
+                            fillColor: Color(0xFFFFFFF),
                             filled: true,
                             focusedBorder: OutlineInputBorder(
                               borderRadius:
@@ -217,7 +217,7 @@ class CreateRecipeScreen extends StatelessWidget {
                                 color: Color(0XFFBDBDBD),
                                 fontSize: 14,
                                 fontFamily: "Poppins"),
-                            fillColor: Color(0xFFFFFFFF),
+                            fillColor: Color(0xFFFFFFF),
                             filled: true,
                             focusedBorder: OutlineInputBorder(
                               borderRadius:
