@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:icook_mobile/models/response/Dish/getmydishes.dart';
+import 'package:icook_mobile/models/response/Dish/dishitem.dart';
 import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
 import 'package:icook_mobile/ui/profile_screen/constant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -223,7 +223,15 @@ class OtherUserInfoScreen extends StatelessWidget {
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemCount: 6,
-            itemBuilder: (context, index) => RecipeItem(dish: Dishe(name: 'Garri', likesCount: 76,isLiked: false, recipe: ['cook and boil', 'bless the meal'], dishImages: ['assets/images/amala.jpeg'], ingredients: ['1 spoon of garri', '2 basins of sugar'], healthBenefits: ['Good for Athrirtis']),
+            itemBuilder: (context, index) => RecipeItem(
+              dish: Dish(
+                  name: 'Garri',
+                  likesCount: 76,
+                  isLiked: false,
+                  recipe: ['cook and boil', 'bless the meal'],
+                  dishImages: ['assets/images/amala.jpeg'],
+                  ingredients: ['1 spoon of garri', '2 basins of sugar'],
+                  healthBenefits: ['Good for Athrirtis']),
             ),
           ),
 

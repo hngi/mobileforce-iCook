@@ -4,6 +4,7 @@ import 'package:icook_mobile/core/constants/view_routes.dart';
 import 'package:icook_mobile/core/constants/view_state.dart';
 import 'package:icook_mobile/core/mixins/validators.dart';
 import 'package:icook_mobile/core/services/Auth_service/auth_service.dart';
+import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/models/requests/signup.dart';
 import 'package:icook_mobile/ui/base_view_model.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -13,6 +14,7 @@ class SignUpModel extends BaseNotifier with Validators {
   final navigation = locator<NavigationService>();
   final auth = locator<AuthService>();
   final snack = locator<SnackbarService>();
+  final key = locator<KeyStorageService>();
 
   final scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -75,8 +77,12 @@ class SignUpModel extends BaseNotifier with Validators {
       var user = await auth.signUp(request);
       print(user);
       setState(ViewState.Idle);
-      final snackbar = SnackBar(content: Text(user.message));
-      scaffoldKey.currentState.showSnackBar(snackbar);
+
+      key.name = user.data?.name;
+      key.email = user.data?.email;
+      key.token = user.data?.token;
+      key.id = user.data?.userID;
+      key.isLoggedIn = true;
       navigation.pushNamedAndRemoveUntil(ViewRoutes.home);
     } catch (e) {
       setState(ViewState.Idle);

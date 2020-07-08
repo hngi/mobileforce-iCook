@@ -34,8 +34,8 @@ Future<void> setupLocator({bool test = false}) async {
     () => SnackbarService(),
   );
 
-  locator.registerLazySingleton<ConnectivityService>(
-      () => ConnectivityServiceImpl());
+  // locator.registerLazySingleton<ConnectivityService>(
+  //     () => ConnectivityServiceImpl());
 
   locator.registerLazySingleton<ApiService>(() => ApiServiceImpl());
 

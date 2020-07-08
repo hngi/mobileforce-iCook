@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "498232116191",
+    "firebase_url": "https://abiding-cycle-278810.firebaseio.com",
+    "project_id": "abiding-cycle-278810",
+    "storage_bucket": "abiding-cycle-278810.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498232116191:android:eb6d1df3c6eae181a87a6a",
+        "android_client_info": {
+          "package_name": "com.example.icook_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "498232116191-sgp259ot0g9dr5op343185fnesmsn03a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.icook_mobile",
+            "certificate_hash": "d910ee5144ff7b9bcfeb8422d98b655ad1726445"
+          }
+        },
+        {
+          "client_id": "498232116191-gfsq3rb0v9os4j8d5l4h5qr9ch8e7k27.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7WaNe8iVA3ERxVKqvaqBz4v4GmSDUCWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "498232116191-gfsq3rb0v9os4j8d5l4h5qr9ch8e7k27.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "498232116191-d3ms1qc62ap4cdci0rc4ov3uu6sl2a4a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "gbolahanapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498232116191:android:43c5ca51d2e79bc5a87a6a",
+        "android_client_info": {
+          "package_name": "com.example.login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "498232116191-2arn3umaeepnecrsla9d3b1pgatfsfii.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.login",
+            "certificate_hash": "d910ee5144ff7b9bcfeb8422d98b655ad1726445"
+          }
+        },
+        {
+          "client_id": "498232116191-gfsq3rb0v9os4j8d5l4h5qr9ch8e7k27.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7WaNe8iVA3ERxVKqvaqBz4v4GmSDUCWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "498232116191-gfsq3rb0v9os4j8d5l4h5qr9ch8e7k27.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "498232116191-d3ms1qc62ap4cdci0rc4ov3uu6sl2a4a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "gbolahanapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

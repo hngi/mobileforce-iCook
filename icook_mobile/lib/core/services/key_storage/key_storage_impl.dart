@@ -117,4 +117,10 @@ class KeyStorageServiceImpl implements KeyStorageService {
     print('username $_name');
     _saveToDisk(username, _name);
   }
+
+  @override
+  Future<void> clear() async {
+    // TODO: implement clear
+    await _preferences.clear();
+  }
 }

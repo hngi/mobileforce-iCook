@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_pro/carousel_pro.dart';
-import 'package:icook_mobile/models/response/Dish/getmydishes.dart';
+import 'package:icook_mobile/models/response/Dish/dishitem.dart';
+import 'package:icook_mobile/models/response/Dish/dishresponse.dart';
 import 'package:icook_mobile/ui/shared/recipe_item.dart';
 import 'package:icook_mobile/ui/shared/recipe_item_shim.dart';
 import 'package:shimmer/shimmer.dart';
@@ -75,7 +76,7 @@ class _MyDishScreenState extends State<MyDishScreen> {
             return ListView.builder(
               itemCount: 6,
               itemBuilder: (context, index) => RecipeItem(
-                dish: Dishe(
+                dish: Dish(
                     name: 'Garri',
                     likesCount: 76,
                     isLiked: false,

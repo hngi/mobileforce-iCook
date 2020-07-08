@@ -1,78 +1,78 @@
-import 'dart:async';
+// import 'dart:async';
 
-import 'package:connectivity/connectivity.dart';
-import 'package:icook_mobile/core/constants/connectivity_status.dart';
-import 'package:icook_mobile/core/services/connectivity/connectivity_service.dart';
+// import 'package:connectivity/connectivity.dart';
+// import 'package:icook_mobile/core/constants/connectivity_status.dart';
+// import 'package:icook_mobile/core/services/connectivity/connectivity_service.dart';
 
-class ConnectivityServiceImpl implements ConnectivityService {
-  final _connectivityResultController = StreamController<ConnectivityStatus>();
-  final _connectivity = Connectivity();
+// class ConnectivityServiceImpl implements ConnectivityService {
+//   final _connectivityResultController = StreamController<ConnectivityStatus>();
+//   final _connectivity = Connectivity();
 
-  StreamSubscription<ConnectivityResult> _subscription;
-  ConnectivityResult _lastResult;
-  bool _serviceStopped = false;
+//   StreamSubscription<ConnectivityResult> _subscription;
+//   ConnectivityResult _lastResult;
+//   bool _serviceStopped = false;
 
-  @override
-  Stream<ConnectivityStatus> get connectivity$ =>
-      _connectivityResultController.stream;
+//   @override
+//   Stream<ConnectivityStatus> get connectivity$ =>
+//       _connectivityResultController.stream;
 
-  bool get serviceStopped => _serviceStopped;
+//   bool get serviceStopped => _serviceStopped;
 
-  ConnectivityServiceImpl() {
-    _subscription =
-        _connectivity.onConnectivityChanged.listen(_emitConnectivity);
-  }
+//   ConnectivityServiceImpl() {
+//     _subscription =
+//         _connectivity.onConnectivityChanged.listen(_emitConnectivity);
+//   }
 
-  Future<bool> get isConnected async {
-    final result = await _connectivity.checkConnectivity();
+//   Future<bool> get isConnected async {
+//     final result = await _connectivity.checkConnectivity();
 
-    switch (result) {
-      case ConnectivityResult.mobile:
-      case ConnectivityResult.wifi:
-        return true;
-      case ConnectivityResult.none:
-      default:
-        return false;
-    }
-  }
+//     switch (result) {
+//       case ConnectivityResult.mobile:
+//       case ConnectivityResult.wifi:
+//         return true;
+//       case ConnectivityResult.none:
+//       default:
+//         return false;
+//     }
+//   }
 
-  @override
-  void start() async {
-    print('ConnectivityService resumed');
-    _serviceStopped = false;
+//   @override
+//   void start() async {
+//     print('ConnectivityService resumed');
+//     _serviceStopped = false;
 
-    await _resumeSignal();
-    _subscription.resume();
-  }
+//     await _resumeSignal();
+//     _subscription.resume();
+//   }
 
-  @override
-  void stop() {
-    print('ConnectivityService paused');
-    _serviceStopped = true;
+//   @override
+//   void stop() {
+//     print('ConnectivityService paused');
+//     _serviceStopped = true;
 
-    _subscription.pause(_resumeSignal());
-  }
+//     _subscription.pause(_resumeSignal());
+//   }
 
-  void _emitConnectivity(ConnectivityResult event) {
-    if (event == _lastResult) return;
+//   void _emitConnectivity(ConnectivityResult event) {
+//     if (event == _lastResult) return;
 
-    print('Connectivity status changed to $event');
-    _connectivityResultController.add(_convertResult(event));
-    _lastResult = event;
-  }
+//     print('Connectivity status changed to $event');
+//     _connectivityResultController.add(_convertResult(event));
+//     _lastResult = event;
+//   }
 
-  ConnectivityStatus _convertResult(ConnectivityResult result) {
-    switch (result) {
-      case ConnectivityResult.mobile:
-        return ConnectivityStatus.Cellular;
-      case ConnectivityResult.wifi:
-        return ConnectivityStatus.WiFi;
-      case ConnectivityResult.none:
-        return ConnectivityStatus.Offline;
-      default:
-        return ConnectivityStatus.Offline;
-    }
-  }
+//   ConnectivityStatus _convertResult(ConnectivityResult result) {
+//     switch (result) {
+//       case ConnectivityResult.mobile:
+//         return ConnectivityStatus.Cellular;
+//       case ConnectivityResult.wifi:
+//         return ConnectivityStatus.WiFi;
+//       case ConnectivityResult.none:
+//         return ConnectivityStatus.Offline;
+//       default:
+//         return ConnectivityStatus.Offline;
+//     }
+//   }
 
-  Future<void> _resumeSignal() async => true;
-}
+//   Future<void> _resumeSignal() async => true;
+// }

@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:icook_mobile/core/constants/view_state.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasource.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
-import 'package:icook_mobile/models/response/Dish/getmydishes.dart';
+import 'package:icook_mobile/models/response/Dish/dishitem.dart';
+import 'package:icook_mobile/models/response/Dish/dishresponse.dart';
 import 'package:icook_mobile/ui/base_view_model.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -15,11 +19,13 @@ class HomeScreenModel extends BaseNotifier {
 
   String afterKey = "";
 
+  final easycontroller = EasyRefreshController();
+
   String get username => key.name;
 
-  List<Dishe> _list = [];
+  List<Dish> _list = [];
 
-  List<Dishe> get list => _list;
+  List<Dish> get list => _list;
 
   //scaffoldkey
   final scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -28,16 +34,18 @@ class HomeScreenModel extends BaseNotifier {
     setState(ViewState.Busy);
 
     try {
-      var result = await data.getDishes();
-      print(result);
-      _list = result.data.dishes;
+      var response = await data.getDishes() ;
+      print(response);
+      _list.clear();
+      _list = response.data.dishes;
       _checkIfAvailableData();
 
       //show
-      final snackbar = SnackBar(content: Text(result.status));
+      final snackbar = SnackBar(content: Text(response.status));
       scaffoldKey.currentState.showSnackBar(snackbar);
     } catch (e) {
       setState(ViewState.Idle);
+      easycontroller.resetLoadState();
       print('homescreen model exception $e');
       final snackbar = SnackBar(content: Text(e));
       scaffoldKey.currentState.showSnackBar(snackbar);

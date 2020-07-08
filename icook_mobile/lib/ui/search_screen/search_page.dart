@@ -1,37 +1,70 @@
 import 'package:flutter/material.dart';
+import 'package:icook_mobile/core/constants/view_routes.dart';
+import 'package:icook_mobile/models/response/Dish/dishitem.dart';
+import 'package:icook_mobile/models/response/Search/searchdish.dart';
+import 'package:icook_mobile/ui/search_screen/searchmodel.dart';
+import 'package:icook_mobile/ui/shared/state_responsive.dart';
+import 'package:stacked/stacked.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class SearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Search',
-          style: TextStyle(
-              fontFamily: "Poppins", fontWeight: FontWeight.w500, fontSize: 24),
+    return ViewModelBuilder<SearchModel>.reactive(
+      viewModelBuilder: () => SearchModel(),
+      builder: (context, model, child) => Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Search',
+            style: TextStyle(
+                fontFamily: "Poppins",
+                fontWeight: FontWeight.w500,
+                fontSize: 24),
+          ),
+          actions: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(right: 12),
+              child: Image.asset(
+                "assets/images/filter.png",
+                height: 18,
+                width: 20,
+              ),
+            )
+          ],
         ),
-        actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: Image.asset(
-              "assets/images/filter.png",
-              height: 18,
-              width: 20,
+        body: Container(
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                _searchBar(model),
+                SizedBox(
+                  height: 20,
+                ),
+                StateResponsive(
+                    state: model.state,
+                    noDataAvailableWidget: Center(
+                      child: Text('Enter to search'),
+                    ),
+                    busyWidget: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    idleWidget: ListView.builder(
+                      itemCount: model.list.length,
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) =>
+                          SearchResult(recipe: model.list[index]),
+                    ))
+              ],
             ),
-          )
-        ],
-      ),
-      body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20),
-        child: ListView(
-          children: <Widget>[_searchBar(), _recentSearch(), _relatedSerach()],
+          ),
         ),
       ),
     );
   }
 }
 
-Widget _searchBar() {
+Widget _searchBar(SearchModel model) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 30),
     child: Row(
@@ -40,6 +73,7 @@ Widget _searchBar() {
         Container(
           child: Expanded(
             child: TextField(
+              onChanged: (v) => model.loadData(v),
               textAlign: TextAlign.left,
               style: TextStyle(
                   color: Color(0xFF333333),
@@ -68,16 +102,6 @@ Widget _searchBar() {
     ),
   );
 }
-
-// BottomNavigationBarItem builder
-BottomNavigationBarItem _bottomNavigationBarItem(
-        var icon, String label, Color color) =>
-    BottomNavigationBarItem(
-        icon: Icon(
-          icon,
-          color: color,
-        ),
-        title: Text(label));
 
 Widget _recentSearch() => Container(
       margin: EdgeInsets.symmetric(vertical: 8.0),
@@ -148,151 +172,117 @@ Container _recentdish(String image, String dish) => Container(
       ),
     );
 
-Container _relatedSerach() => Container(
-      margin: EdgeInsets.only(top: 7),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            "Related Search Result",
-            style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 18,
-                fontWeight: FontWeight.w600),
-          ),
-          SearchResult(
-            recipe: r,
-          ),
-          SearchResult(
-            recipe: r2,
-          ),
-          SearchResult(
-            recipe: r,
-          ),
-          SearchResult(
-            recipe: r2,
-          ),
-          SearchResult(
-            recipe: r3,
-          ),
-        ],
-      ),
-    );
+class SearchResult extends StatelessWidget {
+  final Dish recipe;
 
-class SearchResult extends StatefulWidget {
-  Recipe recipe;
-  SearchResult({Key key, @required this.recipe}) : super(key: key);
-  @override
-  _SearchResultState createState() => _SearchResultState(recipe);
-}
-
-class _SearchResultState extends State<SearchResult> {
-  Recipe recipe;
-  _SearchResultState(this.recipe) {
-    this.recipe = recipe;
-  }
+  const SearchResult({Key key, this.recipe}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 10),
-      width: 335,
-      height: 128,
+    DateTime time = DateTime.parse(recipe.createdAt);
+    var date = timeago.format(time);
+
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, ViewRoutes.recipe_details,
+            arguments: recipe);
+      },
+      child: Container(
+        margin: EdgeInsets.only(bottom: 10, left: 20, right: 20),
+        width: 335,
+        height: 128,
 //      margin: EdgeInsets.only(bottom: 10.0),
-      child: Row(
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 17),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10.0),
-              child: Image.asset(
-                recipe.recipe_image,
-                width: 117,
-                height: 115,
-                fit: BoxFit.fill,
+        child: Row(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 17),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image.asset(
+                  'assets/images/icook_logo.png',
+                  width: 117,
+                  height: 115,
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: Container(
-              margin: EdgeInsets.only(left: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    recipe.recipe_name,
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                        color: Color(0xFF333333),
-                        fontSize: 18,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal),
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
-                    child: Text(
-                      recipe.description,
-                      maxLines: 4,
-                      softWrap: true,
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(left: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      recipe.name,
                       overflow: TextOverflow.clip,
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w600,
+                          fontStyle: FontStyle.normal),
                     ),
-                  ),
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          child: Row(
-                            children: <Widget>[
-                              InkWell(
-                                  onTap: () {
-//                              TODO: Change like state true/false
-                                    this.setState(() {});
-                                  },
-                                  child: recipe.likes
-                                      ? Icon(
-                                          Icons.favorite,
-                                          size: 18,
-                                          color: Colors.red,
-                                        )
-                                      : Image.asset(
-                                          "assets/images/heart.png",
-                                          height: 14,
-                                        )),
-                              SizedBox(
-                                width: 3,
-                              ),
-                              Text(
-                                " " + recipe.like_count.toString(),
-                                style: TextStyle(
-                                    color: Color(0xFF333333),
-                                    fontSize: 12,
-                                    fontFamily: "Poppings",
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w500),
-                              )
-                            ],
+                    Container(
+                      margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
+                      child: Text(
+                        recipe.healthBenefits[0],
+                        maxLines: 4,
+                        softWrap: true,
+                        overflow: TextOverflow.clip,
+                      ),
+                    ),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                            child: Row(
+                              children: <Widget>[
+                                InkWell(
+                                    onTap: () {
+//
+                                    },
+                                    child: recipe.likesCount > 0
+                                        ? Icon(
+                                            Icons.favorite,
+                                            size: 18,
+                                            color: Colors.red,
+                                          )
+                                        : Icon(
+                                            Icons.favorite_border,
+                                            size: 18,
+                                          )),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  recipe.likesCount.toString(),
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: "Poppings",
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        Text(
-                          "${recipe.days} days ago",
-                          style: TextStyle(
-                              color: Color(0xFF828282),
-                              fontSize: 12,
-                              fontFamily: "Poppings",
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w500),
-                        )
-                      ],
-                    ),
-                  )
-                ],
+                          Text(
+                            date,
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontFamily: "Poppings",
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w500),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

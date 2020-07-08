@@ -139,7 +139,7 @@ class Data {
 }
 
 class Result {
-  final List<dynamic> dishImages;
+  final List<String> dishImages;
   final List<String> recipe;
   final List<String> ingredients;
   final List<String> healthBenefits;
@@ -168,37 +168,37 @@ class Result {
     this.isLiked,
   });
 
-  Result copyWith({
-    List<dynamic> dishImages,
-    List<String> recipe,
-    List<String> ingredients,
-    List<String> healthBenefits,
-    String id,
-    String name,
-    String chefId,
-    String createdAt,
-    String updatedAt,
-    int v,
-    int commentsCount,
-    int likesCount,
-    bool isLiked,
-  }) {
-    return Result(
-      dishImages: dishImages ?? this.dishImages,
-      recipe: recipe ?? this.recipe,
-      ingredients: ingredients ?? this.ingredients,
-      healthBenefits: healthBenefits ?? this.healthBenefits,
-      id: id ?? this.id,
-      name: name ?? this.name,
-      chefId: chefId ?? this.chefId,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
-      v: v ?? this.v,
-      commentsCount: commentsCount ?? this.commentsCount,
-      likesCount: likesCount ?? this.likesCount,
-      isLiked: isLiked ?? this.isLiked,
-    );
-  }
+  // Result copyWith({
+  //   List<dynamic> dishImages,
+  //   List<String> recipe,
+  //   List<String> ingredients,
+  //   List<String> healthBenefits,
+  //   String id,
+  //   String name,
+  //   String chefId,
+  //   String createdAt,
+  //   String updatedAt,
+  //   int v,
+  //   int commentsCount,
+  //   int likesCount,
+  //   bool isLiked,
+  // }) {
+  //   return Result(
+  //     dishImages: dishImages ?? this.dishImages,
+  //     recipe: recipe ?? this.recipe,
+  //     ingredients: ingredients ?? this.ingredients,
+  //     healthBenefits: healthBenefits ?? this.healthBenefits,
+  //     id: id ?? this.id,
+  //     name: name ?? this.name,
+  //     chefId: chefId ?? this.chefId,
+  //     createdAt: createdAt ?? this.createdAt,
+  //     updatedAt: updatedAt ?? this.updatedAt,
+  //     v: v ?? this.v,
+  //     commentsCount: commentsCount ?? this.commentsCount,
+  //     likesCount: likesCount ?? this.likesCount,
+  //     isLiked: isLiked ?? this.isLiked,
+  //   );
+  // }
 
   Map<String, dynamic> toMap() {
     return {

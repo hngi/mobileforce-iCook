@@ -6,19 +6,20 @@ class PostDIshBody {
   final String name;
   final List<String> ingredients;
   final List<String> recipe;
-  final String healthBenefits;
+  final List<String> healthBenefits;
   PostDIshBody({
     this.name,
     this.ingredients,
     this.recipe,
     this.healthBenefits,
   });
+ 
 
   PostDIshBody copyWith({
     String name,
     List<String> ingredients,
     List<String> recipe,
-    String healthBenefits,
+    List<String> healthBenefits,
   }) {
     return PostDIshBody(
       name: name ?? this.name,
@@ -44,7 +45,7 @@ class PostDIshBody {
       name: map['name'],
       ingredients: List<String>.from(map['ingredients']),
       recipe: List<String>.from(map['recipe']),
-      healthBenefits: map['healthBenefits'],
+      healthBenefits: List<String>.from(map['healthBenefits']),
     );
   }
 
@@ -66,7 +67,7 @@ class PostDIshBody {
       o.name == name &&
       listEquals(o.ingredients, ingredients) &&
       listEquals(o.recipe, recipe) &&
-      o.healthBenefits == healthBenefits;
+      listEquals(o.healthBenefits, healthBenefits);
   }
 
   @override

@@ -16,7 +16,7 @@ class Validators {
 
   String validateName(String value) {
     if (value.length < 3) {
-      return 'name too short';
+      return 'entry is too short';
     }
     return null;
   }

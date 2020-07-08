@@ -115,7 +115,7 @@ class ApiServiceImpl implements ApiService {
     return file;
   }
 
-  Future<dynamic> gett(String url, header) async {
+  Future<dynamic> gett(dynamic url, header) async {
     print('Api Get, url $url');
     var responseJson;
     try {
@@ -143,7 +143,7 @@ class ApiServiceImpl implements ApiService {
     return responseJson;
   }
 
-  Future<dynamic> put(String url, dynamic header, {dynamic body}) async {
+  Future<dynamic> put(dynamic url, dynamic header, {dynamic body}) async {
     print('Api Put, url $url');
     var responseJson;
     if (body != null) {

@@ -2,7 +2,9 @@ import 'package:icook_mobile/core/constants/api_routes.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/Search/searchdatasource.dart';
 import 'package:icook_mobile/core/services/Api/ApiService.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
+import 'package:icook_mobile/models/response/Dish/dishresponse.dart';
 import 'package:icook_mobile/models/response/Search/searchdish.dart';
+import 'package:icook_mobile/models/response/Search/searchresponse.dart';
 import 'package:icook_mobile/models/response/Search/searchuser.dart';
 
 import '../../../../locator.dart';
@@ -11,7 +13,7 @@ class SearchDataSourceImpl extends SearchDataSource {
   final api = locator<ApiService>();
   final key = locator<KeyStorageService>();
   @override
-  Future<SearchDishResponse> searchForDish(String name) async {
+  Future<dynamic> searchForDish(String name) async {
     String token = key.token ?? "";
     final headers = <String, String>{
       "Accept": "application/json",
@@ -19,11 +21,11 @@ class SearchDataSourceImpl extends SearchDataSource {
       "Authorization": "$token"
     };
 
-    final route = '${ApiRoutes.searchdish}/$name';
+    final route = '${ApiRoutes.searchdish}$name';
     try {
       final response = await api.gett(route, headers);
-      print('get dishes response $response');
-      SearchDishResponse res = SearchDishResponse.fromJson(response);
+      print('search response $response');
+      SearchResponse res = SearchResponse.fromJson(response);
       print(res);
       return res;
     } catch (e) {
