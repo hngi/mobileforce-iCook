@@ -5,7 +5,7 @@ import 'package:icook_mobile/ui/account_information_screen/account_information_s
 import 'package:icook_mobile/ui/dish_screen/dish_screen.dart';
 import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
 import 'package:icook_mobile/ui/profile_screen/profilescreenmodel.dart';
-import 'package:icook_mobile/ui/settings_screen/settings_screen.dart';
+import 'package:icook_mobile/ui/settings/settings.dart';
 import 'package:icook_mobile/ui/shared/sumbitButton.dart';
 import 'package:stacked/stacked.dart';
 // import 'package:line_awesome_flutter/line_awesome_flutter.dart';
