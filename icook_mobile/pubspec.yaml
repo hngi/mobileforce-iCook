@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   
+  
 
 
   # State management
@@ -59,6 +60,7 @@ dependencies:
   flutter_easyrefresh: ^2.1.1
   # multi_image_picker: ^4.6.7
   flutter_plugin_android_lifecycle: ^1.0.8
+  google_sign_in: ^4.5.1
  
 
 

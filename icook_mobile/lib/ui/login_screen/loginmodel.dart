@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:icook_mobile/core/constants/view_routes.dart';
 import 'package:icook_mobile/core/constants/view_state.dart';
 import 'package:icook_mobile/core/mixins/validators.dart';
@@ -26,6 +27,14 @@ class LoginModel extends BaseNotifier with Validators {
   final password = TextEditingController();
   final email = TextEditingController();
 
+GoogleSignIn _googleSignIn = GoogleSignIn(
+  scopes: <String>[
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ],
+);
+
+
   void login() async {
     if (!formkey.currentState.validate()) return;
 
@@ -52,6 +61,22 @@ class LoginModel extends BaseNotifier with Validators {
       scaffoldKey.currentState.showSnackBar(snackbar);
     }
   }
+
+  Future<void> handleSignIn() async {
+    try {
+      final result = await _googleSignIn.signIn();
+      final key = await result.authentication;
+      print(key.accessToken);
+      
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<void> handleSignOut() => _googleSignIn.disconnect();
+
+
+  
 
   void signUp() {
     navigation.pushNamedAndRemoveUntil(ViewRoutes.signup);
