@@ -30,6 +30,7 @@ class SplashScreen extends StatelessWidget {
                 ),
               ),
               Visibility(
+                replacement: Center(child: CircularProgressIndicator()),
                 visible: model.isFirstTime,
                 child: KButton(
                     onPressed: () => model.getStarted(),

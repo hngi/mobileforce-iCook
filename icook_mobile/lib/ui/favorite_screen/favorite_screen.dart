@@ -23,25 +23,11 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       builder: (context, model, child) => Scaffold(
           key: model.scaffoldKey,
           appBar: AppBar(
-            title: Text("Favorite"),
-            actions: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                ),
-                child: InkWell(
-                  onTap: () {},
-                  child: Image(
-                    image: AssetImage("assets/images/search_fav.png"),
-                    width: 24,
-                    height: 24,
-                  ),
-                ),
-              ),
-            ],
+            title: Text("Favorites"),
           ),
           body: EasyRefresh(
+            enableControlFinishRefresh: true,
+            controller: model.easycontroller,
             onRefresh: () => model.loadData(),
             child: SingleChildScrollView(
               child: Column(

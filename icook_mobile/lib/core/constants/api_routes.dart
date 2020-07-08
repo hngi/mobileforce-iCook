@@ -10,6 +10,7 @@ class ApiRoutes {
   static const facebookauth = '$baseUrl/authenticate/oauth/facebook';
   static const updatepassword = '$baseUrl/authenticate/updatepassword';
   static const forgotpassword = '$baseUrl/authenticate/forgotPassword';
+  static const confirmToken = '$baseUrl/authenticate/confirmToken';
   static const resetPassword = '$baseUrl/authenticate/resetPassword';
   static const unlinkGoogle = '$baseUrl/authenticate/unlink/google';
   static const unlinkFacebook = '$baseUrl/authenticate/unlink/facebook';

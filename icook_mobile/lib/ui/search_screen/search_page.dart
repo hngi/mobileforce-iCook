@@ -32,30 +32,33 @@ class SearchView extends StatelessWidget {
             )
           ],
         ),
-        body: Container(
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                _searchBar(model),
-                SizedBox(
-                  height: 20,
-                ),
-                StateResponsive(
-                    state: model.state,
-                    noDataAvailableWidget: Center(
-                      child: Text('Enter to search'),
-                    ),
-                    busyWidget: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    idleWidget: ListView.builder(
-                      itemCount: model.list.length,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) =>
-                          SearchResult(recipe: model.list[index]),
-                    ))
-              ],
+        body: SingleChildScrollView(
+          child: Center(
+            child: Container(
+              constraints: BoxConstraints(maxWidth: 600),
+              child: Column(
+                children: <Widget>[
+                  _searchBar(model),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  StateResponsive(
+                      state: model.state,
+                      noDataAvailableWidget: Center(
+                        child: Text('Enter to search'),
+                      ),
+                      busyWidget: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      idleWidget: ListView.builder(
+                        itemCount: model.list.length,
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) =>
+                            SearchResult(recipe: model.list[index]),
+                      ))
+                ],
+              ),
             ),
           ),
         ),

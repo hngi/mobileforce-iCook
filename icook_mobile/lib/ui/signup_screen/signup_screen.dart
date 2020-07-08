@@ -434,11 +434,7 @@ class _PasswordFieldState extends State<PasswordField> {
               });
             },
             decoration: new InputDecoration(
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(width: 0.0, style: BorderStyle.none),
-                  borderRadius: BorderRadius.circular(4)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.lightBlue)),
+              hintText: "Enter password",
               suffixIcon: new GestureDetector(
                 onTap: () {
                   setState(() {

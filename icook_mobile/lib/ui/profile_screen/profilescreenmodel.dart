@@ -1,3 +1,4 @@
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:icook_mobile/core/constants/view_routes.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/locator.dart';
@@ -14,8 +15,21 @@ class ProfileScreenModel extends BaseNotifier {
 
   String get email => key.email;
 
+  GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: <String>[
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ],
+  );
+
   Future<void> logout() async {
+    final stat = await _googleSignIn.isSignedIn();
+    if (stat) {
+      await handleSignOut();
+    }
     await key.clear();
     navigation.pushNamedAndRemoveUntil(ViewRoutes.login);
   }
+
+  Future<void> handleSignOut() => _googleSignIn.disconnect();
 }

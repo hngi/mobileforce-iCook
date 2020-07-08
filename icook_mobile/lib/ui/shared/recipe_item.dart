@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icook_mobile/models/response/Dish/dishitem.dart';
@@ -16,196 +17,204 @@ class RecipeItem extends StatelessWidget {
     return ViewModelBuilder<RecipeItemModel>.reactive(
       viewModelBuilder: () => RecipeItemModel(),
       onModelReady: (model) => model.setData(dish),
-      builder: (context, model, child) => Padding(
-        padding: const EdgeInsets.only(bottom: 0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Divider(),
-            SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: Row(
-                      children: <Widget>[
-                        GestureDetector(
-                          onTap: () {},
-                          child: CircleAvatar(
-                            backgroundImage: dish.chefId.isNotEmpty
-                                ? NetworkImage(dish.chefId[0].userImage)
-                                : AssetImage('assets/images/chefavatar1.png'),
-                            radius: 25,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              GestureDetector(
-                                onTap: () {},
-                                child: Text(dish.chefId[0].name,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    )),
-                              ),
-                              Text(model.time),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 17,
-            ),
-            Container(
-              height: 248,
-              width: MediaQuery.of(context).size.width,
-              child: Carousel(
-                images: dish.dishImages.map((e) => NetworkImage(e)).toList(),
-                dotSize: 6.0,
-                dotIncreaseSize: 1.5,
-                dotSpacing: 20.0,
-                dotColor: Colors.white,
-                dotIncreasedColor: Colors.blue,
-                autoplay: false,
-                indicatorBgPadding: 5.0,
-                dotVerticalPadding: 20,
-                defaultImage: AssetImage('assets/images/icook_logo.png'),
-                dotBgColor: Colors.transparent,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
+      builder: (context, model, child) => Card(
+        margin: EdgeInsets.zero,
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(height: 10),
+              InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 5, bottom: 5),
+                  child: Row(
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(left: 0, top: 11.5),
-                        child: GestureDetector(
-                            onTap: () => model.like(),
-                            child: model.isLiked
-                                ? Icon(
-                                    Icons.favorite,
-                                    color: Colors.red,
-                                    size: 32,
-                                  )
-                                : Icon(
-                                    Icons.favorite_border,
-                                    size: 32,
+                      GestureDetector(
+                        onTap: () {},
+                        child: CircleAvatar(
+                          backgroundImage: dish.chefId.isNotEmpty
+                              ? NetworkImage(dish.chefId[0].userImage)
+                              : AssetImage('assets/images/chefavatar1.png'),
+                          radius: 25,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: () {},
+                              child: Text(dish.chefId[0].name,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
                                   )),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 19, top: 15),
-                        child: GestureDetector(
-                            onTap: () {},
-                            child: ImageIcon(AssetImage(
-                                'assets/images/message-circle.png'))),
-                      ),
+                            ),
+                            Text(model.time),
+                          ],
+                        ),
+                      )
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20, top: 11.5),
-                    child: PopupMenuButton<PopUpType>(
-                      onSelected: (PopUpType result) {
-                        if (result == PopUpType.favourite) {
-                          model.favourite();
-                        }
-                      },
-                      itemBuilder: (BuildContext context) =>
-                          <PopupMenuEntry<PopUpType>>[
-                        const PopupMenuItem<PopUpType>(
-                          value: PopUpType.favourite,
-                          child: Text('Add to Favourites'),
+                ),
+              ),
+              SizedBox(
+                height: 17,
+              ),
+              Container(
+                height: 300,
+                width: MediaQuery.of(context).size.width,
+                child: Carousel(
+                  images: dish.dishImages
+                      .map((e) => CachedNetworkImage(
+                            alignment: Alignment.center,
+                            fit: BoxFit.cover,
+                            imageUrl:
+                                e,
+                            placeholder: (context, url) => Container(
+                              color: Colors.blueGrey,
+                            ),
+                          ))
+                      .toList(),
+                  dotSize: 6.0,
+                  dotIncreaseSize: 1.5,
+                  dotSpacing: 20.0,
+                  dotColor: Colors.white,
+                  dotIncreasedColor: Colors.blue,
+                  autoplay: false,
+                  indicatorBgPadding: 5.0,
+                  dotVerticalPadding: 20,
+                  defaultImage: AssetImage('assets/images/icook_logo.png'),
+                  dotBgColor: Colors.transparent,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(left: 0, top: 11.5),
+                          child: GestureDetector(
+                              onTap: () => model.like(),
+                              child: model.isLiked
+                                  ? Icon(
+                                      Icons.favorite,
+                                      color: Colors.red,
+                                      size: 32,
+                                    )
+                                  : Icon(
+                                      Icons.favorite_border,
+                                      size: 32,
+                                    )),
                         ),
-                        const PopupMenuItem<PopUpType>(
-                          value: PopUpType.share,
-                          child: Text('Share'),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 19, top: 15),
+                          child: GestureDetector(
+                              onTap: () {},
+                              child: ImageIcon(AssetImage(
+                                  'assets/images/message-circle.png'))),
                         ),
                       ],
                     ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            InkWell(
-              onTap: () => model.seeDetails(dish),
-              child: Container(
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Text(
-                        "${model.likes} likes",
-                        style: GoogleFonts.poppins(
-                            fontSize: 20,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w600),
+                      padding: const EdgeInsets.only(right: 20, top: 11.5),
+                      child: PopupMenuButton<PopUpType>(
+                        onSelected: (PopUpType result) {
+                          if (result == PopUpType.favourite) {
+                            model.favourite();
+                          }
+                        },
+                        itemBuilder: (BuildContext context) =>
+                            <PopupMenuEntry<PopUpType>>[
+                          const PopupMenuItem<PopUpType>(
+                            value: PopUpType.favourite,
+                            child: Text('Add to Favourites'),
+                          ),
+                          const PopupMenuItem<PopUpType>(
+                            value: PopUpType.share,
+                            child: Text('Share'),
+                          ),
+                        ],
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: GestureDetector(
-                        onTap: () => model.seeDetails(dish),
-                        child: Text(
-                          dish.name,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.poppins(
-                              fontSize: 20,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: GestureDetector(
-                        onTap: () => model.seeDetails(dish),
-                        child: Text(
-                          dish.healthBenefits[0],
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.poppins(
-                              color: Color(0xFF828282),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    )
                   ],
                 ),
               ),
-            ),
-          ],
+              SizedBox(
+                height: 10,
+              ),
+              InkWell(
+                onTap: () => model.seeDetails(dish),
+                child: Container(
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text(
+                          "${model.likes} likes",
+                          style: GoogleFonts.poppins(
+                              fontSize: 20,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: GestureDetector(
+                          onTap: () => model.seeDetails(dish),
+                          child: Text(
+                            dish.name,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: GoogleFonts.poppins(
+                                fontSize: 20,
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: GestureDetector(
+                          onTap: () => model.seeDetails(dish),
+                          child: Text(
+                            dish.healthBenefits[0],
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: GoogleFonts.poppins(
+                                color: Color(0xFF828282),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

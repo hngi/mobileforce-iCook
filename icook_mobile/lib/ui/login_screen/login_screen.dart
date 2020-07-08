@@ -6,6 +6,7 @@ import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
 import 'package:icook_mobile/ui/login_screen/loginmodel.dart';
 import 'package:icook_mobile/ui/shared/state_responsive.dart';
 import 'package:icook_mobile/ui/shared/sumbitButton.dart';
+import 'package:icook_mobile/ui/signup_screen/signup_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:stacked/stacked.dart';
@@ -74,7 +75,8 @@ class LoginScreen extends StatelessWidget {
                                   validator: (_) =>
                                       model.validateEmail(model.email.text),
                                   textInputAction: TextInputAction.next,
-                                  onEditingComplete: () => model.node.nextFocus(),
+                                  onEditingComplete: () =>
+                                      model.node.nextFocus(),
                                   keyboardType: TextInputType.text,
                                   style: TextStyle(
                                       fontSize: 18, fontFamily: "Poppins"),
@@ -118,32 +120,12 @@ class LoginScreen extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Container(
-                                padding: EdgeInsets.only(left: 20, right: 20),
-                                child: TextFormField(
-                                  controller: model.password,
-                                  validator: (value) =>
-                                      model.validatePassword(model.password.text),
-                                  obscureText: !_showPassword,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) => model.node.unfocus(),
-                                  keyboardType: TextInputType.text,
-                                  style: TextStyle(
-                                      fontSize: 18, fontFamily: "Poppins"),
-                                  cursorColor: Color(0XFFF898989),
-                                  decoration: InputDecoration(
-                                    suffixIcon: GestureDetector(
-                                      onTap: () {},
-                                      child: Icon(
-                                        _showPassword
-                                            ? Icons.visibility
-                                            : Icons.visibility,
-                                        color: Colors.blueGrey,
-                                      ),
-                                    ),
-                                    hintText: "Enter Password",
-                                  ),
-                                ),
-                              ),
+                                  padding: EdgeInsets.only(left: 20, right: 20),
+                                  child: PasswordField(
+                                    validator: (v) => model
+                                        .validatePassword(model.password.text),
+                                    controller: model.password,
+                                  )),
                               SizedBox(height: 50),
                               Container(
                                 padding: EdgeInsets.only(left: 20, right: 20),
@@ -201,7 +183,7 @@ class LoginScreen extends StatelessWidget {
                                       color: Color(0xffFDFDFD),
                                       child: MaterialButton(
                                         onPressed: () {
-                                         model.handleSignIn();
+                                          model.handleSignIn();
                                         },
                                         child: Row(
                                           mainAxisAlignment:
@@ -219,7 +201,8 @@ class LoginScreen extends StatelessWidget {
                                                       letterSpacing: -0.005,
                                                       color: Colors.black,
                                                       fontSize: 16),
-                                                  fontWeight: FontWeight.normal),
+                                                  fontWeight:
+                                                      FontWeight.normal),
                                               textAlign: TextAlign.center,
                                             ),
                                           ],

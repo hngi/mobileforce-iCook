@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:icook_mobile/core/constants/view_routes.dart';
 import 'package:icook_mobile/core/constants/view_state.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasource.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
@@ -59,5 +60,9 @@ class AccountModel extends BaseNotifier {
         instantInit: true,
         duration: Duration(seconds: 2),
         snackPosition: SnackPosition.BOTTOM);
+  }
+
+  void editDetails() {
+    navigation.navigateTo(ViewRoutes.edit_profile);
   }
 }

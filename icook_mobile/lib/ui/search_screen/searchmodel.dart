@@ -21,24 +21,24 @@ class SearchModel extends BaseNotifier {
   final scaffoldKey = new GlobalKey<ScaffoldState>();
 
   Future<void> loadData(String name) async {
-    _list.clear();
-    setState(ViewState.Busy);
-
-    try {
-      var result = await data.searchForDish(name);
-      print(result);
+    if (name.isNotEmpty) {
       _list.clear();
-      _list = result.data.result;
-      _checkIfAvailableData();
-
-      //show
-      final snackbar = SnackBar(content: Text(result.status));
-      scaffoldKey.currentState.showSnackBar(snackbar);
-    } catch (e) {
-      setState(ViewState.Idle);
-      print('searchscreen model exception $e');
-      final snackbar = SnackBar(content: Text(e));
-      scaffoldKey.currentState.showSnackBar(snackbar);
+      setState(ViewState.Busy);
+      try {
+        var result = await data.searchForDish(name);
+        print(result);
+        _list.clear();
+        _list = result.data.result;
+        _checkIfAvailableData();
+      } catch (e) {
+        setState(ViewState.Idle);
+        print('searchscreen model exception $e');
+        final snackbar = SnackBar(content: Text(e));
+        scaffoldKey.currentState.showSnackBar(snackbar);
+      }
+    } else {
+      _list.clear();
+      setState(ViewState.NoDataAvailable);
     }
   }
 
