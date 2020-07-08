@@ -58,7 +58,7 @@ class ConfirmResetPasswordScreen extends StatelessWidget {
                                 TextField(
                                   obscureText: true,
                                   keyboardType: TextInputType.number,
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 44),
+                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 45),
                                 ),
 
                               ],
