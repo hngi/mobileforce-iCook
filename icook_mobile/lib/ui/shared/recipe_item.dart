@@ -76,7 +76,10 @@ class RecipeItem extends StatelessWidget {
                 child: Carousel(
                   images: dish.dishImages
                       .map((e) => CachedNetworkImage(
-                            imageUrl: 'https://icook-images.s3.us-east-2.amazonaws.com/dishes-1594233415703.jpeg',
+                            alignment: Alignment.center,
+                            fit: BoxFit.cover,
+                            imageUrl:
+                                e,
                             placeholder: (context, url) => Container(
                               color: Colors.blueGrey,
                             ),

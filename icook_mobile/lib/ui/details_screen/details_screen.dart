@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -77,11 +78,19 @@ class DetailsScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     Container(
-                      height: 248,
+                      height: 300,
                       width: MediaQuery.of(context).size.width,
                       child: Carousel(
-                        images:
-                            dish.dishImages.map((e) => AssetImage(e)).toList(),
+                        images: dish.dishImages
+                            .map((e) => CachedNetworkImage(
+                                  alignment: Alignment.center,
+                                  fit: BoxFit.cover,
+                                  imageUrl: e,
+                                  placeholder: (context, url) => Container(
+                                    color: Colors.blueGrey,
+                                  ),
+                                ))
+                            .toList(),
                         dotSize: 6.0,
                         dotIncreaseSize: 1.5,
                         dotSpacing: 20.0,
