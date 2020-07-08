@@ -6,6 +6,7 @@ import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
 import 'package:icook_mobile/ui/login_screen/loginmodel.dart';
 import 'package:icook_mobile/ui/shared/state_responsive.dart';
 import 'package:icook_mobile/ui/shared/sumbitButton.dart';
+import 'package:icook_mobile/ui/signup_screen/signup_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:stacked/stacked.dart';
@@ -117,6 +118,7 @@ class LoginScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 10),
+                              PasswordField(validator: (v) => model.validatePassword(model.password.text),controller: model.password,),
                               Container(
                                 padding: EdgeInsets.only(left: 20, right: 20),
                                 child: TextFormField(

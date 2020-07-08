@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icook_mobile/models/response/Dish/dishitem.dart';
 import 'package:icook_mobile/ui/details_screen/detailsmodel.dart';
 import 'package:icook_mobile/ui/profile_screen/constant.dart';
+import 'package:icook_mobile/ui/ui_helper.dart';
 import 'package:stacked/stacked.dart';
 
 // This is the type used by the popup menu below.
@@ -198,6 +199,7 @@ class DetailsScreen extends StatelessWidget {
                               ),
                             ),
                           ),
+                          Divider(),
                           SizedBox(height: 10),
                           Container(
                             height: 50,
@@ -220,15 +222,29 @@ class DetailsScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: dish.ingredients.length,
-                          itemBuilder: (context, index) =>
-                              TextSpans(text: '${dish.ingredients[index]}')),
+                    Wrap(
+                      children: dish.ingredients
+                          .map((e) => Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Chip(
+                                  backgroundColor: Constants.kbuttonColor1,
+                                  label: Text(e),
+                                  labelStyle: GoogleFonts.poppins(fontSize: 16),
+                                ),
+                              ))
+                          .toList(),
                     ),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(8.0),
+                    //   child: ListView.builder(
+                    //       shrinkWrap: true,
+                    //       physics: NeverScrollableScrollPhysics(),
+                    //       itemCount: dish.ingredients.length,
+                    //       itemBuilder: (context, index) =>
+                    //           TextSpans(text: '${dish.ingredients[index]}')),
+                    // ),
+                    Divider(),
                     SizedBox(height: 10),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -264,6 +280,7 @@ class DetailsScreen extends StatelessWidget {
                                 numberSpan: dish.recipe[index],
                               )),
                     ),
+                    Divider(),
                     SizedBox(height: 10),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,

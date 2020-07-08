@@ -34,8 +34,8 @@ abstract class AuthService {
   Future<dynamic> forgotPassword(ForgotPassRequest request);
 
   ///reset password with token{patch}
-  Future<dynamic> resetPasswordWithToken(
-      ResetPasswordRequest request, String token);
+  Future<dynamic> resetPasswordWithEmail(
+      ResetPasswordRequest request);
 
   ///unlink Google oauth{patch}
   Future<dynamic> unlinkGoogle(UnlinkRequest request);
@@ -140,14 +140,14 @@ class AuthServiceImpl extends AuthService {
   }
 
   @override
-  Future<dynamic> resetPasswordWithToken(
-      ResetPasswordRequest request, String token) async {
+  Future<dynamic> resetPasswordWithEmail(
+      ResetPasswordRequest request) async {
     final headers = <String, String>{
       "Accept": "application/json",
       "Content-Type": "application/x-www-form-urlencoded"
     };
 
-    final url = '${ApiRoutes.resetPassword}/:$token';
+    final url = '${ApiRoutes.resetPassword}';
     try {
       final response = await api.patch(url, headers, request.toMap());
       print('google response $response');

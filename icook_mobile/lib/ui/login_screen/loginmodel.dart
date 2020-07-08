@@ -66,6 +66,11 @@ class LoginModel extends BaseNotifier with Validators {
       final result = await _googleSignIn.signIn();
       print('email ${result.email}');
       final key = await result.authentication;
+      if (key.accessToken != null) {
+        final google = await auth
+            .googleAuth(FbGoogleRequest(access_token: key.accessToken));
+      }
+
       print(key.accessToken);
     } catch (error) {
       print(error);
