@@ -12,7 +12,7 @@ import 'package:icook_mobile/ui/splash_screen/splash_screen.dart';
 import 'package:icook_mobile/ui/ui_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'ui/settings_screen/settings_screen.dart';
+import 'ui/settings/settings.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
