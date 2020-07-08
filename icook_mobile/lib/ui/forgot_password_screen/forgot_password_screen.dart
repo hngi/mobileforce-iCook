@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:icook_mobile/ui/forgot_password_screen/forgot_passwordmodel.dart';
 import 'package:icook_mobile/ui/profile_screen/constant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:icook_mobile/ui/shared/state_responsive.dart';
 import 'package:icook_mobile/ui/shared/sumbitButton.dart';
 import 'package:icook_mobile/ui/ui_helper.dart';
 import 'package:stacked/stacked.dart';
@@ -94,13 +95,18 @@ class ForgotPasswordScreen extends StatelessWidget {
                         SizedBox(
                           height: 80,
                         ),
-                        Center(
-                          child: SubmitButton(
-                            title: "Reset",
-                            onPressed: () => model.sendMail(),
-                            isEnabled: true,
-                            buttonColor: Constants.kbuttonColor1,
-                            textColor: Colors.white,
+                        StateResponsive(
+                          state: model.state,
+                          busyWidget:
+                              Center(child: CircularProgressIndicator()),
+                          idleWidget: Center(
+                            child: SubmitButton(
+                              title: "Reset",
+                              onPressed: () => model.sendMail(),
+                              isEnabled: true,
+                              buttonColor: Constants.kbuttonColor1,
+                              textColor: Colors.white,
+                            ),
                           ),
                         ),
                         SizedBox(

@@ -42,8 +42,8 @@ class ForgotPasswordModel extends BaseNotifier with Validators {
       }
     } catch (e) {
       setState(ViewState.Idle);
-      print('login model exception $e');
-      final snackbar = SnackBar(content: Text(e));
+      print('login  exception $e');
+      final snackbar = SnackBar(content: Text(e.toString()));
       scaffoldKey.currentState.showSnackBar(snackbar);
     }
   }

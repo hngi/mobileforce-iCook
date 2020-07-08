@@ -23,7 +23,10 @@ class ProfileScreenModel extends BaseNotifier {
   );
 
   Future<void> logout() async {
-    await handleSignOut();
+    final stat = await _googleSignIn.isSignedIn();
+    if (stat) {
+      await handleSignOut();
+    }
     await key.clear();
     navigation.pushNamedAndRemoveUntil(ViewRoutes.login);
   }

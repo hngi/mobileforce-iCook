@@ -30,12 +30,14 @@ abstract class AuthService {
   ///update user password{Put}
   Future<dynamic> updatePassword(UpdatePasswordRequest request);
 
-  ///forget password{Post}
+  ///forget password{Put}
   Future<dynamic> forgotPassword(ForgotPassRequest request);
 
-  ///reset password with token{patch}
-  Future<dynamic> resetPasswordWithEmail(
-      ResetPasswordRequest request);
+  ///forget password{Put}
+  Future<dynamic> confirmtoken(String token);
+
+  ///reset password with token{put}
+  Future<dynamic> resetPasswordWithEmail(ResetPasswordRequest request);
 
   ///unlink Google oauth{patch}
   Future<dynamic> unlinkGoogle(UnlinkRequest request);
@@ -107,11 +109,10 @@ class AuthServiceImpl extends AuthService {
   Future<dynamic> forgotPassword(ForgotPassRequest request) async {
     final headers = <String, String>{
       "Accept": "application/json",
-      "Content-Type": "application/json"
     };
     try {
-      final response =
-          await api.post('${ApiRoutes.facebookauth}', headers, request);
+      final response = await api.put('${ApiRoutes.forgotpassword}', headers,
+          body: request.toMap());
       print('forgotpasword response $response');
       final res = jsonDecode(response);
       print(res);
@@ -140,16 +141,14 @@ class AuthServiceImpl extends AuthService {
   }
 
   @override
-  Future<dynamic> resetPasswordWithEmail(
-      ResetPasswordRequest request) async {
+  Future<dynamic> resetPasswordWithEmail(ResetPasswordRequest request) async {
     final headers = <String, String>{
       "Accept": "application/json",
-      "Content-Type": "application/x-www-form-urlencoded"
     };
 
     final url = '${ApiRoutes.resetPassword}';
     try {
-      final response = await api.patch(url, headers, request.toMap());
+      final response = await api.put(url, headers, body: request.toMap());
       print('google response $response');
       final res = jsonDecode(response);
       print(res);
@@ -213,6 +212,26 @@ class AuthServiceImpl extends AuthService {
       final response = await api.put('${ApiRoutes.updatepassword}', headers,
           body: request.toMap());
       print('signup response $response');
+      final res = jsonDecode(response);
+      print(res);
+      return res;
+    } catch (e) {
+      throw (e);
+    }
+  }
+
+  @override
+  Future<dynamic> confirmtoken(String token) async {
+    final request = <String, dynamic>{"token": "$token"};
+    final headers = <String, String>{
+      "Accept": "application/json",
+    };
+
+    print(request);
+    try {
+      final response =
+          await api.put('${ApiRoutes.confirmToken}', headers, body: request);
+      print('confirmtoken response $response');
       final res = jsonDecode(response);
       print(res);
       return res;

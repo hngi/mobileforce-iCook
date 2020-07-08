@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:icook_mobile/core/constants/view_routes.dart';
 import 'package:icook_mobile/core/constants/view_state.dart';
 import 'package:icook_mobile/core/mixins/validators.dart';
 import 'package:icook_mobile/core/services/Auth_service/auth_service.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
+import 'package:icook_mobile/models/requests/Auth/fb_google.dart';
 import 'package:icook_mobile/models/requests/signup.dart';
 import 'package:icook_mobile/ui/base_view_model.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -17,6 +19,13 @@ class SignUpModel extends BaseNotifier with Validators {
   final key = locator<KeyStorageService>();
 
   final scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: <String>[
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ],
+  );
 
   //Country Code
   String _countryCode = "+234";
@@ -89,6 +98,24 @@ class SignUpModel extends BaseNotifier with Validators {
       print('signup model exception $e');
       final snackbar = SnackBar(content: Text(e));
       scaffoldKey.currentState.showSnackBar(snackbar);
+    }
+  }
+
+  Future<void> handleSignIn() async {
+    try {
+      final result = await _googleSignIn.signIn();
+      print('email ${result.email}');
+      final key = await result.authentication;
+      if (key.accessToken != null) {
+        final google = await auth
+            .googleAuth(FbGoogleRequest(access_token: key.accessToken));
+        print(google);
+        navigation.pushNamedAndRemoveUntil(ViewRoutes.home);
+      }
+
+      print(key.accessToken);
+    } catch (error) {
+      print(error);
     }
   }
 

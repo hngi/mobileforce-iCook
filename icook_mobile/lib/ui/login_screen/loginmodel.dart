@@ -67,8 +67,11 @@ class LoginModel extends BaseNotifier with Validators {
       print('email ${result.email}');
       final key = await result.authentication;
       if (key.accessToken != null) {
+        setState(ViewState.Busy);
         final google = await auth
             .googleAuth(FbGoogleRequest(access_token: key.accessToken));
+        print(google);
+        navigation.pushNamedAndRemoveUntil(ViewRoutes.home);
       }
 
       print(key.accessToken);
@@ -76,8 +79,6 @@ class LoginModel extends BaseNotifier with Validators {
       print(error);
     }
   }
-
-  Future<void> handleSignOut() => _googleSignIn.disconnect();
 
   void signUp() {
     navigation.pushNamedAndRemoveUntil(ViewRoutes.signup);

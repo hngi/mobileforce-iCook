@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icook_mobile/models/response/Dish/dishitem.dart';
@@ -25,63 +26,62 @@ class RecipeItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(
-                      child: InkWell(
+              InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 5, bottom: 5),
+                  child: Row(
+                    children: <Widget>[
+                      GestureDetector(
                         onTap: () {},
-                        child: Row(
+                        child: CircleAvatar(
+                          backgroundImage: dish.chefId.isNotEmpty
+                              ? NetworkImage(dish.chefId[0].userImage)
+                              : AssetImage('assets/images/chefavatar1.png'),
+                          radius: 25,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             GestureDetector(
                               onTap: () {},
-                              child: CircleAvatar(
-                                backgroundImage: dish.chefId.isNotEmpty
-                                    ? NetworkImage(dish.chefId[0].userImage)
-                                    : AssetImage(
-                                        'assets/images/chefavatar1.png'),
-                                radius: 25,
-                              ),
+                              child: Text(dish.chefId[0].name,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  )),
                             ),
-                            SizedBox(
-                              width: 12,
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Text(dish.chefId[0].name,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                        )),
-                                  ),
-                                  Text(model.time),
-                                ],
-                              ),
-                            )
+                            Text(model.time),
                           ],
                         ),
-                      ),
-                    ),
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
                 height: 17,
               ),
               Container(
-                height: 248,
+                height: 300,
                 width: MediaQuery.of(context).size.width,
                 child: Carousel(
-                  images: dish.dishImages.map((e) => NetworkImage(e)).toList(),
+                  images: dish.dishImages
+                      .map((e) => CachedNetworkImage(
+                            imageUrl: 'https://icook-images.s3.us-east-2.amazonaws.com/dishes-1594233415703.jpeg',
+                            placeholder: (context, url) => Container(
+                              color: Colors.blueGrey,
+                            ),
+                          ))
+                      .toList(),
                   dotSize: 6.0,
                   dotIncreaseSize: 1.5,
                   dotSpacing: 20.0,
