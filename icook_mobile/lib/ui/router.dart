@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:icook_mobile/core/constants/view_routes.dart';
 import 'package:icook_mobile/models/response/Dish/dishitem.dart';
 import 'package:icook_mobile/ui/Onboarding_screens/Onboarding_screens.dart';
+import 'package:icook_mobile/ui/confirm_reset_password/confirm_reset_password.dart';
 import 'package:icook_mobile/ui/details_screen/details_screen.dart';
 import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
 import 'package:icook_mobile/ui/forgot_password_screen/forgot_password_screen.dart';
@@ -60,6 +61,9 @@ class Router {
         return ForgotPasswordScreen();
       case ViewRoutes.success:
         return SuccessOverlay();
+
+      case ViewRoutes.confirmtoken:
+        return ConfirmResetPasswordScreen();
 
       default:
         return Scaffold(

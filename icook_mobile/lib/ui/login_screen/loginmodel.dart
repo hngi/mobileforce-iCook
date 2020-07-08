@@ -27,13 +27,12 @@ class LoginModel extends BaseNotifier with Validators {
   final password = TextEditingController();
   final email = TextEditingController();
 
-GoogleSignIn _googleSignIn = GoogleSignIn(
-  scopes: <String>[
-    'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
-  ],
-);
-
+  GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: <String>[
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ],
+  );
 
   void login() async {
     if (!formkey.currentState.validate()) return;
@@ -65,18 +64,15 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
   Future<void> handleSignIn() async {
     try {
       final result = await _googleSignIn.signIn();
+      print('email ${result.email}');
       final key = await result.authentication;
       print(key.accessToken);
-      
     } catch (error) {
       print(error);
     }
   }
 
   Future<void> handleSignOut() => _googleSignIn.disconnect();
-
-
-  
 
   void signUp() {
     navigation.pushNamedAndRemoveUntil(ViewRoutes.signup);

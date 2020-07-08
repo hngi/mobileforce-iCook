@@ -4,6 +4,7 @@ import 'package:icook_mobile/core/constants/api_routes.dart';
 import 'package:icook_mobile/core/services/Api/ApiService.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/models/requests/Auth/fb_google.dart';
+import 'package:icook_mobile/models/requests/Auth/forgotpassword.dart';
 import 'package:icook_mobile/models/requests/Auth/resetpassword.dart';
 import 'package:icook_mobile/models/requests/Auth/unlinkgoogle_facbook.dart';
 import 'package:icook_mobile/models/requests/Auth/updatepassword.dart';
@@ -30,7 +31,7 @@ abstract class AuthService {
   Future<dynamic> updatePassword(UpdatePasswordRequest request);
 
   ///forget password{Post}
-  Future<dynamic> forgotPassword(String email);
+  Future<dynamic> forgotPassword(ForgotPassRequest request);
 
   ///reset password with token{patch}
   Future<dynamic> resetPasswordWithToken(
@@ -103,11 +104,10 @@ class AuthServiceImpl extends AuthService {
   }
 
   @override
-  Future<dynamic> forgotPassword(String email) async {
-    final request = <String, String>{"email": email};
+  Future<dynamic> forgotPassword(ForgotPassRequest request) async {
     final headers = <String, String>{
       "Accept": "application/json",
-      "Content-Type": "application/x-www-form-urlencoded"
+      "Content-Type": "application/json"
     };
     try {
       final response =
