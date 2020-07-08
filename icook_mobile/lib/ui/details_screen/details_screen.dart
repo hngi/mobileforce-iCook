@@ -239,7 +239,8 @@ class DetailsScreen extends StatelessWidget {
                                 child: Chip(
                                   backgroundColor: Constants.kbuttonColor1,
                                   label: Text(e),
-                                  labelStyle: GoogleFonts.poppins(fontSize: 16),
+                                  labelStyle: GoogleFonts.poppins(
+                                      fontSize: 16, color: Colors.white),
                                 ),
                               ))
                           .toList(),

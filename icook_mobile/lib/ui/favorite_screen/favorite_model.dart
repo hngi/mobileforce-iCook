@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:icook_mobile/core/constants/view_state.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/UserProfile/userprofiledatasource.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
@@ -21,6 +22,8 @@ class FavoriteScreenModel extends BaseNotifier {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  final easycontroller = EasyRefreshController();
+
   Future<void> loadData() async {
     setState(ViewState.Busy);
 
@@ -30,8 +33,7 @@ class FavoriteScreenModel extends BaseNotifier {
       _dishList.clear();
       _dishList = response.data.dishes;
       _checkIfAvailableData();
-
-      
+      easycontroller.finishRefresh();
     } catch (e) {
       setState(ViewState.Idle);
       print('favourite screen model exception $e');

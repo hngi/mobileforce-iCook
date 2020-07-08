@@ -28,6 +28,7 @@ class LoginModel extends BaseNotifier with Validators {
   final email = TextEditingController();
 
   GoogleSignIn _googleSignIn = GoogleSignIn(
+    clientId: '158158217877-6lli21onhq8d3v2posjqrp64922usum7.apps.googleusercontent.com',
     scopes: <String>[
       'email',
       'https://www.googleapis.com/auth/contacts.readonly',

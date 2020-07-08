@@ -34,20 +34,20 @@ class HomeScreenModel extends BaseNotifier {
     setState(ViewState.Busy);
 
     try {
-      var response = await data.getDishes() ;
+      var response = await data.getDishes();
       print(response);
       _list.clear();
       _list = response.data.dishes;
       _checkIfAvailableData();
 
-      //show
-      final snackbar = SnackBar(content: Text(response.status));
-      scaffoldKey.currentState.showSnackBar(snackbar);
+      // //show
+      // final snackbar = SnackBar(content: Text(response.status));
+      // scaffoldKey.currentState.showSnackBar(snackbar);
     } catch (e) {
       setState(ViewState.Idle);
       easycontroller.resetLoadState();
       print('homescreen model exception $e');
-      final snackbar = SnackBar(content: Text(e));
+      final snackbar = SnackBar(content: Text(e.toString()));
       scaffoldKey.currentState.showSnackBar(snackbar);
     }
   }

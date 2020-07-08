@@ -142,7 +142,7 @@ class SmallScreen extends ViewModelWidget<AccountModel> {
                         SubmitButton(
                           title: "Edit information",
                           isEnabled: true,
-                          onPressed: () {},
+                          onPressed: () => model.editDetails(),
                           textColor: Colors.white,
                           buttonColor: Constants.kbuttonColor1,
                         )
