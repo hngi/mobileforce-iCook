@@ -200,7 +200,9 @@ class LoginScreen extends StatelessWidget {
                                     child: Material(
                                       color: Color(0xffFDFDFD),
                                       child: MaterialButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                         model.handleSignIn();
+                                        },
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
