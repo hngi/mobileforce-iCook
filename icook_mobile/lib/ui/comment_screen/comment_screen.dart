@@ -16,7 +16,7 @@ import '../ui_helper.dart';
 
 class CommentScreen extends StatelessWidget {
   final String dishId;
-  const CommentScreen({Key key, this.dishId}) : super(key: key);
+  const CommentScreen({Key key, this.dishId }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<CommentsModel>.reactive(
@@ -25,6 +25,7 @@ class CommentScreen extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         key: model.scaffoldKey,
         appBar: AppBar(
+          
           title: Text(
             "Comments",
           ),

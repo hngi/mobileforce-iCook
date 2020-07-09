@@ -15,6 +15,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomPadding: true,
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
@@ -126,15 +128,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               fontWeight: FontWeight.w500),
                         ),
                         FlatButton(
-                          textColor: Colors.blue,
-                          child: Text('Change',
-                              textAlign: TextAlign.right,
-                              style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w300,
-                              )),
-                          onPressed: () => _onTextTap(),
-                        ),
+                            textColor: Colors.blue,
+                            child: Text('Change',
+                                textAlign: TextAlign.right,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w300,
+                                )),
+                            onPressed: () {
+                              _onTextTap();
+                            }),
                       ]),
                     ),
                   ],
@@ -333,5 +336,3 @@ class NotificationsItem extends StatelessWidget {
     );
   }
 }
-
-

@@ -7,6 +7,7 @@ import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart'
 import 'package:icook_mobile/locator.dart';
 import 'package:icook_mobile/models/response/Dish/dishitem.dart';
 import 'package:icook_mobile/models/response/Dish/dishresponse.dart';
+import 'package:icook_mobile/models/response/Dish/favouriteresponse.dart';
 
 import 'package:icook_mobile/ui/base_view_model.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -28,7 +29,7 @@ class FavoriteScreenModel extends BaseNotifier {
     setState(ViewState.Busy);
 
     try {
-      var response = await data.myFavouriteDishes();
+      var response = await data.myFavouriteDishes() as FavouriteResponse;
       print(response);
       _dishList.clear();
       _dishList = response.data.dishes;

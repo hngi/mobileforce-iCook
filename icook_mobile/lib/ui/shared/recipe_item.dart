@@ -130,6 +130,7 @@ class RecipeItem extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
+                                        fullscreenDialog: true,
                                         builder: (context) => CommentScreen(
                                               dishId: dish.id,
                                             )));
@@ -140,7 +141,7 @@ class RecipeItem extends StatelessWidget {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 20, top: 11.5),
+                      padding: const EdgeInsets.only(top: 11.5),
                       child: PopupMenuButton<PopUpType>(
                         onSelected: (PopUpType result) {
                           if (result == PopUpType.favourite) {
@@ -149,11 +150,13 @@ class RecipeItem extends StatelessWidget {
                         },
                         itemBuilder: (BuildContext context) =>
                             <PopupMenuEntry<PopUpType>>[
-                          const PopupMenuItem<PopUpType>(
+                          PopupMenuItem<PopUpType>(
                             value: PopUpType.favourite,
-                            child: Text('Add to Favourites'),
+                            child: dish.isFavourite
+                                ? Text('Remove from Favourites')
+                                : Text('Add to Favourites'),
                           ),
-                          const PopupMenuItem<PopUpType>(
+                          PopupMenuItem<PopUpType>(
                             value: PopUpType.share,
                             child: Text('Share'),
                           ),

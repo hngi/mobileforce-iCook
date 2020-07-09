@@ -28,7 +28,6 @@ class LoginModel extends BaseNotifier with Validators {
   final email = TextEditingController();
 
   GoogleSignIn _googleSignIn = GoogleSignIn(
-    clientId: '158158217877-6lli21onhq8d3v2posjqrp64922usum7.apps.googleusercontent.com',
     scopes: <String>[
       'email',
       'https://www.googleapis.com/auth/contacts.readonly',
@@ -67,6 +66,7 @@ class LoginModel extends BaseNotifier with Validators {
       final result = await _googleSignIn.signIn();
       print('email ${result.email}');
       final key = await result.authentication;
+      print(key.accessToken);
       if (key.accessToken != null) {
         setState(ViewState.Busy);
         final google = await auth
@@ -74,10 +74,12 @@ class LoginModel extends BaseNotifier with Validators {
         print(google);
         navigation.pushNamedAndRemoveUntil(ViewRoutes.home);
       }
-
-      print(key.accessToken);
-    } catch (error) {
-      print(error);
+    } catch (e) {
+      setState(ViewState.Idle);
+      await _googleSignIn.disconnect();
+      print('login model exception $e');
+      final snackbar = SnackBar(content: Text(e.toString()));
+      scaffoldKey.currentState.showSnackBar(snackbar);
     }
   }
 
