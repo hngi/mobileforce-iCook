@@ -1,11 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:icook_mobile/core/constants/api_routes.dart';
 import 'package:icook_mobile/core/constants/view_routes.dart';
 import 'package:icook_mobile/core/constants/view_state.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasource.dart';
 import 'package:icook_mobile/core/mixins/validators.dart';
+import 'package:icook_mobile/core/services/Api/ApiService.dart';
 import 'package:icook_mobile/models/requests/Dish/postdish.dart';
 import 'package:icook_mobile/ui/base_view_model.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../locator.dart';
@@ -152,5 +157,41 @@ class CreateDishModel extends BaseNotifier with Validators {
     steps.clear();
     _recipes.clear();
     _ingredients.clear();
+  }
+
+  PickedFile file;
+  final ImagePicker _picker = ImagePicker();
+  List<File> files = [];
+  String url = '';
+
+  final api = locator<ApiService>();
+
+  Future<void> chooseImage() async {
+    final pickedFile = await _picker.getImage(
+      source: ImageSource.gallery,
+      maxWidth: 150,
+      maxHeight: 150,
+      imageQuality: 100,
+    );
+
+    print(pickedFile.path);
+    files.add(File(pickedFile.path));
+    notifyListeners();
+    print(files);
+  }
+
+  void uploadImage() {
+    setState(ViewState.Busy);
+
+    final body = <dynamic, dynamic>{};
+
+    if (files.length > 0) {
+      try {
+        final response =
+            api.postHttpForm(ApiRoutes.uploadprofile, body, files, "photo");
+
+        print(response);
+      } catch (e) {}
+    }
   }
 }
