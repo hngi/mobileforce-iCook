@@ -11,7 +11,10 @@ import 'package:carousel_pro/carousel_pro.dart';
 class RecipeItem extends StatelessWidget {
   final Dish dish;
 
+
   const RecipeItem({Key key, this.dish}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -146,6 +149,8 @@ class RecipeItem extends StatelessWidget {
                         onSelected: (PopUpType result) {
                           if (result == PopUpType.favourite) {
                             model.favourite();
+                          } else if(result == PopUpType.share){
+                            model.showShareDialog();
                           }
                         },
                         itemBuilder: (BuildContext context) =>

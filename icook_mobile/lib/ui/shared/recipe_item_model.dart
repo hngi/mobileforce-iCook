@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasource.dart';
 import 'package:icook_mobile/models/response/Dish/dishitem.dart';
-import 'package:icook_mobile/models/response/Dish/dishresponse.dart';
+import 'setup_ui_dialog.dart';
 import 'package:icook_mobile/ui/base_view_model.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:icook_mobile/locator.dart';
 import 'package:icook_mobile/core/constants/view_routes.dart';
+import 'package:share/share.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class RecipeItemModel extends BaseNotifier {
   final navigation = locator<NavigationService>();
   final datasource = locator<DishDataSource>();
   final snack = locator<SnackbarService>();
+
+  final dialogService = locator<DialogService>();
 
   bool _isLiked = false;
   bool get isLiked => _isLiked;
@@ -50,6 +53,22 @@ class RecipeItemModel extends BaseNotifier {
     } catch (e) {
       print('dish model exception $e');
       showSnack(e.toString());
+    }
+  }
+
+  void showShareDialog() async {
+
+    registerCustomDialogUi();
+    var dialog = await   dialogService.showCustomDialog(
+      title: "Share",
+    );
+
+    if(dialog.confirmed){
+
+      Share.share("Hey I'm sharing device data", subject: _data.name);
+
+
+
     }
   }
 
