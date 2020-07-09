@@ -3,6 +3,7 @@ import 'package:icook_mobile/core/datasources/remotedata_source/UserProfile/user
 import 'package:icook_mobile/core/services/Api/ApiService.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/models/response/Dish/dishresponse.dart';
+import 'package:icook_mobile/models/response/Dish/favouriteresponse.dart';
 import 'package:icook_mobile/models/response/UserProfile/userauthdetails.dart';
 import 'package:icook_mobile/models/response/UserProfile/updateprofile.dart';
 import 'package:icook_mobile/models/response/UserProfile/myfavouritedish.dart';
@@ -49,7 +50,7 @@ class UserProfileDataSourceImpl extends UserProfileDataSource {
     try {
       final response = await api.gett(route, headers);
       print('get dishes response $response');
-      DishResponse res = DishResponse.fromJson(response);
+      FavouriteResponse res = FavouriteResponse.fromJson(response);
       print(res);
       return res;
     } catch (e) {

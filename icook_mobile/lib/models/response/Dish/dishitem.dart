@@ -16,6 +16,7 @@ class Dish {
   final int commentsCount;
   final int likesCount;
   final bool isLiked;
+  final bool isFavourite;
   Dish({
     this.chefId,
     this.dishImages,
@@ -30,6 +31,7 @@ class Dish {
     this.commentsCount,
     this.likesCount,
     this.isLiked,
+    this.isFavourite,
   });
 
   Dish copyWith({
@@ -46,6 +48,7 @@ class Dish {
     int commentsCount,
     int likesCount,
     bool isLiked,
+    bool isFavourite,
   }) {
     return Dish(
       chefId: chefId ?? this.chefId,
@@ -61,6 +64,7 @@ class Dish {
       commentsCount: commentsCount ?? this.commentsCount,
       likesCount: likesCount ?? this.likesCount,
       isLiked: isLiked ?? this.isLiked,
+      isFavourite: isFavourite ?? this.isFavourite,
     );
   }
 
@@ -79,6 +83,7 @@ class Dish {
       'commentsCount': commentsCount,
       'likesCount': likesCount,
       'isLiked': isLiked,
+      'isFavourite': isFavourite,
     };
   }
 
@@ -99,6 +104,7 @@ class Dish {
       commentsCount: map['commentsCount']?.toInt(),
       likesCount: map['likesCount']?.toInt(),
       isLiked: map['isLiked'],
+      isFavourite: map['isFavourite'],
     );
   }
 
@@ -108,7 +114,7 @@ class Dish {
 
   @override
   String toString() {
-    return 'Dish(chefId: $chefId, dishImages: $dishImages, recipe: $recipe, ingredients: $ingredients, healthBenefits: $healthBenefits, id: $id, name: $name, createdAt: $createdAt, updatedAt: $updatedAt, v: $v, commentsCount: $commentsCount, likesCount: $likesCount, isLiked: $isLiked)';
+    return 'Dish(chefId: $chefId, dishImages: $dishImages, recipe: $recipe, ingredients: $ingredients, healthBenefits: $healthBenefits, id: $id, name: $name, createdAt: $createdAt, updatedAt: $updatedAt, v: $v, commentsCount: $commentsCount, likesCount: $likesCount, isLiked: $isLiked, isFavourite: $isFavourite)';
   }
 
   @override
@@ -129,7 +135,8 @@ class Dish {
         o.v == v &&
         o.commentsCount == commentsCount &&
         o.likesCount == likesCount &&
-        o.isLiked == isLiked;
+        o.isLiked == isLiked &&
+        o.isFavourite == isFavourite;
   }
 
   @override
@@ -146,7 +153,8 @@ class Dish {
         v.hashCode ^
         commentsCount.hashCode ^
         likesCount.hashCode ^
-        isLiked.hashCode;
+        isLiked.hashCode ^
+        isFavourite.hashCode;
   }
 }
 
