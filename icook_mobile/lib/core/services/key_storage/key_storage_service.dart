@@ -15,5 +15,7 @@ abstract class KeyStorageService {
 
   String id;
 
+  String profileImageUrl;
+
   Future<void> clear();
 }

@@ -12,6 +12,7 @@ class KeyStorageServiceImpl implements KeyStorageService {
   static const username = 'name';
   static const useremail = 'email';
   static const userid = 'id';
+  static const image = 'image';
 
   static KeyStorageServiceImpl _instance;
   static SharedPreferences _preferences;
@@ -122,5 +123,14 @@ class KeyStorageServiceImpl implements KeyStorageService {
   Future<void> clear() async {
     // TODO: implement clear
     await _preferences.clear();
+  }
+
+  @override
+  String get profileImageUrl => _getFromDisk(image) ?? "";
+
+  @override
+   set profileImageUrl(String _profileImageUrl) {
+     print('image $_profileImageUrl');
+    _saveToDisk(image, _profileImageUrl);
   }
 }

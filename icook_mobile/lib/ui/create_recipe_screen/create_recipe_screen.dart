@@ -335,15 +335,49 @@ class CreateRecipeScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w600),
                             ),
                             SizedBox(height: 13),
-                            // Container(
-                            //   child: Wrap(
-                            //     children: model.images
-                            //         .map((e) => AssetThumb(
-                            //             asset: e, width: 200, height: 200))
-                            //         .toList(),
-                            //   ),
-                            // ),
-                            _recentdish('assets/images/upload_image.png'),
+                            Container(
+                              child: Wrap(
+                                children: model.files
+                                    .map((e) => Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            children: [
+                                              Image.file(
+                                                e,
+                                                width: 100,
+                                                height: 100,
+                                                fit: BoxFit.cover,
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              IconButton(
+                                                  color:
+                                                      Constants.kbuttonColor1,
+                                                  icon: Icon(Icons.clear),
+                                                  onPressed: () {
+                                                    model.files.remove(e);
+                                                    model.notifyListeners();
+                                                  })
+                                            ],
+                                          ),
+                                        ))
+                                    .toList(),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () => model.chooseImage(),
+                              child: Container(
+                                height: 100,
+                                width: 100,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(7.0),
+                                  child: Image.asset(
+                                      'assets/images/upload_image.png',
+                                      fit: BoxFit.cover),
+                                ),
+                              ),
+                            ),
                             Container(
                               margin: EdgeInsets.only(top: 20),
                               child: Material(

@@ -3,16 +3,19 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:icook_mobile/core/exceptions/network_exception.dart';
 import 'package:icook_mobile/core/services/Api/ApiService.dart';
+import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/core/utils/file_helper.dart';
 
 import 'package:icook_mobile/core/utils/network_utils.dart' as network_utils;
 import 'package:http/http.dart' as http;
+import 'package:path/path.dart';
 
 import '../../../locator.dart';
 
 /// Helper service that abstracts away common HTTP Requests
 class ApiServiceImpl implements ApiService {
   final _fileHelper = locator<FileHelper>();
+  final key = locator<KeyStorageService>();
 
   final _dio = Dio();
 
@@ -55,14 +58,12 @@ class ApiServiceImpl implements ApiService {
         data: body,
         onSendProgress: network_utils.showLoadingProgress,
         onReceiveProgress: network_utils.showLoadingProgress,
-        options: Options(
-          contentType:
-              ContentType.parse("application/x-www-form-urlencoded").toString(),
-        ),
+        options:
+            Options(headers: <String, String>{"Authorization": "${key.token}"}),
       );
     } on DioError catch (e) {
       print('HttpService: Failed to POST ${e.message}');
-      throw NetworkException(e.message);
+      throw 'HttpService: Failed to POST ${e.message}';
     }
 
     network_utils.checkForNetworkExceptions(response);
@@ -77,13 +78,14 @@ class ApiServiceImpl implements ApiService {
     String route,
     Map<String, dynamic> body,
     List<File> files,
+    String key,
   ) async {
     int index = 0;
 
     final formData = FormData.fromMap(body);
     files?.forEach((file) async {
       final mFile = await _fileHelper.convertFileToMultipartFile(file);
-      formData.files.add(MapEntry('file$index', mFile));
+      formData.files.add(MapEntry(key, mFile));
       index++;
     });
 
@@ -202,5 +204,61 @@ class ApiServiceImpl implements ApiService {
     }
     print('api patch.');
     return responseJson;
+  }
+
+  @override
+  Future<dynamic> profilePic(
+      String url, String text, File file, dynamic header) async {
+    var responseJson;
+    //create multipart request for POST or PATCH method
+    var request = http.MultipartRequest("POST", Uri.parse(url))
+      ..headers.addAll(header);
+    //add text fields
+    request.fields["text_field"] = text;
+
+    //create multipart using filepath, string or bytes
+    var pic = await http.MultipartFile.fromPath("file_field", file.path);
+    //add multipart to request
+    request.files.add(pic);
+    try {
+      var response = await request.send();
+
+      //Get the response from the server
+      var responseData = await response.stream.toBytes();
+      var responseString = String.fromCharCodes(responseData);
+
+      print(responseString);
+    } on SocketException {
+      print('No net');
+      throw NetworkException('No internet connection');
+    }
+  }
+
+  uploadFileFromDio(String url, File photoFile, dynamic headers) async {
+    _dio.options.connectTimeout = 5000; //5s
+    _dio.options.receiveTimeout = 5000;
+  
+    FormData formData = new FormData();
+   
+    if (photoFile != null &&
+        photoFile.path != null &&
+        photoFile.path.isNotEmpty) {
+      // Create a FormData
+      String fileName = basename(photoFile.path);
+      print("File Name : $fileName");
+      print("File Size : ${photoFile.lengthSync()}");
+       final mFile = await _fileHelper.convertFileToMultipartFile(photoFile);
+      formData.files.add(MapEntry("photo", mFile));
+    }
+    var response = await _dio.post(url,
+        data: formData,
+        onSendProgress: network_utils.showLoadingProgress,
+        onReceiveProgress: network_utils.showLoadingProgress,
+        options: Options(
+            method: 'POST',
+            responseType: ResponseType.plain // or ResponseType.JSON
+            ));
+    print("Response status: ${response.statusCode}");
+    print("Response data: ${response.data}");
   }
 }

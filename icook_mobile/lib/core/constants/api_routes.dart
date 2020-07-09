@@ -20,6 +20,7 @@ class ApiRoutes {
   static const userauthprofile = '$baseUrl/me/auth';
   static const updateprofile = '$baseUrl/me/update';
   static const myfavourites = '$baseUrl/me/favourites';
+  static const uploadprofile = '$baseUrl/me/upload_photo';
 
   ///Users
   static const getallusers = '$baseUrl/users';
@@ -34,10 +35,13 @@ class ApiRoutes {
   static const getmydishes = '$baseUrl/dishes';
   static const dish = '$baseUrl/dishes';
   static const tooglefavouritedish = 'floating-plains-18946.herokuapp.com';
-  static const tooglelikedish =
-      'floating-plains-18946.herokuapp.com';
+  static const tooglelikedish = 'floating-plains-18946.herokuapp.com';
 
   ///Search
   static const searchuser = '$baseUrl/search?type=person&name=';
   static const searchdish = '$baseUrl/search?type=dish&name=';
+
+
+  //Comments
+  static const comments = '$baseUrl/dishes/comments';
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icook_mobile/models/response/Dish/dishitem.dart';
 import 'package:icook_mobile/models/response/Dish/dishresponse.dart';
+import 'package:icook_mobile/ui/comment_screen/comment_screen.dart';
 import 'package:icook_mobile/ui/shared/recipe_item_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:carousel_pro/carousel_pro.dart';
@@ -78,8 +79,7 @@ class RecipeItem extends StatelessWidget {
                       .map((e) => CachedNetworkImage(
                             alignment: Alignment.center,
                             fit: BoxFit.cover,
-                            imageUrl:
-                                e,
+                            imageUrl: e,
                             placeholder: (context, url) => Container(
                               color: Colors.blueGrey,
                             ),
@@ -126,7 +126,14 @@ class RecipeItem extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 19, top: 15),
                           child: GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CommentScreen(
+                                              dishId: dish.id,
+                                            )));
+                              },
                               child: ImageIcon(AssetImage(
                                   'assets/images/message-circle.png'))),
                         ),

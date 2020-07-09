@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icook_mobile/models/response/Dish/dishitem.dart';
+import 'package:icook_mobile/ui/comment_screen/comment_screen.dart';
 import 'package:icook_mobile/ui/details_screen/detailsmodel.dart';
 import 'package:icook_mobile/ui/profile_screen/constant.dart';
 import 'package:icook_mobile/ui/ui_helper.dart';
@@ -137,7 +138,14 @@ class DetailsScreen extends StatelessWidget {
                                     const EdgeInsets.only(left: 19, top: 15),
                                 child: InkWell(
                                   radius: 50,
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => CommentScreen(
+                                                  dishId: dish.id,
+                                                )));
+                                  },
                                   child: Image(
                                     image: AssetImage(
                                         "assets/images/message-circle.png"),
