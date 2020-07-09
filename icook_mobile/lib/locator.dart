@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
+import 'package:icook_mobile/core/datasources/remotedata_source/Comments/commentsdatasource.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasource.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasourceimpl.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/Search/searchdatasource.dart';
@@ -60,6 +61,8 @@ Future<void> setupLocator({bool test = false}) async {
       () => UserProfileDataSourceImpl());
 
   locator.registerLazySingleton<UsersDataSource>(() => UsersDataSourceImpl());
+  locator.registerLazySingleton<CommentsDataSource>(
+      () => CommentsDataSourceImpl());
 }
 
 Future<void> _setupSharedPreferences() async {
