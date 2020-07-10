@@ -151,7 +151,7 @@ class CreateDishModel extends BaseNotifier with Validators {
       setState(ViewState.Idle);
       //show
       dispose();
-      final snackbar = SnackBar(content: Text('Dish sent successfully'));
+      final snackbar = SnackBar(content: Text('Dish Added successfully'));
       scaffoldKey.currentState.showSnackBar(snackbar);
     } else {
       setState(ViewState.Idle);
