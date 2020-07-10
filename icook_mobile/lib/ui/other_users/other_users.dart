@@ -28,6 +28,7 @@ class OtherUserInfoScreen extends StatelessWidget {
         ),
         body: StateResponsive(
             state: model.state,
+            noDataAvailableWidget: Text("Couldn't Fetch Profile"),
             busyWidget: Center(
               child: CircularProgressIndicator(),
             ),

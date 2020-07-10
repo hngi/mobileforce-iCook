@@ -83,31 +83,31 @@ class ProfileScreen extends StatelessWidget {
                                   AccountInformationScreen()));
                     },
                   ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  ListTile(
-                    title: Text(
-                      'My Dishes',
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w500)),
-                    ),
-                    subtitle: Text(
-                      '4 dishes posted',
-                      style: GoogleFonts.poppins(
-                          textStyle:
-                              TextStyle(color: Colors.blueGrey, fontSize: 12)),
-                    ),
-                    trailing: Icon(Icons.keyboard_arrow_right),
-                    onTap: () {
-                      print('my dishes');
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MyDishScreen()));
-                    },
-                  ),
+                  // SizedBox(
+                  //   height: 5,
+                  // ),
+                  // ListTile(
+                  //   title: Text(
+                  //     'My Dishes',
+                  //     style: GoogleFonts.poppins(
+                  //         textStyle: TextStyle(
+                  //             fontSize: 16, fontWeight: FontWeight.w500)),
+                  //   ),
+                  //   subtitle: Text(
+                  //     '4 dishes posted',
+                  //     style: GoogleFonts.poppins(
+                  //         textStyle:
+                  //             TextStyle(color: Colors.blueGrey, fontSize: 12)),
+                  //   ),
+                  //   trailing: Icon(Icons.keyboard_arrow_right),
+                  //   onTap: () {
+                  //     print('my dishes');
+                  //     Navigator.push(
+                  //         context,
+                  //         MaterialPageRoute(
+                  //             builder: (context) => MyDishScreen()));
+                  //   },
+                  // ),
                   SizedBox(
                     height: 5,
                   ),

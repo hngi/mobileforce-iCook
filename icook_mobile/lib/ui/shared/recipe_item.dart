@@ -46,8 +46,8 @@ class RecipeItem extends StatelessWidget {
                         onTap: () {},
                         child: CircleAvatar(
                           backgroundImage: dish.chefId.isNotEmpty
-                              ? CachedNetworkImage(
-                                  imageUrl: dish.chefId[0].userImage,
+                              ? CachedNetworkImageProvider(
+                                  dish.chefId[0].userImage,
                                 )
                               : AssetImage('assets/images/chefavatar1.png'),
                           radius: 25,
