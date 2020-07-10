@@ -108,9 +108,9 @@ class CreateDishModel extends BaseNotifier with Validators {
       final Map<String, dynamic> responseData =
           json.decode(response.body) as Map<String, dynamic>;
       print(response.statusCode);
-      if (response.statusCode != 200) {
-        return null;
-      }
+      // if (response.statusCode != 200) {
+      //   return null;
+      // }
 
       print(responseData);
       return responseData;
