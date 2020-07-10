@@ -16,7 +16,7 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 class SignUpScreen extends StatelessWidget {
   final List<String> genderOptions = ["name", "okay"];
 
-  final List<String> countryOptions = ["+234", "+233", "+121"];
+  final List<String> countryOptions = ["+234", "+233", "+121","+1", "+44"];
 
   @override
   Widget build(BuildContext context) {
@@ -217,6 +217,7 @@ class SignUpScreen extends StatelessWidget {
                                       text: "I agree to the",
                                       style: GoogleFonts.montserrat(
                                           fontSize: 14,
+                                          color: Color(0xff222222),
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.normal)),
                                   TextSpan(
