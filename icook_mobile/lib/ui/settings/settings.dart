@@ -63,11 +63,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           contentPadding:
                               EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
                           hintText: "Fullname",
-                          hintStyle: TextStyle(
-                              color: Color(0XFFBDBDBD),
-                              fontSize: 16,
-                              fontFamily: "Poppins"),
-                          fillColor: Color(0xFFF4F4F4),
+                          hintStyle:
+                              TextStyle(fontSize: 16, fontFamily: "Poppins"),
                           filled: true,
                           focusedBorder: OutlineInputBorder(
                             borderRadius:
@@ -95,11 +92,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           contentPadding:
                               EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
                           hintText: "Email address",
-                          hintStyle: TextStyle(
-                              color: Color(0XFFBDBDBD),
-                              fontSize: 16,
-                              fontFamily: "Poppins"),
-                          fillColor: Color(0xFFF4F4F4),
+                          hintStyle:
+                              TextStyle(fontSize: 16, fontFamily: "Poppins"),
                           filled: true,
                           focusedBorder: OutlineInputBorder(
                             borderRadius:
@@ -231,7 +225,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
                       cursorColor: Color(0XFFF898989),
                       decoration: InputDecoration(
-                        hintText: "Old Password",
+                        hintText: "Current Password",
                       ),
                     ),
                   ),
@@ -254,7 +248,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   keyboardType: TextInputType.visiblePassword,
                   style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
                   decoration: InputDecoration(
-                    hintText: "NewPassword",
+                    hintText: "New Password",
                   ),
                 ),
               ),
@@ -267,7 +261,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   keyboardType: TextInputType.visiblePassword,
                   style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
                   decoration: InputDecoration(
-                    hintText: "Repeat New Password",
+                    hintText: "Confirm Password",
                   ),
                 ),
               ),
@@ -333,5 +327,3 @@ class NotificationsItem extends StatelessWidget {
     );
   }
 }
-
-

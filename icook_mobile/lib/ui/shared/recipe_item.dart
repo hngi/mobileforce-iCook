@@ -147,19 +147,15 @@ class RecipeItem extends StatelessWidget {
                         onSelected: (PopUpType result) {
                           if (result == PopUpType.favourite) {
                             model.favourite();
-                            OnTap:
-                            () {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          FavoriteScreen()));
-                            };
-                            // _toggleFavorite(dish);
                           }
-                          // // Display favorite recipes:
-                          // _handleFavoritesListChanged(dish.where(
-                          //     (dish) => userFavorites.contains(dish.chefId)));
+                          OnTap:
+                          () {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        FavoriteScreen()));
+                          };
                         },
                         itemBuilder: (BuildContext context) =>
                             <PopupMenuEntry<PopUpType>>[
@@ -244,51 +240,3 @@ class RecipeItem extends StatelessWidget {
 
 // This is the type used by the popup menu below.
 enum PopUpType { favourite, share }
-
-// // This menu button widget updates a _selection field (of type PopUpType,
-// // not shown here).
-// void _toggleFavorite(String dishId) {
-//   final existingIndex = dish.indexWhere((dish) =>
-//       dish.dishId ==
-//       dishId); // If a match is made, existingIndex goes to up, if nothing is found, goes to -1.
-//   if (existingIndex >= 0) {
-//     setState(() {
-//       favourite.removeAt(
-//           existingIndex); // Takes the index of the element to be removed and removes it from favourite.
-//     });
-//   } else {
-//     setState(() {
-//       favourite.add(
-//         RecipeItem.firstWhere((dish) =>
-//             dish.dishId ==
-//             dishId), // Finds the first matching and adds it to favourite.
-//       );
-//     });
-//   }
-// }
-
-// bool _isMealFavorite(String id) {
-//   return favourite.any((dish) =>
-//       dish.id ==
-//       id); // Returns true if any element is found true and will stop once found.
-// }
-// class Favorite extends StatefulWidget {
-//   @override
-//   State<StatefulWidget> createState() => new FavoriteState();
-// }
-
-// class FavoriteState extends State<Favorite> {
-// New member of the class:
-
-// List<String> userFavorites;
-
-// void _handleFavoritesListChanged(String chefId) {
-//   // Set new state and refresh the widget:
-//   // StepState
-//   // setState(() {
-//   if (userFavorites.contains(chefId)) {
-//     userFavorites.remove(chefId);
-//   } else {
-//     userFavorites.add(chefId);
-//   }
-// }

@@ -8,6 +8,7 @@ import 'package:icook_mobile/ui/shared/k_button.dart';
 import 'package:icook_mobile/ui/shared/state_responsive.dart';
 import 'package:icook_mobile/ui/shared/sumbitButton.dart';
 import 'package:icook_mobile/ui/signup_screen/signupmodel.dart';
+import 'package:flutter_country_picker/flutter_country_picker.dart';
 import 'package:icook_mobile/ui/ui_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
@@ -16,7 +17,18 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 class SignUpScreen extends StatelessWidget {
   final List<String> genderOptions = ["name", "okay"];
 
-  final List<String> countryOptions = ["+234", "+233", "+121"];
+  final List<String> countryOptions = [
+    "+234",
+    "+233",
+    "+121",
+    "+191",
+    "+213",
+    "+93",
+    "+376",
+    "+1",
+    "+55",
+    "+91"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -211,30 +223,30 @@ class SignUpScreen extends StatelessWidget {
                               SizedBox(
                                 width: 10,
                               ),
-                              RichText(
-                                text: TextSpan(children: [
-                                  TextSpan(
-                                      text: "I agree to the",
-                                      style: GoogleFonts.montserrat(
-                                          fontSize: 14,
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.normal)),
-                                  TextSpan(
-                                    text: "  ",
-                                  ),
-                                  TextSpan(
-                                      text: "terms and conditions",
-                                      style: GoogleFonts.montserrat(
-                                          fontSize: 14,
-                                          color: Colors.lightBlue,
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.normal),
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          print("Sign in Tapd");
-                                        }),
-                                ]),
-                              ),
+                              // RichText(
+                              //   text: TextSpan(children: [
+                              //     TextSpan(
+                              //         text: "I agree to the",
+                              //         style: GoogleFonts.montserrat(
+                              //             fontSize: 14,
+                              //             fontStyle: FontStyle.normal,
+                              //             fontWeight: FontWeight.normal)),
+                              //     TextSpan(
+                              //       text: "  ",
+                              //     ),
+                              //     TextSpan(
+                              //         text: "terms and conditions",
+                              //         style: GoogleFonts.montserrat(
+                              //             fontSize: 14,
+                              //             color: Colors.lightBlue,
+                              //             fontStyle: FontStyle.normal,
+                              //             fontWeight: FontWeight.normal),
+                              //         recognizer: TapGestureRecognizer()
+                              //           ..onTap = () {
+                              //             print("Sign in Tapped");
+                              //           }),
+                              //   ]),
+                              // ),
                             ],
                           ),
                           SizedBox(
@@ -485,3 +497,32 @@ class _PasswordFieldState extends State<PasswordField> {
     );
   }
 }
+
+// class CountryCode extends StatefulWidget {
+//   CountryCode({Key key}) : super(key: key);
+
+//   @override
+//   _CountryCodeState createState() => new _CountryCodeState();
+// }
+
+// class _CountryCodeState extends State<CountryCode> {
+//   Country _selected;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return new Scaffold(
+//       appBar: new AppBar(),
+//       body: new Center(
+//         child: CountryPicker(
+//           showDialingCode: true,
+//           onChanged: (Country country) {
+//             setState(() {
+//               _selected = country;
+//             });
+//           },
+//           selectedCountry: _selected,
+//         ),
+//       ),
+//     );
+//   }
+// }

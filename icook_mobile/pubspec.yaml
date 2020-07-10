@@ -68,6 +68,9 @@ dependencies:
 
   built_value: ^7.1.0
 
+  country_code_picker: ^1.4.0
+  flutter_country_picker: ^0.1.6
+
   
   
 
