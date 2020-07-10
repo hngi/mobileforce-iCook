@@ -105,12 +105,13 @@ class CreateDishModel extends BaseNotifier with Validators {
     try {
       final streamedResponse = await imageUploadRequest.send();
       final response = await http.Response.fromStream(streamedResponse);
-      print(response.body);
+      final Map<String, dynamic> responseData =
+          json.decode(response.body) as Map<String, dynamic>;
+      print(response.statusCode);
       if (response.statusCode != 200) {
         return null;
       }
 
-      final Map<String, dynamic> responseData = json.decode(response.body);
       print(responseData);
       return responseData;
     } catch (e) {
@@ -131,30 +132,27 @@ class CreateDishModel extends BaseNotifier with Validators {
     setState(ViewState.Busy);
     List<String> health = [];
     health.add(healthbenefits.text);
-    final request = PostDIshBody(
-        name: title.text,
-        ingredients: ingredients,
-        recipe: recipes,
-        healthBenefits: health);
 
     final newBody = <String, String>{
       "name": title.text,
-      "ingredients": ingredients.toString(),
-      "recipe": recipes.toString(),
-      "healthBenefits": health.toString()
+      "ingredients": jsonEncode(ingredients),
+      "recipe": jsonEncode(recipes),
+      "healthBenefits": jsonEncode(health)
     };
 
-    print(request);
+    print(newBody);
 
-    final result = await _uploadImage(files, newBody);
-    final status = result['status'];
+    final gather = await _uploadImage(files, newBody);
+    print("mapppp $gather");
+    final status = gather['status'];
     if (status == 'success') {
       setState(ViewState.Idle);
       //show
       final snackbar = SnackBar(content: Text('Dish sent successfully'));
       scaffoldKey.currentState.showSnackBar(snackbar);
+    } else {
+      setState(ViewState.Idle);
     }
-    print(result);
   }
 
   void addIngredient() {
@@ -214,8 +212,8 @@ class CreateDishModel extends BaseNotifier with Validators {
   Future<void> chooseImage() async {
     final pickedFile = await _picker.getImage(
       source: ImageSource.gallery,
-      maxWidth: 400,
-      maxHeight: 300,
+      maxWidth: 800,
+      maxHeight: 600,
       imageQuality: 100,
     );
 
