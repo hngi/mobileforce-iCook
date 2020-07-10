@@ -57,29 +57,27 @@ class RecipeItemModel extends BaseNotifier {
   }
 
   void showShareDialog() async {
+    String message = "";
 
+    message += _data.name.toUpperCase() + "\n \n";
 
-      String message = "";
-
-      message += _data.name.toUpperCase() + "\n \n";
-
-      message += "Recipes: \n";
-      message += _data.recipe.toString().
-                 substring(1, _data.recipe.toString().length-1) + "\n \n";
-      message += "Ingredients: \n";
-      message += _data.ingredients.toString().
-                 substring(1, _data.ingredients.toString().length-1) + "\n \n";
-      message += "Health Benefit: \n";
-      message += _data.healthBenefits.toString().
-                 substring(1, _data.healthBenefits.toString().length-1) + "\n";
-
-
+    message += "Recipes: \n";
+    message += _data.recipe
+            .toString()
+            .substring(1, _data.recipe.toString().length - 1) +
+        "\n \n";
+    message += "Ingredients: \n";
+    message += _data.ingredients
+            .toString()
+            .substring(1, _data.ingredients.toString().length - 1) +
+        "\n \n";
+    message += "Health Benefit: \n";
+    message += _data.healthBenefits
+            .toString()
+            .substring(1, _data.healthBenefits.toString().length - 1) +
+        "\n";
 
     Share.share(message, subject: "iCook Dish");
-
-
-
-
   }
 
   Future<void> favourite() async {
