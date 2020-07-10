@@ -29,8 +29,9 @@ class LoginModel extends BaseNotifier with Validators {
 
   GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: <String>[
-      'https://www.googleapis.com/auth/userinfo.email',
-      'https://www.googleapis.com/auth/userinfo.profile'
+      'email',
+      'profile',
+      'https://www.googleapis.com/auth/contacts.readonly'
     ],
   );
 

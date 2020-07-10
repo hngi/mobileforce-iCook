@@ -196,7 +196,7 @@ class SmallScreen extends ViewModelWidget<UserProfileModel> {
               style: GoogleFonts.poppins(
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.w500,
-                fontSize: 18,
+                fontSize: 14,
                 color: Color(0xff578DDE),
               ),
             ),
@@ -213,7 +213,7 @@ class SmallScreen extends ViewModelWidget<UserProfileModel> {
               style: GoogleFonts.poppins(
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.normal,
-                fontSize: 16,
+                fontSize: 14,
               ),
             ),
           ),

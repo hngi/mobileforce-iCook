@@ -28,7 +28,20 @@ class HomeScreenModel extends BaseNotifier {
 
   final easycontroller = EasyRefreshController();
 
-  String get username => key.name;
+  String getFirstWord(String text) {
+    int index = text.indexOf(' ');
+
+    if (index > -1) {
+      // Check if there is more than one word.
+
+      return text.substring(0, index).trim(); // Extract first word.
+
+    } else {
+      return text; // Text is the first word itself.
+    }
+  }
+
+  String get username => getFirstWord(key.name);
 
   List<Dish> _list = [];
 
@@ -37,7 +50,7 @@ class HomeScreenModel extends BaseNotifier {
   //scaffoldkey
   final scaffoldKey = new GlobalKey<ScaffoldState>();
 
-   void editDetails() {
+  void editDetails() {
     navigation.navigateTo(ViewRoutes.edit_profile);
   }
 
@@ -69,8 +82,6 @@ class HomeScreenModel extends BaseNotifier {
         ? setState(ViewState.NoDataAvailable)
         : setState(ViewState.DataFetched);
   }
-
-
 
   ///on initState
   Future<void> init() async {
