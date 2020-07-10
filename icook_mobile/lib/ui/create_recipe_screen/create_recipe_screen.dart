@@ -371,28 +371,15 @@ class CreateRecipeScreen extends StatelessWidget {
                                     .toList(),
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () => model.chooseImage(),
-                              child: Container(
-                                height: 100,
-                                width: 100,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(7.0),
-                                  child: Image.asset(
-                                      'assets/images/upload_image.png',
-                                      fit: BoxFit.cover),
-                                ),
-                              ),
-                            ),
                             Container(
                               margin: EdgeInsets.only(top: 20),
                               child: Material(
                                 borderRadius: BorderRadius.circular(7),
                                 color: Color(0xFFF578DDE),
                                 child: MaterialButton(
-                                  onPressed: () {},
+                                  onPressed: () => model.chooseImage(),
                                   child: Text(
-                                    "Upload",
+                                    "Add image",
                                     style: GoogleFonts.poppins(
                                         textStyle: TextStyle(
                                             letterSpacing: 1,
