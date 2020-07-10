@@ -58,18 +58,28 @@ class RecipeItemModel extends BaseNotifier {
 
   void showShareDialog() async {
 
-    registerCustomDialogUi();
-    var dialog = await   dialogService.showCustomDialog(
-      title: "Share",
-    );
 
-    if(dialog.confirmed){
+      String message = "";
 
-      Share.share("Hey I'm sharing device data", subject: _data.name);
+      message += _data.name.toUpperCase() + "\n \n";
+
+      message += "Recipes: \n";
+      message += _data.recipe.toString().
+                 substring(1, _data.recipe.toString().length-1) + "\n \n";
+      message += "Ingredients: \n";
+      message += _data.ingredients.toString().
+                 substring(1, _data.ingredients.toString().length-1) + "\n \n";
+      message += "Health Benefit: \n";
+      message += _data.healthBenefits.toString().
+                 substring(1, _data.healthBenefits.toString().length-1) + "\n";
 
 
 
-    }
+    Share.share(message, subject: "iCook Dish");
+
+
+
+
   }
 
   Future<void> favourite() async {
