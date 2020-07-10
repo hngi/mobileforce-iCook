@@ -51,6 +51,7 @@ class LoginModel extends BaseNotifier with Validators {
       key.email = user.data?.email;
       key.token = user.data?.token;
       key.id = user.data?.userID;
+      key.profileImageUrl = user.data?.profileImage;
       key.isLoggedIn = true;
 
       navigation.pushNamedAndRemoveUntil(ViewRoutes.home);
