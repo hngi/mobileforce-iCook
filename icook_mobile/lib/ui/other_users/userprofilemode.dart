@@ -1,29 +1,23 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:icook_mobile/core/constants/view_state.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasource.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/models/response/Dish/dishitem.dart';
-import 'package:icook_mobile/models/response/Dish/dishresponse.dart';
+import 'package:icook_mobile/models/response/Users/getauser.dart';
 import 'package:icook_mobile/ui/base_view_model.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 import '../../locator.dart';
 
-class HomeScreenModel extends BaseNotifier {
-  final navigation = locator<NavigationService>();
+class UserProfileModel extends BaseNotifier {
   final data = locator<DishDataSource>();
   final key = locator<KeyStorageService>();
 
-  String afterKey = "";
-
-  final easycontroller = EasyRefreshController();
-
-  String get username => key.name;
-
   List<Dish> _list = [];
+  User _user = null;
+  User get user => _user;
+
+  String _id = "";
+  String get id => _id;
 
   List<Dish> get list => _list;
 
@@ -34,20 +28,19 @@ class HomeScreenModel extends BaseNotifier {
     setState(ViewState.Busy);
 
     try {
-      var response = await data.getDishes();
+      var response = await data.getDishById(id) as UserResponse;
       print(response);
+      _user = response.data.user;
       _list.clear();
-      _list = response.data.dishes;
+      _list = response.data.user.dishes;
       _checkIfAvailableData();
-      easycontroller.finishRefresh(success: true);
 
       // //show
       // final snackbar = SnackBar(content: Text(response.status));
       // scaffoldKey.currentState.showSnackBar(snackbar);
     } catch (e) {
       setState(ViewState.Idle);
-      easycontroller.finishRefresh(success: true);
-      print('homescreen model exception $e');
+      print('user profile model exception $e');
       final snackbar = SnackBar(content: Text(e.toString()));
       scaffoldKey.currentState.showSnackBar(snackbar);
     }
@@ -60,7 +53,8 @@ class HomeScreenModel extends BaseNotifier {
   }
 
   ///on initState
-  Future<void> init() async {
+  Future<void> init(String id) async {
+    _id = id;
     setState(ViewState.Busy);
     await loadData();
   }

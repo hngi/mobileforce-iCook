@@ -1,13 +1,17 @@
+import 'dart:async';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:icook_mobile/core/constants/api_routes.dart';
 import 'package:icook_mobile/core/constants/view_routes.dart';
 import 'package:icook_mobile/core/constants/view_state.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasource.dart';
 import 'package:icook_mobile/core/mixins/validators.dart';
 import 'package:icook_mobile/core/services/Api/ApiService.dart';
+import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/models/requests/Dish/postdish.dart';
 import 'package:icook_mobile/ui/base_view_model.dart';
 import 'package:image_picker/image_picker.dart';
@@ -19,6 +23,16 @@ class CreateDishModel extends BaseNotifier with Validators {
   final datasource = locator<DishDataSource>();
   final snack = locator<SnackbarService>();
   final nav = locator<NavigationService>();
+  final key = locator<KeyStorageService>();
+  StreamSubscription _resultSubscription;
+  PickedFile file;
+  final ImagePicker _picker = ImagePicker();
+  List<File> files = [];
+  String url = '';
+
+  final dio = Dio();
+
+  final api = locator<ApiService>();
 
   List<String> _ingredients = [];
   List<String> get ingredients => _ingredients;
@@ -47,63 +61,70 @@ class CreateDishModel extends BaseNotifier with Validators {
   Future<void> postDish() async {
     if (!formkey.currentState.validate() ||
         _recipes.length < 3 ||
-        ingredients.length < 3) {
+        ingredients.length < 3 ||
+        files.length < 1) {
       showSnack('Requirements not complete');
       return;
     }
     setState(ViewState.Busy);
     List<String> health = [];
     health.add(healthbenefits.text);
-    final body = PostDIshBody(
+    final request = PostDIshBody(
         name: title.text,
         ingredients: ingredients,
         recipe: recipes,
         healthBenefits: health);
 
-    print(body);
+    print(request);
 
     try {
-      var result = await datasource.postADish(body);
-      print(result);
-      setState(ViewState.Idle);
-      dispose();
-      // nav.navigateTo(ViewRoutes.success);
+      final headers = <String, String>{"Authorization": "${key.token}"};
+      print('ewwwwwwwwwwwwwwwwwwwwwww $headers');
+      FormData formData = FormData.fromMap({
+        "name": title.text,
+        "ingredients": ingredients,
+        "recipe": recipes,
+        "healthBenefits": health,
+        "photos": files
+            .map((e) async => await MultipartFile.fromFile(e.path,
+                contentType: MediaType('image', 'jpg')))
+            .toList()
+      });
 
-      showSnack('Successfully Added');
-    } catch (e) {
-      print('add dish model exception $e');
+      print('fffffffffffffffffffffffff ${formData.length}');
+      final response = await dio.put(ApiRoutes.postdish, data: formData,
+          onSendProgress: (received, total) {
+        if (total != -1) {
+          print((received / total * 100).toStringAsFixed(0) + "%");
+        }
+      },
+          options: Options(
+            headers: headers,
+            sendTimeout: 1000,
+          ));
+      print(response);
+    } on DioError catch (e) {
       setState(ViewState.Idle);
-      showSnack(e.toString());
+      print('image upload exception ${e.message}');
+      print('image upload exception ${e.response.data}');
+      final snackbar = SnackBar(content: Text(e.message));
+      scaffoldKey.currentState.showSnackBar(snackbar);
     }
+
+    // try {
+    //   var result = await datasource.postADish(body);
+    //   print(result);
+    //   setState(ViewState.Idle);
+    //   dispose();
+    //   // nav.navigateTo(ViewRoutes.success);
+
+    //   showSnack('Successfully Added');
+    // } catch (e) {
+    //   print('add dish model exception $e');
+    //   setState(ViewState.Idle);
+    //   showSnack(e.toString());
+    // }
   }
-
-  // void getImages() async {
-  //   List<Asset> resultList = List<Asset>();
-  //   String error = 'No Error Dectected';
-
-  //   try {
-  //     resultList = await MultiImagePicker.pickImages(
-  //       maxImages: 4,
-  //       enableCamera: true,
-  //       selectedAssets: images,
-  //       cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
-  //       materialOptions: MaterialOptions(
-  //         actionBarColor: "#abcdef",
-  //         actionBarTitle: "Selected Images",
-  //         allViewTitle: "All Photos",
-  //         useDetailsView: false,
-  //         selectCircleStrokeColor: "#000000",
-  //       ),
-  //     );
-  //   } on Exception catch (e) {
-  //     error = e.toString();
-  //   }
-
-  //   images = resultList;
-  //   _error = error;
-
-  //   notifyListeners();
-  // }
 
   void addIngredient() {
     if (ingre.text.isNotEmpty) {
@@ -150,7 +171,7 @@ class CreateDishModel extends BaseNotifier with Validators {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-
+    _resultSubscription?.cancel();
     title.clear();
     healthbenefits.clear();
     ingre.clear();
@@ -158,13 +179,6 @@ class CreateDishModel extends BaseNotifier with Validators {
     _recipes.clear();
     _ingredients.clear();
   }
-
-  PickedFile file;
-  final ImagePicker _picker = ImagePicker();
-  List<File> files = [];
-  String url = '';
-
-  final api = locator<ApiService>();
 
   Future<void> chooseImage() async {
     final pickedFile = await _picker.getImage(

@@ -144,6 +144,9 @@ class CreateRecipeScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            SizedBox(
+                              height: 10,
+                            ),
                             Material(
                               borderRadius: BorderRadius.circular(7),
                               color: Color(0xFFF578DDE),
@@ -240,6 +243,9 @@ class CreateRecipeScreen extends StatelessWidget {
                                       color: Color(0xFFF4F4F4), width: 2),
                                 ),
                               ),
+                            ),
+                            SizedBox(
+                              height: 10,
                             ),
                             Material(
                               borderRadius: BorderRadius.circular(7),

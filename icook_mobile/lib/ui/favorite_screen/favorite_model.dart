@@ -34,9 +34,11 @@ class FavoriteScreenModel extends BaseNotifier {
       _dishList.clear();
       _dishList = response.data.dishes;
       _checkIfAvailableData();
-      easycontroller.finishRefresh();
+      easycontroller.finishRefresh(success: true);
     } catch (e) {
       setState(ViewState.Idle);
+      easycontroller.finishRefresh(success: true);
+
       print('favourite screen model exception $e');
       final snackbar = SnackBar(content: Text(e));
       scaffoldKey.currentState.showSnackBar(snackbar);

@@ -126,11 +126,12 @@ class AuthServiceImpl extends AuthService {
   Future<dynamic> googleAuth(FbGoogleRequest request) async {
     final headers = <String, String>{
       "Accept": "application/json",
-      "Content-Type": "application/x-www-form-urlencoded"
+      "Content-Type": "application/json"
     };
+    print(request);
     try {
-      final response =
-          await api.post('${ApiRoutes.facebookauth}', headers, request.toMap());
+      final response = await api.post(
+          '${ApiRoutes.googleauth}', headers, request.toJson());
       print('google response $response');
       final res = jsonDecode(response);
       print(res);
