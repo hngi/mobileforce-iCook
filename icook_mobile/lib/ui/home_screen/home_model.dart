@@ -20,7 +20,7 @@ import 'package:stacked_services/stacked_services.dart';
 import '../../locator.dart';
 
 class HomeScreenModel extends BaseNotifier {
- // final navigation = locator<NavigationService>();
+  final navigation = locator<NavigationService>();
   final data = locator<DishDataSource>();
   final key = locator<KeyStorageService>();
 
