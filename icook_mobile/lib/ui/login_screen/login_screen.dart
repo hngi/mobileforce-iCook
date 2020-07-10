@@ -166,7 +166,7 @@ class LoginScreen extends StatelessWidget {
                                   Image.asset('assets/images/Line.png'),
                                 ],
                               ),
-                              SizedBox(height: 40),
+                              SizedBox(height: 16),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
@@ -192,7 +192,7 @@ class LoginScreen extends StatelessWidget {
                                             Image.asset(
                                                 'assets/images/Google.png'),
                                             SizedBox(
-                                              width: 7.09,
+                                              width: 6.09,
                                             ),
                                             Text(
                                               "Continue with Google",
@@ -200,7 +200,7 @@ class LoginScreen extends StatelessWidget {
                                                   textStyle: TextStyle(
                                                       letterSpacing: -0.005,
                                                       color: Colors.black,
-                                                      fontSize: 16),
+                                                      fontSize: 15),
                                                   fontWeight:
                                                       FontWeight.normal),
                                               textAlign: TextAlign.center,
