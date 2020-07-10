@@ -5,6 +5,7 @@ import 'package:icook_mobile/locator.dart';
 import 'package:icook_mobile/provider_setup.dart';
 import 'package:icook_mobile/ui/Onboarding_screens/Onboarding_screens.dart';
 import 'package:icook_mobile/ui/confirm_reset_password/confirm_reset_password.dart';
+import 'package:icook_mobile/ui/home_screen/home_screen.dart';
 import 'package:icook_mobile/ui/router.dart';
 import 'package:icook_mobile/ui/search_screen/search_page.dart';
 import 'package:icook_mobile/ui/signup_screen/signup_screen.dart';

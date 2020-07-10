@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasource.dart';
 import 'package:icook_mobile/models/response/Dish/dishitem.dart';
-import 'package:icook_mobile/models/response/Dish/dishresponse.dart';
+import 'setup_ui_dialog.dart';
 import 'package:icook_mobile/ui/base_view_model.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:icook_mobile/locator.dart';
 import 'package:icook_mobile/core/constants/view_routes.dart';
+import 'package:share/share.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class RecipeItemModel extends BaseNotifier {
   final navigation = locator<NavigationService>();
   final datasource = locator<DishDataSource>();
   final snack = locator<SnackbarService>();
+
+  final dialogService = locator<DialogService>();
 
   bool _isLiked = false;
   bool get isLiked => _isLiked;
@@ -51,6 +54,32 @@ class RecipeItemModel extends BaseNotifier {
       print('dish model exception $e');
       showSnack(e.toString());
     }
+  }
+
+  void showShareDialog() async {
+
+
+      String message = "";
+
+      message += _data.name.toUpperCase() + "\n \n";
+
+      message += "Recipes: \n";
+      message += _data.recipe.toString().
+                 substring(1, _data.recipe.toString().length-1) + "\n \n";
+      message += "Ingredients: \n";
+      message += _data.ingredients.toString().
+                 substring(1, _data.ingredients.toString().length-1) + "\n \n";
+      message += "Health Benefit: \n";
+      message += _data.healthBenefits.toString().
+                 substring(1, _data.healthBenefits.toString().length-1) + "\n";
+
+
+
+    Share.share(message, subject: "iCook Dish");
+
+
+
+
   }
 
   Future<void> favourite() async {
