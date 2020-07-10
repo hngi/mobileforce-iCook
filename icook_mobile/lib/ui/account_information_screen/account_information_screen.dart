@@ -4,8 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/locator.dart';
 import 'package:icook_mobile/ui/other_users/userprofilemode.dart';
-import 'package:icook_mobile/ui/profile_screen/constant.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icook_mobile/ui/shared/recipe_item.dart';
 import 'package:icook_mobile/ui/shared/recipe_item_shim.dart';
 import 'package:icook_mobile/ui/shared/state_responsive.dart';
@@ -22,8 +20,9 @@ class AccountInformationScreen extends StatelessWidget {
       viewModelBuilder: () => UserProfileModel(),
       onModelReady: (model) => model.init(key.id),
       builder: (context, model, child) => Scaffold(
+        key: model.scaffoldKey,
         appBar: AppBar(
-          title: Text("Profile"),
+          title: Text("My Profile"),
         ),
         body: StateResponsive(
             state: model.state,
@@ -31,7 +30,8 @@ class AccountInformationScreen extends StatelessWidget {
             busyWidget: Center(
               child: CircularProgressIndicator(),
             ),
-            idleWidget: SmallScreen()),
+            idleWidget: Center(child: Text("Oops something went wrong!!!")),
+            dataFetchedWidget: SmallScreen()),
       ),
     );
   }
@@ -150,9 +150,9 @@ class SmallScreen extends ViewModelWidget<UserProfileModel> {
                           ),
                         ),
                         SubmitButton(
-                          title: model.user.isFollowing ? "UnFollow" : "Follow",
+                          title: "Edit information",
                           isEnabled: true,
-                          onPressed: () {},
+                          onPressed: () => model.editDetails(),
                           textColor: Colors.white,
                           buttonColor: Constants.kbuttonColor1,
                         )

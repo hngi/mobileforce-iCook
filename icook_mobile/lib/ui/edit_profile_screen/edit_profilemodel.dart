@@ -13,6 +13,7 @@ import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart'
 import 'package:icook_mobile/ui/base_view_model.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:mime/mime.dart';
 
 import '../../locator.dart';
 
@@ -23,7 +24,9 @@ class EditProfileModel extends BaseNotifier with Validators {
   final formkey = GlobalKey<FormState>();
   final node = FocusScopeNode();
 
-  String imageUrl = "";
+  String _imageUrl = "";
+
+  String get imageUrl => _imageUrl;
 
   //textcontrolers
   final name = TextEditingController();
@@ -38,7 +41,7 @@ class EditProfileModel extends BaseNotifier with Validators {
   void init() {
     name.text = key.name;
     email.text = key.email;
-    imageUrl = key.profileImageUrl;
+    _imageUrl = key.profileImageUrl;
   }
 
   PickedFile file;
@@ -56,129 +59,69 @@ class EditProfileModel extends BaseNotifier with Validators {
       imageQuality: 100,
     );
 
-    print(pickedFile.path);
+    print('Piclllllleeee ${pickedFile.path}');
     setState(ViewState.Busy);
 
-    await uploadFile(File(pickedFile.path));
+    final dddd = File(pickedFile.path);
 
-    // try {
-    //   final headers = <String, String>{
-    //     "Authorization": "${key.token}",
-    //   };
-    //   print('ewwwwwwwwwwwwwwwwwwwwwww $headers');
-    //   FormData formData = FormData.fromMap({
-    //     "photo": await MultipartFile.fromFile(pickedFile.path,
-    //         filename: pickedFile.path.split('/').last)
-    //   });
-
-    //   dio.options.headers.addAll(headers);
-    //   dio.options.contentType = "multipart/form-data";
-    //   dio.interceptors.add(LogInterceptor());
-    //   //dio.interceptors.add(LogInterceptor(requestBody: true));
-    //   (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-    //       (HttpClient client) {
-    //     client.findProxy = (uri) {
-    //       //proxy all request to localhost:8888
-    //       return "PROXY localhost:8888";
-    //     };
-    //     client.badCertificateCallback =
-    //         (X509Certificate cert, String host, int port) => true;
-    //   };
-
-    //   print('fffffffffffffffffffffffff ${formData.toString()}');
-    //   final response = await dio.put(
-    //       'https://floating-plains-18946.herokuapp.com/api/v1/me/upload_photo',
-    //       data: formData, onSendProgress: (received, total) {
-    //     if (total != -1) {
-    //       print((received / total * 100).toStringAsFixed(0) + "%");
-    //     }
-    //   });
-    //   print(response);
-    // } on DioError catch (e) {
-    //   setState(ViewState.Idle);
-    //   print('image upload exception ${e.message}');
-    //   print('image upload exception ${e.response.data}');
-    //   final snackbar = SnackBar(content: Text(e.message));
-    //   scaffoldKey.currentState.showSnackBar(snackbar);
-    // }
-
-    // try {
-    //   final token = key.token ?? "";
-    //   final headers = <String, String>{
-    //     "Content-Type": "application/x-www-form-urlencoded",
-    //     "Authorization": "$token"
-    //   };
-
-    //   final response = api.profilePic(
-    //       ApiRoutes.uploadprofile, '', File(pickedFile.path), headers);
-    //   print(response);
-    // } catch (e) {
-    //   setState(ViewState.Idle);
-    //   print('image upload exception $e');
-    //   final snackbar = SnackBar(content: Text(e.toString()));
-    //   scaffoldKey.currentState.showSnackBar(snackbar);
-    // }
+    final response = await _uploadImage(dddd);
+    final status = response['status'];
+    print(status);
+    if (status == 'success') {
+      _imageUrl = response['data']['URL'];
+      key.profileImageUrl = response['data']['URL'];
+      setState(ViewState.Idle);
+    }
+    print(response);
   }
 
-  Future<dynamic> uploadFile(File file) async {
-    // Your endpoint
-    final _path =
-        "https://floating-plains-18946.herokuapp.com/api/v1/me/upload_photo";
+  Future<Map<String, dynamic>> _uploadImage(File image) async {
+    print('seeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
+    print(image.path);
+    Uri apiUrl = Uri.parse(
+        'https://floating-plains-18946.herokuapp.com/api/v1/me/upload_photo');
 
-    var result;
-
-    // This is optional (If there are headers)
     Map<String, String> headers = {"Authorization": "${key.token}"};
+    print(headers);
 
-    final multipartRequest = new http.MultipartRequest(
-      'PUT',
-      Uri.parse(_path),
-    );
+    final mimeTypeData =
+        lookupMimeType(image.path, headerBytes: [0xFF, 0xD8]).split('/');
+    print(mimeTypeData);
 
-    // This is optional as well (If there are headers)
-    multipartRequest.headers.addAll(headers);
+    // Intilize the multipart request
+    final imageUploadRequest = http.MultipartRequest('PUT', apiUrl);
+
+    // Attach the file in the request
+    final file = await http.MultipartFile.fromPath('photo', image.path,
+        contentType: MediaType(mimeTypeData[0], mimeTypeData[1]));
+    // Explicitly pass the extension of the image with request body
+    // Since image_picker has some bugs due which it mixes up
+    // image extension with file name like this filenamejpge
+    // Which creates some problem at the server side to manage
+    // or verify the file extension
+
+//    imageUploadRequest.fields['ext'] = mimeTypeData[1];
+    imageUploadRequest.headers.addAll(headers);
+    imageUploadRequest.files.add(file);
+    // imageUploadRequest.fields['name'] = _name;
+    // imageUploadRequest.fields['email'] = _email;
+    // imageUploadRequest.fields['contact_no'] = _contact;
 
     try {
-      // Add the file to the request body
-      // first argument: json key
-      // second argument: file path
-      // third argument: file name
-      multipartRequest.files.add(await http.MultipartFile.fromPath(
-        'photo',
-        file.path,
-        filename: file.path.split('/').last,
-      ));
-      // You can add more than one file to the request body
-
-      // // you can add other fields to the request
-      // multipartRequest.fields['aParam'] = aParam;
-      // multipartRequest.fields['anotherParam'] = anotherParam;
-
-      // Make the request
-      // The timeout is optional as well
-      final response = await multipartRequest.send().timeout(
-            Duration(seconds: 15),
-          );
-
-      if (response != null) {
-        print(response.statusCode);
-        setState(ViewState.Idle);
-        if (response.statusCode == 200) {
-          // Response is a stream, you should convert to a String
-          final responseString = await response.stream.bytesToString();
-
-          result = jsonDecode(responseString);
-          print(result);
-
-          // Do whatever you want with the response
-
-        }
+      final streamedResponse = await imageUploadRequest.send();
+      final response = await http.Response.fromStream(streamedResponse);
+      print(response.body);
+      if (response.statusCode != 200) {
+        return null;
       }
-    } on SocketException {
-      throw 'No Internet connection';
-    } on FormatException {
-      throw "Bad response format";
+
+      final Map<String, dynamic> responseData = json.decode(response.body);
+      print(responseData);
+      return responseData;
+    } catch (e) {
+      print(e);
+      setState(ViewState.Idle);
+      return null;
     }
-    return result;
   }
 }

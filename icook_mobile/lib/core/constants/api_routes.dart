@@ -37,8 +37,7 @@ class ApiRoutes {
   static const tooglefavouritedish = 'floating-plains-18946.herokuapp.com';
   static const tooglelikedish = 'floating-plains-18946.herokuapp.com';
 
-  static const testDishById =
-      "https://avengers-icook.herokuapp.com/api/v1/users/";
+  static const testDishById = '$baseUrl/users';
 
   ///Search
   static const searchuser = '$baseUrl/search?type=person&name=';

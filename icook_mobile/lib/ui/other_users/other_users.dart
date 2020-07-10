@@ -23,6 +23,7 @@ class OtherUserInfoScreen extends StatelessWidget {
       viewModelBuilder: () => UserProfileModel(),
       onModelReady: (model) => model.init(userId),
       builder: (context, model, child) => Scaffold(
+        key: model.scaffoldKey,
         appBar: AppBar(
           title: Text("Profile"),
         ),
@@ -32,7 +33,8 @@ class OtherUserInfoScreen extends StatelessWidget {
             busyWidget: Center(
               child: CircularProgressIndicator(),
             ),
-            idleWidget: SmallScreen()),
+            idleWidget: Center(child: Text("Oops something went wrong!!!")),
+            dataFetchedWidget: SmallScreen()),
       ),
     );
   }
@@ -151,9 +153,9 @@ class SmallScreen extends ViewModelWidget<UserProfileModel> {
                           ),
                         ),
                         SubmitButton(
-                          title: model.user.isFollowing ? "UnFollow" : "Follow",
+                          title: model.isFollow ? "UnFollow" : "Follow",
                           isEnabled: true,
-                          onPressed: () {},
+                          onPressed: () => model.toogleFollow(),
                           textColor: Colors.white,
                           buttonColor: Constants.kbuttonColor1,
                         )

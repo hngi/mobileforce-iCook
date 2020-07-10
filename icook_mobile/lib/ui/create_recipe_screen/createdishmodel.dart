@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:icook_mobile/core/constants/api_routes.dart';
@@ -15,6 +17,7 @@ import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart'
 import 'package:icook_mobile/models/requests/Dish/postdish.dart';
 import 'package:icook_mobile/ui/base_view_model.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mime/mime.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../locator.dart';
@@ -58,6 +61,65 @@ class CreateDishModel extends BaseNotifier with Validators {
   final ingre = TextEditingController();
   final steps = TextEditingController();
 
+  Future<Map<String, dynamic>> _uploadImage(
+      List<File> images, Map<dynamic, dynamic> body) async {
+    print('seeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
+
+    Uri apiUrl = Uri.parse(ApiRoutes.postdish);
+
+    Map<String, String> headers = {"Authorization": "${key.token}"};
+    print(headers);
+
+    // Intilize the multipart request
+    final imageUploadRequest = http.MultipartRequest('POST', apiUrl);
+
+    // Attach the file in the request
+
+    // Explicitly pass the extension of the image with request body
+    // Since image_picker has some bugs due which it mixes up
+    // image extension with file name like this filenamejpge
+    // Which creates some problem at the server side to manage
+    // or verify the file extension
+
+//    imageUploadRequest.fields['ext'] = mimeTypeData[1];
+    imageUploadRequest.headers.addAll(headers);
+
+    for (var image in images) {
+      final mimeTypeData =
+          lookupMimeType(image.path, headerBytes: [0xFF, 0xD8]).split('/');
+      print(mimeTypeData);
+      final file = await http.MultipartFile.fromPath('photos', image.path,
+          contentType: MediaType(mimeTypeData[0], mimeTypeData[1]));
+      imageUploadRequest.files.add(file);
+    }
+
+    print(body);
+
+    imageUploadRequest.fields.addAll(body);
+    print(imageUploadRequest.fields);
+
+    // imageUploadRequest.fields['name'] = _name;
+    // imageUploadRequest.fields['email'] = _email;
+    // imageUploadRequest.fields['contact_no'] = _contact;
+
+    try {
+      final streamedResponse = await imageUploadRequest.send();
+      final response = await http.Response.fromStream(streamedResponse);
+      print(response.body);
+      if (response.statusCode != 200) {
+        return null;
+      }
+
+      final Map<String, dynamic> responseData = json.decode(response.body);
+      print(responseData);
+      return responseData;
+    } catch (e) {
+      print(e);
+      setState(ViewState.Idle);
+      return null;
+    }
+  }
+
   Future<void> postDish() async {
     if (!formkey.currentState.validate() ||
         _recipes.length < 3 ||
@@ -75,55 +137,24 @@ class CreateDishModel extends BaseNotifier with Validators {
         recipe: recipes,
         healthBenefits: health);
 
+    final newBody = <String, String>{
+      "name": title.text,
+      "ingredients": ingredients.toString(),
+      "recipe": recipes.toString(),
+      "healthBenefits": health.toString()
+    };
+
     print(request);
 
-    try {
-      final headers = <String, String>{"Authorization": "${key.token}"};
-      print('ewwwwwwwwwwwwwwwwwwwwwww $headers');
-      FormData formData = FormData.fromMap({
-        "name": title.text,
-        "ingredients": ingredients,
-        "recipe": recipes,
-        "healthBenefits": health,
-        "photos": files
-            .map((e) async => await MultipartFile.fromFile(e.path,
-                contentType: MediaType('image', 'jpg')))
-            .toList()
-      });
-
-      print('fffffffffffffffffffffffff ${formData.length}');
-      final response = await dio.put(ApiRoutes.postdish, data: formData,
-          onSendProgress: (received, total) {
-        if (total != -1) {
-          print((received / total * 100).toStringAsFixed(0) + "%");
-        }
-      },
-          options: Options(
-            headers: headers,
-            sendTimeout: 1000,
-          ));
-      print(response);
-    } on DioError catch (e) {
+    final result = await _uploadImage(files, newBody);
+    final status = result['status'];
+    if (status == 'success') {
       setState(ViewState.Idle);
-      print('image upload exception ${e.message}');
-      print('image upload exception ${e.response.data}');
-      final snackbar = SnackBar(content: Text(e.message));
+      //show
+      final snackbar = SnackBar(content: Text('Dish sent successfully'));
       scaffoldKey.currentState.showSnackBar(snackbar);
     }
-
-    // try {
-    //   var result = await datasource.postADish(body);
-    //   print(result);
-    //   setState(ViewState.Idle);
-    //   dispose();
-    //   // nav.navigateTo(ViewRoutes.success);
-
-    //   showSnack('Successfully Added');
-    // } catch (e) {
-    //   print('add dish model exception $e');
-    //   setState(ViewState.Idle);
-    //   showSnack(e.toString());
-    // }
+    print(result);
   }
 
   void addIngredient() {
@@ -183,8 +214,8 @@ class CreateDishModel extends BaseNotifier with Validators {
   Future<void> chooseImage() async {
     final pickedFile = await _picker.getImage(
       source: ImageSource.gallery,
-      maxWidth: 150,
-      maxHeight: 150,
+      maxWidth: 400,
+      maxHeight: 300,
       imageQuality: 100,
     );
 

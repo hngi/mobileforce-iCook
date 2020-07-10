@@ -17,6 +17,7 @@ class CreateRecipeScreen extends StatelessWidget {
     return ViewModelBuilder<CreateDishModel>.reactive(
       viewModelBuilder: () => CreateDishModel(),
       builder: (context, model, child) => Scaffold(
+        key: model.scaffoldKey,
         appBar: AppBar(
           title: Text("Add New Dish"),
         ),
@@ -407,7 +408,7 @@ class CreateRecipeScreen extends StatelessWidget {
                                       minWidth: 330,
                                       onPressed: () => model.postDish(),
                                       child: Text(
-                                        "Complete Recipe",
+                                        "Send",
                                         style: GoogleFonts.poppins(
                                             textStyle: TextStyle(
                                                 letterSpacing: 1,

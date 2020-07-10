@@ -130,8 +130,8 @@ class AuthServiceImpl extends AuthService {
     };
     print(request);
     try {
-      final response = await api.post(
-          '${ApiRoutes.googleauth}', headers, request.toJson());
+      final response =
+          await api.post('${ApiRoutes.googleauth}', headers, request.toJson());
       print('google response $response');
       final res = jsonDecode(response);
       print(res);
