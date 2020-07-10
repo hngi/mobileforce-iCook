@@ -148,6 +148,7 @@ class CreateDishModel extends BaseNotifier with Validators {
     if (status == 'success') {
       setState(ViewState.Idle);
       //show
+      dispose();
       final snackbar = SnackBar(content: Text('Dish sent successfully'));
       scaffoldKey.currentState.showSnackBar(snackbar);
     } else {
@@ -205,6 +206,7 @@ class CreateDishModel extends BaseNotifier with Validators {
     healthbenefits.clear();
     ingre.clear();
     steps.clear();
+    files.clear();
     _recipes.clear();
     _ingredients.clear();
   }
