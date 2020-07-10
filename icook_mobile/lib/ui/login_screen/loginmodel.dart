@@ -29,8 +29,8 @@ class LoginModel extends BaseNotifier with Validators {
 
   GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: <String>[
-      'email',
-      'https://www.googleapis.com/auth/contacts.readonly',
+      'https://www.googleapis.com/auth/userinfo.email',
+      'https://www.googleapis.com/auth/userinfo.profile'
     ],
   );
 
@@ -64,10 +64,12 @@ class LoginModel extends BaseNotifier with Validators {
   Future<void> handleSignIn() async {
     try {
       final result = await _googleSignIn.signIn();
+
       print('email ${result.email}');
       final key = await result.authentication;
-      print(key.accessToken);
-      if (key.accessToken != null) {
+
+      print('keyeyyyyyyyyyy ${key.accessToken}');
+      if (key.accessToken.isNotEmpty) {
         setState(ViewState.Busy);
         final google = await auth
             .googleAuth(FbGoogleRequest(access_token: key.accessToken));

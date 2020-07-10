@@ -86,7 +86,7 @@ class RecipeItemModel extends BaseNotifier {
     try {
       var result = await datasource.toggleFavouriteDish(data.id);
       print(result);
-      // showSnack('Added Successfully');
+      showSnack('Added Successfully');
     } catch (e) {
       print('dish model exception $e');
       showSnack(e.toString());

@@ -57,9 +57,11 @@ dependencies:
   animated_dialog_box: ^0.0.2
   cached_network_image: ^2.2.0+1
   flutter_easyrefresh: ^2.1.1
-  multi_image_picker: ^4.6.7
+  
   flutter_plugin_android_lifecycle: ^1.0.8
   google_sign_in: ^4.5.1
+  http_parser: ^3.1.4
+  mime: ^0.9.6+3
  
 
 

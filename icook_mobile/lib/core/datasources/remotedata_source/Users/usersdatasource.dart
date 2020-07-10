@@ -6,7 +6,7 @@ abstract class UsersDataSource {
   Future<void> getAUser();
 
   ///To follow a User{Put}
-  Future<void> followUser();
+  Future<dynamic> followUser(String id);
 
   ///To get all Followers{Get}
   Future<void> getFollowers();
@@ -15,5 +15,5 @@ abstract class UsersDataSource {
   Future<void> getFollowings();
 
   ///To unfollow a User{Put}
-  Future<void> unfollowUser();
+  Future<dynamic> unfollowUser(String id);
 }

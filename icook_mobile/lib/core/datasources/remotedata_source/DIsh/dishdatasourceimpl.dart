@@ -7,6 +7,7 @@ import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart'
 import 'package:icook_mobile/locator.dart';
 import 'package:icook_mobile/models/requests/Dish/postdish.dart';
 import 'package:icook_mobile/models/response/Dish/dishresponse.dart';
+import 'package:icook_mobile/models/response/Users/getauser.dart';
 
 class DishDataSourceImpl extends DishDataSource {
   final key = locator<KeyStorageService>();
@@ -58,16 +59,15 @@ class DishDataSourceImpl extends DishDataSource {
     String token = key.token ?? "";
     final headers = <String, String>{
       "Accept": "application/json",
-      "Content-Type": "application/x-www-form-urlencoded",
       "Authorization": "$token"
     };
 
-    final route = '${ApiRoutes.dish}/:$id';
+    final route = '${ApiRoutes.testDishById}/$id';
     try {
       final response = await api.gett(route, headers);
       print('get dish by $id response $response');
-
-      return response;
+      UserResponse userResponse = UserResponse.fromJson(response);
+      return userResponse;
     } catch (e) {
       print('exception $e');
       throw (e);
@@ -79,7 +79,6 @@ class DishDataSourceImpl extends DishDataSource {
     String token = key.token ?? "";
     final headers = <String, String>{
       "Accept": "application/json",
-      "Content-Type": "application/x-www-form-urlencoded",
       "Authorization": "$token"
     };
 
