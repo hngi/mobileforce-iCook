@@ -69,7 +69,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               color: Color(0XFFBDBDBD),
                               fontSize: 16,
                               fontFamily: "Poppins"),
-                          fillColor: Color(0xFFF4F4F4),
                           filled: true,
                           focusedBorder: OutlineInputBorder(
                             borderRadius:
@@ -101,7 +100,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               color: Color(0XFFBDBDBD),
                               fontSize: 16,
                               fontFamily: "Poppins"),
-                          fillColor: Color(0xFFF4F4F4),
                           filled: true,
                           focusedBorder: OutlineInputBorder(
                             borderRadius:
@@ -234,7 +232,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
                       cursorColor: Color(0XFFF898989),
                       decoration: InputDecoration(
-                        hintText: "Old Password",
+                        hintText: "Current Password",
                       ),
                     ),
                   ),
@@ -257,7 +255,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   keyboardType: TextInputType.visiblePassword,
                   style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
                   decoration: InputDecoration(
-                    hintText: "NewPassword",
+                    hintText: "New Password",
                   ),
                 ),
               ),
@@ -270,7 +268,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   keyboardType: TextInputType.visiblePassword,
                   style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
                   decoration: InputDecoration(
-                    hintText: "Repeat New Password",
+                    hintText: "Confirm  Password",
                   ),
                 ),
               ),
