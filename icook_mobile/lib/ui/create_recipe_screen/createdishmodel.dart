@@ -93,9 +93,11 @@ class CreateDishModel extends BaseNotifier with Validators {
       imageUploadRequest.files.add(file);
     }
 
-    print(body);
+    imageUploadRequest.fields["name"] = title.text;
+    imageUploadRequest.fields["ingredients"] = jsonEncode(ingredients);
+    imageUploadRequest.fields["recipe"] = jsonEncode(recipes);
+    imageUploadRequest.fields["healthBenefits"] = healthbenefits.text;
 
-    imageUploadRequest.fields.addAll(body);
     print(imageUploadRequest.fields);
 
     // imageUploadRequest.fields['name'] = _name;

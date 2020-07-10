@@ -96,7 +96,10 @@ Widget _searchBar(SearchModel model) {
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                   borderSide: BorderSide(color: Color(0xFFF4F4F4)),
                 ),
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Colors.black,
+                ),
                 hintText: 'Search',
               ),
             ),
