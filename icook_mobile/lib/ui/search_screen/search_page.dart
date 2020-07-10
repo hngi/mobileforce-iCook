@@ -200,6 +200,7 @@ class SearchResult extends StatelessWidget {
           children: <Widget>[
             Container(
               width: 150,
+              height: 100,
               margin: EdgeInsets.symmetric(vertical: 17),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
