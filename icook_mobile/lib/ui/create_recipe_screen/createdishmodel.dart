@@ -1,16 +1,23 @@
+import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:icook_mobile/core/constants/api_routes.dart';
 import 'package:icook_mobile/core/constants/view_routes.dart';
 import 'package:icook_mobile/core/constants/view_state.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasource.dart';
 import 'package:icook_mobile/core/mixins/validators.dart';
 import 'package:icook_mobile/core/services/Api/ApiService.dart';
+import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/models/requests/Dish/postdish.dart';
 import 'package:icook_mobile/ui/base_view_model.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mime/mime.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../locator.dart';
@@ -19,6 +26,16 @@ class CreateDishModel extends BaseNotifier with Validators {
   final datasource = locator<DishDataSource>();
   final snack = locator<SnackbarService>();
   final nav = locator<NavigationService>();
+  final key = locator<KeyStorageService>();
+  StreamSubscription _resultSubscription;
+  PickedFile file;
+  final ImagePicker _picker = ImagePicker();
+  List<File> files = [];
+  String url = '';
+
+  final dio = Dio();
+
+  final api = locator<ApiService>();
 
   List<String> _ingredients = [];
   List<String> get ingredients => _ingredients;
@@ -44,66 +61,99 @@ class CreateDishModel extends BaseNotifier with Validators {
   final ingre = TextEditingController();
   final steps = TextEditingController();
 
+  Future<Map<String, dynamic>> _uploadImage(
+      List<File> images, Map<dynamic, dynamic> body) async {
+    print('seeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
+
+    Uri apiUrl = Uri.parse(ApiRoutes.postdish);
+
+    Map<String, String> headers = {"Authorization": "${key.token}"};
+    print(headers);
+
+    // Intilize the multipart request
+    final imageUploadRequest = http.MultipartRequest('POST', apiUrl);
+
+    // Attach the file in the request
+
+    // Explicitly pass the extension of the image with request body
+    // Since image_picker has some bugs due which it mixes up
+    // image extension with file name like this filenamejpge
+    // Which creates some problem at the server side to manage
+    // or verify the file extension
+
+//    imageUploadRequest.fields['ext'] = mimeTypeData[1];
+    imageUploadRequest.headers.addAll(headers);
+
+    for (var image in images) {
+      final mimeTypeData =
+          lookupMimeType(image.path, headerBytes: [0xFF, 0xD8]).split('/');
+      print(mimeTypeData);
+      final file = await http.MultipartFile.fromPath('photos', image.path,
+          contentType: MediaType(mimeTypeData[0], mimeTypeData[1]));
+      imageUploadRequest.files.add(file);
+    }
+
+    print(body);
+
+    imageUploadRequest.fields.addAll(body);
+    print(imageUploadRequest.fields);
+
+    // imageUploadRequest.fields['name'] = _name;
+    // imageUploadRequest.fields['email'] = _email;
+    // imageUploadRequest.fields['contact_no'] = _contact;
+
+    try {
+      final streamedResponse = await imageUploadRequest.send();
+      final response = await http.Response.fromStream(streamedResponse);
+      final Map<String, dynamic> responseData =
+          json.decode(response.body) as Map<String, dynamic>;
+      print(response.statusCode);
+      if (response.statusCode != 200) {
+        return null;
+      }
+
+      print(responseData);
+      return responseData;
+    } catch (e) {
+      print(e);
+      setState(ViewState.Idle);
+      return null;
+    }
+  }
+
   Future<void> postDish() async {
     if (!formkey.currentState.validate() ||
         _recipes.length < 3 ||
-        ingredients.length < 3) {
+        ingredients.length < 3 ||
+        files.length < 1) {
       showSnack('Requirements not complete');
       return;
     }
     setState(ViewState.Busy);
     List<String> health = [];
     health.add(healthbenefits.text);
-    final body = PostDIshBody(
-        name: title.text,
-        ingredients: ingredients,
-        recipe: recipes,
-        healthBenefits: health);
 
-    print(body);
+    final newBody = <String, String>{
+      "name": title.text,
+      "ingredients": jsonEncode(ingredients),
+      "recipe": jsonEncode(recipes),
+      "healthBenefits": jsonEncode(health)
+    };
 
-    try {
-      var result = await datasource.postADish(body);
-      print(result);
+    print(newBody);
+
+    final gather = await _uploadImage(files, newBody);
+    print("mapppp $gather");
+    final status = gather['status'];
+    if (status == 'success') {
       setState(ViewState.Idle);
-      dispose();
-      // nav.navigateTo(ViewRoutes.success);
-
-      showSnack('Successfully Added');
-    } catch (e) {
-      print('add dish model exception $e');
+      //show
+      final snackbar = SnackBar(content: Text('Dish sent successfully'));
+      scaffoldKey.currentState.showSnackBar(snackbar);
+    } else {
       setState(ViewState.Idle);
-      showSnack(e.toString());
     }
   }
-
-  // void getImages() async {
-  //   List<Asset> resultList = List<Asset>();
-  //   String error = 'No Error Dectected';
-
-  //   try {
-  //     resultList = await MultiImagePicker.pickImages(
-  //       maxImages: 4,
-  //       enableCamera: true,
-  //       selectedAssets: images,
-  //       cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
-  //       materialOptions: MaterialOptions(
-  //         actionBarColor: "#abcdef",
-  //         actionBarTitle: "Selected Images",
-  //         allViewTitle: "All Photos",
-  //         useDetailsView: false,
-  //         selectCircleStrokeColor: "#000000",
-  //       ),
-  //     );
-  //   } on Exception catch (e) {
-  //     error = e.toString();
-  //   }
-
-  //   images = resultList;
-  //   _error = error;
-
-  //   notifyListeners();
-  // }
 
   void addIngredient() {
     if (ingre.text.isNotEmpty) {
@@ -150,7 +200,7 @@ class CreateDishModel extends BaseNotifier with Validators {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-
+    _resultSubscription?.cancel();
     title.clear();
     healthbenefits.clear();
     ingre.clear();
@@ -159,18 +209,11 @@ class CreateDishModel extends BaseNotifier with Validators {
     _ingredients.clear();
   }
 
-  PickedFile file;
-  final ImagePicker _picker = ImagePicker();
-  List<File> files = [];
-  String url = '';
-
-  final api = locator<ApiService>();
-
   Future<void> chooseImage() async {
     final pickedFile = await _picker.getImage(
       source: ImageSource.gallery,
-      maxWidth: 150,
-      maxHeight: 150,
+      maxWidth: 800,
+      maxHeight: 600,
       imageQuality: 100,
     );
 

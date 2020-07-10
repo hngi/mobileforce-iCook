@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:icook_mobile/core/constants/view_routes.dart';
 import 'package:icook_mobile/core/constants/view_state.dart';
 import 'package:icook_mobile/core/datasources/remotedata_source/DIsh/dishdatasource.dart';
 import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
@@ -30,6 +31,10 @@ class HomeScreenModel extends BaseNotifier {
   //scaffoldkey
   final scaffoldKey = new GlobalKey<ScaffoldState>();
 
+   void editDetails() {
+    navigation.navigateTo(ViewRoutes.edit_profile);
+  }
+
   Future<void> loadData() async {
     setState(ViewState.Busy);
 
@@ -39,13 +44,14 @@ class HomeScreenModel extends BaseNotifier {
       _list.clear();
       _list = response.data.dishes;
       _checkIfAvailableData();
+      easycontroller.finishRefresh(success: true);
 
       // //show
       // final snackbar = SnackBar(content: Text(response.status));
       // scaffoldKey.currentState.showSnackBar(snackbar);
     } catch (e) {
       setState(ViewState.Idle);
-      easycontroller.resetLoadState();
+      easycontroller.finishRefresh(success: true);
       print('homescreen model exception $e');
       final snackbar = SnackBar(content: Text(e.toString()));
       scaffoldKey.currentState.showSnackBar(snackbar);

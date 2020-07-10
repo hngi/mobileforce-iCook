@@ -235,11 +235,8 @@ class ApiServiceImpl implements ApiService {
   }
 
   uploadFileFromDio(String url, File photoFile, dynamic headers) async {
-    _dio.options.connectTimeout = 5000; //5s
-    _dio.options.receiveTimeout = 5000;
-  
     FormData formData = new FormData();
-   
+
     if (photoFile != null &&
         photoFile.path != null &&
         photoFile.path.isNotEmpty) {
@@ -247,18 +244,22 @@ class ApiServiceImpl implements ApiService {
       String fileName = basename(photoFile.path);
       print("File Name : $fileName");
       print("File Size : ${photoFile.lengthSync()}");
-       final mFile = await _fileHelper.convertFileToMultipartFile(photoFile);
+      final mFile = await _fileHelper.convertFileToMultipartFile(photoFile);
       formData.files.add(MapEntry("photo", mFile));
     }
-    var response = await _dio.post(url,
-        data: formData,
-        onSendProgress: network_utils.showLoadingProgress,
-        onReceiveProgress: network_utils.showLoadingProgress,
-        options: Options(
-            method: 'POST',
-            responseType: ResponseType.plain // or ResponseType.JSON
-            ));
-    print("Response status: ${response.statusCode}");
-    print("Response data: ${response.data}");
+
+    try {
+      var response = await _dio.post(url,
+          data: formData,
+          onSendProgress: network_utils.showLoadingProgress,
+          onReceiveProgress: network_utils.showLoadingProgress,
+          options: Options(
+              method: 'POST',
+              headers: headers,
+              responseType: ResponseType.json // or ResponseType.JSON
+              ));
+      print("Response status: ${response.statusCode}");
+      print("Response data: ${response.data}");
+    } on DioError {}
   }
 }

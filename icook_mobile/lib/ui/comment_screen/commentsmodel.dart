@@ -65,6 +65,7 @@ class CommentsModel extends BaseNotifier {
         v: 1);
 
     _comments.insert(0, submit);
+    setState(ViewState.DataFetched);
     _message = commentText.text;
     commentText.clear();
     notifyListeners();
@@ -86,7 +87,5 @@ class CommentsModel extends BaseNotifier {
     }
   }
 
-  void deleteComment() {
-
-  }
+  void deleteComment() {}
 }

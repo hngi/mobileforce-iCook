@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:icook_mobile/models/response/Dish/dishitem.dart';
 import 'package:icook_mobile/models/response/Dish/dishresponse.dart';
 import 'package:icook_mobile/ui/comment_screen/comment_screen.dart';
+import 'package:icook_mobile/ui/other_users/other_users.dart';
 import 'package:icook_mobile/ui/shared/recipe_item_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:carousel_pro/carousel_pro.dart';
@@ -28,7 +29,14 @@ class RecipeItem extends StatelessWidget {
             children: <Widget>[
               SizedBox(height: 10),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => OtherUserInfoScreen(
+                                userId: dish.chefId[0].id,
+                              )));
+                },
                 child: Padding(
                   padding: const EdgeInsets.only(
                       left: 20, right: 20, top: 5, bottom: 5),
@@ -38,7 +46,9 @@ class RecipeItem extends StatelessWidget {
                         onTap: () {},
                         child: CircleAvatar(
                           backgroundImage: dish.chefId.isNotEmpty
-                              ? NetworkImage(dish.chefId[0].userImage)
+                              ? CachedNetworkImageProvider(
+                                  dish.chefId[0].userImage,
+                                )
                               : AssetImage('assets/images/chefavatar1.png'),
                           radius: 25,
                         ),

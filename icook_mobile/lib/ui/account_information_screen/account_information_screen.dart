@@ -1,9 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:icook_mobile/ui/account_information_screen/accountmodel.dart';
-import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
-import 'package:icook_mobile/ui/profile_screen/constant.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
+import 'package:icook_mobile/locator.dart';
+import 'package:icook_mobile/ui/other_users/userprofilemode.dart';
 import 'package:icook_mobile/ui/shared/recipe_item.dart';
 import 'package:icook_mobile/ui/shared/recipe_item_shim.dart';
 import 'package:icook_mobile/ui/shared/state_responsive.dart';
@@ -15,26 +15,35 @@ import 'package:stacked/stacked.dart';
 class AccountInformationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<AccountModel>.nonReactive(
-      viewModelBuilder: () => AccountModel(),
-      onModelReady: (model) => model.init(),
+    final key = locator<KeyStorageService>();
+    return ViewModelBuilder<UserProfileModel>.reactive(
+      viewModelBuilder: () => UserProfileModel(),
+      onModelReady: (model) => model.init(key.id),
       builder: (context, model, child) => Scaffold(
+        key: model.scaffoldKey,
         appBar: AppBar(
           title: Text("My Profile"),
         ),
-        body: SmallScreen(),
+        body: StateResponsive(
+            state: model.state,
+            noDataAvailableWidget: Text("Couldn't Fetch Profile"),
+            busyWidget: Center(
+              child: CircularProgressIndicator(),
+            ),
+            idleWidget: Center(child: Text("Oops something went wrong!!!")),
+            dataFetchedWidget: SmallScreen()),
       ),
     );
   }
 }
 
-class SmallScreen extends ViewModelWidget<AccountModel> {
+class SmallScreen extends ViewModelWidget<UserProfileModel> {
   const SmallScreen({
     Key key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, AccountModel model) {
+  Widget build(BuildContext context, UserProfileModel model) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +61,8 @@ class SmallScreen extends ViewModelWidget<AccountModel> {
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                          image: AssetImage("assets/images/chefavatar1.png"),
+                          image:
+                              CachedNetworkImageProvider(model.user.userImage),
                           fit: BoxFit.cover)),
                 ),
                 SizedBox(
@@ -73,7 +83,7 @@ class SmallScreen extends ViewModelWidget<AccountModel> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
                                     Text(
-                                      "4.4k",
+                                      model.user.followersCount.toString(),
                                       style: GoogleFonts.poppins(
                                         fontStyle: FontStyle.normal,
                                         fontWeight: FontWeight.bold,
@@ -96,7 +106,7 @@ class SmallScreen extends ViewModelWidget<AccountModel> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
                                     Text(
-                                      "13",
+                                      model.user.dishesCount.toString(),
                                       style: GoogleFonts.poppins(
                                         fontStyle: FontStyle.normal,
                                         fontWeight: FontWeight.bold,
@@ -119,7 +129,7 @@ class SmallScreen extends ViewModelWidget<AccountModel> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
                                     Text(
-                                      "2.2k",
+                                      model.user.followingCount.toString(),
                                       style: GoogleFonts.poppins(
                                         fontStyle: FontStyle.normal,
                                         fontWeight: FontWeight.bold,
@@ -163,7 +173,7 @@ class SmallScreen extends ViewModelWidget<AccountModel> {
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Text(
-              "Chef ${model.username}",
+              "Chef ${model.user.name}",
               style: GoogleFonts.poppins(
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.w500,
@@ -179,7 +189,7 @@ class SmallScreen extends ViewModelWidget<AccountModel> {
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Text(
-              "Bio:",
+              model.user.email,
               style: GoogleFonts.poppins(
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.w500,
@@ -196,7 +206,7 @@ class SmallScreen extends ViewModelWidget<AccountModel> {
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Text(
-              "A good food is the language of kings.",
+              model.user.gender,
               style: GoogleFonts.poppins(
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.normal,
@@ -225,42 +235,12 @@ class SmallScreen extends ViewModelWidget<AccountModel> {
             height: 12,
           ),
 
-          StateResponsive(
-            state: model.state,
-            noDataAvailableWidget: Center(
-              child: Text('No Posts'),
-            ),
-            busyWidget: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 6,
-                itemBuilder: (context, index) => Shimmer.fromColors(
-                      direction: ShimmerDirection.ltr,
-                      period: Duration(seconds: 2),
-                      baseColor: Colors.grey[400],
-                      highlightColor: Colors.white,
-                      child: RecipeItemShim(
-                        chefImage: "assets/images/avatar.png",
-                        chefName: "",
-                        foodName: "",
-                        foodDescription: "",
-                        likes: 0,
-                        foodImage: [
-                          "assets/images/amala.jpeg",
-                          "assets/images/recipes.png",
-                          "assets/images/amala.jpeg"
-                        ],
-                      ),
-                    )),
-            idleWidget: Center(
-              child: Text('No Posts'),
-            ),
-            dataFetchedWidget: ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: model.list.length,
-              itemBuilder: (context, index) =>
-                  RecipeItem(dish: model.list[index]),
-            ),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: model.list.length,
+            itemBuilder: (context, index) =>
+                RecipeItem(dish: model.list[index]),
           ),
 
           SizedBox(

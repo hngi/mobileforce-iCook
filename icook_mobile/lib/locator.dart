@@ -63,6 +63,8 @@ Future<void> setupLocator({bool test = false}) async {
   locator.registerLazySingleton<UsersDataSource>(() => UsersDataSourceImpl());
   locator.registerLazySingleton<CommentsDataSource>(
       () => CommentsDataSourceImpl());
+
+  
 }
 
 Future<void> _setupSharedPreferences() async {
