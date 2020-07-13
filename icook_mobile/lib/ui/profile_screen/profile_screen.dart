@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
 import 'package:icook_mobile/ui/account_information_screen/account_information_screen.dart';
 import 'package:icook_mobile/ui/dish_screen/dish_screen.dart';
 import 'package:icook_mobile/ui/edit_profile_screen/edit_profile.dart';
@@ -10,6 +12,7 @@ import 'package:icook_mobile/ui/shared/sumbitButton.dart';
 import 'package:stacked/stacked.dart';
 // import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
+import '../../locator.dart';
 import '../ui_helper.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -17,6 +20,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, height: 896, width: 414, allowFontScaling: true);
 
+    final key = locator<KeyStorageService>();
     return ViewModelBuilder<ProfileScreenModel>.reactive(
       viewModelBuilder: () => ProfileScreenModel(),
       builder: (context, model, child) => Scaffold(
@@ -41,9 +45,12 @@ class ProfileScreen extends StatelessWidget {
                         decoration: new BoxDecoration(
                             shape: BoxShape.circle,
                             image: new DecorationImage(
-                                fit: BoxFit.cover,
-                                image: new AssetImage(
-                                    'assets/images/chefavatar1.png')))),
+                              fit: BoxFit.cover,
+                              image: key.profileImageUrl.isEmpty
+                                  ? AssetImage('assets/images/chefavatar1.png')
+                                  : CachedNetworkImageProvider(
+                                      key.profileImageUrl),
+                            ))),
                     title: Text(
                       'Chef ${model.username}',
                       style: GoogleFonts.poppins(
@@ -83,31 +90,31 @@ class ProfileScreen extends StatelessWidget {
                                   AccountInformationScreen()));
                     },
                   ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  ListTile(
-                    title: Text(
-                      'My Dishes',
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w500)),
-                    ),
-                    subtitle: Text(
-                      '4 dishes posted',
-                      style: GoogleFonts.poppins(
-                          textStyle:
-                              TextStyle(color: Colors.blueGrey, fontSize: 12)),
-                    ),
-                    trailing: Icon(Icons.keyboard_arrow_right),
-                    onTap: () {
-                      print('my dishes');
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MyDishScreen()));
-                    },
-                  ),
+                  // SizedBox(
+                  //   height: 5,
+                  // ),
+                  // ListTile(
+                  //   title: Text(
+                  //     'My Dishes',
+                  //     style: GoogleFonts.poppins(
+                  //         textStyle: TextStyle(
+                  //             fontSize: 16, fontWeight: FontWeight.w500)),
+                  //   ),
+                  //   subtitle: Text(
+                  //     '4 dishes posted',
+                  //     style: GoogleFonts.poppins(
+                  //         textStyle:
+                  //             TextStyle(color: Colors.blueGrey, fontSize: 12)),
+                  //   ),
+                  //   trailing: Icon(Icons.keyboard_arrow_right),
+                  //   onTap: () {
+                  //     print('my dishes');
+                  //     Navigator.push(
+                  //         context,
+                  //         MaterialPageRoute(
+                  //             builder: (context) => MyDishScreen()));
+                  //   },
+                  // ),
                   SizedBox(
                     height: 5,
                   ),

@@ -67,11 +67,13 @@ class Data {
   final String userName;
   final String email;
   final String token;
+  final String profileImage;
   Data({
     this.userID,
     this.userName,
     this.email,
     this.token,
+    this.profileImage,
   });
 
   Data copyWith({
@@ -79,12 +81,14 @@ class Data {
     String userName,
     String email,
     String token,
+    String profileImage,
   }) {
     return Data(
       userID: userID ?? this.userID,
       userName: userName ?? this.userName,
       email: email ?? this.email,
       token: token ?? this.token,
+      profileImage: profileImage ?? this.profileImage,
     );
   }
 
@@ -94,6 +98,7 @@ class Data {
       'user_name': userName,
       'email': email,
       'token': token,
+      'profileImage': profileImage,
     };
   }
 
@@ -105,6 +110,7 @@ class Data {
       userName: map['user_name'],
       email: map['email'],
       token: map['token'],
+      profileImage: map['profileImage'],
     );
   }
 
@@ -114,7 +120,7 @@ class Data {
 
   @override
   String toString() {
-    return 'Data(userID: $userID, userName: $userName, email: $email, token: $token)';
+    return 'Data(userID: $userID, userName: $userName, email: $email, token: $token, profileImage: $profileImage)';
   }
 
   @override
@@ -125,7 +131,8 @@ class Data {
         o.userID == userID &&
         o.userName == userName &&
         o.email == email &&
-        o.token == token;
+        o.token == token &&
+        o.profileImage == profileImage;
   }
 
   @override
@@ -133,6 +140,7 @@ class Data {
     return userID.hashCode ^
         userName.hashCode ^
         email.hashCode ^
-        token.hashCode;
+        token.hashCode ^
+        profileImage.hashCode;
   }
 }

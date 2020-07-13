@@ -17,6 +17,7 @@ class CreateRecipeScreen extends StatelessWidget {
     return ViewModelBuilder<CreateDishModel>.reactive(
       viewModelBuilder: () => CreateDishModel(),
       builder: (context, model, child) => Scaffold(
+        key: model.scaffoldKey,
         appBar: AppBar(
           title: Text("Add New Dish"),
         ),
@@ -144,6 +145,9 @@ class CreateRecipeScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            SizedBox(
+                              height: 10,
+                            ),
                             Material(
                               borderRadius: BorderRadius.circular(7),
                               color: Color(0xFFF578DDE),
@@ -240,6 +244,9 @@ class CreateRecipeScreen extends StatelessWidget {
                                       color: Color(0xFFF4F4F4), width: 2),
                                 ),
                               ),
+                            ),
+                            SizedBox(
+                              height: 10,
                             ),
                             Material(
                               borderRadius: BorderRadius.circular(7),
@@ -365,28 +372,15 @@ class CreateRecipeScreen extends StatelessWidget {
                                     .toList(),
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () => model.chooseImage(),
-                              child: Container(
-                                height: 100,
-                                width: 100,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(7.0),
-                                  child: Image.asset(
-                                      'assets/images/upload_image.png',
-                                      fit: BoxFit.cover),
-                                ),
-                              ),
-                            ),
                             Container(
                               margin: EdgeInsets.only(top: 20),
                               child: Material(
                                 borderRadius: BorderRadius.circular(7),
                                 color: Color(0xFFF578DDE),
                                 child: MaterialButton(
-                                  onPressed: () {},
+                                  onPressed: () => model.chooseImage(),
                                   child: Text(
-                                    "Upload",
+                                    "Add image",
                                     style: GoogleFonts.poppins(
                                         textStyle: TextStyle(
                                             letterSpacing: 1,
@@ -414,7 +408,7 @@ class CreateRecipeScreen extends StatelessWidget {
                                       minWidth: 330,
                                       onPressed: () => model.postDish(),
                                       child: Text(
-                                        "Complete Recipe",
+                                        "Send",
                                         style: GoogleFonts.poppins(
                                             textStyle: TextStyle(
                                                 letterSpacing: 1,

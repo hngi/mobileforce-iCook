@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:icook_mobile/core/constants/view_routes.dart';
 import 'package:icook_mobile/models/response/Dish/dishitem.dart';
@@ -95,7 +96,10 @@ Widget _searchBar(SearchModel model) {
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                   borderSide: BorderSide(color: Color(0xFFF4F4F4)),
                 ),
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Colors.black,
+                ),
                 hintText: 'Search',
               ),
             ),
@@ -198,15 +202,17 @@ class SearchResult extends StatelessWidget {
         child: Row(
           children: <Widget>[
             Container(
+              width: 150,
+              height: 100,
               margin: EdgeInsets.symmetric(vertical: 17),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
-                child: Image.asset(
-                  'assets/images/icook_logo.png',
-                  width: 117,
-                  height: 115,
-                  fit: BoxFit.fill,
-                ),
+                child: recipe.dishImages.isEmpty
+                    ? AssetImage('assets/images/icook_logo.png')
+                    : Image(
+                        fit: BoxFit.cover,
+                        image:
+                            CachedNetworkImageProvider(recipe.dishImages[0])),
               ),
             ),
             Expanded(

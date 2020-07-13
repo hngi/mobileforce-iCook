@@ -1,7 +1,12 @@
+import 'dart:io';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:icook_mobile/core/services/key_storage/key_storage_service.dart';
+import 'package:icook_mobile/locator.dart';
 import 'package:icook_mobile/ui/home_page/home_page_model.dart';
 import 'package:icook_mobile/ui/home_screen/home_model.dart';
 import 'package:icook_mobile/ui/shared/recipe_item.dart';
@@ -22,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final key = locator<KeyStorageService>();
     return ViewModelBuilder<HomeScreenModel>.reactive(
       viewModelBuilder: () => HomeScreenModel(),
       onModelReady: (model) => model.init(),
@@ -43,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ListTile(
+                          onTap: () => model.editDetails(),
                           leading: Container(
                               width: 60,
                               height: 60,
@@ -50,9 +57,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: Theme.of(context).primaryColor,
                                   shape: BoxShape.circle,
                                   image: new DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: new AssetImage(
-                                          'assets/images/chefavatar1.png')))),
+                                    fit: BoxFit.cover,
+                                    image: key.profileImageUrl.isEmpty
+                                        ? AssetImage(
+                                            'assets/images/chefavatar1.png')
+                                        : CachedNetworkImageProvider(
+                                            key.profileImageUrl),
+                                  ))),
                           title: Text(
                             'Hi Chef ${model.username}',
                             style: GoogleFonts.poppins(

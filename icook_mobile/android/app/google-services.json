@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "158158217877",
-    "firebase_url": "https://icook-88dad.firebaseio.com",
-    "project_id": "icook-88dad",
-    "storage_bucket": "icook-88dad.appspot.com"
+    "project_number": "261561761040",
+    "firebase_url": "https://icook-app.firebaseio.com",
+    "project_id": "icook-app",
+    "storage_bucket": "icook-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:158158217877:android:01c92197b398d68988719c",
+        "mobilesdk_app_id": "1:261561761040:android:78f58fc1a0aeda04b5b995",
         "android_client_info": {
           "package_name": "com.teamfierce.cookapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "158158217877-6lli21onhq8d3v2posjqrp64922usum7.apps.googleusercontent.com",
+          "client_id": "261561761040-2a97qnge3kpcdb8t262bm7mmrci2ht6m.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.teamfierce.cookapp",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "158158217877-0art43utt2028tp6n44epie6settunr6.apps.googleusercontent.com",
+          "client_id": "261561761040-tf9des4kah1r1lqjj8eokigd1oa8tt5n.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDMs0lsLLeVO6akkT9SZaAGV9vF6wQpXSc"
+          "current_key": "AIzaSyAu_7xVIqqvqTQkRRG4DS4N6ff20hPoIaI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "158158217877-0art43utt2028tp6n44epie6settunr6.apps.googleusercontent.com",
+              "client_id": "261561761040-tf9des4kah1r1lqjj8eokigd1oa8tt5n.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

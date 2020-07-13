@@ -18,11 +18,7 @@ abstract class ApiService {
   ///
   /// - throws `NetworkException` if posting form fails
   Future<dynamic> postHttpForm(
-    String route,
-    Map<String, dynamic> body,
-    List<File> files,
-    String key
-  );
+      String route, Map<String, dynamic> body, List<File> files, String key);
 
   /// Download file from [fileUrl] and return the File
   ///
@@ -36,7 +32,10 @@ abstract class ApiService {
 
   Future<dynamic> patch(String url, dynamic header, dynamic body);
 
-  Future<dynamic> profilePic(String url,String text, File file, dynamic header);
+  Future<dynamic> profilePic(
+      String url, String text, File file, dynamic header);
+  Future<dynamic> uploadFileFromDio(
+      String url, File photoFile, dynamic headers);
 
   void dispose();
 }
