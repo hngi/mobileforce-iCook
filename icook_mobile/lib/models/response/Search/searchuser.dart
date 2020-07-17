@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class SearchUserResponse {
   final String status;
@@ -149,6 +150,7 @@ class Result {
   final String updatedAt;
   final int v;
   final String phoneNumber;
+  final String userImage;
   final int followersCount;
   final int followingCount;
   final int dishesCount;
@@ -168,6 +170,7 @@ class Result {
     this.followingCount,
     this.dishesCount,
     this.isFollowing,
+     this.userImage,
     this.me,
   });
 
@@ -180,6 +183,7 @@ class Result {
     String createdAt,
     String updatedAt,
     int v,
+    String userImage,
     String phoneNumber,
     int followersCount,
     int followingCount,
@@ -193,6 +197,7 @@ class Result {
       id: id ?? this.id,
       email: email ?? this.email,
       name: name ?? this.name,
+      userImage: userImage ?? this.userImage,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       v: v ?? this.v,
@@ -217,6 +222,7 @@ class Result {
       '__v': v,
       'phoneNumber': phoneNumber,
       'followersCount': followersCount,
+    "userImage" : userImage,
       'followingCount': followingCount,
       'dishesCount': dishesCount,
       'isFollowing': isFollowing,
@@ -233,6 +239,7 @@ class Result {
       id: map['_id'],
       email: map['email'],
       name: map['name'],
+      userImage: map['userImage'],
       createdAt: map['createdAt'],
       updatedAt: map['updatedAt'],
       v: map['__v']?.toInt(),
