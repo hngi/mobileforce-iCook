@@ -14,6 +14,7 @@ import 'package:icook_mobile/ui/ui_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'ui/settings/settings.dart';
+import 'package:icook_mobile/ui/followers_screen/followers_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
