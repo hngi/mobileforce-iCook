@@ -19,10 +19,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SettingsModel>.reactive(
         viewModelBuilder: () => SettingsModel(),
-        onModelReady: (model)=> model.init(),
+        onModelReady: (model) => model.init(),
         builder: (context, model, child) {
-
-
           return Scaffold(
             key: model.scaffoldKey,
             resizeToAvoidBottomInset: true,
@@ -159,34 +157,40 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         fontSize: 14,
                                         fontWeight: FontWeight.w300,
                                       )),
-                                  onPressed: ()  {
-
-
-
-                                 showModalBottomSheet(
+                                  onPressed: () {
+                                    showModalBottomSheet(
                                       shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.only(
-                                            topLeft: const Radius.circular(10),
-                                            topRight: const Radius.circular(10),
-                                          )
-                                      ),
+                                        topLeft: const Radius.circular(10),
+                                        topRight: const Radius.circular(10),
+                                      )),
                                       context: context,
                                       isScrollControlled: true,
                                       builder: (context) {
                                         return StatefulBuilder(
-                                          builder: (context, myState){
+                                          builder: (context, myState) {
                                             print("Check Check");
-                                            model.myState =  myState;
+                                            model.myState = myState;
                                             return SingleChildScrollView(
                                               child: Padding(
-                                                padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                                                padding: EdgeInsets.only(
+                                                    bottom:
+                                                        MediaQuery.of(context)
+                                                            .viewInsets
+                                                            .bottom),
                                                 child: Container(
-                                                  child: changePasswordForm(model, myState),
+                                                  child: changePasswordForm(
+                                                      model, myState),
                                                   decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.only(
-                                                        topLeft: const Radius.circular(40),
-                                                        topRight: const Radius.circular(40),
-                                                      )),
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                    topLeft:
+                                                        const Radius.circular(
+                                                            40),
+                                                    topRight:
+                                                        const Radius.circular(
+                                                            40),
+                                                  )),
                                                 ),
                                               ),
                                             );
@@ -194,7 +198,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         );
                                       },
                                     );
-
                                   }),
                             ]),
                           ),
@@ -250,169 +253,269 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
             ),
-
           );
         });
   }
 
-
- changePasswordForm (SettingsModel model, StateSetter myState) {
-
-
+  changePasswordForm(SettingsModel model, StateSetter myState) {
     print("Building BottomSheet");
-
 
     return Column(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 2.0, bottom: 2.0),
-          child: Form(
-            key: model.formKey,
-            child: Column(
-              children: [
-                SizedBox(height: heightUnit * 2.0),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '      Password Change',
-                      textAlign: TextAlign.center,
+            padding: const EdgeInsets.only(top: 2.0, bottom: 2.0),
+            child: Form(
+              key: model.formKey,
+              child: Column(
+                children: [
+                  SizedBox(height: heightUnit * 2.0),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '      Password Change',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.poppins(
+                            textStyle: TextStyle(fontSize: 18),
+                            fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(height: heightUnit * 0.5),
+                      Container(
+                        padding:
+                            EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                        child: TextField(
+                          textInputAction: TextInputAction.next,
+                          onSubmitted: (_) =>
+                              FocusScope.of(context).nextFocus(),
+                          keyboardType: TextInputType.text,
+                          style: TextStyle(fontSize: 18, fontFamily: "Poppins"),
+                          cursorColor: Color(0XFFF898989),
+                          decoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
+                            hintText: "Fullname",
+                            hintStyle: TextStyle(
+                                color: Color(0XFFBDBDBD),
+                                fontSize: 16,
+                                fontFamily: "Poppins"),
+                            filled: true,
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(7.0)),
+                              borderSide: BorderSide(color: Color(0xFF578DDE)),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                              borderSide: BorderSide(color: Color(0xFFF4F4F4)),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: heightUnit * 0.5),
+                      Container(
+                        padding:
+                            EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                        child: TextFormField(
+                          validator: (s) =>
+                              model.validatePassword(model.oldPassword.text),
+                          controller: model.oldPassword,
+                          obscureText: true,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.visiblePassword,
+                          style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
+                          cursorColor: Color(0XFFF898989),
+                          decoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
+                            hintText: "Email address",
+                            hintStyle: TextStyle(
+                                color: Color(0XFFBDBDBD),
+                                fontSize: 16,
+                                fontFamily: "Poppins"),
+                            filled: true,
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(7.0)),
+                              borderSide: BorderSide(color: Color(0xFF578DDE)),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text('Forgot Password?',
+                      textAlign: TextAlign.right,
                       style: GoogleFonts.poppins(
-                          textStyle: TextStyle(fontSize: 18),
-                          fontWeight: FontWeight.w500),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.blue,
+                      )),
+                  // password input
+
+                  Padding(
+                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    child: TextFormField(
+                      validator: (s) =>
+                          model.validatePassword(model.newPassword.text),
+                      controller: model.newPassword,
+                      obscureText: true,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.visiblePassword,
+                      style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
+                      decoration: InputDecoration(
+                        hintText: "New Password",
+                      ),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                      child: TextFormField(
-                        validator: (s)=> model.validatePassword(model.oldPassword.text),
-                        controller: model.oldPassword,
-                        obscureText: true,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.visiblePassword,
-                        style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
-                        cursorColor: Color(0XFFF898989),
-                        decoration: InputDecoration(
-                          hintText: "Old Password",
+                  ),
+                  // password input
+                  Padding(
+                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    child: TextFormField(
+                      validator: (s) => model.validateConfirmPassword(
+                          model.newPassword.text,
+                          model.confirmNewPassword.text),
+                      controller: model.confirmNewPassword,
+                      obscureText: true,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.visiblePassword,
+                      style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
+                      decoration: InputDecoration(
+                        hintText: "Repeat New Password",
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 10,
+                  ),
+
+                  // Padding(
+                  //   padding: const EdgeInsets.only(
+                  //     left: 10,
+                  //     right: 10,
+                  //   ),
+
+                  Container(
+                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    child: TextField(
+                      obscureText: true,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.number,
+                      style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
+                      cursorColor: Color(0XFFF898989),
+                      decoration: InputDecoration(
+                        hintText: "Current Password",
+                      ),
+                    ),
+                  ),
+
+                  Text('Forgot Password?',
+                      textAlign: TextAlign.right,
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.blue,
+                      )),
+                  // password input
+
+                  Padding(
+                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    child: TextField(
+                      obscureText: true,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.visiblePassword,
+                      style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
+                      decoration: InputDecoration(
+                        hintText: "New Password",
+                      ),
+                    ),
+                  ),
+                  // password input
+                  Padding(
+                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    child: TextField(
+                      obscureText: true,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.visiblePassword,
+                      style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
+                      decoration: InputDecoration(
+                        hintText: "Confirm  Password",
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 10,
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 10,
+                      right: 10,
+                    ),
+                    child: StateResponsive(
+                        state: model.state,
+                        busyWidget: Center(
+                          child: CircularProgressIndicator(),
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-                Text('Forgot Password?',
-                    textAlign: TextAlign.right,
-                    style: GoogleFonts.poppins(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w300,
-                      color: Colors.blue,
-                    )),
-                // password input
-
-                Padding(
-                  padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                  child: TextFormField(
-                    validator: (s)=> model.validatePassword(model.newPassword.text),
-                    controller: model.newPassword,
-                    obscureText: true,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.visiblePassword,
-                    style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
-                    decoration: InputDecoration(
-                      hintText: "NewPassword",
-                    ),
-                  ),
-                ),
-                // password input
-                Padding(
-                  padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                  child: TextFormField(
-                    validator: (s)=> model.validateConfirmPassword(
-                        model.newPassword.text, model.confirmNewPassword.text),
-                    controller: model.confirmNewPassword,
-                    obscureText: true,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.visiblePassword,
-                    style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
-                    decoration: InputDecoration(
-                      hintText: "Repeat New Password",
-                    ),
-
-                  ),
-                ),
-
-
-                SizedBox(
-                  height: 10,
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 10,
-                    right: 10,
-                  ),
-                  child: StateResponsive(
-                      state: model.state,
-                      busyWidget: Center(
-                        child: CircularProgressIndicator(
-
+                        errorWidget: Column(
+                          children: <Widget>[
+                            Text(
+                              model.responseMessage,
+                              style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.red),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            RaisedButton(
+                              child: Text("Save Password"),
+                              textColor: Colors.white,
+                              color: Colors.blue,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(3)),
+                              onPressed: () {
+                                model.changePassword();
+                              },
+                            ),
+                          ],
                         ),
-                      ),
-
-                      errorWidget: Column(
-                        children: <Widget>[
-
-                          Text(model.responseMessage, style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.red
-                          ),),
-
-                          SizedBox(
-                            height: 15,
-                          ),
-
-                          RaisedButton(
-                            child: Text("Save Password"),
-                            textColor: Colors.white,
-                            color: Colors.blue,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(3)),
-                            onPressed: () {
-                              model.changePassword();
-                            },
-                          ),
-
-                        ],
-                      ),
-                      successWidget: Column(
-                        children: <Widget>[
-
-                          Text(model.responseMessage, style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.green
-                          ),),
-
-                          SizedBox(
-                            height: 15,
-                          ),
-
-                          RaisedButton(
-                            child: Text("Save Password"),
-                            textColor: Colors.white,
-                            color: Colors.blue,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(3)),
-                            onPressed: () {
-                              model.changePassword();
-                            },
-                          ),
-
-                        ],
-                      ),
-
-                      idleWidget: Center(
+                        successWidget: Column(
+                          children: <Widget>[
+                            Text(
+                              model.responseMessage,
+                              style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.green),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            RaisedButton(
+                              child: Text("Save Password"),
+                              textColor: Colors.white,
+                              color: Colors.blue,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(3)),
+                              onPressed: () {
+                                model.changePassword();
+                              },
+                            ),
+                          ],
+                        ),
+                        idleWidget: Center(
                           child: Container(
-                            padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                            padding: EdgeInsets.only(
+                                left: 10, right: 10, bottom: 10),
                             child: Column(
                               children: <Widget>[
                                 RaisedButton(
@@ -428,29 +531,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               ],
                             ),
                           ),
-                      )
+                        )),
                   ),
-                ),
 
-                SizedBox(
-                  height: 20,
-                )
-
-
-              ],
-            ),
-          ),
-        )
+                  SizedBox(
+                    height: 20,
+                  )
+                ],
+              ),
+            )),
       ],
     );
   }
-
-
-
 }
-
-
-
 
 enum Settings { DarkMode }
 
