@@ -408,7 +408,7 @@ class CreateRecipeScreen extends StatelessWidget {
                                       minWidth: 330,
                                       onPressed: () => model.postDish(),
                                       child: Text(
-                                        "Send",
+                                        "Add Dish",
                                         style: GoogleFonts.poppins(
                                             textStyle: TextStyle(
                                                 letterSpacing: 1,
